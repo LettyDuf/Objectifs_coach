@@ -1,0 +1,171 @@
+/**
+ * Tokens de design — direction « Editorial Tech : papier blanc, encres vives ».
+ *
+ * Refonte 2026-06-21 suite à audit visuel (voir audits/2026-06-21-audit-direction-visuelle.md).
+ * Abandon de la palette crème/terracotta (lue « papier vieilli »), passage à un système
+ * inspiré de Vercel / Linear / Anthropic : off-white lumineux + duo indigo/corail/teal.
+ *
+ * Clarification chromatique 2026-06-21 : 5 rôles avec 5 teintes distinctes pour
+ * éviter la confusion entre ACTION (accent) et ÉTAT (good/warn/bad).
+ *  - accent (corail #DC2626) ≠ bad (rouge brique foncé #7F1D1D)
+ *  - accent-2 (ocre #A16207) ≠ good (vert sapin #15803D)
+ *  - highlight (ivoire #FFF8E7) ≠ warn-bg (ambre #FDE6C5)
+ */
+
+:root {
+  /* Neutres — fond lavande très claire (validé Lætitia 2026-06-21) */
+  --color-bg:          #F3F1FA;      /* lavande pâle, plus chaleureux que blanc */
+  --color-surface:     #FFFFFF;      /* cards blanches pour contraste */
+  --color-surface-alt: #ECE9F5;
+  --color-text:        #111111;      /* ratio 18.9:1 AAA sur bg */
+  --color-text-muted:  #5A5468;      /* ratio AA sur lavande */
+  --color-border:      #E0DCEC;
+  --color-border-strong: #B0A8C9;
+
+  /* Encres vives — clarification chromatique 2026-06-21 :
+     5 rôles, 5 teintes distinctes. Plus de confusion accent ↔ état. */
+  --color-focus:       #3730A3;      /* indigo profond — focus a11y, ratio 9.1:1 AAA */
+  --color-accent:      #DC2626;      /* corail vif — action principale (CTA primary, pictos) */
+  --color-accent-2:    #A16207;      /* ocre profond — action secondaire (modes Pour s'amuser), chaud, distinct du vert */
+  --color-highlight:   #FFF8E7;      /* ivoire — surligneur de phrase-clé, distinct du warn-bg */
+
+  /* Théorie vs Pratique (D21) — distinction chromatique forte pour matérialiser
+     les deux modes d'apprentissage dans le ModeSelector et les écrans. */
+  --color-theory:      #1E40AF;      /* bleu marine — lecture, posé, savoir */
+  --color-theory-bg:   #E0E7FF;      /* halo bleu pâle pour les fonds Théorie */
+  --color-practice:    var(--color-accent);    /* corail — action, terrain, engagement */
+  --color-practice-bg: #FEE4E2;      /* halo corail pâle pour les fonds Pratique */
+
+  /* Sémantiques — ÉTATS (à ne pas confondre avec les accents) */
+  --color-good:        #15803D;      /* vert sapin — succès, distinct de l'ocre */
+  --color-good-bg:     #D7F5E0;
+  --color-warn:        #B45309;      /* ambre — avertissement */
+  --color-warn-bg:     #FDE6C5;
+  --color-bad:         #7F1D1D;      /* rouge brique foncé — erreur, distinct du corail accent */
+  --color-bad-bg:      #FDE2E2;
+  --color-neutral:     #5A5468;
+  --color-neutral-bg:  #ECE9F5;
+
+  /* Typographie — 3 familles assumées (toutes web-safe, zéro @font-face) */
+  --font-sans:  ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-serif: ui-serif, Georgia, "Times New Roman", serif;
+  --font-mono:  ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+
+  /* Échelle typo réduite à 6 paliers (ratio ~1.28) */
+  --font-size-xs:   0.8125rem;  /* 13 px */
+  --font-size-sm:   0.9375rem;  /* 15 px */
+  --font-size-base: 1.0625rem;  /* 17 px */
+  --font-size-md:   1.3125rem;  /* 21 px */
+  --font-size-lg:   1.75rem;    /* 28 px — Georgia OK à partir d'ici */
+  --font-size-xl:   2.375rem;   /* 38 px */
+
+  --line-height: 1.5;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Espacement — échelle 4px */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+
+  /* Rayons — légèrement plus marqués */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-pill: 999px;
+
+  /* Élévation — subtile mais présente, signature Linear/Vercel */
+  --shadow-xs: 0 1px 0 rgba(17, 17, 17, 0.04);
+  --shadow-sm: 0 1px 2px rgba(17, 17, 17, 0.06), 0 0 0 1px rgba(17, 17, 17, 0.04);
+  --shadow-md: 0 4px 12px -2px rgba(17, 17, 17, 0.08), 0 0 0 1px rgba(17, 17, 17, 0.05);
+
+  /* Largeurs de contenu */
+  --content-max-width-narrow: 760px;
+  --content-max-width-wide:   1320px;
+
+  /* Système de gabarit Screen (D17 — audit UI structurelle 2026-06-21) */
+  --shell-header-h: 72px;       /* hauteur réelle de .app__header (réduite levier G) */
+  --screen-header-h: 116px;     /* hauteur réelle de .screen-header (titre + lede + meta) */
+  --screen-actions-h: 64px;
+  --screen-rail-narrow: 380px;
+  --screen-rail-wide: 460px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+button {
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+}
+
+button:disabled,
+button[aria-disabled="true"] {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+a {
+  color: var(--color-focus);
+}
+
+/* Skip link — WCAG 2.4.1 */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--color-surface);
+  color: var(--color-text);
+  padding: var(--space-3) var(--space-4);
+  z-index: 100;
+  border: 2px solid var(--color-focus);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  font-weight: var(--font-weight-semibold);
+}
+
+.skip-link:focus {
+  left: var(--space-3);
+  top: var(--space-3);
+}
+
+/* Motif de fond subtil — utilisable en décoration de zones (ex. header) */
+.bg-dots {
+  position: relative;
+}
+
+.bg-dots::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(17, 17, 17, 0.06) 1px, transparent 1px);
+  background-size: 16px 16px;
+  pointer-events: none;
+}

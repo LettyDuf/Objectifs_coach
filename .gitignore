@@ -1,0 +1,31 @@
+# Dépendances
+node_modules/
+
+# Build
+dist/
+.vite/
+
+# Tests / coverage
+coverage/
+
+# Logs et caches
+*.log
+.eslintcache
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Éditeurs
+.vscode/
+.idea/
+*.swp
+
+# Vite — fichiers timestamp temporaires
+vite.config.ts.timestamp-*.mjs
+vite.config.js.timestamp-*.mjs
+
+# Environnement local
+.env
+.env.local
+.env.*.local

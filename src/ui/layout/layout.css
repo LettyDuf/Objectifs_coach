@@ -1,0 +1,243 @@
+/**
+ * Système de gabarit d'écran — D17 (audit UI structurelle 2026-06-21).
+ *
+ * Tous les écrans consomment le même squelette : ScreenHeader sticky haut,
+ * ScreenBody (4 variantes de grille), ScreenActions sticky bas.
+ * Voir audits/2026-06-21-audit-ui-structurelle.md.
+ */
+
+/* ============================================================
+ * Frame
+ * ============================================================ */
+
+.screen-frame {
+  max-width: var(--content-max-width-wide);
+  margin: 0 auto;
+  padding: 0 var(--space-6) var(--screen-actions-h);
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - var(--shell-header-h));
+}
+
+/* ============================================================
+ * Header sticky (sous le shell global)
+ * ============================================================ */
+
+.screen-header {
+  position: sticky;
+  top: var(--shell-header-h);
+  z-index: 20;
+  background: var(--color-bg);
+  padding: var(--space-5) 0 var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--space-4);
+  align-items: end;
+}
+
+.screen-header__main { min-width: 0; }
+
+.screen-header__eyebrow {
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-1);
+}
+
+.screen-header__title {
+  font-family: var(--font-serif);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: -0.015em;
+  line-height: 1.05;
+  margin: var(--space-1) 0 var(--space-2);
+  color: var(--color-text); /* fix : éviter l'héritage d'une couleur claire */
+}
+
+.screen-header__lede {
+  font-size: var(--font-size-md);
+  color: var(--color-text-muted);
+  max-width: 64ch;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.screen-header__actions {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* ============================================================
+ * Body — 4 variantes de grille
+ * ============================================================ */
+
+.screen-body {
+  flex: 1;
+  padding: var(--space-6) 0;
+  display: grid;
+  gap: var(--space-6);
+}
+
+.screen-body--single       { grid-template-columns: minmax(0, 1fr); }
+.screen-body--rail         { grid-template-columns: minmax(0, 1fr) var(--screen-rail-narrow); }
+.screen-body--wide-rail    { grid-template-columns: minmax(0, 1fr) var(--screen-rail-wide); }
+.screen-body--source-aside { grid-template-columns: minmax(0, 1.6fr) minmax(360px, 1fr); }
+
+@media (max-width: 1180px) {
+  .screen-body--rail,
+  .screen-body--wide-rail,
+  .screen-body--source-aside {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================
+ * Zones (Primary / Context / Result)
+ * ============================================================ */
+
+.zone {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-width: 0;
+}
+
+.zone--primary {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-xs);
+}
+
+.zone--context {
+  position: sticky;
+  top: calc(var(--shell-header-h) + var(--screen-header-h) + var(--space-4));
+  align-self: start;
+  max-height: calc(100vh - var(--shell-header-h) - var(--screen-header-h) - var(--space-6));
+  overflow-y: auto;
+}
+
+@media (max-width: 1180px) {
+  .zone--context {
+    position: static;
+    max-height: none;
+  }
+}
+
+.zone--result {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+
+.zone__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+
+.zone__title {
+  font-family: var(--font-serif);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.zone__meta {
+  font-size: var(--font-size-sm);
+  color: var(--color-accent);
+  font-weight: var(--font-weight-medium);
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+/* ============================================================
+ * Actions sticky bas
+ * ============================================================ */
+
+.screen-actions {
+  position: sticky;
+  bottom: 0;
+  z-index: 25;
+  margin: 0 calc(var(--space-6) * -1) 0;
+  padding: var(--space-3) var(--space-6);
+  background: color-mix(in srgb, var(--color-bg) 92%, transparent);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-top: 1px solid var(--color-border);
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-4);
+  min-height: var(--screen-actions-h);
+}
+
+.screen-actions__left,
+.screen-actions__right {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+.screen-actions__center {
+  text-align: center;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+/* Score chip — coloré selon le statut (Lætitia 2026-06-21) */
+.score-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  padding: var(--space-1) var(--space-3);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  color: var(--color-text);
+}
+
+.score-chip__label {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+}
+
+.score-chip--good {
+  background: var(--color-good-bg);
+  border-color: var(--color-good);
+  color: var(--color-good);
+}
+.score-chip--good .score-chip__label { color: var(--color-good); opacity: 0.75; }
+
+.score-chip--warn {
+  background: var(--color-warn-bg);
+  border-color: var(--color-warn);
+  color: var(--color-warn);
+}
+.score-chip--warn .score-chip__label { color: var(--color-warn); opacity: 0.75; }
+
+.score-chip--bad {
+  background: var(--color-bad-bg);
+  border-color: var(--color-bad);
+  color: var(--color-bad);
+}
+.score-chip--bad .score-chip__label { color: var(--color-bad); opacity: 0.75; }
+
+.screen-actions__right {
+  justify-content: flex-end;
+}
