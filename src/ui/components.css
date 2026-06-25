@@ -1678,13 +1678,14 @@
    puis l'exemple instancié (Kolb, ancrage par le concret). Deux phrases empilées,
    chacune précédée d'une étiquette discrète pour lever toute ambiguïté de statut. */
 .bricks__sentence {
-  background: var(--color-surface-alt);
-  padding: var(--space-4) var(--space-5);
-  border-radius: var(--radius-md);
+  /* Pas de fond ni d'encadré — on reste dans l'esprit éditorial A+.
+     Les briques se distinguent par leur sous-soulignement coloré, pas par
+     un fond de bloc. */
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
   text-align: center;
+  margin: var(--space-3) 0;
 }
 
 .bricks__label {
@@ -1719,89 +1720,125 @@
   font-style: italic;
 }
 
+/* Pill dans la phrase (squelette et exemple) : sous-soulignement épais 3px
+   coloré, pas de fond pastel. Le mot lui-même reprend la couleur saturée
+   pour le squelette ; dans l'exemple, il reste noir et seul le trait colore. */
 .brick-pill {
-  display: inline;
-  padding: 3px 8px;
-  border-radius: 4px;
+  /* inline-block + nowrap : chaque brique reste solidaire (pas de wrap
+     à l'intérieur d'un nom de brique comme « Action observable »), mais
+     le retour à la ligne reste possible entre deux briques. */
+  display: inline-block;
+  padding: 1px 3px 4px;
+  border-bottom: 3px solid;
   font-weight: var(--font-weight-medium);
-  margin: 0 1px;
+  border-radius: 2px;
+  margin: 0 4px;
+  white-space: nowrap;
+}
+
+/* Squelette : on espace davantage les blocs pour qu'ils se lisent comme des
+   éléments distincts d'une grammaire, pas comme une phrase coulée. */
+.bricks__phrase--skeleton .brick-pill {
+  margin: 0 10px;
 }
 
 .bricks__phrase--example .brick-pill {
-  /* Dans la phrase exemple, les pills retrouvent le poids normal pour ne pas
-     dominer le squelette du haut. L'italique du parent ne s'applique pas
-     aux pills colorées pour préserver leur lisibilité. */
+  /* Dans l'exemple, on neutralise l'italique pour la pill (lisibilité)
+     et on force la couleur noire — seul le trait colore. */
   font-style: normal;
   font-weight: var(--font-weight-regular);
+  color: var(--color-text);
 }
 
-.bricks__grid {
+/* Légende des 5 briques : grille statique sous le squelette + exemple.
+   Tout est visible d'un coup, plus d'interaction nécessaire. La couleur
+   sémantique de chaque brique se retrouve dans la pastille et le nom. */
+.bricks__legend {
   display: grid;
-  /* auto-fit pour gérer 4 briques (KR) ou 5 briques (Sprint Goal, PI Objective)
-     sans cellule vide. La taille minimale garantit la lisibilité. */
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: var(--space-2);
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: var(--space-4);
+  margin-top: var(--space-5);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
 }
 
 @media (max-width: 900px) {
-  .bricks__grid {
+  .bricks__legend {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-.brick-tile {
+.brick-leg {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  padding: var(--space-3);
-  border-radius: var(--radius-md);
-  min-height: 120px;
 }
 
-.brick-tile__num {
-  font-family: var(--font-mono);
+.brick-leg__head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.brick-leg__num {
+  font-family: var(--font-sans);
   font-size: 11px;
-  font-weight: var(--font-weight-semibold);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-muted);
+  letter-spacing: 0.02em;
+}
+
+.brick-leg__dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.brick-leg__name {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: var(--font-weight-bold);
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  opacity: 0.7;
 }
 
-.brick-tile__label {
+.brick-leg__hint {
   font-family: var(--font-serif);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-semibold);
-  line-height: 1.25;
-}
-
-.brick-tile__hint {
-  font-size: var(--font-size-xs);
-  opacity: 0.85;
-  line-height: 1.4;
-}
-
-.brick-tile__examples {
-  font-size: var(--font-size-xs);
+  font-size: 14px;
   font-style: italic;
-  margin-top: auto;
-  opacity: 0.75;
+  line-height: 1.4;
+  color: var(--color-text);
 }
 
-/* Cinq palettes de briques — assorties à la phrase annotée. */
-.brick-pill--purple { background: #EEEDFE; color: #3C3489; }
-.brick-tile--purple  { background: #EEEDFE; color: #26215C; }
+.brick-leg__ex {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+  margin-top: 2px;
+}
 
-.brick-pill--teal { background: #E1F5EE; color: #085041; }
-.brick-tile--teal  { background: #E1F5EE; color: #04342C; }
+/* Couleurs sémantiques des cinq briques.
+   On utilise des couleurs saturées (et non plus des pastels de fond) car
+   le sous-soulignement et la pastille demandent du contraste pour ressortir. */
+.brick-pill--purple { color: #6D5DC0; border-color: #6D5DC0; }
+.brick-pill--teal   { color: #2A8270; border-color: #2A8270; }
+.brick-pill--pink   { color: #B25577; border-color: #B25577; }
+.brick-pill--amber  { color: #A06B1F; border-color: #A06B1F; }
+.brick-pill--blue   { color: #2E6FB5; border-color: #2E6FB5; }
 
-.brick-pill--pink { background: #FBEAF0; color: #72243E; }
-.brick-tile--pink  { background: #FBEAF0; color: #4B1528; }
-
-.brick-pill--amber { background: #FAEEDA; color: #633806; }
-.brick-tile--amber  { background: #FAEEDA; color: #412402; }
-
-.brick-pill--blue { background: #E6F1FB; color: #0C447C; }
-.brick-tile--blue  { background: #E6F1FB; color: #042C53; }
+.brick-leg--purple .brick-leg__dot  { background: #6D5DC0; }
+.brick-leg--purple .brick-leg__name { color: #6D5DC0; }
+.brick-leg--teal   .brick-leg__dot  { background: #2A8270; }
+.brick-leg--teal   .brick-leg__name { color: #2A8270; }
+.brick-leg--pink   .brick-leg__dot  { background: #B25577; }
+.brick-leg--pink   .brick-leg__name { color: #B25577; }
+.brick-leg--amber  .brick-leg__dot  { background: #A06B1F; }
+.brick-leg--amber  .brick-leg__name { color: #A06B1F; }
+.brick-leg--blue   .brick-leg__dot  { background: #2E6FB5; }
+.brick-leg--blue   .brick-leg__name { color: #2E6FB5; }
 
 /* Bouton de progression dans le feedback : visible mais sobre. Reprend la teinte du
    verdict (vert/rouge) pour cohérence sémantique, sans le rouge corail primary qui
@@ -2273,27 +2310,52 @@
 
 /* Hero : phrase-clé en gros, format infographique (Vague 3 — refonte fiches) */
 .sheet-card__hero {
+  /* Refonte A+ (mockup validé 2026-06-24) : on délaisse le fond jaune crème
+     et le filet corail au profit d'un hero éditorial sobre — phrase en italique
+     serif, filet vertical indigo aligné sur l'axe sémantique « concept ». */
   font-family: var(--font-serif);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-semibold);
-  letter-spacing: -0.01em;
+  font-size: 22px;
+  font-style: italic;
+  font-weight: var(--font-weight-regular);
+  letter-spacing: -0.005em;
   color: var(--color-text);
   margin: 0 0 var(--space-5) 0;
-  padding: var(--space-4) var(--space-5);
-  background: var(--color-highlight);
-  border-left: 4px solid var(--color-accent);
-  border-radius: var(--radius-md);
-  line-height: 1.35;
+  padding: 4px 0 4px var(--space-4);
+  background: transparent;
+  border-left: 2px solid var(--color-theory);
+  border-radius: 0;
+  line-height: 1.4;
 }
 
 .sheet-card__intro {
   margin: 0 0 var(--space-5) 0;
   color: var(--color-text-muted);
   font-size: var(--font-size-base);
-  max-width: var(--content-max-width-narrow);
 }
 
-.sheet-card__section { margin-top: var(--space-5); }
+.sheet-card__section {
+  /* Refonte A+ : chaque section porte un filet vertical 3px coloré selon
+     sa fonction sémantique (concept / alert / do). La variante neutre par
+     défaut reste discrète pour ne pas perturber les sections sans icon. */
+  margin-top: var(--space-5);
+  padding-left: var(--space-4);
+  border-left: 3px solid var(--color-border);
+}
+
+.sheet-card__section--concept     { border-left-color: var(--color-theory); }
+.sheet-card__section--perspective { border-left-color: var(--color-perspective); }
+.sheet-card__section--alert       { border-left-color: var(--color-warn); }
+.sheet-card__section--do          { border-left-color: var(--color-good); }
+
+/* L'eyebrow et le picto de la section reprennent la couleur de la fonction. */
+.sheet-card__section--concept .sheet-card__section-heading,
+.sheet-card__section--concept .sheet-card__section-icon { color: var(--color-theory); }
+.sheet-card__section--perspective .sheet-card__section-heading,
+.sheet-card__section--perspective .sheet-card__section-icon { color: var(--color-perspective); }
+.sheet-card__section--alert   .sheet-card__section-heading,
+.sheet-card__section--alert   .sheet-card__section-icon { color: var(--color-warn); }
+.sheet-card__section--do      .sheet-card__section-heading,
+.sheet-card__section--do      .sheet-card__section-icon { color: var(--color-good); }
 
 .sheet-card__section-heading {
   margin: 0 0 var(--space-2) 0;
@@ -2305,14 +2367,15 @@
 }
 
 .sheet-card__section-body {
+  /* Pas de max-width restrictif : on laisse le texte occuper toute la zone
+     de contenu (~1020 px dans le pattern maître-détail). Ça évite les
+     coupures prématurées qui laissaient un grand espace vide à droite. */
   margin: 0 0 var(--space-3) 0;
-  max-width: var(--content-max-width-narrow);
 }
 
 .sheet-card__bullets {
   margin: var(--space-2) 0;
   padding-left: var(--space-5);
-  max-width: var(--content-max-width-narrow);
 }
 
 .sheet-card__bullets li {
@@ -2328,8 +2391,10 @@
 }
 
 .sheet-card__section-icon {
+  /* Couleur par défaut héritée du heading ; les variantes sémantiques la
+     surchargent. Plus de rouge corail systématique. */
   display: inline-flex;
-  color: var(--color-accent);
+  color: inherit;
   flex-shrink: 0;
 }
 

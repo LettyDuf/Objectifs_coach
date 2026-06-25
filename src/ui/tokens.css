@@ -31,8 +31,9 @@
 
   /* Théorie vs Pratique (D21) — distinction chromatique forte pour matérialiser
      les deux modes d'apprentissage dans le ModeSelector et les écrans. */
-  --color-theory:      #1E40AF;      /* bleu marine — lecture, posé, savoir */
+  --color-theory:      #1E40AF;      /* bleu marine — lecture, posé, savoir (= fonction « concept ») */
   --color-theory-bg:   #E0E7FF;      /* halo bleu pâle pour les fonds Théorie */
+  --color-perspective: #0F766E;      /* teal sombre — mise en perspective, situer (fonction « perspective »), distinct du vert sapin */
   --color-practice:    var(--color-accent);    /* corail — action, terrain, engagement */
   --color-practice-bg: #FEE4E2;      /* halo corail pâle pour les fonds Pratique */
 

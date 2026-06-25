@@ -11,7 +11,7 @@
 
 import { useId, useState } from "react";
 import type { Brick, PedagogicalSheet, PedagogicalSection, CoachUseCase } from "../../domain/ports";
-import type { CriterionStatus, ObjectiveType, SprintDraft, PiDraft } from "../../domain/types";
+import type { ObjectiveType } from "../../domain/types";
 import { Icon, type IconName } from "./Icon";
 
 interface Props {
@@ -37,8 +37,6 @@ export function SheetCard({
   defaultOpen = false,
   position,
   onNext,
-  coach,
-  objectiveType = "sprint",
   onPractice,
   hideToggle = false,
 }: Props) {
@@ -88,12 +86,7 @@ export function SheetCard({
           {sheet.intro && <p className="sheet-card__intro">{sheet.intro}</p>}
 
           {sheet.sections.map((section, idx) => (
-            <SheetSection
-              key={idx}
-              section={section}
-              coach={coach}
-              objectiveType={objectiveType}
-            />
+            <SheetSection key={idx} section={section} />
           ))}
 
           {/* CTA d'application + navigation entre fiches */}
@@ -121,14 +114,29 @@ export function SheetCard({
  * Section avec picto, support encart source et exemples interactifs
  * ============================================================ */
 
+/**
+ * Mapping icon → fonction sémantique pour les filets verticaux des sections.
+ * - concept (indigo)  : exposés, structures, savoir
+ * - alert   (ambre)   : signaux d'alerte, pièges
+ * - do      (vert)    : pratique, comment faire, tests
+ * Les sections kind="source" sont rendues séparément en gris (.sheet-card__source).
+ */
+function semanticClass(section: PedagogicalSection): string {
+  if (section.kind === "source") return "";
+  const icon = section.icon ?? "";
+  // Mapping affiné 2026-06-25 (validé Lætitia) : 4 fonctions distinctes pour éviter
+  // la monotonie chromatique sur les fiches concept-lourdes (OKR Anatomie, etc.).
+  if (icon === "warn" || icon === "bad" || icon === "challenge") return "sheet-card__section--alert";
+  if (icon === "good" || icon === "wrench" || icon === "practice") return "sheet-card__section--do";
+  if (icon === "learn") return "sheet-card__section--perspective";
+  // target, okr et défaut : concept
+  return "sheet-card__section--concept";
+}
+
 function SheetSection({
   section,
-  coach,
-  objectiveType,
 }: {
   section: PedagogicalSection;
-  coach?: CoachUseCase | undefined;
-  objectiveType: ObjectiveType;
 }) {
   // Encart source — rendu différencié
   if (section.kind === "source") {
@@ -148,7 +156,7 @@ function SheetSection({
   // Briques de grammaire — phrase annotée + grille colorée
   if (section.kind === "bricks" && section.bricks && section.bricksSentence) {
     return (
-      <section className="sheet-card__section">
+      <section className={`sheet-card__section ${semanticClass(section)}`}>
         <h4 className="sheet-card__section-heading">
           {section.icon && (
             <span className="sheet-card__section-icon" aria-hidden="true">
@@ -164,7 +172,7 @@ function SheetSection({
   }
 
   return (
-    <section className="sheet-card__section">
+    <section className={`sheet-card__section ${semanticClass(section)}`}>
       <h4 className="sheet-card__section-heading">
         {section.icon && (
           <span className="sheet-card__section-icon" aria-hidden="true">
@@ -189,8 +197,6 @@ function SheetSection({
               bad={ex.bad}
               good={ex.good}
               note={ex.note}
-              coach={coach}
-              objectiveType={objectiveType}
             />
           ))}
         </div>
@@ -199,54 +205,15 @@ function SheetSection({
   );
 }
 
-/* ============================================================
- * Exemple pair-comparé interactif
- * ============================================================ */
-
-function buildDraft(text: string, type: ObjectiveType): SprintDraft | PiDraft {
-  if (type === "pi") {
-    return {
-      type: "pi",
-      text,
-      audience: "dev",
-      confidence: 85,
-      hasExplicitDeadline: true,
-      isUnderTeamInfluence: true,
-      piClass: "committed",
-      businessValue: 7,
-    };
-  }
-  return {
-    type: "sprint",
-    text,
-    audience: "dev",
-    confidence: 80,
-    hasExplicitDeadline: true,
-    isUnderTeamInfluence: true,
-  };
-}
-
 function ExamplePair({
   bad,
   good,
   note,
-  coach,
-  objectiveType,
 }: {
   bad: string;
   good?: string | undefined;
   note?: string | undefined;
-  coach?: CoachUseCase | undefined;
-  objectiveType: ObjectiveType;
 }) {
-  const [revealed, setRevealed] = useState<{ which: "bad" | "good"; status: CriterionStatus; score: number } | null>(null);
-
-  function evaluate(which: "bad" | "good", text: string) {
-    if (!coach) return;
-    const result = coach.evaluate(buildDraft(text, objectiveType));
-    setRevealed({ which, status: result.overallStatus, score: result.score });
-  }
-
   return (
     <div className="example-pair">
       <div className="example-pair__bad">
@@ -254,20 +221,7 @@ function ExamplePair({
           <Icon name="bad" size={16} />
           Mauvais
         </span>
-        <p className="example-pair__text">« {bad} »</p>
-        {coach && (
-          <button
-            type="button"
-            className="example-pair__score-btn"
-            onClick={() => evaluate("bad", bad)}
-          >
-            {revealed?.which === "bad" ? (
-              <ScoreChipMini score={revealed.score} status={revealed.status} />
-            ) : (
-              "Voir le score →"
-            )}
-          </button>
-        )}
+        <p className="example-pair__text">{bad}</p>
       </div>
       {good && (
         <div className="example-pair__good">
@@ -275,33 +229,11 @@ function ExamplePair({
             <Icon name="good" size={16} />
             Reformulation
           </span>
-          <p className="example-pair__text">« {good} »</p>
-          {coach && (
-            <button
-              type="button"
-              className="example-pair__score-btn"
-              onClick={() => evaluate("good", good)}
-            >
-              {revealed?.which === "good" ? (
-                <ScoreChipMini score={revealed.score} status={revealed.status} />
-              ) : (
-                "Voir le score →"
-              )}
-            </button>
-          )}
+          <p className="example-pair__text">{good}</p>
         </div>
       )}
       {note && <p className="example-pair__note">{note}</p>}
     </div>
-  );
-}
-
-function ScoreChipMini({ score, status }: { score: number; status: CriterionStatus }) {
-  return (
-    <span className={`score-chip score-chip--${status}`} style={{ fontSize: "var(--font-size-sm)" }}>
-      <span className="score-chip__label">Score</span>
-      {score} / 100
-    </span>
   );
 }
 
@@ -326,13 +258,16 @@ function BricksDisplay({ bricks, sentence }: { bricks: Brick[]; sentence: string
           {renderTokenizedSentence(sentence, bricks, (brick) => brick.snippet)}
         </div>
       </div>
-      <div className="bricks__grid">
+      <div className="bricks__legend">
         {bricks.map((brick) => (
-          <div key={brick.num} className={`brick-tile brick-tile--${brick.color}`}>
-            <span className="brick-tile__num">{brick.num}</span>
-            <span className="brick-tile__label">{brick.label}</span>
-            <span className="brick-tile__hint">{brick.hint}</span>
-            <span className="brick-tile__examples">{brick.examples}</span>
+          <div key={brick.num} className={`brick-leg brick-leg--${brick.color}`}>
+            <div className="brick-leg__head">
+              <span className="brick-leg__num">{String(brick.num).padStart(2, "0")}</span>
+              <span className="brick-leg__dot" aria-hidden="true"></span>
+              <span className="brick-leg__name">{brick.label}</span>
+            </div>
+            <div className="brick-leg__hint">{brick.hint}</div>
+            <div className="brick-leg__ex">{brick.examples}</div>
           </div>
         ))}
       </div>

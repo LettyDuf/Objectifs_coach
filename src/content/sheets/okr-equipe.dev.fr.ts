@@ -155,7 +155,7 @@ export const OKR_EQUIPE_DEV_SHEETS_FR: PedagogicalSheet[] = [
         body: "Un KR bien posé est une phrase courte qui combine quatre éléments. Visualise-les pour repérer ce qui manque.",
         kind: "bricks",
         bricksSentence:
-          "[[Faire passer]] [[le NPS dev du module pipeline]] [[de 28 à 50]] [[d'ici la fin du trimestre]].",
+          "Faire passer le NPS dev du module pipeline de 28 à 50 d'ici la fin du trimestre.",
         bricks: [
           {
             num: 1,
