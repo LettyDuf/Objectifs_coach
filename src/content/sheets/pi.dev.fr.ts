@@ -7,16 +7,16 @@ import type { PedagogicalSheet } from "../../domain/ports";
 
 export const PI_DEV_SHEETS_FR: PedagogicalSheet[] = [
   {
-    id: "pi.sheet.committed-stretch",
+    id: "pi.sheet.engagé-stretch",
     themeId: "pi.engagement",
     icon: "target",
-    title: "Committed vs Stretch",
-    heroPhrase: "Committed : 80 à 100 % de confiance. Stretch : 30 à 60 %. Pas l'inverse.",
+    title: "Engagé vs Stretch",
+    heroPhrase: "Engagé : 80 à 100 % de confiance. Stretch : 30 à 60 %. Pas l'inverse.",
     intro: "",
     practiceCtaLabel: "Rédiger un objectif de PI",
     sections: [
       {
-        heading: "Committed",
+        heading: "Engagé",
         icon: "good",
         body: "Un objectif que l'équipe s'engage à atteindre. Confiance attendue : 80 à 100 %. En dessous, ce n'est plus un engagement, c'est un pari.",
       },
@@ -28,10 +28,10 @@ export const PI_DEV_SHEETS_FR: PedagogicalSheet[] = [
       {
         heading: "Le piège classique",
         icon: "warn",
-        body: "Un committed estimé à 40 % de confiance est un stretch mal nommé. Soit on requalifie, soit on revoit l'ambition.",
+        body: "Un engagé estimé à 40 % de confiance est un stretch mal nommé. Soit on requalifie, soit on revoit l'ambition.",
         examples: [
           {
-            bad: "Committed : « Faire passer 100 % de nos clients entreprise sur la marketplace » (confiance 30 %).",
+            bad: "Engagé : « Faire passer 100 % de nos clients entreprise sur la marketplace » (confiance 30 %).",
             good: "Stretch : « Faire entrer 3 clients pilotes sur la marketplace » (confiance 50 %).",
             note: "L'engagement crédible dépend du calibrage, pas du wording.",
           },
@@ -40,26 +40,26 @@ export const PI_DEV_SHEETS_FR: PedagogicalSheet[] = [
       {
         heading: "Qui le rédige, sur quelle base",
         icon: "learn",
-        body: "Co-construit en PI Planning (event de 2 jours) par chaque équipe du train avec son Product Owner. Le Release Train Engineer facilite. Les features descendent de Product Management ; les PI Objectives sont rédigés côté équipes, et traduisent les features en outcomes attendus à la PI Review. Une équipe peut transformer 3 features en 2 PI Objectives, ou un PI Objective peut être servi par 4 features.",
+        body: "Co-construit en PI Planning (event de 2 jours) par chaque équipe du train avec son Product Owner. Le Release Train Engineer facilite. Les fonctionnalités descendent de Product Management ; les objectifs de PI sont rédigés côté équipes, et traduisent les fonctionnalités en outcomes attendus à la revue de PI. Une équipe peut transformer 3 fonctionnalités en 2 objectifs de PI, ou un objectif de PI peut être servi par 4 fonctionnalités.",
         bullets: [
           "Vision produit (~10 min en ouverture du PI Planning)",
-          "Features du PI (descendues de Product Management, déjà priorisées)",
+          "Fonctionnalités du PI (descendues de Product Management, déjà priorisées)",
           "Dépendances cross-équipes matérialisées sur le Program Board",
           "Objectifs stratégiques énoncés par les Business Owners en ouverture",
           "Capacité historique du train et de chaque équipe",
         ],
         examples: [
           {
-            bad: "Recopier une feature comme PI Objective : « Livrer la feature SSO Enterprise ».",
+            bad: "Recopier une fonctionnalité comme objectif de PI : « Livrer la fonctionnalité SSO Enterprise ».",
             good: "« Permettre à 80 % des clients entreprise d'activer le SSO en self-service avant la fin du PI. »",
-            note: "Le PI Objective traduit la feature en outcome attendu côté Business Owner.",
+            note: "L'objectif de PI traduit la fonctionnalité en outcome attendu côté Business Owner.",
           },
         ],
       },
       {
         heading: "Source",
         kind: "source",
-        body: "Scaled Agile Framework, sections PI Planning et Team PI Objectives. Voir aussi : Business Value attribuée par les Business Owners dans un dialogue avec l'équipe, pas unilatéralement.",
+        body: "Scaled Agile Framework, sections PI Planning et Team objectifs de PI. Voir aussi : Business Value attribuée par les Business Owners dans un dialogue avec l'équipe, pas unilatéralement.",
       },
     ],
   },
@@ -75,7 +75,7 @@ export const PI_DEV_SHEETS_FR: PedagogicalSheet[] = [
       {
         heading: "Pourquoi c'est demandé",
         icon: "target",
-        body: "Sans valeur business, pas de suivi committed/réalisé en rétrospective. C'est un préalable au bilan de PI.",
+        body: "Sans valeur business, pas de suivi engagé/réalisé en rétrospective. C'est un préalable au bilan de PI.",
       },
       {
         heading: "Quel chiffre",
@@ -92,17 +92,17 @@ export const PI_DEV_SHEETS_FR: PedagogicalSheet[] = [
     id: "pi.sheet.anatomy",
     themeId: "pi.fondamentaux",
     icon: "target",
-    title: "L'anatomie d'un PI Objective",
+    title: "L'anatomie d'un objectif de PI",
     heroPhrase:
       "Cinq briques pour la grammaire. Deux métadonnées pour la classe et la valeur. Une phrase, un engagement.",
     intro: "",
-    practiceCtaLabel: "Va assembler ton premier PI Objective",
+    practiceCtaLabel: "Va assembler ton premier objectif de PI",
     sections: [
       {
         heading: "Les cinq briques de grammaire",
         icon: "target",
         kind: "bricks",
-        body: "Un PI Objective bien rédigé porte les mêmes cinq briques qu'un Sprint Goal, mais à l'échelle du train et à l'horizon PI Review. La grammaire est universelle ; seul le vocabulaire change (business plutôt que technique, train plutôt qu'équipe seule).",
+        body: "Un objectif de PI bien rédigé porte les mêmes cinq briques qu'un objectif de Sprint, mais à l'échelle du train et à l'horizon revue de PI. La grammaire est universelle ; seul le vocabulaire change (business plutôt que technique, train plutôt qu'équipe seule).",
         bricksSentence:
           "Permettre à 80 % des clients entreprise d'activer le SSO en self-service avant la fin du PI.",
         bricks: [
@@ -117,7 +117,7 @@ export const PI_DEV_SHEETS_FR: PedagogicalSheet[] = [
           {
             num: 2,
             label: "Indicateur business",
-            hint: "La métrique observable à la PI Review",
+            hint: "La métrique observable à la revue de PI",
             examples: "% clients activés, NPS, GMV, churn",
             snippet: "80 %",
             color: "pink",
@@ -142,7 +142,7 @@ export const PI_DEV_SHEETS_FR: PedagogicalSheet[] = [
             num: 5,
             label: "Échéance PI",
             hint: "Quand on mesure",
-            examples: "fin du PI, PI Review, dernier mois du PI",
+            examples: "fin du PI, revue de PI, dernier mois du PI",
             snippet: "avant la fin du PI",
             color: "blue",
           },
@@ -151,16 +151,16 @@ export const PI_DEV_SHEETS_FR: PedagogicalSheet[] = [
       {
         heading: "Les deux métadonnées PI",
         icon: "wrench",
-        body: "Le PI Objective ne se réduit pas à sa phrase. Il porte aussi deux métadonnées non visibles dans la phrase mais essentielles à l'engagement du train.",
+        body: "L'objectif de PI ne se réduit pas à sa phrase. Il porte aussi deux métadonnées non visibles dans la phrase mais essentielles à l'engagement du train.",
         bullets: [
-          "**Classe** : committed (engagement, confiance 80 à 100 %) ou stretch (ambition, confiance 30 à 60 %). Voir la fiche dédiée.",
-          "**Valeur business** : 1 à 10, attribuée par le Business Owner en dialogue avec l'équipe. Permet le suivi committed vs réalisé en rétrospective de PI.",
+          "**Classe** : engagé (engagement, confiance 80 à 100 %) ou stretch (ambition, confiance 30 à 60 %). Voir la fiche dédiée.",
+          "**Valeur business** : 1 à 10, attribuée par le Business Owner en dialogue avec l'équipe. Permet le suivi engagé vs réalisé en rétrospective de PI.",
         ],
       },
       {
         heading: "Source",
         kind: "source",
-        body: "Scaled Agile Framework, sections PI Planning et Team PI Objectives. La grammaire à cinq briques recoupe celle du Sprint Goal (cf. fiche correspondante).",
+        body: "Scaled Agile Framework, sections PI Planning et Team objectifs de PI. La grammaire à cinq briques recoupe celle du objectif de Sprint (cf. fiche correspondante).",
       },
     ],
   },
@@ -169,37 +169,37 @@ export const PI_DEV_SHEETS_FR: PedagogicalSheet[] = [
     id: "pi.sheet.planning-to-objective",
     themeId: "pi.fondamentaux",
     icon: "learn",
-    title: "Du PI Planning au PI Objective",
+    title: "Du PI Planning au objectif de PI",
     heroPhrase:
-      "La vision descend, les features descendent, les PI Objectives remontent. Trois mouvements en deux jours.",
+      "La vision descend, les fonctionnalités descendent, les objectifs de PI remontent. Trois mouvements en deux jours.",
     intro: "",
-    practiceCtaLabel: "Va co-construire un PI Objective",
+    practiceCtaLabel: "Va co-construire un objectif de PI",
     sections: [
       {
         heading: "L'événement PI Planning",
         icon: "target",
-        body: "Un PI Planning est un événement de deux jours qui réunit toutes les équipes d'un train (5 à 12 équipes en général). C'est la pièce centrale de SAFe : un train n'a pas de PI Objectives valables sans cet événement, parce que la co-construction et l'alignement transverse n'arrivent pas par mail.",
+        body: "Un PI Planning est un événement de deux jours qui réunit toutes les équipes d'un train (5 à 12 équipes en général). C'est la pièce centrale de SAFe : un train n'a pas de objectifs de PI valables sans cet événement, parce que la co-construction et l'alignement transverse n'arrivent pas par mail.",
         bullets: [
-          "Jour 1 matin : vision produit, contexte stratégique, présentation des features priorisées.",
-          "Jour 1 après-midi : chaque équipe planifie son PI et propose ses PI Objectives.",
+          "Jour 1 matin : vision produit, contexte stratégique, présentation des fonctionnalités priorisées.",
+          "Jour 1 après-midi : chaque équipe planifie son PI et propose ses objectifs de PI.",
           "Jour 2 matin : draft plans review, ajustements croisés entre équipes.",
-          "Jour 2 après-midi : finalisation des PI Objectives, attribution Business Value, confidence vote.",
+          "Jour 2 après-midi : finalisation des objectifs de PI, attribution Business Value, vote de confiance.",
         ],
       },
       {
         heading: "Trois mouvements d'élaboration",
         icon: "wrench",
-        body: "Le PI Objective n'apparaît pas de nulle part. Il naît du croisement de trois mouvements clairs, chacun porté par un acteur différent.",
+        body: "L'objectif de PI n'apparaît pas de nulle part. Il naît du croisement de trois mouvements clairs, chacun porté par un acteur différent.",
         bullets: [
           "**Descente du contexte** : Product Management donne la vision, les Business Owners donnent les enjeux stratégiques. Sans cette descente, l'équipe planifie dans le vide.",
-          "**Descente des features** : Product Management priorise et descend les features candidates au PI. L'équipe ne choisit pas tout, mais elle choisit comment les traduire.",
-          "**Remontée des PI Objectives** : chaque équipe traduit les features en outcomes attendus, en intégrant ses contraintes de capacité et ses dépendances. La traduction remonte au train.",
+          "**Descente des fonctionnalités** : Product Management priorise et descend les fonctionnalités candidates au PI. L'équipe ne choisit pas tout, mais elle choisit comment les traduire.",
+          "**Remontée des objectifs de PI** : chaque équipe traduit les fonctionnalités en outcomes attendus, en intégrant ses contraintes de capacité et ses dépendances. La traduction remonte au train.",
         ],
         examples: [
           {
-            bad: "Product Management arrive avec les features ET les PI Objectives déjà rédigés. Les équipes ne font qu'estimer.",
-            good: "Product Management apporte la vision + les features. Les équipes proposent les PI Objectives qui traduisent les features dans leur réalité. Le train ajuste collectivement.",
-            note: "La co-construction n'est pas un détail formel : c'est ce qui rend le PI Objective porteur d'engagement réel.",
+            bad: "Product Management arrive avec les fonctionnalités ET les objectifs de PI déjà rédigés. Les équipes ne font qu'estimer.",
+            good: "Product Management apporte la vision + les fonctionnalités. Les équipes proposent les objectifs de PI qui traduisent les fonctionnalités dans leur réalité. Le train ajuste collectivement.",
+            note: "La co-construction n'est pas un détail formel : c'est ce qui rend l'objectif de PI porteur d'engagement réel.",
           },
         ],
       },
@@ -208,11 +208,11 @@ export const PI_DEV_SHEETS_FR: PedagogicalSheet[] = [
         icon: "good",
         body: "",
         bullets: [
-          "**Product Management** : descend les features priorisées, défend les arbitrages, écoute les retours du train.",
+          "**Product Management** : descend les fonctionnalités priorisées, défend les arbitrages, écoute les retours du train.",
           "**Business Owners** : posent le contexte stratégique, attribuent la Business Value 1 à 10 en dialogue avec les équipes.",
-          "**Release Train Engineer** : facilite l'événement, protège la qualité du processus (ROAM, confidence vote, time-box).",
-          "**Product Owners (équipe)** : portent la voix produit dans la rédaction des PI Objectives.",
-          "**Équipes (Devs + PO)** : rédigent les PI Objectives, estiment la capacité, soulèvent les dépendances.",
+          "**Release Train Engineer** : facilite l'événement, protège la qualité du processus (ROAM, vote de confiance, time-box).",
+          "**Product Owners (équipe)** : portent la voix produit dans la rédaction des objectifs de PI.",
+          "**Équipes (Devs + PO)** : rédigent les objectifs de PI, estiment la capacité, soulèvent les dépendances.",
         ],
       },
       {
@@ -227,29 +227,29 @@ export const PI_DEV_SHEETS_FR: PedagogicalSheet[] = [
     id: "pi.sheet.objective-met",
     themeId: "pi.fondamentaux",
     icon: "good",
-    title: "Comment savoir qu'un PI Objective est atteint",
+    title: "Comment savoir qu'un objectif de PI est atteint",
     heroPhrase:
-      "La PI Review n'est pas un débat. C'est une mesure contre ce qui a été dit en PI Planning.",
+      "La revue de PI n'est pas un débat. C'est une mesure contre ce qui a été dit en PI Planning.",
     intro: "",
     practiceCtaLabel: "Va définir un critère mesurable",
     sections: [
       {
         heading: "Pourquoi définir le critère en amont",
         icon: "target",
-        body: "Si le critère d'atteinte se discute à la PI Review, on retombe dans le piège classique : chacun défend sa lecture, le Business Owner négocie sa note de Business Value, et la conversation devient politique. À l'inverse, un critère écrit en PI Planning est un contrat tacite. La PI Review devient une lecture, pas un débat.",
+        body: "Si le critère d'atteinte se discute à la revue de PI, on retombe dans le piège classique : chacun défend sa lecture, le Business Owner négocie sa note de Business Value, et la conversation devient politique. À l'inverse, un critère écrit en PI Planning est un contrat tacite. La revue de PI devient une lecture, pas un débat.",
         bullets: [
           "Le critère est observable : un chiffre, un pourcentage, une étape franchie.",
-          "Il est posé au moment de l'écriture du PI Objective, pas découvert après coup.",
+          "Il est posé au moment de l'écriture du objectif de PI, pas découvert après coup.",
           "Il dit « atteint / partiel / raté », pas « plutôt bien / plutôt mal ».",
         ],
       },
       {
-        heading: "Le score réalisé à la PI Review",
+        heading: "Le score réalisé à la revue de PI",
         icon: "wrench",
-        body: "À la PI Review, le Business Owner réévalue la Business Value 1 à 10 selon ce qui a été réellement livré. Le rapport entre la BV planifiée et la BV réalisée donne le score de prévisibilité du train (objectif SAFe : 80 à 100 % sur la durée).",
+        body: "À la revue de PI, le Business Owner réévalue la Business Value 1 à 10 selon ce qui a été réellement livré. Le rapport entre la BV planifiée et la BV réalisée donne le score de prévisibilité du train (objectif SAFe : 80 à 100 % sur la durée).",
         bullets: [
-          "**Committed atteint** : BV réalisée = BV planifiée.",
-          "**Committed partiel** : BV réalisée < BV planifiée (généralement 50 à 80 %).",
+          "**Engagé atteint** : BV réalisée = BV planifiée.",
+          "**Engagé partiel** : BV réalisée < BV planifiée (généralement 50 à 80 %).",
           "**Stretch atteint** : BV réalisée = BV planifiée (bonus pour le train).",
           "**Stretch raté** : BV réalisée = 0 (sans pénalité, c'était un stretch).",
         ],
@@ -257,12 +257,12 @@ export const PI_DEV_SHEETS_FR: PedagogicalSheet[] = [
       {
         heading: "Le test « comment le saura-t-on »",
         icon: "good",
-        body: "À la fin du PI Planning, pour chaque PI Objective, demander : « comment saurons-nous, à la PI Review, si l'objectif est atteint ? » Si l'équipe ne sait pas répondre en 30 secondes, le PI Objective est mal posé. Reformuler avant de figer.",
+        body: "À la fin du PI Planning, pour chaque objectif de PI, demander : « comment saurons-nous, à la revue de PI, si l'objectif est atteint ? » Si l'équipe ne sait pas répondre en 30 secondes, l'objectif de PI est mal posé. Reformuler avant de figer.",
         examples: [
           {
-            bad: "PI Objective : « Renforcer la fiabilité du paiement. » Critère d'atteinte : non posé. À la PI Review, débat sur ce qu'on entend par « renforcer ».",
-            good: "PI Objective : « Faire passer le taux de réussite des paiements de 96,2 % à 99,5 % d'ici la PI Review. » Critère : taux de réussite mesuré sur les 4 dernières semaines du PI, comparé à la baseline. Lecture immédiate.",
-            note: "Le critère est implicite dans le PI Objective bien rédigé, mais le formuler explicitement évite les divergences d'interprétation à la Review.",
+            bad: "objectif de PI : « Renforcer la fiabilité du paiement. » Critère d'atteinte : non posé. À la revue de PI, débat sur ce qu'on entend par « renforcer ».",
+            good: "objectif de PI : « Faire passer le taux de réussite des paiements de 96,2 % à 99,5 % d'ici la revue de PI. » Critère : taux de réussite mesuré sur les 4 dernières semaines du PI, comparé à la valeur de référence. Lecture immédiate.",
+            note: "Le critère est implicite dans l'objectif de PI bien rédigé, mais le formuler explicitement évite les divergences d'interprétation à la Review.",
           },
         ],
       },
@@ -281,9 +281,9 @@ export const PI_DEV_SHEETS_FR: PedagogicalSheet[] = [
     id: "pi.sheet.objective-impose",
     themeId: "pi.engagement",
     icon: "warn",
-    title: "Le PI Objective imposé",
+    title: "L'objectif de PI imposé",
     heroPhrase:
-      "Un objectif descendu sans dialogue. L'équipe hoche la tête. La PI Review révèle le malentendu.",
+      "Un objectif descendu sans dialogue. L'équipe hoche la tête. La revue de PI révèle le malentendu.",
     intro: "",
     practiceCtaLabel: "Va porter une objection constructive",
     sections: [
@@ -293,8 +293,8 @@ export const PI_DEV_SHEETS_FR: PedagogicalSheet[] = [
         body: "Quand le management ou les Business Owners arrivent en PI Planning avec un objectif déjà rédigé et le présentent comme non négociable, l'équipe a deux choix : hocher la tête (et perdre l'engagement réel) ou s'opposer (et passer pour difficile). Les deux mènent au même résultat : un objectif inerte qu'on porte sans y croire.",
         bullets: [
           "Un objectif imposé n'engage personne en pratique.",
-          "Le confidence vote est faussé : l'équipe vote ce qu'on attend d'elle.",
-          "À la PI Review, l'écart entre la promesse et la réalité érode la confiance des deux côtés.",
+          "Le vote de confiance est faussé : l'équipe vote ce qu'on attend d'elle.",
+          "À la revue de PI, l'écart entre la promesse et la réalité érode la confiance des deux côtés.",
         ],
       },
       {
@@ -311,19 +311,19 @@ export const PI_DEV_SHEETS_FR: PedagogicalSheet[] = [
       {
         heading: "Comment recadrer",
         icon: "wrench",
-        body: "Le Release Train Engineer protège l'espace de négociation. Les Business Owners apportent le contexte stratégique ; les équipes apportent la traduction réaliste en PI Objective. Le ROAM est utilisé honnêtement, le confidence vote est anonyme si nécessaire.",
+        body: "Le Release Train Engineer protège l'espace de négociation. Les Business Owners apportent le contexte stratégique ; les équipes apportent la traduction réaliste en objectif de PI. Le ROAM est utilisé honnêtement, le vote de confiance est anonyme si nécessaire.",
         examples: [
           {
-            bad: "Business Owner : « Le PI Objective de votre équipe est : atteindre 100 contrats Enterprise. C'est ce que le board attend. »",
-            good: "Business Owner : « Le board pousse pour scaler l'offre Enterprise ce PI. Comment vous voyez votre contribution réaliste ? » Équipe : « On peut viser 60 contrats committed, et un stretch à 100 si la nouvelle vague de leads se confirme. »",
-            note: "Le contexte stratégique reste descendu. La traduction en PI Objective remonte de l'équipe.",
+            bad: "Business Owner : « L'objectif de PI de votre équipe est : atteindre 100 contrats Enterprise. C'est ce que le board attend. »",
+            good: "Business Owner : « Le board pousse pour mettre à l'échelle l'offre Enterprise ce PI. Comment vous voyez votre contribution réaliste ? » Équipe : « On peut viser 60 contrats engagés, et un stretch à 100 si la nouvelle vague de leads se confirme. »",
+            note: "Le contexte stratégique reste descendu. La traduction en objectif de PI remonte de l'équipe.",
           },
         ],
       },
       {
         heading: "Source",
         kind: "source",
-        body: "Scaled Agile Framework, ROAM et confidence vote en PI Planning. Patrick Lencioni, The Five Dysfunctions of a Team, sur la culture de désaccord productif.",
+        body: "Scaled Agile Framework, ROAM et vote de confiance en PI Planning. Patrick Lencioni, The Five Dysfunctions of a Team, sur la culture de désaccord productif.",
       },
     ],
   },
@@ -344,7 +344,7 @@ export const PI_DEV_SHEETS_FR: PedagogicalSheet[] = [
       {
         heading: "Pourquoi c'est piégeux",
         icon: "target",
-        body: "La valeur business 1 à 10 existe pour permettre la priorisation : à la PI Review, le score réalisé pondère selon la valeur. Si tout est noté pareil, plus de priorité possible. C'est généralement le signe d'un Business Owner qui n'a pas pris le temps de discriminer, ou qui ne veut pas faire de choix qu'il devrait défendre.",
+        body: "La valeur business 1 à 10 existe pour permettre la priorisation : à la revue de PI, le score réalisé pondère selon la valeur. Si tout est noté pareil, plus de priorité possible. C'est généralement le signe d'un Business Owner qui n'a pas pris le temps de discriminer, ou qui ne veut pas faire de choix qu'il devrait défendre.",
         bullets: [
           "Tout à 10 : « tout est important », donc rien n'est prioritaire.",
           "Tout à 5 : neutralité par défaut, équivalent à l'absence de note.",
@@ -367,8 +367,8 @@ export const PI_DEV_SHEETS_FR: PedagogicalSheet[] = [
         body: "L'attribution se fait dans un dialogue, pas en silence. Forcer une distribution : au moins une note basse, au moins une haute. Le Business Owner doit pouvoir justifier chaque écart.",
         examples: [
           {
-            bad: "PI Objectives notés : 10, 10, 10, 10, 10. Aucune priorité émerge à la PI Review.",
-            good: "PI Objectives notés : 10 (compliance bloquante), 8 (croissance), 5 (dette technique), 3 (refonte UI). Le Business Owner défend chaque écart en moins de 30 secondes.",
+            bad: "objectifs de PI notés : 10, 10, 10, 10, 10. Aucune priorité émerge à la revue de PI.",
+            good: "objectifs de PI notés : 10 (compliance bloquante), 8 (croissance), 5 (dette technique), 3 (refonte UI). Le Business Owner défend chaque écart en moins de 30 secondes.",
             note: "Une distribution variée révèle qu'un choix stratégique a été fait. C'est ce qu'on attend du Business Owner.",
           },
         ],
@@ -385,23 +385,23 @@ export const PI_DEV_SHEETS_FR: PedagogicalSheet[] = [
   // Thème : Les pièges classiques (2 fiches nouvelles)
   // ============================================================
   {
-    id: "pi.sheet.feature-vs-objective",
+    id: "pi.sheet.fonctionnalité-vs-objective",
     themeId: "pi.pieges-classiques",
     icon: "warn",
-    title: "Une feature n'est pas un PI Objective",
+    title: "Une fonctionnalité n'est pas un objectif de PI",
     heroPhrase:
-      "Une feature dit ce qu'on livre. Un PI Objective dit ce qui aura changé pour le bénéficiaire.",
+      "Une fonctionnalité dit ce qu'on livre. Un objectif de PI dit ce qui aura changé pour le bénéficiaire.",
     intro: "",
-    practiceCtaLabel: "Va traduire une feature en PI Objective",
+    practiceCtaLabel: "Va traduire une fonctionnalité en objectif de PI",
     sections: [
       {
         heading: "Pourquoi c'est l'erreur la plus fréquente",
         icon: "target",
-        body: "Product Management descend des features (« SSO Enterprise », « refonte panier mobile »). Les équipes, sous pression de temps en PI Planning, recopient ces features dans leurs PI Objectives. Résultat : le Business Owner ne sait pas quoi noter en valeur business, la PI Review ne sait pas quoi mesurer, et la confusion grandit entre ce qu'on livre et ce qui doit changer.",
+        body: "Product Management descend des fonctionnalités (« SSO Enterprise », « refonte panier mobile »). Les équipes, sous pression de temps en PI Planning, recopient ces fonctionnalités dans leurs objectifs de PI. Résultat : le Business Owner ne sait pas quoi noter en valeur business, la revue de PI ne sait pas quoi mesurer, et la confusion grandit entre ce qu'on livre et ce qui doit changer.",
         bullets: [
-          "Une feature est un livrable. Un PI Objective est un outcome attendu.",
-          "Une feature peut être livrée sans atteindre l'outcome (et inversement).",
-          "Le PI Objective rend la feature falsifiable : on saura si elle a fait son effet.",
+          "Une fonctionnalité est un livrable. Un objectif de PI est un outcome attendu.",
+          "Une fonctionnalité peut être livrée sans atteindre l'outcome (et inversement).",
+          "L'objectif de PI rend la fonctionnalité falsifiable : on saura si elle a fait son effet.",
         ],
       },
       {
@@ -409,7 +409,7 @@ export const PI_DEV_SHEETS_FR: PedagogicalSheet[] = [
         icon: "warn",
         body: "",
         bullets: [
-          "Le PI Objective porte un nom de feature ou de projet (« Livrer X », « Refondre Y »).",
+          "L'objectif de PI porte un nom de fonctionnalité ou de projet (« Livrer X », « Refondre Y »).",
           "Aucune métrique n'est nommée.",
           "Le Business Owner peine à attribuer une valeur business (« je note l'effort, pas la valeur »).",
         ],
@@ -417,19 +417,19 @@ export const PI_DEV_SHEETS_FR: PedagogicalSheet[] = [
       {
         heading: "Comment recadrer",
         icon: "wrench",
-        body: "Devant chaque feature, poser la question : « qu'est-ce que cette feature, une fois livrée, va faire bouger chez le bénéficiaire ? » La réponse est le PI Objective. La feature reste, comme moyen pour y arriver.",
+        body: "Devant chaque fonctionnalité, poser la question : « qu'est-ce que cette fonctionnalité, une fois livrée, va faire bouger chez le bénéficiaire ? » La réponse est l'objectif de PI. La fonctionnalité reste, comme moyen pour y arriver.",
         examples: [
           {
-            bad: "Feature recopiée : « Livrer la feature SSO Enterprise ce PI. »",
-            good: "PI Objective dérivé : « Permettre à 80 % des clients entreprise d'activer le SSO en self-service avant la fin du PI. » La feature SSO Enterprise reste, mais comme moyen.",
-            note: "Le test : si la feature est livrée mais que l'outcome ne bouge pas, le PI Objective n'est pas atteint. Cette tension est exactement ce qu'on veut révéler.",
+            bad: "Fonctionnalité recopiée : « Livrer la fonctionnalité SSO Enterprise ce PI. »",
+            good: "objectif de PI dérivé : « Permettre à 80 % des clients entreprise d'activer le SSO en self-service avant la fin du PI. » La fonctionnalité SSO Enterprise reste, mais comme moyen.",
+            note: "Le test : si la fonctionnalité est livrée mais que l'outcome ne bouge pas, l'objectif de PI n'est pas atteint. Cette tension est exactement ce qu'on veut révéler.",
           },
         ],
       },
       {
         heading: "Source",
         kind: "source",
-        body: "Scaled Agile Framework, recommandations explicites contre le « feature = PI Objective ». Agile Seekers (article 2024) liste cet anti-pattern comme le plus fréquent à l'introduction de SAFe.",
+        body: "Scaled Agile Framework, recommandations explicites contre le « fonctionnalité = objectif de PI ». Agile Seekers (article 2024) liste cet anti-pattern comme le plus fréquent à l'introduction de SAFe.",
       },
     ],
   },
@@ -438,19 +438,19 @@ export const PI_DEV_SHEETS_FR: PedagogicalSheet[] = [
     id: "pi.sheet.tous-committed",
     themeId: "pi.pieges-classiques",
     icon: "warn",
-    title: "Tous les PI Objectives en committed",
+    title: "Tous les objectifs de PI en engagé",
     heroPhrase:
       "Un train sans stretch est un train sans ambition. Ou un train qui se ment sur sa capacité.",
     intro: "",
-    practiceCtaLabel: "Va calibrer un mix committed / stretch",
+    practiceCtaLabel: "Va calibrer un mix engagé / stretch",
     sections: [
       {
         heading: "Pourquoi c'est piégeux",
         icon: "target",
-        body: "Quand un train classe tous ses PI Objectives en committed, deux interprétations possibles : (1) il sous-promet pour être sûr d'atteindre 100 % à la PI Review (sandbagging à l'échelle train), ou (2) il sur-promet en s'engageant sur des objectifs qu'il ratera. Les deux abîment la confiance des Business Owners et coupent l'équipe de tout apprentissage stretch.",
+        body: "Quand un train classe tous ses objectifs de PI en engagé, deux interprétations possibles : (1) il sous-promet pour être sûr d'atteindre 100 % à la revue de PI (sandbagging à l'échelle train), ou (2) il sur-promet en s'engageant sur des objectifs qu'il ratera. Les deux abîment la confiance des Business Owners et coupent l'équipe de tout apprentissage stretch.",
         bullets: [
           "Le stretch est l'espace où on tente quelque chose dont l'issue est incertaine, où on apprend.",
-          "Un train à 100 % committed se prive de cet espace.",
+          "Un train à 100 % engagé se prive de cet espace.",
           "Le Business Owner ne sait plus quel objectif compte vraiment.",
         ],
       },
@@ -460,18 +460,18 @@ export const PI_DEV_SHEETS_FR: PedagogicalSheet[] = [
         body: "",
         bullets: [
           "Aucun objectif classé stretch sur la page de PI Planning.",
-          "Les objectifs réalisés à 100 % à la PI Review trois PI consécutifs (signe de sandbagging).",
+          "Les objectifs réalisés à 100 % à la revue de PI trois PI consécutifs (signe de sandbagging).",
           "Ou inversement : taux de réalisation moyen sous 70 % (signe de sur-promesse).",
         ],
       },
       {
         heading: "Comment recadrer",
         icon: "wrench",
-        body: "Le RTE peut suggérer un mix de référence : autour de 60 à 70 % de committed, 30 à 40 % de stretch. Le Business Owner peut demander explicitement « quel objectif vous engagez à coup sûr, et quel objectif vous tentez sans garantir ? ». La discrimination crée la lisibilité.",
+        body: "Le RTE peut suggérer un mix de référence : autour de 60 à 70 % d'engagé, 30 à 40 % de stretch. Le Business Owner peut demander explicitement « quel objectif vous engagez à coup sûr, et quel objectif vous tentez sans garantir ? ». La discrimination crée la lisibilité.",
         examples: [
           {
-            bad: "5 PI Objectives, tous committed, tous notés à valeur business 10.",
-            good: "3 PI Objectives committed (cap commercial, fiabilité, conformité), 2 stretch (marketplace pilote, intégration nouveau partenaire).",
+            bad: "5 objectifs de PI, tous engagé, tous notés à valeur business 10.",
+            good: "3 objectifs de PI engagés (cap commercial, fiabilité, conformité), 2 stretch (marketplace pilote, intégration nouveau partenaire).",
             note: "Le mix raconte une histoire stratégique : voici ce qu'on tient, voici ce qu'on tente.",
           },
         ],
@@ -479,7 +479,7 @@ export const PI_DEV_SHEETS_FR: PedagogicalSheet[] = [
       {
         heading: "Source",
         kind: "source",
-        body: "Scaled Agile Framework, recommandations sur le mix committed / stretch. Ben Lamorte (The OKRs Field Book) sur la valeur d'apprentissage du stretch, transposable à PI.",
+        body: "Scaled Agile Framework, recommandations sur le mix engagé / stretch. Ben Lamorte (The OKRs Field Book) sur la valeur d'apprentissage du stretch, transposable à PI.",
       },
     ],
   },

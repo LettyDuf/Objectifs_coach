@@ -1,0 +1,225 @@
+/* eval.css — auto-extrait depuis components.css le 2026-06-27 */
+
+/* ============================================================
+ * Évaluation
+ * ============================================================ */
+
+.evaluation {
+  padding: var(--space-5);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+}
+
+.evaluation--placeholder {
+  background: var(--color-surface-2);
+  text-align: center;
+}
+
+.evaluation__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+.evaluation__score {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-medium);
+  font-variant-numeric: tabular-nums;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.evaluation__score-unit {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-md);
+  color: var(--color-text-muted);
+}
+
+.evaluation__status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-base);
+}
+
+.evaluation__status--good {
+  background: var(--color-good-bg);
+  color: var(--color-good);
+}
+
+.evaluation__status--warn {
+  background: var(--color-warn-bg);
+  color: var(--color-warn);
+}
+
+.evaluation__status--bad {
+  background: var(--color-bad-bg);
+  color: var(--color-bad);
+}
+
+/* Diff entre versions (Mockup B — Vague 3) */
+.evaluation__diff {
+  margin-top: var(--space-4);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
+}
+
+.evaluation__diff-title {
+  margin: 0 0 var(--space-3) 0;
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+}
+
+.criterion-delta {
+  display: grid;
+  grid-template-columns: 24px 1fr auto;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border-radius: var(--radius-sm);
+  align-items: flex-start;
+  margin-bottom: var(--space-2);
+}
+
+.criterion-delta--up   { background: var(--color-good-bg); }
+.criterion-delta--down { background: var(--color-warn-bg); }
+.criterion-delta--same { background: var(--color-surface-alt); }
+
+.criterion-delta__arrow {
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  font-weight: var(--font-weight-bold);
+  text-align: center;
+}
+
+.criterion-delta__arrow--up   { color: var(--color-good); }
+.criterion-delta__arrow--down { color: var(--color-warn); }
+.criterion-delta__arrow--same { color: var(--color-text-muted); }
+
+.criterion-delta__label {
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-base);
+}
+
+.criterion-delta__message {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  margin-top: var(--space-1);
+}
+
+.criterion-delta__value {
+  font-family: var(--font-mono);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-base);
+  align-self: center;
+}
+
+.criterion-delta--up   .criterion-delta__value { color: var(--color-good); }
+.criterion-delta--down .criterion-delta__value { color: var(--color-warn); }
+.criterion-delta--same .criterion-delta__value { color: var(--color-text-muted); }
+
+/* Barre de progression du score (Vague 2 — R5 audit design) */
+.evaluation__score-bar {
+  height: 8px;
+  background: var(--color-neutral-bg);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: var(--space-4);
+}
+
+.evaluation__score-bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 200ms ease-out, background-color 200ms;
+}
+
+.evaluation__score-bar-fill--good { background: var(--color-good); }
+.evaluation__score-bar-fill--warn { background: var(--color-warn); }
+.evaluation__score-bar-fill--bad  { background: var(--color-bad); }
+
+@media (prefers-reduced-motion: reduce) {
+  .evaluation__score-bar-fill { transition: none; }
+}
+
+/* Critère du diagnostic : signal visuel fort par ligne (pastille pleine + fond teinté
+   selon le statut). Retour utilisatrice 2026-06-26 : « on ne comprend pas si le verbe
+   d'outcome est correct, il faut une croix ou une coche ». Couleur jamais seule
+   porteuse (D7) : pastille + icône + texte + aria-label. */
+.criterion {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  margin-top: var(--space-2);
+  align-items: flex-start;
+  border: 1px solid var(--color-border);
+}
+
+.criterion + .criterion {
+  margin-top: var(--space-2);
+}
+
+/* Fond teinté + bordure gauche colorée selon le statut.
+   Classe `criterion--{status}` posée sur le <li> par EvaluationPanel pour ne pas
+   dépendre de :has() (support large mais évitable). */
+.criterion--good {
+  background: var(--color-good-bg);
+  border-color: color-mix(in srgb, var(--color-good) 30%, transparent);
+  border-left: 3px solid var(--color-good);
+}
+
+.criterion--warn {
+  background: var(--color-warn-bg);
+  border-color: color-mix(in srgb, var(--color-warn) 30%, transparent);
+  border-left: 3px solid var(--color-warn);
+}
+
+.criterion--bad {
+  background: var(--color-bad-bg);
+  border-color: color-mix(in srgb, var(--color-bad) 30%, transparent);
+  border-left: 3px solid var(--color-bad);
+}
+
+/* Pastille pleine ronde : signal le plus lisible — coche/croix/alerte blanche sur
+   fond sémantique. 28px = lisible à distance d'atelier sans dominer la ligne. */
+.criterion__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-size: 1rem;
+  font-weight: var(--font-weight-bold);
+  line-height: 1;
+  color: #ffffff;
+  flex-shrink: 0;
+  /* contraste blanc sur fond : tous AA ou AAA — vert 6:1, ambre 5.6:1, brique 10:1 */
+}
+
+.criterion__icon--good { background: var(--color-good); }
+.criterion__icon--warn { background: var(--color-warn); }
+.criterion__icon--bad  { background: var(--color-bad); }
+
+.criterion__label {
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+}
+
+.criterion__message {
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  margin-top: var(--space-1);
+  opacity: 0.85;
+}
+

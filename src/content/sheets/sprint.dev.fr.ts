@@ -10,7 +10,7 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
     id: "sprint.sheet.single-goal",
     themeId: "sprint.fondamentaux",
     icon: "target",
-    title: "Un seul Sprint Goal",
+    title: "Un seul objectif de Sprint",
     heroPhrase: "Un seul objectif par sprint. Pas deux. Pas une liste.",
     intro: "",
     practiceCtaLabel: "Va corriger un objectif mal posé",
@@ -20,9 +20,9 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
         icon: "target",
         body: "",
         bullets: [
-          "Focus : un seul objectif force l'arbitrage des stories.",
+          "Focus : un seul objectif force l'arbitrage des récits.",
           "Mémorisable : récitable sans lire l'écran.",
-          "Trie le backlog : « cette story contribue-t-elle à l'objectif ? »",
+          "Trie le backlog : « cette récit contribue-t-elle à l'objectif ? »",
           "Bilan clair en fin de sprint : atteint / pas atteint.",
         ],
       },
@@ -32,7 +32,7 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
         body: "",
         bullets: [
           "Le tableau affiche « Objectif 1 / Objectif 2 / Objectif 3 ».",
-          "L'objectif est rédigé après la sélection des stories.",
+          "L'objectif est rédigé après la sélection des récits.",
           "Il contient un « et » coordonnant deux résultats.",
           "Personne ne le récite à la rétro sans le relire.",
         ],
@@ -52,10 +52,10 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
       {
         heading: "Qui le rédige, sur quelle base",
         icon: "learn",
-        body: "Co-construit en Sprint Planning par l'équipe Scrum entière : le PO propose un cap dérivé du Product Goal, les Devs challengent au regard de leur capacité et de leur connaissance technique, le Scrum Master facilite la convergence. Pas un acte solo du PO. Le Sprint Goal défini, les stories du backlog deviennent des hypothèses de ce qui aidera à l'atteindre.",
+        body: "Co-construit en Sprint Planning par l'équipe Scrum entière : le PO propose un cap dérivé du objectif de produit, les Devs challengent au regard de leur capacité et de leur connaissance technique, le Scrum Master facilite la convergence. Pas un acte solo du PO. L'objectif de Sprint défini, les récits du backlog deviennent des hypothèses de ce qui aidera à l'atteindre.",
         bullets: [
-          "Product Goal (le cap moyen terme du produit, l'amont)",
-          "État du Product Backlog (ce qui est prioritaire et prêt)",
+          "objectif de produit (le cap moyen terme du produit, l'amont)",
+          "État du backlog produit (ce qui est prioritaire et prêt)",
           "Vélocité historique de l'équipe (capacité réaliste sur l'itération)",
           "Retour de la dernière rétrospective (ce qu'on change ou garde)",
           "Retour de la dernière Sprint Review (ce qui a bougé côté utilisateur)",
@@ -64,7 +64,7 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
       {
         heading: "Source",
         kind: "source",
-        body: "Scrum Guide 2020 : « The Sprint Goal is the single objective for the Sprint » et « The Developers… define a Sprint Goal that communicates why the Sprint is valuable to stakeholders. » Convergent avec Kniberg, Cohn. SAFe : pluralité au niveau PI uniquement.",
+        body: "Scrum Guide 2020 : « The Sprint Goal is the single objective for the Sprint » [traduction : « L'objectif de Sprint est l'unique objectif du Sprint »] et « The Developers… define a Sprint Goal that communicates why the Sprint is valuable to stakeholders. » [traduction : « Les Developers… définissent un objectif de Sprint qui communique pourquoi le Sprint a de la valeur pour les parties prenantes. »] Convergent avec Kniberg, Cohn. SAFe : pluralité au niveau PI uniquement.",
       },
     ],
   },
@@ -73,17 +73,17 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
     id: "sprint.sheet.anatomy",
     themeId: "sprint.fondamentaux",
     icon: "target",
-    title: "L'anatomie d'un Sprint Goal",
+    title: "L'anatomie d'un objectif de Sprint",
     heroPhrase:
       "Verbe d'outcome, indicateur, variation chiffrée, contexte, échéance. Cinq briques. Une phrase.",
     intro: "",
-    practiceCtaLabel: "Va assembler ton premier Sprint Goal",
+    practiceCtaLabel: "Va assembler ton premier objectif de Sprint",
     sections: [
       {
         heading: "Les cinq briques",
         icon: "target",
         kind: "bricks",
-        body: "Un Sprint Goal solide tient en une phrase et porte cinq briques. Chacune répond à une question. Si l'une manque, le goal est ambigu : quelqu'un finira par défendre un verdict qu'un autre contestera.",
+        body: "Un objectif de Sprint solide tient en une phrase et porte cinq briques. Chacune répond à une question. Si l'une manque, le goal est ambigu : quelqu'un finira par défendre un verdict qu'un autre contestera.",
         bricksSentence:
           "Réduire le taux d'abandon au paiement de 50 % sur mobile d'ici la fin du sprint 24.",
         bricks: [
@@ -158,43 +158,43 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
     id: "sprint.sheet.product-goal-link",
     themeId: "sprint.fondamentaux",
     icon: "learn",
-    title: "Le Sprint Goal et le Product Goal",
+    title: "L'objectif de Sprint et l'objectif de produit",
     heroPhrase:
-      "Le Product Goal donne le cap. Le Sprint Goal est l'étape qui sert ce cap, dans la fenêtre du sprint.",
+      "L'objectif de produit donne le cap. L'objectif de Sprint est l'étape qui sert ce cap, dans la fenêtre du sprint.",
     intro: "",
-    practiceCtaLabel: "Va écrire un Sprint Goal aligné",
+    practiceCtaLabel: "Va écrire un objectif de Sprint aligné",
     sections: [
       {
         heading: "Pourquoi cette relation compte",
         icon: "target",
-        body: "Le Scrum Guide 2020 introduit explicitement le **Product Goal** : un cap moyen terme du produit, formulé en outcome. Chaque Sprint Goal est une étape vers ce cap. Cette chaîne d'alignement rend chaque sprint signifiant. L'équipe sait pourquoi elle fait ce qu'elle fait.",
+        body: "Le Scrum Guide 2020 introduit explicitement le **Product Goal** (objectif de produit) : un cap moyen terme du produit, formulé en outcome. Chaque objectif de Sprint est une étape vers ce cap. Cette chaîne d'alignement rend chaque sprint signifiant. L'équipe sait pourquoi elle fait ce qu'elle fait.",
         bullets: [
-          "Le Product Goal vit à l'année / au trimestre, le Sprint Goal à l'itération.",
-          "Sans Product Goal, le Sprint Goal flotte (le PO décide chaque fois sans cap stable).",
-          "Sans Sprint Goal, le Product Goal devient une plaque décorative sans traduction opérationnelle.",
+          "L'objectif de produit vit à l'année / au trimestre, l'objectif de Sprint à l'itération.",
+          "Sans objectif de produit, l'objectif de Sprint flotte (le PO décide chaque fois sans cap stable).",
+          "Sans objectif de Sprint, l'objectif de produit devient une plaque décorative sans traduction opérationnelle.",
         ],
       },
       {
         heading: "Comment dériver l'un de l'autre",
         icon: "wrench",
-        body: "Le Sprint Goal n'est pas un Product Goal en miniature. Il en est une étape concrète, formulée avec les cinq briques d'un Sprint Goal, dans la fenêtre du sprint.",
+        body: "L'objectif de Sprint n'est pas un objectif de produit en miniature. Il en est une étape concrète, formulée avec les cinq briques d'un objectif de Sprint, dans la fenêtre du sprint.",
         examples: [
           {
-            bad: "Product Goal : « Devenir l'outil de paiement le plus simple du marché ». Sprint Goal : « Devenir l'outil de paiement le plus simple du marché ».",
-            good: "Product Goal : « Devenir l'outil de paiement le plus simple du marché ». Sprint Goal : « Faire passer le temps moyen pour finaliser un paiement de 45 s à 30 s d'ici la fin du sprint 24 ».",
-            note: "Le Sprint Goal traduit le cap en mesure observable sur l'itération.",
+            bad: "objectif de produit : « Devenir l'outil de paiement le plus simple du marché ». objectif de Sprint : « Devenir l'outil de paiement le plus simple du marché ».",
+            good: "objectif de produit : « Devenir l'outil de paiement le plus simple du marché ». objectif de Sprint : « Faire passer le temps moyen pour finaliser un paiement de 45 s à 30 s d'ici la fin du sprint 24 ».",
+            note: "L'objectif de Sprint traduit le cap en mesure observable sur l'itération.",
           },
         ],
       },
       {
         heading: "Le test d'alignement",
         icon: "good",
-        body: "À chaque Sprint Planning, poser la question : « notre Sprint Goal contribue-t-il directement à notre Product Goal en cours ? » Si l'équipe ne sait pas répondre clairement, soit le Product Goal n'est pas vraiment partagé, soit le Sprint Goal s'éparpille.",
+        body: "À chaque Sprint Planning, poser la question : « notre objectif de Sprint contribue-t-il directement à notre objectif de produit en cours ? » Si l'équipe ne sait pas répondre clairement, soit l'objectif de produit n'est pas vraiment partagé, soit l'objectif de Sprint s'éparpille.",
       },
       {
         heading: "Source",
         kind: "source",
-        body: "Scrum Guide 2020 (révision Schwaber/Sutherland) : ajout du Product Goal aux Scrum artifacts. Voir aussi Roman Pichler sur la cascade vision → Product Goal → Sprint Goal.",
+        body: "Scrum Guide 2020 (révision Schwaber/Sutherland) : ajout du Product Goal (objectif de produit) aux Scrum artifacts. Voir aussi Roman Pichler sur la cascade vision → objectif de produit → objectif de Sprint.",
       },
     ],
   },
@@ -203,7 +203,7 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
     id: "sprint.sheet.goal-is-met",
     themeId: "sprint.fondamentaux",
     icon: "good",
-    title: "Comment savoir que le Sprint Goal est atteint",
+    title: "Comment savoir que l'objectif de Sprint est atteint",
     heroPhrase:
       "La définition de succès se pose en Sprint Planning, pas à la Sprint Review. Tu écris le goal et son critère d'atteinte ensemble.",
     intro: "",
@@ -235,8 +235,8 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
         body: "À la fin du Sprint Planning, demander : « comment saurons-nous, en fin de sprint, si nous l'avons atteint ? » Si l'équipe ne sait pas répondre en moins de 30 secondes, le goal est mal posé. Reformuler avant de démarrer.",
         examples: [
           {
-            bad: "Sprint Goal : « Rendre le module commande plus fiable. » Critère d'atteinte : non posé.",
-            good: "Sprint Goal : « Réduire le nombre d'incidents production du module commande de 14 à 5 par semaine d'ici la fin du sprint. » Critère : nombre d'incidents mesuré la dernière semaine du sprint, comparé à la moyenne hebdomadaire précédente.",
+            bad: "objectif de Sprint : « Rendre le module commande plus fiable. » Critère d'atteinte : non posé.",
+            good: "objectif de Sprint : « Réduire le nombre d'incidents production du module commande de 14 à 5 par semaine d'ici la fin du sprint. » Critère : nombre d'incidents mesuré la dernière semaine du sprint, comparé à la moyenne hebdomadaire précédente.",
             note: "Le critère d'atteinte est implicite dans le goal bien rédigé, mais le formuler explicitement protège contre les divergences d'interprétation.",
           },
         ],
@@ -275,7 +275,7 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
         bullets: [
           "Utilisateur final : moins de bugs visibles, moins d'incidents en production.",
           "Équipe support : moins d'escalades, temps de résolution plus court.",
-          "Équipe ops / oncall : déploiements plus rapides, astreintes plus calmes.",
+          "Équipe ops / astreinte : déploiements plus rapides, astreintes plus calmes.",
           "Équipe dev : vélocité retrouvée, moins de temps sur les bugs hérités.",
         ],
       },
@@ -286,23 +286,23 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
   // Thème : Les pièges classiques (4 fiches)
   // ============================================================
   {
-    id: "sprint.sheet.not-a-story-list",
+    id: "sprint.sheet.not-a-récit-list",
     themeId: "sprint.pieges-classiques",
     icon: "warn",
-    title: "Le Sprint Goal n'est pas la liste des stories",
+    title: "L'objectif de Sprint n'est pas la liste des récits",
     heroPhrase:
-      "L'équipe s'engage sur un résultat. Les stories sont une hypothèse de ce qui aidera à l'atteindre.",
+      "L'équipe s'engage sur un résultat. Les récits sont une hypothèse de ce qui aidera à l'atteindre.",
     intro: "",
     practiceCtaLabel: "Va corriger un objectif mal posé",
     sections: [
       {
         heading: "Pourquoi",
         icon: "target",
-        body: "Le Scrum Guide est clair : la sélection de Product Backlog Items est une **hypothèse** de ce qui aidera à atteindre le Sprint Goal, pas l'engagement en soi. Si l'équipe s'engage sur les stories au lieu du goal, le sprint devient une course à la complétion, pas une recherche de valeur.",
+        body: "Le Scrum Guide est clair : la sélection des items du backlog produit (Product Backlog Items) est une **hypothèse** de ce qui aidera à atteindre l'objectif de Sprint, pas l'engagement en soi. Si l'équipe s'engage sur les récits au lieu du goal, le sprint devient une course à la complétion, pas une recherche de valeur.",
         bullets: [
           "L'engagement porte sur le résultat, pas sur la livraison.",
-          "Si la moitié des stories suffisent à atteindre le goal, on s'arrête.",
-          "Si les stories ne suffisent pas, on ajuste les stories, pas le goal.",
+          "Si la moitié des récits suffisent à atteindre le goal, on s'arrête.",
+          "Si les récits ne suffisent pas, on ajuste les récits, pas le goal.",
         ],
       },
       {
@@ -310,27 +310,27 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
         icon: "warn",
         body: "",
         bullets: [
-          "« On a fini toutes les stories » devient la fierté de fin de sprint, indépendamment du résultat constaté.",
-          "Le Sprint Goal est rédigé après la sélection des stories pour les résumer.",
-          "À la rétro, l'équipe parle de stories livrées, pas de bénéficiaires touchés.",
+          "« On a fini tous les récits » devient la fierté de fin de sprint, indépendamment du résultat constaté.",
+          "L'objectif de Sprint est rédigé après la sélection des récits pour les résumer.",
+          "À la rétro, l'équipe parle de récits livrées, pas de bénéficiaires touchés.",
         ],
       },
       {
         heading: "Comment recadrer",
         icon: "wrench",
-        body: "Reformuler le goal en outcome avant de finaliser la sélection. Demander : « quelles stories nous permettent vraiment d'atteindre ce goal ? » et laisser tomber le reste.",
+        body: "Reformuler le goal en outcome avant de finaliser la sélection. Demander : « quelles récits nous permettent vraiment d'atteindre ce goal ? » et laisser tomber le reste.",
         examples: [
           {
-            bad: "Livrer les 12 stories de l'epic onboarding.",
+            bad: "Livrer les 12 récits de l'epic intégration.",
             good: "Permettre à 80 % des nouveaux utilisateurs de compléter l'inscription en moins de 90 secondes, fin de sprint.",
-            note: "Les stories deviennent un moyen mesuré contre l'outcome, pas une fin en soi.",
+            note: "Les récits deviennent un moyen mesuré contre l'outcome, pas une fin en soi.",
           },
         ],
       },
       {
         heading: "Source",
         kind: "source",
-        body: "Scrum Guide 2020 : « The selected Product Backlog items are a hypothesis of what is needed to achieve the Sprint Goal. » Voir aussi Scrum.org, Sprint Backlog Antipatterns.",
+        body: "Scrum Guide 2020 : « The selected Product Backlog items are a hypothesis of what is needed to achieve the Sprint Goal. » [traduction : « Les items sélectionnés du backlog produit sont une hypothèse de ce qui est nécessaire pour atteindre l'objectif de Sprint. »] Voir aussi Scrum.org, Sprint Backlog Antipatterns.",
       },
     ],
   },
@@ -348,7 +348,7 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
       {
         heading: "Pourquoi c'est piégeux",
         icon: "target",
-        body: "Le vanity goal coche la case « on a un Sprint Goal » sans accepter le coût d'un engagement vérifiable. Personne ne saura à la fin du sprint si l'objectif est atteint ou pas, donc tout le monde déclare la victoire.",
+        body: "Le vanity goal coche la case « on a un objectif de Sprint » sans accepter le coût d'un engagement vérifiable. Personne ne saura à la fin du sprint si l'objectif est atteint ou pas, donc tout le monde déclare la victoire.",
         bullets: [
           "Aucune mesure ne tranche en fin de sprint.",
           "Le goal est compatible avec n'importe quel résultat.",
@@ -380,7 +380,7 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
       {
         heading: "Source",
         kind: "source",
-        body: "Scrum.org, Sprint Anti-Patterns. Convergent avec le test pédagogique de Mike Cohn : « can two people defending opposite verdicts both be right ? » Si oui, le goal est creux.",
+        body: "Scrum.org, Sprint Anti-Patterns. Convergent avec le test pédagogique de Mike Cohn : « can two people defending opposite verdicts both be right ? » [traduction : « deux personnes défendant des verdicts opposés peuvent-elles avoir raison toutes les deux ? »] Si oui, le goal est creux.",
       },
     ],
   },
@@ -462,7 +462,7 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
         bullets: [
           "Trois sprints consécutifs avec le même goal (ou variantes mineures).",
           "Personne ne sait dire si le goal précédent a été atteint.",
-          "La rétro ne parle pas du goal, seulement des stories.",
+          "La rétro ne parle pas du goal, seulement des récits.",
         ],
       },
       {
@@ -480,7 +480,7 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
       {
         heading: "Source",
         kind: "source",
-        body: "Henrik Kniberg sur l'apprentissage d'un sprint à l'autre. Et Scrum.org : « The Sprint Goal is a single objective for the Sprint, not a recurring theme. »",
+        body: "Henrik Kniberg sur l'apprentissage d'un sprint à l'autre. Et Scrum.org : « The Sprint Goal is a single objective for the Sprint, not a recurring theme. » [traduction : « L'objectif de Sprint est un objectif unique du Sprint, pas un thème récurrent. »]",
       },
     ],
   },
@@ -489,19 +489,19 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
   // Thème : Cas particuliers (3 nouvelles fiches)
   // ============================================================
   {
-    id: "sprint.sheet.discovery-spike",
+    id: "sprint.sheet.discovery-exploration",
     themeId: "sprint.cas-particuliers",
     icon: "learn",
-    title: "Sprint d'exploration (ou spike)",
+    title: "Sprint d'exploration (ou exploration)",
     heroPhrase:
-      "Tu n'as pas une livraison à faire, tu as une question à trancher. Le Sprint Goal vise une preuve, pas un livrable.",
+      "Tu n'as pas une livraison à faire, tu as une question à trancher. L'objectif de Sprint vise une preuve, pas un livrable.",
     intro: "",
-    practiceCtaLabel: "Va écrire un Sprint Goal d'exploration",
+    practiceCtaLabel: "Va écrire un objectif de Sprint d'exploration",
     sections: [
       {
         heading: "La logique de l'exploration",
         icon: "target",
-        body: "Un sprint d'exploration sert à trancher une incertitude (technique, produit, marché) avant de s'engager sur du développement. Le Sprint Goal n'est donc pas « livrer X » mais « répondre à la question Y avec une preuve observable ». Le piège : confondre le sprint d'exploration avec un sprint sans goal.",
+        body: "Un sprint d'exploration sert à trancher une incertitude (technique, produit, marché) avant de s'engager sur du développement. L'objectif de Sprint n'est donc pas « livrer X » mais « répondre à la question Y avec une preuve observable ». Le piège : confondre le sprint d'exploration avec un sprint sans goal.",
         bullets: [
           "L'incertitude à lever est nommée explicitement (la question).",
           "Le critère de réponse est observable : un prototype, un test utilisateur, une mesure de performance, une preuve de concept chiffrée.",
@@ -511,7 +511,7 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
       {
         heading: "Reformuler en outcome",
         icon: "wrench",
-        body: "Le Sprint Goal d'exploration prend la forme « répondre à [question] avec [preuve] d'ici fin de sprint ». La preuve est ce qui rend le goal mesurable.",
+        body: "L'objectif de Sprint d'exploration prend la forme « répondre à [question] avec [preuve] d'ici fin de sprint ». La preuve est ce qui rend le goal mesurable.",
         examples: [
           {
             bad: "Explorer la faisabilité du paiement en crypto.",
@@ -528,7 +528,7 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
       {
         heading: "Source",
         kind: "source",
-        body: "Marty Cagan (Inspired) sur la discovery produit. Mike Cohn pour les spikes techniques en Scrum. Convergent : un spike a une question, un budget temps et un verdict.",
+        body: "Marty Cagan (Inspired) sur la discovery produit. Mike Cohn pour les explorations techniques en Scrum. Convergent : un exploration a une question, un budget temps et un verdict.",
       },
     ],
   },
@@ -556,7 +556,7 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
       {
         heading: "Reformuler en outcome côté public",
         icon: "wrench",
-        body: "Le Sprint Goal vise le changement chez le public, pas la complétion du contenu.",
+        body: "L'objectif de Sprint vise le changement chez le public, pas la complétion du contenu.",
         examples: [
           {
             bad: "Préparer la conférence client annuelle prévue fin de sprint.",
@@ -566,7 +566,7 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
         ],
       },
       {
-        heading: "Le piège de la deadline floue",
+        heading: "Le piège de la échéance floue",
         icon: "warn",
         body: "L'événement crée une échéance forte (la date), ce qui peut faire croire que l'échéance suffit comme borne. Mais une échéance n'est pas un goal : le goal dit ce qu'on cherche à obtenir avant ou après cette échéance. Sans cet ajout, la date devient le seul critère et tout le travail s'aligne dessus, même s'il rate l'effet.",
       },
@@ -601,7 +601,7 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
       {
         heading: "Trois formulations honnêtes",
         icon: "wrench",
-        body: "Selon la nature du blocage, le Sprint Goal s'adapte.",
+        body: "Selon la nature du blocage, l'objectif de Sprint s'adapte.",
         bullets: [
           "**Si le blocage est probable à se lever** : « Faire passer X de A à B **conditionnellement à la réception de Y avant le jour J du sprint**. À défaut, livrer la version isolée prête à intégrer dès réception. »",
           "**Si le blocage est durable** : « Réduire de 30 % le temps de traitement des cas sans dépendance Y, en isolant l'intégration Y pour livraison dès qu'elle est disponible. »",
@@ -611,7 +611,7 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
       {
         heading: "Le piège du « on fera au mieux »",
         icon: "warn",
-        body: "« On fera de notre mieux » n'est pas un Sprint Goal. C'est une posture, pas un cap. Si tu ne peux pas chiffrer ce que tu engages, demande-toi si ce sprint a vraiment un sens, ou s'il faut le repousser et utiliser la fenêtre pour autre chose (exploration, technique, refonte).",
+        body: "« On fera de notre mieux » n'est pas un objectif de Sprint. C'est une posture, pas un cap. Si tu ne peux pas chiffrer ce que tu engages, demande-toi si ce sprint a vraiment un sens, ou s'il faut le repousser et utiliser la fenêtre pour autre chose (exploration, technique, refonte).",
       },
       {
         heading: "Source",

@@ -58,13 +58,13 @@ export const SPRINT_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
   },
 
   {
-    id: "quiz.sprint.dev.onboarding-scale",
+    id: "quiz.sprint.dev.intégration-scale",
     type: "sprint",
     audience: "dev",
-    teamLabel: "Équipe Onboarding",
+    teamLabel: "Équipe Intégration",
     iconName: "practice",
     context:
-      "7 devs, 1 Product Owner. L'équipe travaille sur le parcours d'inscription d'une plateforme B2C en croissance. Sprint feature.",
+      "7 devs, 1 Product Owner. L'équipe travaille sur le parcours d'inscription d'une plateforme B2C en croissance. Sprint fonctionnalité.",
     metrics: [
       { label: "Taux d'activation des nouveaux comptes à J+30", value: "42 %" },
       { label: "Temps moyen pour compléter l'inscription", value: "9 min" },
@@ -110,7 +110,7 @@ export const SPRINT_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
     teamLabel: "Équipe Plateforme",
     iconName: "puzzle",
     context:
-      "8 devs, 1 Tech Lead. L'équipe maintient l'infrastructure consommée par 6 autres équipes feature. Migration en cours vers une architecture micro-services.",
+      "8 devs, 1 Tech Lead. L'équipe maintient l'infrastructure consommée par 6 autres équipes fonctionnalité. Migration en cours vers une architecture micro-services.",
     metrics: [
       { label: "Temps moyen de déploiement d'un hotfix", value: "4 h" },
       { label: "Releases / mois (toutes équipes)", value: "12" },
@@ -130,11 +130,11 @@ export const SPRINT_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
         text: "Faire passer le temps moyen de déploiement d'un hotfix de 4 h à 1 h d'ici la fin du sprint.",
         verdict: "good",
         explanation:
-          "Indicateur ops observable, avant/après chiffré, échéance. Bénéficiaires implicites mais clairs (équipes feature, oncall).",
+          "Indicateur ops observable, avant/après chiffré, échéance. Bénéficiaires implicites mais clairs (équipes fonctionnalité, astreinte).",
       },
       {
         id: "C",
-        text: "Permettre aux équipes feature de déployer plus rapidement leurs hotfixs.",
+        text: "Permettre aux équipes fonctionnalité de déployer plus rapidement leurs hotfixs.",
         verdict: "partial",
         explanation:
           "Bénéficiaire nommé, outcome correct, mais ni seuil ni échéance. Reste qualitatif.",
@@ -156,17 +156,17 @@ export const SPRINT_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
     teamLabel: "Équipe Mobile",
     iconName: "sprint",
     context:
-      "6 devs, 1 Product Owner. L'équipe travaille sur l'app mobile d'une plateforme de réservation de salles de sport. 80 000 utilisateurs actifs mensuels.\nLe PO a sélectionné en avance 12 stories qui « rentrent dans la vélocité » (28 points sur 30 de capacité). Pendant le sprint planning, l'équipe a essayé de fabriquer un objectif APRÈS la sélection.",
+      "6 devs, 1 Product Owner. L'équipe travaille sur l'app mobile d'une plateforme de réservation de salles de sport. 80 000 utilisateurs actifs mensuels.\nLe PO a sélectionné en avance 12 récits qui « rentrent dans la vélocité » (28 points sur 30 de capacité). Pendant le sprint planning, l'équipe a essayé de fabriquer un objectif APRÈS la sélection.",
     metrics: [
       { label: "Taux de conversion réservation (mobile)", value: "11 %" },
       { label: "Taux d'abandon panier (mobile)", value: "47 %" },
       { label: "Note App Store", value: "3,8 / 5" },
     ],
-    proposedObjective: "Avancer sur les 12 stories prioritaires du backlog.",
+    proposedObjective: "Avancer sur les 12 récits prioritaires du backlog.",
     options: [
       {
         id: "A",
-        text: "Livrer les 12 stories du sprint en respectant la qualité attendue.",
+        text: "Livrer les 12 récits du sprint en respectant la qualité attendue.",
         verdict: "bad",
         explanation:
           "« Livrer » est un output. La qualité mentionnée n'a pas de mesure.",
@@ -187,10 +187,10 @@ export const SPRINT_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "D",
-        text: "Améliorer le tunnel de réservation et finir les 4 stories prioritaires.",
+        text: "Améliorer le tunnel de réservation et finir les 4 récits prioritaires.",
         verdict: "bad",
         explanation:
-          "Composite (« et »), « améliorer » est flou, retour à du travail sur les stories.",
+          "Composite (« et »), « améliorer » est flou, retour à du travail sur les récits.",
       },
     ],
   },
@@ -248,7 +248,7 @@ export const SPRINT_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
     teamLabel: "Équipe Data",
     iconName: "wrench",
     context:
-      "4 devs, 1 SRE. L'équipe maintient les pipelines ETL nocturnes qui alimentent les dashboards de l'équipe Business. Une astreinte hebdomadaire est tenue par les devs à tour de rôle.",
+      "4 devs, 1 SRE. L'équipe maintient les pipelines ETL nocturnes qui alimentent les tableaux de bord de l'équipe Business. Une astreinte hebdomadaire est tenue par les devs à tour de rôle.",
     metrics: [
       { label: "Pipelines qui tombent / semaine", value: "2 à 3" },
       { label: "Bugs ouverts sur les pipelines", value: "11" },
@@ -261,7 +261,7 @@ export const SPRINT_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
         text: "Stabiliser les pipelines ETL et corriger les 11 bugs ouverts.",
         verdict: "bad",
         explanation:
-          "Composite (« et »), « stabiliser » est un output, les bugs corrigés ne mesurent pas le bénéfice côté Business ou oncall.",
+          "Composite (« et »), « stabiliser » est un output, les bugs corrigés ne mesurent pas le bénéfice côté Business ou astreinte.",
       },
       {
         id: "B",
@@ -275,7 +275,7 @@ export const SPRINT_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
         text: "Faire passer le nombre de pipelines qui tombent de 2-3 à 0 par semaine d'ici la fin du sprint.",
         verdict: "good",
         explanation:
-          "Outcome mesurable, indicateur précis, échéance, bénéficiaires implicites clairs (Business, oncall).",
+          "Outcome mesurable, indicateur précis, échéance, bénéficiaires implicites clairs (Business, astreinte).",
       },
       {
         id: "D",
@@ -347,7 +347,7 @@ export const SPRINT_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
     teamLabel: "Équipe Mobile",
     iconName: "okr",
     context:
-      "6 devs, 1 Product Owner. L'équipe construit l'application mobile. Sprint sur la refonte du parcours d'onboarding pour les nouveaux utilisateurs.",
+      "6 devs, 1 Product Owner. L'équipe construit l'application mobile. Sprint sur la refonte du parcours d'intégration pour les nouveaux utilisateurs.",
     metrics: [
       { label: "Téléchargements / semaine", value: "2 200" },
       { label: "Taux d'activation (1ʳᵉ action clé) des nouveaux utilisateurs", value: "38 %" },
@@ -360,25 +360,25 @@ export const SPRINT_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
         text: "Faire passer le nombre de téléchargements de 2 200 à 3 500 par semaine d'ici la fin du sprint.",
         verdict: "partial",
         explanation:
-          "Forme correcte (métrique, avant, après, échéance) mais c'est une vanity metric : un téléchargement ne dit rien de l'usage réel. L'objectif du sprint étant l'onboarding, la métrique pertinente est l'activation.",
+          "Forme correcte (métrique, avant, après, échéance) mais c'est une vanity metric : un téléchargement ne dit rien de l'usage réel. L'objectif du sprint étant l'intégration, la métrique pertinente est l'activation.",
       },
       {
         id: "B",
         text: "Faire passer le taux d'activation des nouveaux utilisateurs (1ʳᵉ action clé) de 38 % à 55 % d'ici la fin du sprint.",
         verdict: "good",
         explanation:
-          "Métrique d'usage qui mesure l'effet réel de l'onboarding — pas un téléchargement orphelin. Aligné avec le travail effectif de l'équipe.",
+          "Métrique d'usage qui mesure l'effet réel de l'intégration — pas un téléchargement orphelin. Aligné avec le travail effectif de l'équipe.",
       },
       {
         id: "C",
-        text: "Livrer la nouvelle page d'onboarding mobile.",
+        text: "Livrer la nouvelle page d'intégration mobile.",
         verdict: "bad",
         explanation:
           "Output pur. La page peut être livrée sans changer le moindre comportement utilisateur.",
       },
       {
         id: "D",
-        text: "Optimiser le parcours d'onboarding mobile.",
+        text: "Optimiser le parcours d'intégration mobile.",
         verdict: "bad",
         explanation:
           "« Optimiser » est flou. Aucun chiffre, aucune cible, aucune fenêtre.",
@@ -410,7 +410,7 @@ export const SPRINT_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
         text: "Diviser par 10 le temps de réponse p95 de l'API d'ici la fin du sprint.",
         verdict: "bad",
         explanation:
-          "Passer de 850 ms à 85 ms en 2-4 semaines est très peu crédible — c'est un vœu pieux, pas un objectif. Sprint Goal mal calibré : ambition incohérente avec la fenêtre. Mieux vaut viser ambitieux mais crédible.",
+          "Passer de 850 ms à 85 ms en 2-4 semaines est très peu crédible — c'est un vœu pieux, pas un objectif. objectif de Sprint mal calibré : ambition incohérente avec la fenêtre. Mieux vaut viser ambitieux mais crédible.",
       },
       {
         id: "B",
@@ -524,7 +524,7 @@ export const SPRINT_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
         text: "Mettre en place OAuth pour les utilisateurs invités d'ici la fin du sprint.",
         verdict: "bad",
         explanation:
-          "Output. La fonctionnalité peut être en place sans effet observable côté abandon. Mauvais Sprint Goal.",
+          "Output. La fonctionnalité peut être en place sans effet observable côté abandon. Mauvais objectif de Sprint.",
       },
       {
         id: "D",

@@ -1,0 +1,14 @@
+/* Index des feuilles de style modulaires.
+   Importé par src/main.tsx. Ordre = cascade : misc en premier (variables
+   typo, titres), puis layout-like, puis composants. */
+
+@import "./misc.css";
+@import "./forms.css";
+@import "./tabs-cards.css";
+@import "./eval.css";
+@import "./sheet.css";
+@import "./quiz.css";
+@import "./warmup.css";
+@import "./drill.css";
+@import "./puzzle.css";
+@import "./analyse.css";

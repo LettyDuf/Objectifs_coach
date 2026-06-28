@@ -37,10 +37,10 @@ export function objectiveQualitativePenalty(draft: ObjectiveDraft): Penalty | nu
     amount: 20,
     score: {
       id: "okr.objectiveQualitative",
-      label: "Objective qualitatif",
+      label: "Objectif qualitatif",
       status: "bad",
       message:
-        "L'Objective contient un chiffre. Un Objective est qualitatif et inspirant : les chiffres sont l'affaire des Key Results.",
+        "L'Objectif contient un chiffre. Un Objectif est qualitatif et inspirant : les chiffres sont l'affaire des Résultats clés.",
       weight: 0,
       contribution: -20,
     },
@@ -61,8 +61,8 @@ export function keyResultCountPenalty(draft: ObjectiveDraft): Penalty | null {
     amount = Math.min(20, (3 - n) * 10);
     message =
       n === 0
-        ? "Aucun Key Result. Un OKR a besoin de 3 à 5 KR pour matérialiser ce qu'on attend de l'Objective."
-        : `Seulement ${n} Key Result${n > 1 ? "s" : ""}. Vise au moins 3 KR pour couvrir l'Objective sans le réduire à une seule dimension.`;
+        ? "Aucun Résultat clé. Un OKR a besoin de 3 à 5 KR pour matérialiser ce qu'on attend de l'Objectif."
+        : `Seulement ${n} Résultat${n > 1 ? "s" : ""} clé${n > 1 ? "s" : ""}. Vise au moins 3 KR pour couvrir l'Objectif sans le réduire à une seule dimension.`;
   } else {
     amount = Math.min(20, (n - 5) * 10);
     message = `${n} Key Results : c'est trop. Au-delà de 5, l'attention se dilue. Resserre à 3-5 KR.`;
@@ -112,7 +112,7 @@ export function keyResultQualityPenalty(
       id: "okr.keyResultQuality",
       label: "Key Results outcome et chiffrés",
       status: "bad",
-      message: `${faulty.length} Key Result${faulty.length > 1 ? "s" : ""} à reformuler : ${faulty.join(" ; ")}.`,
+      message: `${faulty.length} Résultat${faulty.length > 1 ? "s" : ""} clé${faulty.length > 1 ? "s" : ""} à reformuler : ${faulty.join(" ; ")}.`,
       weight: 0,
       contribution: -amount,
     },

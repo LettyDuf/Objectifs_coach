@@ -49,7 +49,7 @@ export function toMarkdown(draft: ObjectiveDraft, result: EvaluationResult): str
     lines.push(`- Confiance estimée : ${draft.confidence} %`);
   }
   if (draft.type === "pi") {
-    lines.push(`- Classe : ${draft.piClass === "committed" ? "Committed" : "Stretch"}`);
+    lines.push(`- Classe : ${draft.piClass === "committed" ? "Engagé" : "Stretch"}`);
     if (draft.businessValue !== undefined) {
       lines.push(`- Valeur business : ${draft.businessValue} / 10`);
     }

@@ -25,10 +25,10 @@ export const SPRINT_DEV_SCENARIOS_FR: ScenarioCard[] = [
     id: "scn.sprint.dev.onboarding-scale",
     type: "sprint",
     audience: "dev",
-    teamLabel: "Équipe Onboarding · scale-up B2C",
+    teamLabel: "Équipe Intégration · scale-up B2C",
     iconName: "practice",
     situation:
-      "7 devs. Le board pousse pour booster l'activation des nouveaux comptes (taux à 42 % à 30 jours, cible 60 %). Sprint feature.",
+      "7 devs. Le board pousse pour booster l'activation des nouveaux comptes (taux à 42 % à 30 jours, cible 60 %). Sprint fonctionnalité.",
     proposedObjective: "Améliorer significativement l'expérience utilisateur du parcours d'inscription.",
     rationale: "Mot flou (« améliorer »), adverbe non quantifié, aucun seuil. La cible 60 % existe pourtant et pourrait être nommée.",
     expectedBeneficiary: "nouveaux utilisateurs",
@@ -52,8 +52,8 @@ export const SPRINT_DEV_SCENARIOS_FR: ScenarioCard[] = [
     teamLabel: "Équipe Mobile · app grand public",
     iconName: "sprint",
     situation:
-      "6 devs. Sprint planning à l'envers : l'équipe a sélectionné 12 stories qui rentrent dans la vélocité, sans cap commun.",
-    proposedObjective: "Avancer sur les 12 stories prioritaires du backlog.",
+      "6 devs. Sprint planning à l'envers : l'équipe a sélectionné 12 récits qui rentrent dans la vélocité, sans cap commun.",
+    proposedObjective: "Avancer sur les 12 récits prioritaires du backlog.",
     rationale: "Objectif rétrospectif déguisé : décrit le travail, pas le résultat. Aucun outcome partagé.",
     expectedBeneficiary: "utilisateurs / parties prenantes — à identifier",
   },
@@ -76,9 +76,9 @@ export const SPRINT_DEV_SCENARIOS_FR: ScenarioCard[] = [
     teamLabel: "Équipe Data · 4 devs + 1 SRE",
     iconName: "wrench",
     situation:
-      "Pipelines ETL nocturnes qui tombent 2-3 nuits par semaine. L'équipe Business commence chaque jour avec des dashboards à demi vides. Astreinte usée.",
+      "Pipelines ETL nocturnes qui tombent 2-3 nuits par semaine. L'équipe Business commence chaque jour avec des tableaux de bord à demi vides. Astreinte usée.",
     proposedObjective: "Stabiliser les pipelines ETL et corriger les bugs ouverts.",
-    rationale: "Verbe d'output (« stabiliser »), composite (« et »), aucun seuil. Le ressenti business et oncall pourrait être chiffré.",
-    expectedBeneficiary: "équipe oncall / équipe Business",
+    rationale: "Verbe d'output (« stabiliser »), composite (« et »), aucun seuil. Le ressenti business et astreinte pourrait être chiffré.",
+    expectedBeneficiary: "équipe astreinte / équipe Business",
   },
 ];

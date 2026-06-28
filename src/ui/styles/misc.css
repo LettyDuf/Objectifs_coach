@@ -1,0 +1,289 @@
+/* misc.css — auto-extrait depuis components.css le 2026-06-27 */
+
+/**
+ * Composants UI — styles partagés (Vague 1).
+ *
+ * Aucune logique métier dans ce fichier. Classes basées sur les tokens.
+ */
+
+/* ============================================================
+ * Layout
+ * ============================================================ */
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app__header {
+  padding: var(--space-3) var(--space-6);
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  background: var(--color-surface);
+  /* Sticky pour que le screen-header sticky du gabarit (top: var(--shell-header-h))
+     reste sous lui pendant le scroll, sans superposition avec le contenu. */
+  position: sticky;
+  top: 0;
+  z-index: 30;
+}
+
+.app__title {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: -0.01em;
+}
+
+.app__breadcrumb {
+  font-size: var(--font-size-base);
+  color: var(--color-text-muted);
+  margin-top: var(--space-1);
+}
+
+.app__breadcrumb button {
+  background: transparent;
+  border: 0;
+  color: var(--color-focus);
+  padding: 0;
+  text-decoration: underline;
+  font-size: inherit;
+}
+
+.app__main {
+  flex: 1;
+  padding: var(--space-6);
+  max-width: var(--content-max-width-wide);
+  margin: 0 auto;
+  width: 100%;
+}
+
+.app__main--narrow {
+  max-width: var(--content-max-width-narrow);
+}
+
+/* Variante utilisée par les écrans pilotés par le gabarit Screen (D17).
+   Le .screen-frame gère lui-même son max-width et son padding. */
+.app__main--bare {
+  padding: 0;
+  max-width: none;
+  width: 100%;
+}
+
+/* ============================================================
+ * Titres et sections
+ * ============================================================ */
+
+.screen-title {
+  font-family: var(--font-serif);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: -0.015em;
+  margin: 0 0 var(--space-3) 0;
+  line-height: 1.1;
+}
+
+.screen-lede {
+  font-size: var(--font-size-md);
+  color: var(--color-text-muted);
+  margin: 0 0 var(--space-6) 0;
+  max-width: var(--content-max-width-narrow);
+  line-height: 1.4;
+}
+
+/* Titre de section — visible à distance en atelier */
+.section-title {
+  font-family: var(--font-serif);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: -0.01em;
+  margin: var(--space-7) 0 var(--space-4) 0;
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.section-title:first-child {
+  margin-top: 0;
+}
+
+/* ============================================================
+ * Badge de session (défis relevés)
+ * ============================================================ */
+
+.session-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border-radius: 999px;
+  background: var(--color-neutral-bg);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  border: 1px solid var(--color-border);
+}
+
+.session-badge--active {
+  background: var(--color-good-bg);
+  color: var(--color-good);
+  border-color: var(--color-good);
+}
+
+.session-badge--bumping {
+  animation: badge-bump 360ms ease-out;
+}
+
+.session-badge__icon { font-size: 1.05rem; }
+.session-badge__count {
+  font-variant-numeric: tabular-nums;
+  font-weight: var(--font-weight-bold);
+}
+
+@keyframes badge-bump {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.18); }
+  100% { transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .session-badge--bumping { animation: none; }
+}
+
+/* ============================================================
+ * Export
+ * ============================================================ */
+
+.export-panel {
+  margin-top: var(--space-5);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.export-panel__feedback {
+  margin-top: var(--space-3);
+  font-size: var(--font-size-base);
+  color: var(--color-good);
+  min-height: 1.5em; /* live region persistante (S6 audit a11y) */
+}
+
+/* ============================================================
+ * Visually hidden (sr-only)
+ * ============================================================ */
+
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0);
+  white-space: nowrap; border: 0;
+}
+
+/* ============================================================
+ * Sprint S'entraîner — menu mini-exercices (réutilise .card-button)
+ * Refonte 2026-06-27 : harmonisation avec ModeSelector / TypeSelector.
+ * ============================================================ */
+
+.drills-grid {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: var(--space-3);
+  /* La grille elle-même ne s'étire pas dans la zone parent (align-self: start).
+     align-items: stretch (défaut) reste actif → les cards s'égalisent entre
+     elles à la hauteur de la plus grande, mais sans dépasser le contenu. */
+  align-self: start;
+  align-items: stretch;
+}
+
+@media (max-width: 900px) {
+  .drills-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 600px) {
+  .drills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+.drills-grid > li { display: flex; }
+.drills-grid > li > .card-button {
+  width: 100%;
+  /* Variante compacte : 5 cards en ligne, moins de chrome que les cards principales */
+  min-height: 170px;
+  padding: var(--space-3) var(--space-4);
+}
+
+.drills-grid > li > .card-button .card-button__icon {
+  width: 36px;
+  height: 36px;
+  margin-bottom: var(--space-2);
+}
+
+.drills-grid > li > .card-button .card-button__label {
+  font-size: var(--font-size-base);
+  margin-bottom: 4px;
+}
+
+.drills-grid > li > .card-button .card-button__desc {
+  font-size: var(--font-size-xs);
+  line-height: 1.4;
+}
+
+.drills-grid > li > .card-button .card-button__cta {
+  font-size: 10px;
+  padding-top: var(--space-2);
+}
+
+/* Numéro affiché à l'intérieur du cercle .card-button__icon */
+.drill-num {
+  font-family: var(--font-mono);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-md);
+  line-height: 1;
+}
+
+/* Variante désactivée : sobre mais visible — pas une opacité globale qui
+   écrase tout. On garde le pattern card-button mais on neutralise hover. */
+.card-button--disabled {
+  background: var(--color-surface-alt);
+  border-color: var(--color-border);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+.card-button--disabled .card-button__icon {
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+}
+
+.card-button--disabled .card-button__label {
+  color: var(--color-text-muted);
+}
+
+.card-button--disabled .card-button__desc {
+  color: var(--color-text-muted);
+  opacity: 0.7;
+}
+
+.card-button--disabled .card-button__cta {
+  color: var(--color-text-muted);
+}
+
+.card-button--disabled:hover,
+.card-button--disabled:focus-visible {
+  transform: none;
+  border-color: var(--color-border);
+  box-shadow: none;
+}
+
+.card-button--disabled::before { display: none; }
+
+/* Encart règle utilisé hors du warmup (sur la page Drill, en permanence). */
+.warmup__rule--standalone {
+  margin-bottom: var(--space-4);
+}
+

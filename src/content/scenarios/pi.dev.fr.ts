@@ -49,12 +49,12 @@ export const PI_DEV_SCENARIOS_FR: ScenarioCard[] = [
     id: "scn.pi.dev.onboarding-scale",
     type: "pi",
     audience: "dev",
-    teamLabel: "Train Onboarding · 4 équipes",
+    teamLabel: "Train Intégration nouveaux clients · 4 équipes",
     iconName: "practice",
     situation:
       "Taux d'activation des nouveaux comptes stagne à 42 % depuis deux trimestres. Le board demande +20 points sur ce PI. Plusieurs équipes (acquisition, produit, support) à coordonner.",
     proposedObjective: "Augmenter significativement l'activation utilisateur.",
-    rationale: "Mot flou « significativement » alors qu'on a une cible claire. Le PI Objective doit nommer la métrique (62 %) et la fenêtre (sur le dernier mois du PI).",
+    rationale: "Mot flou « significativement » alors qu'on a une cible claire. L'objectif de PI doit nommer la métrique (62 %) et la fenêtre (sur le dernier mois du PI).",
     expectedBeneficiary: "nouveaux utilisateurs / board",
   },
   {
@@ -64,10 +64,10 @@ export const PI_DEV_SCENARIOS_FR: ScenarioCard[] = [
     teamLabel: "Train Plateforme · 6 équipes",
     iconName: "wrench",
     situation:
-      "Plateforme victime de son succès : MTTR de 45 min, 8 incidents majeurs ce trimestre. Les équipes feature passent 30 % de leur temps en oncall. Stretch ambitieux sur ce PI.",
-    proposedObjective: "Stabiliser la plateforme et alléger la charge oncall.",
-    rationale: "Composite (« et »), verbe d'output (« stabiliser »), pas de seuil. Les deux métriques existent (MTTR, % temps oncall) — il faut les nommer.",
-    expectedBeneficiary: "équipes feature / oncall",
+      "Plateforme victime de son succès : TMR de 45 min, 8 incidents majeurs ce trimestre. Les équipes fonctionnalité passent 30 % de leur temps en astreinte. Stretch ambitieux sur ce PI.",
+    proposedObjective: "Stabiliser la plateforme et alléger la charge astreinte.",
+    rationale: "Composite (« et »), verbe d'output (« stabiliser »), pas de seuil. Les deux métriques existent (TMR, % temps astreinte) — il faut les nommer.",
+    expectedBeneficiary: "équipes fonctionnalité / astreinte",
   },
   {
     id: "scn.pi.dev.churn-premium",
@@ -76,7 +76,7 @@ export const PI_DEV_SCENARIOS_FR: ScenarioCard[] = [
     teamLabel: "Train Retention · 3 équipes",
     iconName: "target",
     situation:
-      "Churn mensuel des comptes premium à 4 %, alors qu'historique <2 %. Le board veut un committed avec une cible chiffrée pour ce PI. Confiance équipe à 75 %.",
+      "Churn mensuel des comptes premium à 4 %, alors qu'historique <2 %. Le board veut un engagé avec une cible chiffrée pour ce PI. Confiance équipe à 75 %.",
     proposedObjective: "Réduire le churn premium de manière notable.",
     rationale: "« De manière notable » est non mesurable. La cible chiffrée existe (revenir à <2 %), il faut juste la nommer dans l'objectif.",
     expectedBeneficiary: "comptes premium / board",

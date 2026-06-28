@@ -1,276 +1,259 @@
 /**
- * Écran S'entraîner — Sprint.
+ * Sprint S'entraîner — menu de mini-exercices par partie d'objectif.
  *
- * **Pilote du gabarit Screen** (D17). Composition :
- *   - ScreenHeader : eyebrow + titre + lede + bouton « Vider »
- *   - ScreenBody --wide-rail
- *       Primary : <Zone primary> contenant le textarea + paramètres en <details> repliable
- *       Context : <EvaluationPanel> en zone contexte (sticky)
- *   - ScreenActions : statut centre (score), actions à droite (3 boutons d'export)
- *
- * ExportPanel actuel non utilisé ici : les 3 actions d'export sont inlinées dans la
- * toolbar basse pour rester visibles en permanence.
+ * Refonte 2026-06-27 : on remplace l'étape « écrire à blanc » par un menu
+ * de 5 mini-exercices, un par partie d'objectif (Verbe, Indicateur, Variation,
+ * Échéance, Contexte). L'utilisateur choisit la partie qu'il veut travailler.
+ * V1 MVP : seule la carte « Verbe » est active (réutilise le Warmup existant).
+ * Les 4 autres sont visibles mais marquées « à venir » tant que les corpus
+ * ne sont pas validés.
  */
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useState } from "react";
+
 import type { CoachUseCase } from "../../domain/ports";
-import type { EvaluationResult, SprintDraft } from "../../domain/types";
-import { EvaluationPanel } from "../components/EvaluationPanel";
+import { createContentRepository } from "../../content/repository";
 import { Warmup } from "../components/Warmup";
-import { PracticeExamples } from "../components/PracticeExamples";
+import { Drill } from "../components/Drill";
+import { SPRINT_INDICATOR_DRILL_FR } from "../../content/drills/sprint.indicator.fr";
+import { SPRINT_VARIATION_DRILL_FR } from "../../content/drills/sprint.variation.fr";
+import { SPRINT_ECHEANCE_DRILL_FR } from "../../content/drills/sprint.echeance.fr";
+import { SPRINT_CONTEXTE_DRILL_FR } from "../../content/drills/sprint.contexte.fr";
 import { Screen } from "../layout/Screen";
 import { Zone } from "../layout/Zone";
-import { toJson, toMarkdown } from "../../adapters/export";
-import { createContentRepository } from "../../content/repository";
-
-const repo = createContentRepository();
 
 interface Props {
   coach: CoachUseCase;
 }
 
-const INITIAL: SprintDraft = {
-  type: "sprint",
-  text: "",
-  audience: "dev",
-  confidence: 75,
-  hasExplicitDeadline: false,
-  isUnderTeamInfluence: false,
-};
+type DrillKey = "verbe" | "indicateur" | "variation" | "echeance" | "contexte";
 
-function downloadFile(filename: string, content: string, mime: string) {
-  const blob = new Blob([content], { type: mime });
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement("a");
-  link.href = url;
-  link.download = filename;
-  document.body.appendChild(link);
-  link.click();
-  link.remove();
-  URL.revokeObjectURL(url);
+interface DrillDef {
+  key: DrillKey;
+  num: string;
+  title: string;
+  desc: string;
+  status: "active" | "todo";
 }
 
-export function SprintPractice({ coach }: Props) {
-  const [draft, setDraft] = useState<SprintDraft>(INITIAL);
-  const [exportFeedback, setExportFeedback] = useState<string | null>(null);
+const DRILLS: DrillDef[] = [
+  {
+    key: "verbe",
+    num: "1",
+    title: "Le verbe",
+    desc: "Output ou outcome ? Apprends à reconnaître le verbe qui décrit un effet plutôt qu'une livraison.",
+    status: "active",
+  },
+  {
+    key: "indicateur",
+    num: "2",
+    title: "L'indicateur",
+    desc: "Indicateur opérationnel ou concept-parapluie ? Repère ce qui est mesurable sans ambiguïté.",
+    status: "active",
+  },
+  {
+    key: "variation",
+    num: "3",
+    title: "La variation chiffrée",
+    desc: "Précise ou vague ? Distingue les chiffres opposables des adverbes flous.",
+    status: "active",
+  },
+  {
+    key: "echeance",
+    num: "4",
+    title: "L'échéance",
+    desc: "Bornée ou floue ? Reconnaître une date, un sprint nommé, un événement Scrum.",
+    status: "active",
+  },
+  {
+    key: "contexte",
+    num: "5",
+    title: "Le contexte",
+    desc: "Qui est le vrai bénéficiaire de l'objectif ? Apprends à identifier pour qui ça change.",
+    status: "active",
+  },
+];
+
+const repo = createContentRepository();
+
+export function SprintPractice(_props: Props) {
   const warmupCases = useMemo(() => repo.getWarmupCases("sprint", "dev"), []);
-  const examples = useMemo(() => repo.getExamples("sprint", "dev"), []);
+  const [activeDrill, setActiveDrill] = useState<DrillKey | null>(null);
 
-  const result = useMemo(() => {
-    if (draft.text.trim().length === 0) return null;
-    return coach.evaluate(draft);
-  }, [draft, coach]);
+  // Vue d'un exercice plein écran : Indicateur / Variation / Échéance / Contexte
+  const drillConfigs = {
+    indicateur: { corpus: SPRINT_INDICATOR_DRILL_FR, title: "L'indicateur : opérationnel ou flou ?", lede: "Un indicateur opérationnel est précis et univoque. Apprends à le distinguer d'un concept-parapluie." },
+    variation: { corpus: SPRINT_VARIATION_DRILL_FR, title: "La variation chiffrée : précise ou vague ?", lede: "Coche tous les fragments précis dans la grille. Les vagues, laisse-les." },
+    echeance: { corpus: SPRINT_ECHEANCE_DRILL_FR, title: "L'échéance : bornée ou floue ?", lede: "Coche toutes les échéances précises dans la grille. Les floues, laisse-les." },
+    contexte: { corpus: SPRINT_CONTEXTE_DRILL_FR, title: "Le contexte : qui est le vrai bénéficiaire ?", lede: "Pour chaque objectif, identifie la personne ou le groupe dont la vie change quand l'objectif est atteint." },
+  } as const;
 
-  // Diff entre versions
-  const previousResult = useRef<EvaluationResult | null>(null);
-  const displayedPrevious = previousResult.current;
-  useEffect(() => {
-    if (result) previousResult.current = result;
-  }, [result]);
-
-  function update<K extends keyof SprintDraft>(key: K, value: SprintDraft[K]) {
-    setDraft((d) => ({ ...d, [key]: value }));
+  if (activeDrill && activeDrill !== "verbe") {
+    const cfg = drillConfigs[activeDrill];
+    return (
+      <Screen
+        header={{
+          eyebrow: <span>Sprint · S'entraîner · {DRILLS.find((d) => d.key === activeDrill)?.title}</span>,
+          title: cfg.title,
+          lede: cfg.lede,
+          actions: (
+            <button className="btn" onClick={() => setActiveDrill(null)}>
+              ‹ Retour aux exercices
+            </button>
+          ),
+        }}
+        body={{
+          variant: "single",
+          primary: (
+            <Zone variant="primary">
+              <Drill
+                key={activeDrill}
+                corpus={cfg.corpus}
+                endSlot={<NextDrillsList currentKey={activeDrill} onChoose={(k) => setActiveDrill(k)} />}
+              />
+            </Zone>
+          ),
+        }}
+      />
+    );
   }
 
-  function flash(message: string) {
-    setExportFeedback(message);
-    window.setTimeout(() => setExportFeedback(null), 2500);
+  // Vue d'un exercice plein écran
+  if (activeDrill === "verbe") {
+    return (
+      <Screen
+        header={{
+          eyebrow: <span>Sprint · S'entraîner · Verbe</span>,
+          title: "Le verbe : output ou outcome ?",
+          lede:
+            "Si le verbe décrit ce que tu fais, c'est un output. S'il décrit ce qui change après, c'est un outcome. Entraîne-toi à les distinguer.",
+          actions: (
+            <button className="btn" onClick={() => setActiveDrill(null)}>
+              ‹ Retour aux exercices
+            </button>
+          ),
+        }}
+        body={{
+          variant: "single",
+          primary: (
+            <Zone variant="primary">
+              {/* Encart règle persistant (extrait du warmup) : reste visible
+                  pendant tout l'exercice pour éviter le clic intro redondant. */}
+              <div className="warmup__rule warmup__rule--standalone" role="note">
+                <p>
+                  <strong>Si le verbe décrit ce que tu fais</strong>, c'est un <em>output</em>.
+                  <br />
+                  <strong>S'il décrit ce qui change après</strong>, c'est un <em>outcome</em>.
+                </p>
+                <p className="warmup__rule-aside">
+                  Un bon objectif vise un <em>outcome</em> : un effet mesurable côté utilisateur ou métier.
+                </p>
+              </div>
+              <Warmup
+                key="warmup-verbe"
+                cases={warmupCases}
+                skipIntro
+                endSlot={
+                  <NextDrillsList
+                    currentKey="verbe"
+                    onChoose={(k) => setActiveDrill(k)}
+                  />
+                }
+              />
+            </Zone>
+          ),
+        }}
+      />
+    );
   }
 
-  function handleCopy() {
-    if (!result) return;
-    navigator.clipboard
-      .writeText(toMarkdown(draft, result))
-      .then(() => flash("Copié."))
-      .catch(() => flash("Impossible d'accéder au presse-papier."));
-  }
-
-  function handleDownloadMd() {
-    if (!result) return;
-    downloadFile("objectif.md", toMarkdown(draft, result), "text/markdown;charset=utf-8");
-    flash(".md téléchargé.");
-  }
-
-  function handleDownloadJson() {
-    if (!result) return;
-    downloadFile("objectif.json", toJson(draft, result), "application/json;charset=utf-8");
-    flash(".json téléchargé.");
-  }
-
-  const hasContent = draft.text.trim().length > 0;
-
+  // Menu par défaut
   return (
     <Screen
       header={{
         eyebrow: <span>Sprint · S'entraîner</span>,
-        title: "Échauffe-toi, inspire-toi, écris",
+        title: "Choisis l'exercice qui te parle",
         lede:
-          "Trois étapes empilées. Tu peux sauter les deux premières si tu te sens prêt. Le diagnostic réagit en direct à droite.",
-        actions: (
-          <button
-            type="button"
-            className="btn"
-            onClick={() => setDraft(INITIAL)}
-            disabled={!hasContent}
-          >
-            Vider
-          </button>
-        ),
+          "Un objectif solide est fait de 5 pièces. Travaille celle que tu veux renforcer. Chaque exercice prend 2 à 3 minutes.",
       }}
       body={{
-        variant: "wide-rail",
+        variant: "single",
         primary: (
-          <div className="practice-steps">
-            {warmupCases.length > 0 && (
-              <details className="practice-step" open>
-                <summary className="practice-step__summary">
-                  <span className="practice-step__num">1</span>
-                  <span className="practice-step__title">Échauffement output / outcome</span>
-                  <span className="practice-step__hint">2 min · optionnel</span>
-                </summary>
-                <div className="practice-step__body">
-                  <Warmup cases={warmupCases} />
-                </div>
-              </details>
-            )}
-
-            {examples.length > 0 && (
-              <details className="practice-step">
-                <summary className="practice-step__summary">
-                  <span className="practice-step__num">2</span>
-                  <span className="practice-step__title">Inspire-toi d'exemples annotés</span>
-                  <span className="practice-step__hint">optionnel</span>
-                </summary>
-                <div className="practice-step__body">
-                  <PracticeExamples coach={coach} examples={examples} />
-                </div>
-              </details>
-            )}
-
-          <Zone
-            variant="primary"
-            title="3 · Écris ton objectif de sprint"
-            meta={hasContent ? "score en direct" : undefined}
-          >
-            <div className="field">
-              <textarea
-                id="objective-text"
-                className={`field__textarea ${!hasContent ? "field__textarea--invite" : ""}`}
-                placeholder="Ex. Réduire de 50 % le taux d'abandon au paiement sur mobile d'ici la fin du sprint 24."
-                value={draft.text}
-                onChange={(e) => update("text", e.target.value)}
-                style={{ minHeight: 160, fontSize: "var(--font-size-md)" }}
-                aria-label="Ton objectif de sprint"
-              />
-              <span className="field__hint">
-                Décris un résultat (ce qui aura changé), pas une livraison.
-              </span>
-            </div>
-
-            <details
-              style={{
-                marginTop: "var(--space-4)",
-                paddingTop: "var(--space-4)",
-                borderTop: "1px solid var(--color-border)",
-              }}
-            >
-              <summary
-                style={{
-                  cursor: "pointer",
-                  fontSize: "var(--font-size-sm)",
-                  color: "var(--color-text-muted)",
-                  textTransform: "uppercase",
-                  letterSpacing: "0.04em",
-                }}
-              >
-                Paramètres complémentaires
-              </summary>
-
-              <div style={{ marginTop: "var(--space-4)" }}>
-                <div className="field">
-                  <label className="field__label" htmlFor="confidence">
-                    Confiance estimée (≥ 70 % pour un sprint)
-                  </label>
-                  <div className="confidence-row">
-                    <input
-                      id="confidence"
-                      type="range"
-                      min={0}
-                      max={100}
-                      step={5}
-                      value={draft.confidence ?? 75}
-                      onChange={(e) => update("confidence", Number(e.target.value))}
-                    />
-                    <span className="confidence-row__value">{draft.confidence ?? 75} %</span>
-                  </div>
-                </div>
-
-                <div className="field__check">
-                  <input
-                    id="deadline"
-                    type="checkbox"
-                    checked={draft.hasExplicitDeadline ?? false}
-                    onChange={(e) => update("hasExplicitDeadline", e.target.checked)}
-                  />
-                  <label htmlFor="deadline" className="field__label">
-                    Échéance claire (fin du sprint, date, itération nommée)
-                  </label>
-                </div>
-
-                <div className="field__check">
-                  <input
-                    id="influence"
-                    type="checkbox"
-                    checked={draft.isUnderTeamInfluence ?? false}
-                    onChange={(e) => update("isUnderTeamInfluence", e.target.checked)}
-                  />
-                  <label htmlFor="influence" className="field__label">
-                    L'équipe a réellement le pouvoir d'agir sur ce résultat
-                  </label>
-                </div>
-              </div>
-            </details>
-          </Zone>
-          </div>
-        ),
-        context: (
-          <Zone variant="context" aria-label="Évaluation en direct">
-            <EvaluationPanel result={result} previousResult={displayedPrevious} />
-          </Zone>
-        ),
-      }}
-      actions={{
-        status: result ? (
-          <span
-            className={`score-chip score-chip--${result.overallStatus}`}
-            aria-label={`Score ${result.score} sur 100`}
-          >
-            <span className="score-chip__label">Score</span>
-            {result.score} / 100
-          </span>
-        ) : exportFeedback ? (
-          <span style={{ color: "var(--color-good)" }}>{exportFeedback}</span>
-        ) : (
-          <span>Écris quelque chose pour déclencher l'évaluation.</span>
-        ),
-        right: (
-          <>
-            <button className="btn" onClick={handleCopy} disabled={!result}>
-              Copier
-            </button>
-            <button className="btn" onClick={handleDownloadMd} disabled={!result}>
-              .md
-            </button>
-            <button
-              className="btn btn--primary"
-              onClick={handleDownloadJson}
-              disabled={!result}
-            >
-              Exporter .json
-            </button>
-          </>
+          <ul className="drills-grid" role="list">
+            {DRILLS.map((d) => (
+              <li key={d.key}>
+                <DrillCard drill={d} onStart={() => setActiveDrill(d.key)} />
+              </li>
+            ))}
+          </ul>
         ),
       }}
     />
   );
 }
+
+function DrillCard({
+  drill,
+  onStart,
+}: {
+  drill: DrillDef;
+  onStart: () => void;
+}) {
+  const isActive = drill.status === "active";
+  return (
+    <button
+      type="button"
+      className={`card-button${isActive ? "" : " card-button--disabled"}`}
+      onClick={onStart}
+      disabled={!isActive}
+      aria-label={`Exercice : ${drill.title}`}
+    >
+      <span className="card-button__icon" aria-hidden="true">
+        <span className="drill-num">{drill.num}</span>
+      </span>
+      <span className="card-button__label">{drill.title}</span>
+      <span className="card-button__desc">{drill.desc}</span>
+      <span className="card-button__cta">
+        {isActive ? "Commencer ›" : "Bientôt disponible"}
+      </span>
+    </button>
+  );
+}
+
+/** Liste compacte des autres exercices, proposée à la fin d'un drill. */
+function NextDrillsList({
+  currentKey,
+  onChoose,
+}: {
+  currentKey: DrillKey;
+  onChoose: (key: DrillKey) => void;
+}) {
+  const others = DRILLS.filter((d) => d.key !== currentKey);
+  return (
+    <section className="next-drills" aria-label="Autres exercices">
+      <h4 className="next-drills__title">Travaille une autre partie de l'objectif</h4>
+      <ul className="next-drills__list" role="list">
+        {others.map((d) => {
+          const isActive = d.status === "active";
+          return (
+            <li key={d.key}>
+              <button
+                type="button"
+                className={`next-drill${isActive ? "" : " next-drill--disabled"}`}
+                onClick={() => onChoose(d.key)}
+                disabled={!isActive}
+              >
+                <span className="next-drill__num">{d.num}</span>
+                <span className="next-drill__title">{d.title}</span>
+                <span className="next-drill__cta">
+                  {isActive ? "Commencer ›" : "à venir"}
+                </span>
+              </button>
+            </li>
+          );
+        })}
+      </ul>
+    </section>
+  );
+}
+

@@ -1,0 +1,919 @@
+/* sheet.css — auto-extrait depuis components.css le 2026-06-27 */
+
+/* ============================================================
+ * Onglets Apprendre — Théorie / Pratique (2026-06-22)
+ * Séparation franche : tu lis OU tu pratiques, pas les deux mélangés.
+ * ============================================================ */
+
+.learn-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* La barre d'onglets — au-dessus de la zone de contenu, sticky pour rester visible
+   pendant qu'on scrolle dans le coin actif. */
+.learn-tabs__bar {
+  position: sticky;
+  top: calc(var(--shell-header-h) + var(--screen-header-h));
+  z-index: 15;
+  display: flex;
+  gap: var(--space-1);
+  padding: var(--space-2) 0;
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.learn-tabs__tab {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  border: 0;
+  background: transparent;
+  font-family: inherit;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  border-bottom: 2px solid transparent;
+  transition: color 0.12s ease, border-color 0.12s ease, background 0.12s ease;
+}
+
+.learn-tabs__tab:hover {
+  color: var(--color-text);
+  background: color-mix(in srgb, var(--color-accent) 6%, transparent);
+}
+
+.learn-tabs__tab:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.learn-tabs__tab--active {
+  color: var(--color-text);
+  border-bottom-color: var(--color-accent);
+  font-weight: var(--font-weight-semibold);
+}
+
+.learn-tabs__panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding-top: var(--space-2);
+}
+
+/* CTA en bas du coin Théorie : invitation à passer en pratique. */
+.learn-tabs__switch {
+  margin-top: var(--space-6);
+  padding: var(--space-4) var(--space-5);
+  background: color-mix(in srgb, var(--color-accent) 8%, var(--color-surface));
+  border: 1px solid color-mix(in srgb, var(--color-accent) 35%, transparent);
+  border-radius: var(--radius-md);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.learn-tabs__switch-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.learn-tabs__switch-title {
+  margin: 0 0 var(--space-1);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+}
+
+.learn-tabs__switch-desc {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+@media (max-width: 720px) {
+  .learn-tabs__switch {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+/* ============================================================
+ * Mode tabs (D21) — onglets Théorie / Pratique du ModeSelector
+ * Palette différenciée pour matérialiser les deux espaces.
+ * ============================================================ */
+
+.mode-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.mode-tabs__bar {
+  display: flex;
+  gap: var(--space-2);
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.mode-tabs__tab {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-5);
+  border: 0;
+  background: transparent;
+  font-family: inherit;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  border-bottom: 3px solid transparent;
+  transition: color 0.12s ease, border-color 0.12s ease, background 0.12s ease;
+}
+
+.mode-tabs__tab:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.mode-tabs__tab--theory.is-active {
+  color: var(--color-theory);
+  border-bottom-color: var(--color-theory);
+  font-weight: var(--font-weight-semibold);
+}
+.mode-tabs__tab--theory:hover:not(.is-active) {
+  color: var(--color-theory);
+  background: color-mix(in srgb, var(--color-theory) 6%, transparent);
+}
+
+.mode-tabs__tab--practice.is-active {
+  color: var(--color-practice);
+  border-bottom-color: var(--color-practice);
+  font-weight: var(--font-weight-semibold);
+}
+.mode-tabs__tab--practice:hover:not(.is-active) {
+  color: var(--color-practice);
+  background: color-mix(in srgb, var(--color-practice) 6%, transparent);
+}
+
+.mode-tabs__count {
+  background: var(--color-neutral-bg);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  padding: 0 var(--space-2);
+  border-radius: var(--radius-pill);
+  min-width: 22px;
+  text-align: center;
+}
+.mode-tabs__tab--theory.is-active .mode-tabs__count {
+  background: var(--color-theory-bg);
+  color: var(--color-theory);
+}
+.mode-tabs__tab--practice.is-active .mode-tabs__count {
+  background: var(--color-practice-bg);
+  color: var(--color-practice);
+}
+
+.mode-tabs__panel {
+  padding: var(--space-3) 0;
+}
+
+.mode-tabs__panel--theory {
+  background: color-mix(in srgb, var(--color-theory) 4%, transparent);
+  border-radius: var(--radius-md);
+  padding: var(--space-5);
+  margin: 0 calc(var(--space-5) * -1);
+}
+
+.mode-tabs__panel--practice {
+  background: color-mix(in srgb, var(--color-practice) 4%, transparent);
+  border-radius: var(--radius-md);
+  padding: var(--space-5);
+  margin: 0 calc(var(--space-5) * -1);
+}
+
+/* ============================================================
+ * Théorie : grille de thèmes et détail (D21)
+ * Les cards de thème réutilisent `.card-button` + `.card-button--theory`
+ * pour rester cohérentes avec le système visuel du ModeSelector.
+ * ============================================================ */
+
+.theme-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.theme-grid__lede {
+  margin: 0;
+  font-size: var(--font-size-base);
+  color: var(--color-theory);
+  font-weight: var(--font-weight-medium);
+}
+
+/* Détail du thème (D21 fix 2026-06-22) : pattern maître-détail.
+   Sidebar gauche (liste des fiches du thème, sticky) + zone droite (fiche
+   sélectionnée toujours dépliée). Inspiré des sites de documentation
+   (Stripe, MDN, Notion). */
+.theme-detail {
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  gap: var(--space-5);
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .theme-detail {
+    grid-template-columns: 1fr;
+  }
+}
+
+.theme-detail__back {
+  grid-column: 1 / -1;
+  margin-bottom: var(--space-3);
+}
+
+/* Sidebar : navigation sticky avec boutons distincts aérés (cohérence avec
+   l'esprit graphique du site : cards blanches, bord, radius arrondi). */
+.theme-detail__nav {
+  position: sticky;
+  top: calc(var(--shell-header-h) + var(--screen-header-h) + var(--space-4));
+  align-self: start;
+}
+
+.theme-detail__nav-title {
+  margin: 0 0 var(--space-3) var(--space-2);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-muted);
+  font-weight: var(--font-weight-semibold);
+}
+
+.theme-detail__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.theme-detail__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  text-align: left;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  line-height: 1.35;
+  box-shadow: var(--shadow-xs);
+  transition:
+    border-color 0.12s ease,
+    background 0.12s ease,
+    box-shadow 0.12s ease,
+    transform 0.08s ease;
+}
+
+.theme-detail__item:hover {
+  border-color: var(--color-theory);
+  box-shadow: var(--shadow-sm);
+}
+
+.theme-detail__item:active {
+  transform: translateY(1px);
+}
+
+.theme-detail__item:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.theme-detail__item--active {
+  background: var(--color-theory-bg);
+  border-color: var(--color-theory);
+  color: var(--color-theory);
+  font-weight: var(--font-weight-semibold);
+  box-shadow: var(--shadow-sm);
+}
+
+.theme-detail__item-num {
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: color-mix(in srgb, var(--color-theory) 12%, transparent);
+  color: var(--color-theory);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: var(--font-weight-semibold);
+}
+
+.theme-detail__item--active .theme-detail__item-num {
+  background: var(--color-theory);
+  color: var(--color-surface);
+}
+
+.theme-detail__item-title {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Zone droite : la fiche occupe l'espace, la SheetCard hérite de son propre style. */
+.theme-detail__content {
+  min-width: 0;
+}
+
+.theme-detail__content > .sheet-card {
+  margin-bottom: 0;
+}
+
+/* Mode toujours ouvert (hideToggle) : pas de bouton, header allégé. */
+.sheet-card--always-open .sheet-card__header {
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* ============================================================
+ * Briques de grammaire (PedagogicalSection kind="bricks")
+ * Phrase annotée colorée + grille des tiles.
+ * ============================================================ */
+
+.bricks {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-top: var(--space-3);
+}
+
+/* Conteneur de la zone phrase : empile le squelette (Ausubel, contrat d'apprentissage)
+   puis l'exemple instancié (Kolb, ancrage par le concret). Deux phrases empilées,
+   chacune précédée d'une étiquette discrète pour lever toute ambiguïté de statut. */
+.bricks__sentence {
+  /* Pas de fond ni d'encadré — on reste dans l'esprit éditorial A+.
+     Les briques se distinguent par leur sous-soulignement coloré, pas par
+     un fond de bloc. */
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  text-align: center;
+  margin: var(--space-3) 0;
+}
+
+.bricks__label {
+  font-family: var(--font-sans);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.bricks__label--secondary {
+  margin-top: var(--space-2);
+}
+
+.bricks__phrase {
+  font-family: var(--font-serif);
+  line-height: 1.8;
+}
+
+.bricks__phrase--skeleton {
+  /* Le squelette est ce qu'on apprend : plus grand, plus contrasté. */
+  font-size: var(--font-size-md);
+  color: var(--color-text);
+}
+
+.bricks__phrase--example {
+  /* L'exemple est l'incarnation : présent et lisible, mais plus discret
+     que le patron à mémoriser. */
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+/* Pill dans la phrase (squelette et exemple) : sous-soulignement épais 3px
+   coloré, pas de fond pastel. Le mot lui-même reprend la couleur saturée
+   pour le squelette ; dans l'exemple, il reste noir et seul le trait colore. */
+.brick-pill {
+  /* inline-block + nowrap : chaque brique reste solidaire (pas de wrap
+     à l'intérieur d'un nom de brique comme « Action observable »), mais
+     le retour à la ligne reste possible entre deux briques. */
+  display: inline-block;
+  padding: 1px 3px 4px;
+  border-bottom: 3px solid;
+  font-weight: var(--font-weight-medium);
+  border-radius: 2px;
+  margin: 0 4px;
+  white-space: nowrap;
+}
+
+/* Squelette : on espace davantage les blocs pour qu'ils se lisent comme des
+   éléments distincts d'une grammaire, pas comme une phrase coulée. */
+.bricks__phrase--skeleton .brick-pill {
+  margin: 0 10px;
+}
+
+.bricks__phrase--example .brick-pill {
+  /* Dans l'exemple, on neutralise l'italique pour la pill (lisibilité)
+     et on force la couleur noire — seul le trait colore. */
+  font-style: normal;
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text);
+}
+
+/* Légende des 5 briques : grille statique sous le squelette + exemple.
+   Tout est visible d'un coup, plus d'interaction nécessaire. La couleur
+   sémantique de chaque brique se retrouve dans la pastille et le nom. */
+.bricks__legend {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: var(--space-4);
+  margin-top: var(--space-5);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
+}
+
+@media (max-width: 900px) {
+  .bricks__legend {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.brick-leg {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.brick-leg__head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.brick-leg__num {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-muted);
+  letter-spacing: 0.02em;
+}
+
+.brick-leg__dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.brick-leg__name {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.brick-leg__hint {
+  font-family: var(--font-serif);
+  font-size: 14px;
+  font-style: italic;
+  line-height: 1.4;
+  color: var(--color-text);
+}
+
+.brick-leg__ex {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+  margin-top: 2px;
+}
+
+/* Couleurs sémantiques des cinq briques.
+   On utilise des couleurs saturées (et non plus des pastels de fond) car
+   le sous-soulignement et la pastille demandent du contraste pour ressortir. */
+.brick-pill--purple { color: #6D5DC0; border-color: #6D5DC0; }
+.brick-pill--teal   { color: #2A8270; border-color: #2A8270; }
+.brick-pill--pink   { color: #B25577; border-color: #B25577; }
+.brick-pill--amber  { color: #A06B1F; border-color: #A06B1F; }
+.brick-pill--blue   { color: #2E6FB5; border-color: #2E6FB5; }
+
+.brick-leg--purple .brick-leg__dot  { background: #6D5DC0; }
+.brick-leg--purple .brick-leg__name { color: #6D5DC0; }
+.brick-leg--teal   .brick-leg__dot  { background: #2A8270; }
+.brick-leg--teal   .brick-leg__name { color: #2A8270; }
+.brick-leg--pink   .brick-leg__dot  { background: #B25577; }
+.brick-leg--pink   .brick-leg__name { color: #B25577; }
+.brick-leg--amber  .brick-leg__dot  { background: #A06B1F; }
+.brick-leg--amber  .brick-leg__name { color: #A06B1F; }
+.brick-leg--blue   .brick-leg__dot  { background: #2E6FB5; }
+.brick-leg--blue   .brick-leg__name { color: #2E6FB5; }
+
+/* Bouton de progression dans le feedback : visible mais sobre. Reprend la teinte du
+   verdict (vert/rouge) pour cohérence sémantique, sans le rouge corail primary qui
+   volait l'attention au message pédagogique. */
+.warmup__feedback-next {
+  align-self: flex-end;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-sm);
+  border: 1px solid;
+  font-family: inherit;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.08s ease, background-color 0.12s ease;
+}
+
+.warmup__feedback-next--good {
+  background: color-mix(in srgb, var(--color-good) 12%, var(--color-surface));
+  border-color: color-mix(in srgb, var(--color-good) 45%, transparent);
+  color: var(--color-good);
+}
+
+.warmup__feedback-next--good:hover {
+  background: color-mix(in srgb, var(--color-good) 20%, var(--color-surface));
+  transform: translateX(2px);
+}
+
+.warmup__feedback-next--bad {
+  background: color-mix(in srgb, var(--color-bad) 12%, var(--color-surface));
+  border-color: color-mix(in srgb, var(--color-bad) 45%, transparent);
+  color: var(--color-bad);
+}
+
+.warmup__feedback-next--bad:hover {
+  background: color-mix(in srgb, var(--color-bad) 20%, var(--color-surface));
+  transform: translateX(2px);
+}
+
+.warmup__feedback-next:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+/* Kicker en mode playing : score en live à droite, n° de cas à gauche. */
+.warmup__kicker--play {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-3);
+}
+
+.warmup__live-score {
+  font-family: var(--font-mono);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-xs);
+  letter-spacing: 0.02em;
+}
+
+/* Combo : marque ludique sur série de 3+ bonnes réponses. Discret, ocre, italique léger. */
+.warmup__combo {
+  color: var(--color-accent-2);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ============================================================
+ * Fiches pédagogiques
+ * ============================================================ */
+
+/* Audit UX 2026-06-22 : densité augmentée. Header resserré (padding réduit, picto
+   plus petit, titre rapproché du corps de fiche), bouton Déplier compact. */
+.sheet-card {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  margin-bottom: var(--space-3);
+  overflow: hidden;
+}
+
+.sheet-card--open {
+  border-color: var(--color-focus);
+}
+
+.sheet-card__toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  background: transparent;
+  border: 0;
+  text-align: left;
+  cursor: pointer;
+}
+
+/* Pattern Disclosure (Vague 2 — S3 audit a11y) : h3 hors du button */
+.sheet-card__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+}
+
+.sheet-card__header-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.sheet-card__toggle-btn {
+  flex-shrink: 0;
+  align-self: center;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  padding: 4px 10px;
+  font-size: var(--font-size-xs);
+  cursor: pointer;
+  font-weight: var(--font-weight-medium);
+}
+
+.sheet-card__toggle-btn:hover {
+  border-color: var(--color-focus);
+}
+
+.sheet-card__icon {
+  font-size: 1rem;
+  color: var(--color-focus);
+  width: 1.25rem;
+  flex-shrink: 0;
+}
+
+.sheet-card__pict {
+  display: inline-flex;
+  flex-shrink: 0;
+  color: var(--color-accent);
+  width: 22px;
+  height: 22px;
+  align-items: center;
+  justify-content: center;
+}
+
+.sheet-card__kicker {
+  display: block;
+  font-size: 11px;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 2px;
+}
+
+.sheet-card__title {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 17px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+  line-height: 1.25;
+}
+
+.sheet-card__body {
+  padding: var(--space-5);
+  border-top: 1px solid var(--color-border);
+}
+
+/* Hero : phrase-clé en gros, format infographique (Vague 3 — refonte fiches) */
+.sheet-card__hero {
+  /* Refonte A+ (mockup validé 2026-06-24) : on délaisse le fond jaune crème
+     et le filet corail au profit d'un hero éditorial sobre — phrase en italique
+     serif, filet vertical indigo aligné sur l'axe sémantique « concept ». */
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-style: italic;
+  font-weight: var(--font-weight-regular);
+  letter-spacing: -0.005em;
+  color: var(--color-text);
+  margin: 0 0 var(--space-5) 0;
+  padding: 4px 0 4px var(--space-4);
+  background: transparent;
+  border-left: 2px solid var(--color-theory);
+  border-radius: 0;
+  line-height: 1.4;
+}
+
+.sheet-card__intro {
+  margin: 0 0 var(--space-5) 0;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-base);
+}
+
+.sheet-card__section {
+  /* Refonte A+ : chaque section porte un filet vertical 3px coloré selon
+     sa fonction sémantique (concept / alert / do). La variante neutre par
+     défaut reste discrète pour ne pas perturber les sections sans icon. */
+  margin-top: var(--space-5);
+  padding-left: var(--space-4);
+  border-left: 3px solid var(--color-border);
+}
+
+.sheet-card__section--concept     { border-left-color: var(--color-theory); }
+.sheet-card__section--perspective { border-left-color: var(--color-perspective); }
+.sheet-card__section--alert       { border-left-color: var(--color-warn); }
+.sheet-card__section--do          { border-left-color: var(--color-good); }
+
+/* L'eyebrow et le picto de la section reprennent la couleur de la fonction. */
+.sheet-card__section--concept .sheet-card__section-heading,
+.sheet-card__section--concept .sheet-card__section-icon { color: var(--color-theory); }
+.sheet-card__section--perspective .sheet-card__section-heading,
+.sheet-card__section--perspective .sheet-card__section-icon { color: var(--color-perspective); }
+.sheet-card__section--alert   .sheet-card__section-heading,
+.sheet-card__section--alert   .sheet-card__section-icon { color: var(--color-warn); }
+.sheet-card__section--do      .sheet-card__section-heading,
+.sheet-card__section--do      .sheet-card__section-icon { color: var(--color-good); }
+
+.sheet-card__section-heading {
+  margin: 0 0 var(--space-2) 0;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+}
+
+.sheet-card__section-body {
+  /* Pas de max-width restrictif : on laisse le texte occuper toute la zone
+     de contenu (~1020 px dans le pattern maître-détail). Ça évite les
+     coupures prématurées qui laissaient un grand espace vide à droite. */
+  margin: 0 0 var(--space-3) 0;
+}
+
+.sheet-card__bullets {
+  margin: var(--space-2) 0;
+  padding-left: var(--space-5);
+}
+
+.sheet-card__bullets li {
+  margin-bottom: var(--space-2);
+  line-height: 1.45;
+}
+
+/* Picto à côté du titre de section */
+.sheet-card__section-heading {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.sheet-card__section-icon {
+  /* Couleur par défaut héritée du heading ; les variantes sémantiques la
+     surchargent. Plus de rouge corail systématique. */
+  display: inline-flex;
+  color: inherit;
+  flex-shrink: 0;
+}
+
+/* Encart Source — différencié visuellement */
+.sheet-card__source {
+  display: flex;
+  gap: var(--space-3);
+  margin: var(--space-5) 0 var(--space-3);
+  padding: var(--space-4);
+  background: var(--color-surface-alt);
+  border-left: 3px solid var(--color-text-muted);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  font-size: var(--font-size-sm);
+}
+
+.sheet-card__source-icon {
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.sheet-card__source-label {
+  margin: 0 0 var(--space-1) 0;
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-muted);
+  font-weight: var(--font-weight-semibold);
+}
+
+.sheet-card__source-body {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-style: italic;
+  line-height: 1.5;
+}
+
+/* Footer de la fiche (CTA + suivante) */
+.sheet-card__footer {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--color-border);
+  flex-wrap: wrap;
+}
+
+/* Bouton "Voir le score" sur les exemples pair-comparé */
+.example-pair__score-btn {
+  margin-top: var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  background: transparent;
+  border: 1px dashed currentColor;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font: inherit;
+  font-size: var(--font-size-sm);
+  color: inherit;
+  align-self: flex-start;
+}
+
+.example-pair__score-btn:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.sheet-card__examples {
+  margin-top: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* Pair-compare : mauvais à gauche, reformulation à droite, en cards visuelles */
+.example-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+}
+
+.example-pair:has(.example-pair__note) {
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+}
+
+.example-pair__note {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: var(--color-text-muted);
+  font-style: italic;
+  font-size: var(--font-size-sm);
+}
+
+.example-pair:not(:has(.example-pair__good)) {
+  grid-template-columns: 1fr;
+}
+
+@media (max-width: 900px) {
+  .example-pair {
+    grid-template-columns: 1fr;
+  }
+}
+
+.example-pair__bad,
+.example-pair__good {
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+}
+
+.example-pair__bad {
+  background: var(--color-bad-bg);
+  border: 1px solid var(--color-bad);
+}
+
+.example-pair__good {
+  background: var(--color-good-bg);
+  border: 1px solid var(--color-good);
+}
+
+.example-pair__label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: var(--space-2);
+}
+
+.example-pair__bad .example-pair__label { color: var(--color-bad); }
+.example-pair__good .example-pair__label { color: var(--color-good); }
+
+.example-pair__text {
+  margin: 0;
+  font-size: var(--font-size-base);
+  line-height: 1.4;
+}
+

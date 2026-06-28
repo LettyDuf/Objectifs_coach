@@ -9,7 +9,7 @@
  *    health metric (DOMAINE.md §4.4, fiche « Les 4 pièges du KR »).
  *  - Repères temporels = trimestre (fin du trimestre, fin Q3, prochaine revue).
  *
- * Pédagogie : on assemble un Key Result solide, pas un Objective (qui est
+ * Pédagogie : on assemble un Résultat clé solide, pas un Objectif (qui est
  * qualitatif). La grammaire est universelle, le vocabulaire fait la différence
  * entre les types — c'est ce qu'on veut faire ressortir par contraste avec
  * Sprint et PI.
@@ -42,6 +42,15 @@ function field(
   return { kind: "numericField", id, category: "variation", quality, template, fieldCount };
 }
 
+function customField(
+  id: string,
+  category: PuzzleCategory,
+  template: string,
+  fieldCount: 1 | 2,
+): NumericFieldBlock {
+  return { kind: "numericField", id, category, quality: "good", template, fieldCount };
+}
+
 /* ---------- Catégorie 1 — Action verbale ---------- */
 const ACTION_GOOD: TextBlock[] = [
   text("a-good-pass", "action", "good", "Faire passer"),
@@ -66,7 +75,7 @@ const ACTION_DISTRACTORS: TextBlock[] = [
 const INDICATOR_GOOD: TextBlock[] = [
   text("i-good-nps", "indicator", "good", "le NPS dev du module"),
   text("i-good-adoption", "indicator", "good", "le taux d'adoption de l'API"),
-  text("i-good-onboarding", "indicator", "good", "le temps moyen d'onboarding d'une équipe"),
+  text("i-good-intégration", "indicator", "good", "le temps moyen d'intégration d'une équipe"),
   text("i-good-csat", "indicator", "good", "le CSAT des équipes consommatrices"),
 ];
 const INDICATOR_NEUTRAL: TextBlock[] = [
@@ -76,7 +85,7 @@ const INDICATOR_NEUTRAL: TextBlock[] = [
   text("i-neu-retention", "indicator", "neutral", "le taux de rétention des nouveaux utilisateurs"),
 ];
 const INDICATOR_DISTRACTORS: TextBlock[] = [
-  text("i-dis-dashboard", "indicator", "distractor", "le nouveau dashboard métriques"),
+  text("i-dis-tableau de bord", "indicator", "distractor", "le nouveau tableau de bord métriques"),
   text("i-dis-satisfaction", "indicator", "distractor", "la satisfaction client"),
   text("i-dis-quality", "indicator", "distractor", "la qualité du service"),
   text("i-dis-everything", "indicator", "distractor", "tout ce qui doit être livré"),
@@ -99,11 +108,15 @@ const VARIATION_DISTRACTORS: TextBlock[] = [
 ];
 
 /* ---------- Catégorie 4 — Contexte / bénéficiaire ---------- */
-const CONTEXT_GOOD: TextBlock[] = [
+const CONTEXT_GOOD: PuzzleBlock[] = [
   text("c-good-consumers", "context", "good", "pour les équipes consommatrices"),
   text("c-good-data", "context", "good", "pour les équipes data"),
   text("c-good-new", "context", "good", "pour les nouveaux développeurs intégrés"),
-  text("c-good-prod", "context", "good", "en production"),
+  text("c-good-prod", "context", "good", "en production"),  text("okr-c-good-internal-cons", "context", "good", "pour les consommateurs internes"),
+  text("okr-c-good-allied-teams", "context", "good", "pour les équipes internes arrimées au sujet"),
+  text("okr-c-good-final-clients", "context", "good", "pour les clients finaux"),
+  customField("okr-c-good-team-custom", "context", "pour l'équipe [X]", 1),
+
 ];
 const CONTEXT_NEUTRAL: TextBlock[] = [
   text("c-neu-segment", "context", "neutral", "sur le segment entreprise"),
@@ -133,11 +146,12 @@ const PREPOSITION_DISTRACTORS: TextBlock[] = [
 ];
 
 /* ---------- Catégorie 6 — Repère temporel ---------- */
-const TIMEREF_GOOD: TextBlock[] = [
+const TIMEREF_GOOD: PuzzleBlock[] = [
   text("t-good-quarter", "timeReference", "good", "la fin du trimestre"),
   text("t-good-q3", "timeReference", "good", "la fin de Q3"),
   text("t-good-q4", "timeReference", "good", "la fin de Q4"),
-  text("t-good-review", "timeReference", "good", "la prochaine revue trimestrielle"),
+  text("t-good-review", "timeReference", "good", "la prochaine revue trimestrielle"),  customField("okr-t-good-custom-date", "timeReference", "le [X]", 1),
+
 ];
 const TIMEREF_NEUTRAL: TextBlock[] = [
   text("t-neu-checkin", "timeReference", "neutral", "le prochain check-in trimestriel"),

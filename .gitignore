@@ -29,3 +29,13 @@ vite.config.js.timestamp-*.mjs
 .env
 .env.local
 .env.*.local
+
+# Builds expérimentaux (variants d'outDir utilisés en cours de développement)
+dist-*/
+
+# Backups internes laissés par des refontes scriptées
+**/*.bak/
+**/*.bak
+
+# Audits internes (ne pas exposer dans le repo public)
+audits/

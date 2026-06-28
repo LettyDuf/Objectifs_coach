@@ -1,0 +1,704 @@
+/* quiz.css — auto-extrait depuis components.css le 2026-06-27 */
+
+/* ============================================================
+ * Challenge Quiz — Défi en QCM (Sprint)
+ * ============================================================ */
+
+.quiz-context {
+  background: var(--color-surface-alt);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+}
+
+.quiz-context__header {
+  display: flex;
+  gap: var(--space-3);
+  align-items: flex-start;
+}
+
+.quiz-context__avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--color-accent) 10%, transparent);
+  color: var(--color-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.quiz-context__text {
+  margin: 0;
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+  line-height: 1.5;
+  white-space: pre-line;
+}
+
+.quiz-context__metrics {
+  margin: var(--space-4) 0 0;
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--space-2) var(--space-4);
+  font-size: var(--font-size-sm);
+}
+
+.quiz-context__metric {
+  display: contents;
+}
+
+.quiz-context__metric dt {
+  margin: 0;
+  color: var(--color-text-muted);
+}
+
+.quiz-context__metric dd {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-weight: var(--font-weight-medium);
+  text-align: right;
+}
+
+.quiz-context__quote {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-bad-bg);
+  border-left: 3px solid var(--color-bad);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--color-bad);
+  font-size: var(--font-size-base);
+  line-height: 1.4;
+}
+
+.quiz-options-wrap {
+  margin-top: var(--space-5);
+}
+
+.quiz-options__hint {
+  margin: 0 0 var(--space-3);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.quiz-options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.quiz-option {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font: inherit;
+  font-size: var(--font-size-base);
+  text-align: left;
+  cursor: pointer;
+  transition: background 100ms, border-color 100ms;
+}
+
+.quiz-option:hover:not(:disabled) {
+  background: var(--color-surface-alt);
+  border-color: var(--color-border-strong);
+}
+
+.quiz-option__letter {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  min-width: 1.2em;
+}
+
+.quiz-option__text {
+  line-height: 1.4;
+}
+
+.quiz-option__verdict-icon {
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-md);
+}
+
+/* États révélés */
+.quiz-option--good {
+  background: var(--color-good-bg);
+  border-color: var(--color-good);
+  color: var(--color-good);
+}
+
+.quiz-option--partial {
+  background: var(--color-warn-bg);
+  border-color: var(--color-warn);
+  color: var(--color-warn);
+}
+
+.quiz-option--bad {
+  background: var(--color-bad-bg);
+  border-color: var(--color-bad);
+  color: var(--color-bad);
+  opacity: 0.75;
+  text-decoration: line-through;
+  text-decoration-color: var(--color-bad);
+}
+
+.quiz-option--chosen {
+  box-shadow: 0 0 0 3px color-mix(in srgb, currentColor 20%, transparent);
+}
+
+.quiz-feedback {
+  margin-top: var(--space-4);
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.quiz-feedback--good {
+  background: var(--color-good-bg);
+  border-left: 3px solid var(--color-good);
+}
+
+.quiz-feedback--partial {
+  background: var(--color-warn-bg);
+  border-left: 3px solid var(--color-warn);
+}
+
+.quiz-feedback--bad {
+  background: var(--color-bad-bg);
+  border-left: 3px solid var(--color-bad);
+}
+
+.quiz-feedback__verdict {
+  margin: 0;
+  font-weight: var(--font-weight-semibold);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.quiz-feedback__explanation {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.quiz-feedback__correct {
+  padding-top: var(--space-3);
+  border-top: 1px solid color-mix(in srgb, var(--color-text) 10%, transparent);
+}
+
+/* Sidebar progression */
+.quiz-progress {
+  padding: var(--space-4);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.quiz-progress__label {
+  margin: 0;
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-muted);
+  font-weight: var(--font-weight-semibold);
+}
+
+.quiz-progress__bar {
+  height: 6px;
+  background: var(--color-surface-alt);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.quiz-progress__fill {
+  height: 100%;
+  background: var(--color-accent);
+  border-radius: 999px;
+  transition: width 200ms ease-out;
+}
+
+.quiz-progress__count {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+}
+
+.quiz-progress__score {
+  margin: 0;
+  font-size: var(--font-size-base);
+}
+
+/* ============================================================
+ * Trap Hunt — quiz trouve le piège (Mockup C — Vague 3)
+ * ============================================================ */
+
+.trap-hunt {
+  background: var(--color-surface);
+  border: 0.5px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+
+.trap-hunt__instruction {
+  margin: 0 0 var(--space-3) 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.trap-hunt__counter {
+  color: var(--color-accent);
+  font-weight: var(--font-weight-semibold);
+}
+
+.trap-hunt__sentence {
+  margin: 0 0 var(--space-4) 0;
+  font-size: var(--font-size-md);
+  line-height: 1.7;
+  background: var(--color-bg);
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius-md);
+  border: 0.5px solid var(--color-border);
+  /* La phrase reste en flux normal : les espaces du texte source ne sont pas dénaturés. */
+}
+
+.trap-word {
+  display: inline;
+  padding: 0;            /* pas de padding — n'éclate pas la phrase */
+  margin: 0;
+  border-radius: 3px;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  font: inherit;
+  color: inherit;
+  transition: background 100ms, box-shadow 100ms;
+}
+
+.trap-word:hover:not(:disabled) {
+  background: var(--color-surface-alt);
+  box-shadow: 0 0 0 2px var(--color-surface-alt);
+}
+
+.trap-word:hover:not(:disabled) {
+  background: var(--color-surface-alt);
+}
+
+.trap-word--selected {
+  background: var(--color-highlight);
+  font-weight: var(--font-weight-medium);
+  box-shadow: 0 0 0 2px var(--color-highlight);
+}
+
+.trap-word--found {
+  background: var(--color-bad-bg);
+  color: var(--color-bad);
+  font-weight: var(--font-weight-medium);
+  box-shadow: 0 0 0 2px var(--color-bad-bg);
+  cursor: default;
+}
+
+.trap-word--missed {
+  background: var(--color-warn-bg);
+  color: var(--color-warn);
+  box-shadow: 0 0 0 2px var(--color-warn-bg);
+  cursor: default;
+}
+
+.trap-word--false {
+  color: var(--color-text-muted);
+  text-decoration: line-through;
+  cursor: default;
+}
+
+.trap-hunt__actions {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.trap-hunt__result {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.trap-hunt__score {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  margin: 0;
+  flex-wrap: wrap;
+}
+
+.trap-hunt__rationale {
+  margin: 0;
+  padding: var(--space-3);
+  background: var(--color-surface-alt);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  line-height: 1.5;
+}
+
+.trap-hunt__missed-hint {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+/* ============================================================
+ * Scenario card (Mockup A — Vague 3)
+ * ============================================================ */
+
+.scenario-card {
+  background: var(--color-surface);
+  border: 0.5px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  margin-bottom: var(--space-5);
+  box-shadow: var(--shadow-xs);
+}
+
+.scenario-card__header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.scenario-card__avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--color-surface-alt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-accent);
+  flex-shrink: 0;
+}
+
+.scenario-card__team {
+  margin: 0 0 var(--space-1) 0;
+  font-family: var(--font-serif);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-md);
+  letter-spacing: -0.01em;
+}
+
+.scenario-card__situation {
+  margin: 0;
+  font-size: var(--font-size-base);
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+.scenario-card__quote {
+  margin: 0;
+  padding: var(--space-4) var(--space-5);
+  background: var(--color-bad-bg);
+  border-left: 4px solid var(--color-bad);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  font-family: var(--font-serif);
+  font-size: var(--font-size-md);
+  font-style: italic;
+  color: #501313;
+  line-height: 1.4;
+}
+
+.scenario-card__hint {
+  margin: var(--space-4) 0 0;
+  padding-top: var(--space-3);
+  border-top: 0.5px solid var(--color-border);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* ============================================================
+ * Galerie d'exemples (Learn / Challenge)
+ * ============================================================ */
+
+.example-card {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-5);
+  margin-bottom: var(--space-4);
+  background: var(--color-bg);
+}
+
+.example-card__verdict {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-sm);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-3);
+}
+
+.example-card__verdict--good {
+  background: var(--color-good-bg);
+  color: var(--color-good);
+}
+
+.example-card__verdict--bad {
+  background: var(--color-bad-bg);
+  color: var(--color-bad);
+}
+
+.example-card__text {
+  font-size: var(--font-size-md);
+  margin: 0 0 var(--space-3) 0;
+  line-height: 1.4;
+}
+
+.example-card__rationale {
+  background: var(--color-neutral-bg);
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  margin: var(--space-3) 0 0 0;
+  font-size: var(--font-size-base);
+}
+
+.example-card__actions {
+  display: flex;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+  flex-wrap: wrap;
+}
+
+/* Layout 2 colonnes Bons | Mauvais pour la galerie d'exemples (Vague 2 — R9) */
+.examples-grid__lede {
+  margin: 0 0 var(--space-4) 0;
+  font-size: var(--font-size-base);
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+/* Carrousel pédagogique */
+.carousel-column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.carousel-column__counter {
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-muted);
+  font-weight: var(--font-weight-semibold);
+}
+
+.carousel-column__item {
+  /* L'item lui-même apporte son fond/cadre */
+}
+
+.carousel-column__nav {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+}
+
+.carousel-recap {
+  padding: var(--space-5);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-xs);
+}
+
+.examples-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+  margin-top: var(--space-3);
+}
+
+@media (max-width: 1100px) {
+  .examples-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.examples-column__title {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-bold);
+  margin: 0 0 var(--space-4) 0;
+  padding-bottom: var(--space-2);
+  border-bottom: 2px solid var(--color-border);
+}
+
+/* ============================================================
+ * Défi QCM — layout 2 colonnes (refonte 2026-06-27)
+ * Contexte 38% à gauche, propositions 62% à droite. Tout visible sans scroll.
+ * ============================================================ */
+
+/* Défi QCM en single column compacté : tout doit tenir au-dessus du pli laptop.
+   Contexte en typo serrée, propositions A/B/C/D en grille 2x2. */
+
+/* Propositions A B C D en grille 2x2 */
+.quiz-options-wrap--single .quiz-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-2);
+}
+
+@media (max-width: 720px) {
+  .quiz-options-wrap--single .quiz-options {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Liste des autres exercices proposés à la fin d'un drill */
+.next-drills {
+  margin-top: var(--space-5);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
+}
+
+.next-drills__title {
+  margin: 0 0 var(--space-3);
+  font-size: var(--font-size-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+  font-weight: var(--font-weight-semibold);
+}
+
+.next-drills__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  /* Égalise la hauteur des cards même si un titre tient sur 2 lignes. */
+  grid-auto-rows: 1fr;
+  gap: var(--space-2);
+}
+
+.next-drill {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--space-2);
+  /* Hauteur plancher pour absorber les titres à 2 lignes sans dépareiller. */
+  min-height: 3.5rem;
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+  color: var(--color-text);
+  transition: border-color 120ms ease, transform 120ms ease, box-shadow 120ms ease;
+  width: 100%;
+}
+
+.next-drill:hover:not(:disabled) {
+  border-color: var(--color-accent);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-xs);
+}
+
+.next-drill__num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--color-accent) 10%, transparent);
+  color: var(--color-accent);
+  font-family: var(--font-mono);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-xs);
+}
+
+.next-drill__title {
+  font-family: var(--font-serif);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+}
+
+.next-drill__cta {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-accent);
+}
+
+.next-drill--disabled {
+  background: var(--color-surface-alt);
+  color: var(--color-text-muted);
+  cursor: not-allowed;
+}
+
+.next-drill--disabled .next-drill__num {
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+}
+
+.next-drill--disabled .next-drill__title {
+  color: var(--color-text-muted);
+}
+
+.next-drill--disabled .next-drill__cta {
+  color: var(--color-text-muted);
+}
+
+/* Compactage agressif du Contexte du QCM (single column, éviter le scroll) */
+.quiz-context__text {
+  font-size: var(--font-size-sm) !important;
+  line-height: 1.45 !important;
+  margin: 0 !important;
+}
+
+.quiz-context__metrics {
+  font-size: var(--font-size-sm) !important;
+}
+
+.quiz-context__quote {
+  font-size: var(--font-size-sm) !important;
+  margin: var(--space-2) 0 0 !important;
+}
+
+.quiz-options__hint {
+  margin: var(--space-2) 0 var(--space-3) !important;
+}
+
+/* Réduire le padding interne des Zones quand elles sont empilées dans le quiz */
+.quiz-options-wrap--single {
+  padding: 0;
+}
+
+.quiz-options__title {
+  font-family: var(--font-serif);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: -0.01em;
+  margin: 0 0 var(--space-1);
+  color: var(--color-text);
+}
+

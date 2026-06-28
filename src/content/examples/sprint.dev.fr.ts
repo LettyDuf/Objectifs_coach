@@ -134,18 +134,18 @@ export const SPRINT_DEV_EXAMPLES_FR: AnnotatedExample[] = [
     trapWords: ["livrer", "terminer", "et", "corriger"],
   },
   {
-    id: "sprint.bad.retro.advance-stories",
+    id: "sprint.bad.retro.advance-récits",
     verdict: "bad",
     draft: {
       type: "sprint",
-      text: "Avancer sur les 8 stories prioritaires du backlog.",
+      text: "Avancer sur les 8 récits prioritaires du backlog.",
       audience: "dev",
       confidence: 80,
       hasExplicitDeadline: false,
       isUnderTeamInfluence: true,
     },
     rationale:
-      "Objectif rétrospectif déguisé : 'avancer sur N stories' décrit le travail, pas le résultat. Aucun outcome.",
+      "Objectif rétrospectif déguisé : 'avancer sur N récits' décrit le travail, pas le résultat. Aucun outcome.",
     expectedFailingCriteria: ["outcome", "timeBounded"],
     trapWords: ["avancer"],
   },
@@ -208,7 +208,7 @@ export const SPRINT_DEV_EXAMPLES_FR: AnnotatedExample[] = [
     rationale: "Outcome interne mesurable, échéance, sous influence directe de l'équipe.",
   },
   {
-    id: "sprint.good.maintenance.oncall",
+    id: "sprint.good.maintenance.astreinte",
     verdict: "good",
     draft: {
       type: "sprint",
@@ -218,7 +218,7 @@ export const SPRINT_DEV_EXAMPLES_FR: AnnotatedExample[] = [
       hasExplicitDeadline: true,
       isUnderTeamInfluence: true,
     },
-    rationale: "Bénéficiaire = équipe oncall, seuil net (zéro), borne temporelle.",
+    rationale: "Bénéficiaire = équipe astreinte, seuil net (zéro), borne temporelle.",
   },
 
   // ----- Mauvais "maintenance" courants (DOMAINE §6 bis.3) -----

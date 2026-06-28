@@ -1,0 +1,246 @@
+/* forms.css — auto-extrait depuis components.css le 2026-06-27 */
+
+/* ============================================================
+ * Boutons d'action
+ * ============================================================ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-base);
+  transition: border-color 120ms, background 120ms;
+}
+
+.btn:hover:not(:disabled):not([aria-disabled="true"]) {
+  border-color: var(--color-focus);
+}
+
+/* CTA primary corail — validé Lætitia 2026-06-21 */
+.btn--primary {
+  background: var(--color-accent);
+  color: var(--color-surface);
+  border-color: var(--color-accent);
+  box-shadow: 0 2px 0 rgba(154, 30, 12, 0.25);
+}
+
+.btn--primary:hover:not(:disabled):not([aria-disabled="true"]) {
+  filter: brightness(0.92);
+}
+
+.btn--primary:focus-visible {
+  outline: 3px solid var(--color-surface);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 6px var(--color-focus);
+}
+
+/* Variante accent — pour les actions à charge émotionnelle (réécriture validée, etc.) */
+.btn--accent {
+  background: var(--color-accent);
+  color: var(--color-surface);
+  border-color: var(--color-accent);
+}
+
+.btn--accent:hover:not(:disabled):not([aria-disabled="true"]) {
+  filter: brightness(0.92);
+}
+
+.btn--lg {
+  padding: var(--space-3) var(--space-5);
+  font-size: var(--font-size-md);
+}
+
+/* Variante small — boutons secondaires compacts */
+.btn--sm {
+  padding: var(--space-1) var(--space-3);
+  font-size: var(--font-size-sm);
+}
+
+/* Variante ghost — bouton secondaire/tertiaire, fond transparent, sans hiérarchie forte */
+.btn--ghost {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  box-shadow: none;
+}
+
+.btn--ghost:hover:not(:disabled):not([aria-disabled="true"]) {
+  background: var(--color-surface-alt);
+  color: var(--color-text);
+  border-color: var(--color-border-strong);
+}
+
+/* Lien-bouton — pour actions tertiaires (« Voir le diagnostic moteur ») */
+.btn--link {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  color: var(--color-focus);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: var(--font-weight-medium);
+  box-shadow: none;
+}
+
+.btn--link:hover:not(:disabled) {
+  color: var(--color-accent);
+}
+
+/* ============================================================
+ * Formulaire
+ * ============================================================ */
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-bottom: var(--space-5);
+}
+
+.field__label {
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-base);
+}
+
+.field__hint {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.field__input,
+.field__textarea {
+  font-family: inherit;
+  font-size: var(--font-size-md);
+  padding: var(--space-3);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+.field__textarea {
+  min-height: 112px;
+  resize: vertical;
+  transition: border-color 200ms, background 200ms;
+}
+
+/* Variante invitation : textarea vide à l'arrivée, bordure pointillée corail pour signaler le geste attendu */
+.field__textarea--invite {
+  /* Bordure pointillée plus discrète : 1px au lieu de 2px, opacité réduite, le
+     fond légèrement teinté suffit à signaler l'invitation. */
+  border: 1px dashed color-mix(in srgb, var(--color-accent) 55%, transparent);
+  background: color-mix(in srgb, var(--color-accent) 3%, var(--color-surface));
+}
+
+.field__textarea--invite::placeholder {
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.field__textarea--invite:focus {
+  border-style: solid;
+  border-color: var(--color-focus);
+  background: var(--color-surface);
+}
+
+.field__check {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.field__check input {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.confidence-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.confidence-row input[type="range"] {
+  flex: 1;
+}
+
+.confidence-row__value {
+  font-variant-numeric: tabular-nums;
+  min-width: 3.5rem;
+  text-align: right;
+  font-weight: var(--font-weight-medium);
+}
+
+/* Regroupement des champs secondaires (Vague 2 — R10 audit design) */
+.field-group {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--space-4);
+  margin: var(--space-3) 0 var(--space-5) 0;
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+}
+
+.field-group__legend {
+  grid-column: 1 / -1;
+  font-size: var(--font-size-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+  margin: 0 0 var(--space-1) 0;
+  padding: 0;
+}
+
+.field-group .field,
+.field-group .field__check {
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .field-group {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================
+ * Split layout (Vague 1 — R2) — formulaire à gauche, panel sticky droite
+ * ============================================================ */
+
+.split-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(380px, 460px);
+  gap: var(--space-6);
+  align-items: start;
+}
+
+.split-layout__main {
+  min-width: 0; /* permet le retour à la ligne dans les enfants */
+}
+
+/* Sticky léger : pas de max-height ni d'overflow interne (causes de superposition
+   visuelle sur viewports laptop courts). Le panel suit le scroll mais reste pleinement
+   visible — s'il devient plus haut que le viewport, on l'extrait simplement du sticky. */
+.split-layout__aside {
+  position: sticky;
+  top: var(--space-5);
+  align-self: start;
+}
+
+@media (max-width: 1280px) {
+  .split-layout {
+    grid-template-columns: 1fr;
+  }
+  .split-layout__aside {
+    position: static;
+  }
+}
+

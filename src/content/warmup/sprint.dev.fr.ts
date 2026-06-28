@@ -66,25 +66,25 @@ export const SPRINT_DEV_WARMUP_FR: WarmupCase[] = [
     prompt: "Atteindre",
     expected: "outcome",
     explanation:
-      "« Atteindre X » place le résultat sur une cible chiffrée. Verbe outcome qui structure naturellement un Sprint Goal.",
+      "« Atteindre X » place le résultat sur une cible chiffrée. Verbe outcome qui structure naturellement un objectif de Sprint.",
   },
   {
-    id: "warmup.l1.mettre-en-place",
+    id: "warmup.l1.installer",
     level: 1,
     kind: "verb",
-    prompt: "Mettre en place",
+    prompt: "Installer",
     expected: "output",
     explanation:
-      "Décrit l'installation d'un dispositif. Tant qu'on n'a pas nommé son effet sur un bénéficiaire, c'est un output.",
+      "« Installer » décrit une action d'équipe sans ambiguïté. Aucun changement constaté côté bénéficiaire n'est nommé. Output.",
   },
   {
-    id: "warmup.l1.diviser",
+    id: "warmup.l1.faire-passer",
     level: 1,
     kind: "verb",
-    prompt: "Diviser",
+    prompt: "Faire passer",
     expected: "outcome",
     explanation:
-      "« Diviser par N » force à nommer une métrique et un facteur de réduction. Outcome immédiatement falsifiable.",
+      "« Faire passer X de A à B » suppose un avant et un après mesurable sur un indicateur. Outcome immédiatement falsifiable.",
   },
   {
     id: "warmup.l1.construire",
@@ -96,13 +96,13 @@ export const SPRINT_DEV_WARMUP_FR: WarmupCase[] = [
       "Construire = produire. Le verbe parle de l'effort de l'équipe, pas du résultat constaté côté utilisateur. Output.",
   },
   {
-    id: "warmup.l1.faire-entrer",
+    id: "warmup.l1.convertir",
     level: 1,
     kind: "verb",
-    prompt: "Faire entrer",
+    prompt: "Convertir",
     expected: "outcome",
     explanation:
-      "« Faire entrer [bénéficiaire] dans [état] » place le résultat du côté d'un acteur observable. Outcome typique pour cibler des utilisateurs ou clients.",
+      "« Convertir » nomme une transformation d'état du bénéficiaire (prospect vers client, visiteur vers utilisateur actif). Outcome typique pour cibler des utilisateurs ou clients.",
   },
 
   // ============================================================
@@ -133,16 +133,16 @@ export const SPRINT_DEV_WARMUP_FR: WarmupCase[] = [
     prompt: "Stabiliser la plateforme.",
     expected: "output",
     explanation:
-      "« Stabiliser » est une action technique sans mesure ni bénéficiaire nommé. Output. Pour le rendre outcome il faudrait nommer qui en profite et la mesure (incidents, MTTR…).",
+      "« Stabiliser » est une action technique sans mesure ni bénéficiaire nommé. Output. Pour le rendre outcome il faudrait nommer qui en profite et la mesure (incidents, TMR…).",
   },
   {
     id: "warmup.l2.pilotes-marketplace",
     level: 2,
     kind: "objective",
-    prompt: "Faire entrer 3 clients pilotes sur la nouvelle offre marketplace avant la PI Review.",
+    prompt: "Faire entrer 3 clients pilotes sur la nouvelle offre marketplace avant la revue de PI.",
     expected: "outcome",
     explanation:
-      "Bénéficiaire (clients), seuil (3), borne temporelle (PI Review). Tous les ingrédients d'un outcome — même si la livraison technique est ailleurs.",
+      "Bénéficiaire (clients), seuil (3), borne temporelle (revue de PI). Tous les ingrédients d'un outcome — même si la livraison technique est ailleurs.",
   },
   {
     id: "warmup.l2.migrer-oauth",
@@ -196,6 +196,6 @@ export const SPRINT_DEV_WARMUP_FR: WarmupCase[] = [
     prompt: "Faire passer le taux de succès des tests E2E de 78 % à 95 % d'ici la fin du sprint.",
     expected: "outcome",
     explanation:
-      "Métrique nommée, avant/après, échéance. Le bénéficiaire (équipes feature qui dépendent du système, ops qui déploient) est implicite mais l'outcome est solide.",
+      "Métrique nommée, avant/après, échéance. Le bénéficiaire (équipes fonctionnalité qui dépendent du système, ops qui déploient) est implicite mais l'outcome est solide.",
   },
 ];

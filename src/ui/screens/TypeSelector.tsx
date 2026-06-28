@@ -54,7 +54,7 @@ const CHOICES: TypeChoice[] = [
   {
     choice: "okr-family",
     label: "OKR",
-    desc: "Un Objective qualitatif soutenu par 3 à 5 Key Results. Niveau équipe ou entreprise.",
+    desc: "Un Objectif qualitatif soutenu par 3 à 5 Résultats clés. Niveau équipe (entreprise prévu plus tard).",
     available: true,
     icon: "okr",
   },

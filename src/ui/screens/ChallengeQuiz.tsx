@@ -75,7 +75,7 @@ export function ChallengeQuiz({ type, onExit }: Props) {
   // Source non mélangée — utilisée comme entrée du shuffle, jamais affichée directement.
   const source = useMemo(() => repo.getChallengeQuizCases(type, "dev"), [type]);
   const typeLabel = TYPE_LABELS[type];
-  const proposedLabel = type === "okr-equipe" ? "Key Result" : "objectif";
+  const proposedLabel = type === "okr-equipe" ? "Résultat clé" : "objectif";
 
   // Ordre randomisé à chaque mount (cas + options). Re-shuffle au clic « Rejouer ».
   const [cases, setCases] = useState<ChallengeQuizCase[]>(() => shuffleCases(source));
@@ -110,7 +110,7 @@ export function ChallengeQuiz({ type, onExit }: Props) {
           variant: "single",
           primary: (
             <Zone variant="primary">
-              <div style={{ display: "flex", alignItems: "baseline", gap: "var(--space-3)" }}>
+              <div style={{ display: "flex", alignItems: "valeur de référence", gap: "var(--space-3)" }}>
                 <span style={{ fontFamily: "var(--font-mono)", fontSize: "var(--font-size-xl)", fontWeight: 500 }}>
                   {correctCount} / {cases.length}
                 </span>
@@ -173,13 +173,13 @@ export function ChallengeQuiz({ type, onExit }: Props) {
       header={{
         eyebrow: (
           <span>
-            {typeLabel} · Défi · Cas {index + 1} / {cases.length}
+            {typeLabel} · Défi · Cas {index + 1} / {cases.length} · <strong>{correctCount}</strong> {correctCount > 1 ? "bonnes" : "bonne"} jusqu'ici
           </span>
         ),
         title: currentCase.teamLabel,
         lede: chosenId
-          ? "Lis le feedback ci-dessous, puis passe au cas suivant."
-          : "Lis le contexte puis choisis la reformulation que tu trouves la plus solide.",
+          ? "Lis le feedback, puis passe au cas suivant."
+          : "Lis le contexte, puis choisis la reformulation la plus solide.",
         actions: (
           <button className="btn" onClick={onExit} type="button">
             Quitter
@@ -187,8 +187,9 @@ export function ChallengeQuiz({ type, onExit }: Props) {
         ),
       }}
       body={{
-        variant: "wide-rail",
+        variant: "single",
         primary: (
+          <>
           <Zone variant="primary" title="Contexte" meta={currentCase.teamLabel}>
             <article className="quiz-context">
               <div className="quiz-context__header">
@@ -214,7 +215,7 @@ export function ChallengeQuiz({ type, onExit }: Props) {
               {currentCase.objectiveContext && (
                 <>
                   <p style={{ fontSize: "var(--font-size-sm)", color: "var(--color-text-muted)", margin: "var(--space-4) 0 var(--space-2)" }}>
-                    Objective trimestriel déjà posé :
+                    Objectif trimestriel déjà posé :
                   </p>
                   <blockquote
                     className="quiz-context__quote"
@@ -237,10 +238,10 @@ export function ChallengeQuiz({ type, onExit }: Props) {
               </blockquote>
             </article>
 
-            <div className="quiz-options-wrap">
-              <h3 className="zone__title" style={{ marginTop: "var(--space-5)" }}>
-                Quelle reformulation choisirais-tu ?
-              </h3>
+          </Zone>
+          <Zone variant="primary" as="section">
+            <div className="quiz-options-wrap quiz-options-wrap--single">
+              <h3 className="quiz-options__title">Quelle reformulation choisirais-tu ?</h3>
               <p className="quiz-options__hint">
                 Une seule est vraiment solide. Lis-les toutes avant de cliquer.
               </p>
@@ -308,26 +309,7 @@ export function ChallengeQuiz({ type, onExit }: Props) {
               )}
             </div>
           </Zone>
-        ),
-        context: (
-          <Zone variant="context" aria-label="Progression de la session">
-            <div className="quiz-progress">
-              <p className="quiz-progress__label">Progression</p>
-              <div className="quiz-progress__bar" aria-hidden="true">
-                <div
-                  className="quiz-progress__fill"
-                  style={{ width: `${((index + (chosenId ? 1 : 0)) / cases.length) * 100}%` }}
-                />
-              </div>
-              <p className="quiz-progress__count">
-                Cas {index + 1} / {cases.length}
-              </p>
-              <p className="quiz-progress__score">
-                <span style={{ color: "var(--color-good)", fontWeight: 600 }}>{correctCount}</span>{" "}
-                <span style={{ color: "var(--color-text-muted)" }}>bon{correctCount > 1 ? "s" : ""} jusqu'ici</span>
-              </p>
-            </div>
-          </Zone>
+          </>
         ),
       }}
       actions={{

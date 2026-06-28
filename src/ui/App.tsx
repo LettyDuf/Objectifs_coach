@@ -19,6 +19,7 @@ import { SprintLearn } from "./screens/SprintLearn";
 // utilisé par le routing : tous les Défis passent par `ChallengeQuiz` depuis 2026-06-22.
 import { ChallengeQuiz } from "./screens/ChallengeQuiz";
 import { Puzzle } from "./screens/Puzzle";
+import { Analyse } from "./screens/Analyse";
 import { PIPractice } from "./screens/PIPractice";
 import { PILearn } from "./screens/PILearn";
 import { OkrTeamPractice } from "./screens/OkrTeamPractice";
@@ -26,7 +27,7 @@ import { OkrTeamLearn } from "./screens/OkrTeamLearn";
 import { ComingSoon } from "./screens/ComingSoon";
 import { SessionProvider, useSession } from "./SessionContext";
 
-type Mode = "learn" | "practice" | "challenge" | "puzzle";
+type Mode = "learn" | "practice" | "challenge" | "puzzle" | "analyse";
 
 interface AppState {
   type: ObjectiveType | null;
@@ -211,6 +212,15 @@ function AppShell() {
               onExit={backToModes}
             />
           )}
+
+        {(state.type === "sprint" || state.type === "pi" || state.type === "okr-equipe") &&
+          state.mode === "analyse" && (
+            <Analyse
+              initialType={state.type}
+              onTypeChange={(newType) => setState({ type: newType, mode: "analyse" })}
+              onExit={backToModes}
+            />
+          )}
       </main>
     </div>
   );
@@ -278,6 +288,7 @@ function labelForMode(mode: Mode): string {
     case "learn": return "Apprendre";
     case "practice": return "S'entraîner";
     case "challenge": return "Défi";
-    case "puzzle": return "Puzzle";
+    case "puzzle": return "Composer";
+    case "analyse": return "Analyser un objectif";
   }
 }

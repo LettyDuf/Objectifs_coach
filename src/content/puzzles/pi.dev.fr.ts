@@ -35,6 +35,15 @@ function field(
   return { kind: "numericField", id, category: "variation", quality, template, fieldCount };
 }
 
+function customField(
+  id: string,
+  category: PuzzleCategory,
+  template: string,
+  fieldCount: 1 | 2,
+): NumericFieldBlock {
+  return { kind: "numericField", id, category, quality: "good", template, fieldCount };
+}
+
 /* ---------- Catégorie 1 — Action verbale (mêmes outcomes que Sprint, distracteurs adaptés) ---------- */
 const ACTION_GOOD: TextBlock[] = [
   text("pi-a-good-pass", "action", "good", "Faire passer"),
@@ -60,7 +69,7 @@ const INDICATOR_GOOD: TextBlock[] = [
   text("pi-i-good-sso", "indicator", "good", "le taux d'activation du SSO chez nos clients entreprise"),
   text("pi-i-good-pilots", "indicator", "good", "le nombre de clients pilotes sur la marketplace"),
   text("pi-i-good-churn", "indicator", "good", "le taux de churn mensuel des comptes premium"),
-  text("pi-i-good-nps-train", "indicator", "good", "le score NPS du parcours d'onboarding"),
+  text("pi-i-good-nps-train", "indicator", "good", "le score NPS du parcours d'intégration"),
 ];
 const INDICATOR_NEUTRAL: TextBlock[] = [
   text("pi-i-neu-mrr", "indicator", "neutral", "le MRR généré par l'offre marketplace"),
@@ -72,7 +81,7 @@ const INDICATOR_DISTRACTORS: TextBlock[] = [
   text("pi-i-dis-platform", "indicator", "distractor", "la nouvelle plateforme"),
   text("pi-i-dis-architecture", "indicator", "distractor", "l'architecture micro-services"),
   text("pi-i-dis-debt", "indicator", "distractor", "la dette technique"),
-  text("pi-i-dis-roadmap", "indicator", "distractor", "tout ce qui est planifié sur le PI"),
+  text("pi-i-dis-feuille de route", "indicator", "distractor", "tout ce qui est planifié sur le PI"),
 ];
 
 /* ---------- Catégorie 3 — Variation (identique à Sprint : structures avec tuile chiffre) ---------- */
@@ -92,14 +101,18 @@ const VARIATION_DISTRACTORS: TextBlock[] = [
 ];
 
 /* ---------- Catégorie 4 — Contexte / bénéficiaire (niveau PI / business) ---------- */
-const CONTEXT_GOOD: TextBlock[] = [
+const CONTEXT_GOOD: PuzzleBlock[] = [
   text("pi-c-good-enterprise", "context", "good", "pour nos clients entreprise"),
+  text("pi-c-good-internal-cons", "context", "good", "pour les consommateurs internes"),
+  text("pi-c-good-allied-teams", "context", "good", "pour les équipes internes arrimées au sujet"),
+  text("pi-c-good-final-clients", "context", "good", "pour les clients finaux"),
+  customField("pi-c-good-team-custom", "context", "pour l'équipe [X]", 1),
   text("pi-c-good-marketplace", "context", "good", "sur l'offre marketplace"),
   text("pi-c-good-self-serve", "context", "good", "en self-service"),
   text("pi-c-good-premium", "context", "good", "sur le segment premium"),
 ];
 const CONTEXT_NEUTRAL: TextBlock[] = [
-  text("pi-c-neu-onboarding", "context", "neutral", "pendant l'onboarding"),
+  text("pi-c-neu-intégration", "context", "neutral", "pendant l'intégration"),
   text("pi-c-neu-mobile", "context", "neutral", "sur l'app mobile"),
   text("pi-c-neu-eu", "context", "neutral", "sur le marché européen"),
   text("pi-c-neu-none", "context", "neutral", ""),
@@ -126,11 +139,12 @@ const PREPOSITION_DISTRACTORS: TextBlock[] = [
 ];
 
 /* ---------- Catégorie 6 — Repère temporel (échelle PI : 8-12 semaines) ---------- */
-const TIMEREF_GOOD: TextBlock[] = [
-  text("pi-t-good-pi-review", "timeReference", "good", "la prochaine PI Review"),
+const TIMEREF_GOOD: PuzzleBlock[] = [
+  text("pi-t-good-pi-review", "timeReference", "good", "la prochaine revue de PI"),
   text("pi-t-good-end-pi", "timeReference", "good", "la fin du PI"),
   text("pi-t-good-last-month", "timeReference", "good", "le dernier mois du PI"),
   text("pi-t-good-pi-planning", "timeReference", "good", "la prochaine PI Planning"),
+  customField("pi-t-good-custom-date", "timeReference", "le [X]", 1),
 ];
 const TIMEREF_NEUTRAL: TextBlock[] = [
   text("pi-t-neu-quarter", "timeReference", "neutral", "la fin du trimestre"),

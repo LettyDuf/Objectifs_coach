@@ -23,6 +23,7 @@ export type IconName =
   // Fiches pédagogiques
   | "target"
   | "wrench"
+  | "analyse"
   // États
   | "good"
   | "warn"
@@ -116,10 +117,17 @@ const PATHS: Record<IconName, React.ReactNode> = {
       <path d="M9 3h6v3a2 2 0 1 0 4 0V3h3v6h-3a2 2 0 1 0 0 4h3v6h-6v-3a2 2 0 1 0-4 0v3H3v-6h3a2 2 0 1 0 0-4H3V3h6z" />
     </>
   ),
-  /* Fiche cible : étoile pour le "un seul Sprint Goal" */
+  /* Fiche cible : étoile pour le "un seul objectif de Sprint" */
   target: (
     <>
       <polygon points="12 3 14.6 9 21 9.5 16 14 17.5 20.5 12 17 6.5 20.5 8 14 3 9.5 9.4 9" />
+    </>
+  ),
+  /* Analyser : loupe */
+  analyse: (
+    <>
+      <circle cx="11" cy="11" r="6" />
+      <line x1="15.5" y1="15.5" x2="21" y2="21" />
     </>
   ),
   /* Fiche maintenance : clé à molette */

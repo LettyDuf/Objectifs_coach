@@ -10,30 +10,30 @@ export const OKR_EQUIPE_DEV_SHEETS_FR: PedagogicalSheet[] = [
     id: "okr-equipe.sheet.structure",
     themeId: "okr.fondamentaux",
     icon: "okr",
-    title: "OKR équipe : 1 Objective + 3 à 5 Key Results",
+    title: "OKR équipe : 1 Objectif + 3 à 5 Résultats clés",
     heroPhrase:
-      "L'Objective dit vers quoi. Les Key Results disent comment on saura qu'on y est arrivé.",
+      "L'Objectif dit vers quoi. Les Résultats clés disent comment on saura qu'on y est arrivé.",
     intro: "",
     practiceCtaLabel: "Va écrire ton premier OKR équipe",
     sections: [
       {
-        heading: "L'Objective : qualitatif et mémorisable",
+        heading: "L'Objectif : qualitatif et mémorisable",
         icon: "target",
-        body: "Pas de chiffre dans l'Objective : le chiffre est l'affaire des KR. Une équipe doit pouvoir le réciter sans le lire.",
+        body: "Pas de chiffre dans l'Objectif : le chiffre est l'affaire des KR. Une équipe doit pouvoir le réciter sans le lire.",
         examples: [
           {
             bad: "Améliorer notre observabilité de 30 %.",
             good: "Devenir l'outil de référence des équipes data pour l'observabilité.",
-            note: "Un Objective est qualitatif et inspirant. Si tu as besoin d'un chiffre dans l'Objective, c'est qu'il devrait être dans un KR.",
+            note: "Un Objectif est qualitatif et inspirant. Si tu as besoin d'un chiffre dans l'Objectif, c'est qu'il devrait être dans un KR.",
           },
         ],
       },
       {
-        heading: "Les Key Results : 3 à 5, chiffrés, outcome",
+        heading: "Les Résultats clés : 3 à 5, chiffrés, outcome",
         icon: "practice",
-        body: "Chaque KR vise un changement mesurable : « de X à Y », « par N », « à N % ». Pas de KR-projet (« livrer Z » n'est pas un KR). Au-delà de 5 KR, on dilue.",
+        body: "Chaque KR vise un changement mesurable : « de X à Y », « par N », « à N % ». Pas de Résultat clé projet (« livrer Z » n'est pas un KR). Au-delà de 5 KR, on dilue.",
         bullets: [
-          "3 à 5 KR par Objective : assez pour couvrir, pas trop pour disperser.",
+          "3 à 5 KR par Objectif : assez pour couvrir, pas trop pour disperser.",
           "Chaque KR a une métrique nommée, un point de départ, une cible.",
           "« Livrer », « Migrer », « Implémenter » sont des moyens, pas des KR.",
         ],
@@ -46,12 +46,12 @@ export const OKR_EQUIPE_DEV_SHEETS_FR: PedagogicalSheet[] = [
       {
         heading: "La place de l'OKR équipe",
         icon: "learn",
-        body: "OKR entreprise (annuel, le pourquoi) → OKR équipe (trimestriel, le vers où) → PI Objectives (8-12 sem, le quoi engagé) → Sprint Goals (1-4 sem, le comment). Chaque étage a sa grammaire. Les confondre fait perdre une dimension du pilotage.",
+        body: "OKR entreprise (annuel, le pourquoi) → OKR équipe (trimestriel, le vers où) → objectifs de PI (8-12 sem, le quoi engagé) → objectifs de Sprint (1-4 sem, le comment). Chaque étage a sa grammaire. Les confondre fait perdre une dimension du pilotage.",
       },
       {
         heading: "Qui le rédige, sur quelle base",
         icon: "target",
-        body: "Co-construit par l'équipe entière (incluant son PM ou PO), animé par un facilitateur (leader d'équipe, coach OKR interne ou externe). Bottom-up, pas dicté top-down. Les OKR entreprise donnent la direction ; l'équipe propose comment elle y contribue — elle n'attend pas qu'on lui dicte ses KR. Cadre de travail : workshop de cadrage en début de cycle (typiquement une demi-journée), puis check-in hebdomadaire de 15-30 min.",
+        body: "Co-construit par l'équipe entière (incluant son PM ou PO), animé par un facilitateur (leader d'équipe, coach OKR interne ou externe). Bottom-up, pas dicté top-down. Les OKR entreprise donnent la direction ; l'équipe propose comment elle y contribue — elle n'attend pas qu'on lui dicte ses KR. Cadre de travail : atelier de cadrage en début de cycle (typiquement une demi-journée), puis check-in hebdomadaire de 15-30 min.",
         bullets: [
           "OKR entreprise du cycle en cours (le « pourquoi » stratégique)",
           "Retours du cycle OKR précédent (ce qui a marché, ce qui n'a pas)",
@@ -62,7 +62,7 @@ export const OKR_EQUIPE_DEV_SHEETS_FR: PedagogicalSheet[] = [
         examples: [
           {
             bad: "Recevoir l'OKR équipe complet du management et l'exécuter tel quel.",
-            good: "Lire l'OKR entreprise, en discuter en workshop, proposer un OKR équipe qui porte la couleur de l'équipe.",
+            good: "Lire l'OKR entreprise, en discuter en atelier, proposer un OKR équipe qui porte la couleur de l'équipe.",
             note: "Un OKR équipe que l'équipe n'a pas posé n'engage personne — c'est l'anti-pattern cascade brutale documenté par Wodtke.",
           },
         ],
@@ -70,7 +70,7 @@ export const OKR_EQUIPE_DEV_SHEETS_FR: PedagogicalSheet[] = [
       {
         heading: "Source",
         kind: "source",
-        body: "Niven, OKRs For Dummies. Lamorte, The OKRs Field Book (2021) — Phase 1 Deployment Coaching, distinction Top-Level vs Team-Level Workshops. Morisseau, La boîte à outils OKR (Dunod). Wodtke, OKR Mistakes : « OKRs are great bottom up, not just top down. » Cadence trimestrielle, bi-niveau strict et co-construction convergent dans ces sources.",
+        body: "Niven, OKRs For Dummies. Lamorte, The OKRs Field Book (2021) — Phase 1 Deployment Coaching, distinction Top-Level vs Team-Level Ateliers. Morisseau, La boîte à outils OKR (Dunod). Wodtke, OKR Mistakes : « OKRs are great bottom up, not just top down. » Cadence trimestrielle, bi-niveau strict et co-construction convergent dans ces sources.",
       },
     ],
   },
@@ -78,20 +78,20 @@ export const OKR_EQUIPE_DEV_SHEETS_FR: PedagogicalSheet[] = [
     id: "okr-equipe.sheet.kr-traps",
     themeId: "okr.pieges-kr",
     icon: "warn",
-    title: "Les 4 pièges du Key Result",
+    title: "Les 4 pièges du Résultat clé",
     heroPhrase:
       "Un KR vise un résultat à atteindre. Pas une livraison, pas un état à maintenir, pas une certitude.",
     intro: "",
     practiceCtaLabel: "Va corriger un KR mal posé",
     sections: [
       {
-        heading: "Piège 1 — Le KR-projet",
+        heading: "Piège 1 — Le Résultat clé projet",
         icon: "bad",
         body: "« Livrer X », « Migrer Y », « Déployer Z » = un moyen, pas un résultat. Symptôme : verbe d'output en tête.",
         examples: [
           {
-            bad: "Livrer le nouveau dashboard métriques v2 d'ici fin du trimestre.",
-            good: "Atteindre 80 % d'équipes utilisant le dashboard métriques (de 0 à 24 équipes).",
+            bad: "Livrer le nouveau tableau de bord métriques v2 d'ici fin du trimestre.",
+            good: "Atteindre 80 % d'équipes utilisant le tableau de bord métriques (de 0 à 24 équipes).",
             note: "Demande-toi : qu'est-ce que ce projet va faire bouger ? Adoption, temps gagné, incidents évités…",
           },
         ],
@@ -143,14 +143,14 @@ export const OKR_EQUIPE_DEV_SHEETS_FR: PedagogicalSheet[] = [
     id: "okr-equipe.sheet.anatomy-kr",
     themeId: "okr.fondamentaux",
     icon: "target",
-    title: "L'anatomie d'un Key Result",
+    title: "L'anatomie d'un Résultat clé",
     heroPhrase:
-      "Un Key Result tient en quatre briques. Si l'une manque, le KR est cassé.",
+      "Un Résultat clé tient en quatre briques. Si l'une manque, le KR est cassé.",
     intro: "",
     practiceCtaLabel: "Va construire un KR brique par brique",
     sections: [
       {
-        heading: "Les quatre briques d'un Key Result",
+        heading: "Les quatre briques d'un Résultat clé",
         icon: "target",
         body: "Un KR bien posé est une phrase courte qui combine quatre éléments. Visualise-les pour repérer ce qui manque.",
         kind: "bricks",
@@ -222,16 +222,16 @@ export const OKR_EQUIPE_DEV_SHEETS_FR: PedagogicalSheet[] = [
     icon: "warn",
     title: "Trop d'OKR par équipe",
     heroPhrase:
-      "Plus tu ajoutes d'Objectives, plus tu dilues la focalisation. Une équipe = un Objective par cycle.",
+      "Plus tu ajoutes d'Objectifs, plus tu dilues la focalisation. Une équipe = un Objectif par cycle.",
     intro: "",
-    practiceCtaLabel: "Va réduire ta liste à un seul Objective",
+    practiceCtaLabel: "Va réduire ta liste à un seul Objectif",
     sections: [
       {
-        heading: "Le principe : un seul Objective par équipe par cycle",
+        heading: "Le principe : un seul Objectif par équipe par cycle",
         icon: "target",
-        body: "L'OKR sert à concentrer l'énergie sur ce qui compte le plus. Si une équipe se donne trois ou quatre Objectives en parallèle, elle n'en a plus aucun — elle a une liste de courses. Christina Wodtke est explicite : « Have a maximum of one OKR per team per quarter ».",
+        body: "L'OKR sert à concentrer l'énergie sur ce qui compte le plus. Si une équipe se donne trois ou quatre Objectifs en parallèle, elle n'en a plus aucun — elle a une liste de courses. Christina Wodtke est explicite : « Have a maximum of one OKR per team per quarter ». [traduction : « Avoir au maximum un OKR par équipe par trimestre. »]",
         bullets: [
-          "1 Objective + 3 à 5 Key Results : c'est le format de référence.",
+          "1 Objectif + 3 à 5 Résultats clés : c'est le format de référence.",
           "Au-delà, l'équipe ne sait plus quoi arbitrer quand le temps manque.",
           "La focalisation est une compétence d'équipe : elle se travaille.",
         ],
@@ -239,22 +239,22 @@ export const OKR_EQUIPE_DEV_SHEETS_FR: PedagogicalSheet[] = [
       {
         heading: "Pourquoi on tombe dedans",
         icon: "bad",
-        body: "Plusieurs réflexes poussent à empiler les Objectives, tous compréhensibles, tous coûteux.",
+        body: "Plusieurs réflexes poussent à empiler les Objectifs, tous compréhensibles, tous coûteux.",
         bullets: [
           "Peur de laisser un sujet de côté (« si on ne le met pas en OKR, personne ne s'en occupera »).",
-          "Pression descendante (le management ajoute des Objectives au fil de l'eau).",
+          "Pression descendante (le management ajoute des Objectifs au fil de l'eau).",
           "Confusion OKR / liste de chantiers (on met dedans tout ce que l'équipe fait, pas seulement ce qui doit changer).",
         ],
       },
       {
         heading: "Comment trancher",
         icon: "good",
-        body: "Si la liste contient trois Objectives, demande : « Lequel des trois, si on échoue, fait le plus mal au trimestre ? ». Garde celui-là. Les autres sont du business as usual, des KR d'un autre Objective, ou attendent le cycle suivant.",
+        body: "Si la liste contient trois Objectifs, demande : « Lequel des trois, si on échoue, fait le plus mal au trimestre ? ». Garde celui-là. Les autres sont du business as usual, des KR d'un autre Objectif, ou attendent le cycle suivant.",
         examples: [
           {
-            bad: "Objective 1 : Devenir la référence observabilité. Objective 2 : Réduire la dette technique. Objective 3 : Améliorer la satisfaction des stakeholders.",
-            good: "Objective : Devenir la référence observabilité. (Les autres sujets vivent dans le backlog ou dans un KR de cet Objective.)",
-            note: "Trois Objectives = trois équipes en parallèle dans la même équipe. C'est exactement ce que l'OKR cherche à éviter.",
+            bad: "Objectif 1 : Devenir la référence observabilité. Objectif 2 : Réduire la dette technique. Objectif 3 : Améliorer la satisfaction des parties prenantes.",
+            good: "Objectif : Devenir la référence observabilité. (Les autres sujets vivent dans le backlog ou dans un KR de cet Objectif.)",
+            note: "Trois Objectifs = trois équipes en parallèle dans la même équipe. C'est exactement ce que l'OKR cherche à éviter.",
           },
         ],
       },
@@ -326,13 +326,13 @@ export const OKR_EQUIPE_DEV_SHEETS_FR: PedagogicalSheet[] = [
         bullets: [
           "Symptôme : les KR parlent de jalons (« phase 1 livrée », « MVP déployé »).",
           "Symptôme : le check-in OKR ressemble à un comité de pilotage projet.",
-          "Symptôme : impossible de distinguer un KR d'une ligne de roadmap.",
+          "Symptôme : impossible de distinguer un KR d'une ligne de feuille de route.",
         ],
       },
       {
         heading: "Pourquoi c'est un problème",
         icon: "warn",
-        body: "Livrer un projet ne garantit pas l'outcome. On peut livrer le dashboard et que personne ne l'utilise. On peut migrer la stack et n'avoir aucun gain de performance perçu. L'OKR demande la question d'après : « qu'est-ce que ça doit faire bouger ? ».",
+        body: "Livrer un projet ne garantit pas l'outcome. On peut livrer le tableau de bord et que personne ne l'utilise. On peut migrer la stack et n'avoir aucun gain de performance perçu. L'OKR demande la question d'après : « qu'est-ce que ça doit faire bouger ? ».",
         examples: [
           {
             bad: "KR : Migrer le service de paiement vers la nouvelle stack à 100 % d'ici fin Q2.",
@@ -344,10 +344,10 @@ export const OKR_EQUIPE_DEV_SHEETS_FR: PedagogicalSheet[] = [
       {
         heading: "Comment redresser",
         icon: "good",
-        body: "Pour chaque KR-projet, pose la question : « Ce projet existe pour faire bouger quoi ? ». La réponse devient le KR. Le projet retourne dans la roadmap ou le backlog, où il est suivi avec les outils de gestion de projet.",
+        body: "Pour chaque Résultat clé projet, pose la question : « Ce projet existe pour faire bouger quoi ? ». La réponse devient le KR. Le projet retourne dans la feuille de route ou le backlog, où il est suivi avec les outils de gestion de projet.",
         bullets: [
           "OKR = ce qui doit changer dans le monde, mesuré chiffré.",
-          "Roadmap = ce que l'équipe va faire pour y contribuer.",
+          "Feuille de route = ce que l'équipe va faire pour y contribuer.",
           "Backlog = comment l'équipe va le faire, sprint après sprint.",
         ],
       },
@@ -371,7 +371,7 @@ export const OKR_EQUIPE_DEV_SHEETS_FR: PedagogicalSheet[] = [
       {
         heading: "Le scénario",
         icon: "bad",
-        body: "Le management déroule l'OKR entreprise puis distribue à chaque équipe son OKR équipe préparé en comité. L'équipe découvre ses Key Results dans un slide. C'est efficace en apparence : tout est aligné, tout est documenté. C'est inefficace en réalité : personne dans l'équipe ne se sent comptable de cibles qu'elle n'a pas calibrées.",
+        body: "Le management déroule l'OKR entreprise puis distribue à chaque équipe son OKR équipe préparé en comité. L'équipe découvre ses Résultats clés dans un slide. C'est efficace en apparence : tout est aligné, tout est documenté. C'est inefficace en réalité : personne dans l'équipe ne se sent comptable de cibles qu'elle n'a pas calibrées.",
         bullets: [
           "Symptôme : les KR sont écrits avec un vocabulaire que l'équipe n'emploie pas.",
           "Symptôme : la confiance affichée est haute par politesse, basse en off.",
@@ -381,16 +381,16 @@ export const OKR_EQUIPE_DEV_SHEETS_FR: PedagogicalSheet[] = [
       {
         heading: "Pourquoi le bottom-up est non négociable",
         icon: "warn",
-        body: "L'équipe est la seule à connaître sa capacité réelle, ses contraintes techniques, les hypothèses produit qu'elle peut raisonnablement tester ce trimestre. Un OKR dicté ignore ces trois éléments : il est faux dès qu'il est écrit. Christina Wodtke l'a documenté comme l'un des plus grands « OKR mistakes » : « OKRs are great bottom up, not just top down ».",
+        body: "L'équipe est la seule à connaître sa capacité réelle, ses contraintes techniques, les hypothèses produit qu'elle peut raisonnablement tester ce trimestre. Un OKR dicté ignore ces trois éléments : il est faux dès qu'il est écrit. Christina Wodtke l'a documenté comme l'un des plus grands « OKR mistakes » : « OKRs are great bottom up, not just top down ». [traduction : « Les OKR fonctionnent très bien de manière ascendante, pas seulement descendante. »]",
       },
       {
         heading: "Le bon flux",
         icon: "good",
-        body: "Le management partage l'OKR entreprise et les attendus stratégiques. Chaque équipe se réunit en workshop de cadrage (demi-journée typique), facilité par un coach ou un leader d'équipe. Elle propose son OKR. Ce qui remonte est arbitré et calibré dans un dialogue, pas imposé.",
+        body: "Le management partage l'OKR entreprise et les attendus stratégiques. Chaque équipe se réunit en atelier de cadrage (demi-journée typique), facilité par un coach ou un leader d'équipe. Elle propose son OKR. Ce qui remonte est arbitré et calibré dans un dialogue, pas imposé.",
         examples: [
           {
             bad: "Recevoir un slide « OKR équipe Q3 » du management et l'intégrer tel quel dans Jira.",
-            good: "Lire l'OKR entreprise Q3, tenir un workshop d'équipe d'une demi-journée, proposer un OKR équipe et le soumettre au management pour calibrage.",
+            good: "Lire l'OKR entreprise Q3, tenir un atelier d'équipe d'une demi-journée, proposer un OKR équipe et le soumettre au management pour calibrage.",
             note: "Le management arbitre ce qui remonte. Il ne fabrique pas ce qui descend.",
           },
         ],
@@ -398,7 +398,7 @@ export const OKR_EQUIPE_DEV_SHEETS_FR: PedagogicalSheet[] = [
       {
         heading: "Source",
         kind: "source",
-        body: "Wodtke, OKR Mistakes : « OKRs are great bottom up, not just top down ». Lamorte, The OKRs Field Book : Phase 1 Deployment Coaching, distinction Top-Level vs Team-Level Workshops. Niven, OKRs For Dummies (co-construction comme condition d'engagement).",
+        body: "Wodtke, OKR Mistakes : « OKRs are great bottom up, not just top down ». Lamorte, The OKRs Field Book : Phase 1 Deployment Coaching, distinction Top-Level vs Team-Level Ateliers. Niven, OKRs For Dummies (co-construction comme condition d'engagement).",
       },
     ],
   },

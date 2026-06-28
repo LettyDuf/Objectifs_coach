@@ -34,6 +34,17 @@ function field(
   return { kind: "numericField", id, category: "variation", quality, template, fieldCount };
 }
 
+/** Bloc à champ libre dans une catégorie autre que "variation" : carte
+ * personnalisable qui ouvre un input texte dans la zone d'assemblage. */
+function customField(
+  id: string,
+  category: PuzzleCategory,
+  template: string,
+  fieldCount: 1 | 2,
+): NumericFieldBlock {
+  return { kind: "numericField", id, category, quality: "good", template, fieldCount };
+}
+
 /* ---------- Catégorie 1 — Action verbale ---------- */
 const ACTION_GOOD: TextBlock[] = [
   text("a-good-reduce", "action", "good", "Réduire"),
@@ -92,14 +103,18 @@ const VARIATION_DISTRACTORS: TextBlock[] = [
 ];
 
 /* ---------- Catégorie 4 — Contexte / bénéficiaire ---------- */
-const CONTEXT_GOOD: TextBlock[] = [
+const CONTEXT_GOOD: PuzzleBlock[] = [
   text("c-good-mobile", "context", "good", "sur mobile"),
   text("c-good-guest", "context", "good", "pour les utilisateurs invités"),
   text("c-good-support", "context", "good", "pour l'équipe support"),
   text("c-good-prod", "context", "good", "en production"),
+  text("c-good-internal-cons", "context", "good", "pour les consommateurs internes"),
+  text("c-good-allied-teams", "context", "good", "pour les équipes internes arrimées au sujet"),
+  text("c-good-final-clients", "context", "good", "pour les clients finaux"),
+  customField("c-good-team-custom", "context", "pour l'équipe [X]", 1),
 ];
 const CONTEXT_NEUTRAL: TextBlock[] = [
-  text("c-neu-oncall", "context", "neutral", "pour l'équipe oncall"),
+  text("c-neu-astreinte", "context", "neutral", "pour l'équipe astreinte"),
   text("c-neu-order", "context", "neutral", "sur le module commande"),
   text("c-neu-new", "context", "neutral", "pour les nouveaux comptes"),
   text("c-neu-none", "context", "neutral", ""), // option "phrase compacte"
@@ -126,11 +141,12 @@ const PREPOSITION_DISTRACTORS: TextBlock[] = [
 ];
 
 /* ---------- Catégorie 6 — Repère temporel ---------- */
-const TIMEREF_GOOD: TextBlock[] = [
+const TIMEREF_GOOD: PuzzleBlock[] = [
   text("t-good-sprint", "timeReference", "good", "la fin du sprint"),
-  text("t-good-pi", "timeReference", "good", "la prochaine PI Review"),
+  text("t-good-pi", "timeReference", "good", "la prochaine revue de PI"),
   text("t-good-s24", "timeReference", "good", "le sprint 24"),
   text("t-good-month", "timeReference", "good", "la fin du mois"),
+  customField("t-good-custom-date", "timeReference", "le [X]", 1),
 ];
 const TIMEREF_NEUTRAL: TextBlock[] = [
   text("t-neu-retro", "timeReference", "neutral", "la prochaine rétrospective"),

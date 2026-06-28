@@ -1,0 +1,340 @@
+/* drill.css — auto-extrait depuis components.css le 2026-06-27 */
+
+/* ============================================================
+ * Mini-exercices S'entraîner (Drill) — QCM et Grille
+ * ============================================================ */
+
+.drill {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.drill__kicker {
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-accent);
+  font-weight: var(--font-weight-semibold);
+}
+
+.drill__live-score {
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+}
+
+.drill__title {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  margin: 0 0 var(--space-2);
+  font-family: var(--font-serif);
+}
+
+.drill__score {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text);
+}
+
+.drill__verdict {
+  font-family: var(--font-sans);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-accent);
+}
+
+.drill__lede {
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+  line-height: 1.55;
+  margin: 0 0 var(--space-3);
+}
+
+.drill__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+/* --- QCM --- */
+
+.drill-qcm__statement {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-bg);
+  border-left: 3px solid var(--color-accent);
+  border-radius: var(--radius-md);
+  font-family: var(--font-serif);
+  font-size: var(--font-size-md);
+  line-height: 1.4;
+  color: var(--color-text);
+}
+
+.drill-qcm__question {
+  margin: var(--space-2) 0 0;
+  font-family: var(--font-serif);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+}
+
+.drill-qcm__options {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.drill-qcm__option {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  font: inherit;
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 120ms ease, background 120ms ease;
+}
+
+.drill-qcm__option:hover:not(:disabled) {
+  border-color: var(--color-focus);
+  background: var(--color-surface-alt);
+}
+
+.drill-qcm__option:disabled {
+  cursor: default;
+}
+
+.drill-qcm__option--good {
+  border-color: var(--color-good);
+  background: var(--color-good-bg);
+}
+.drill-qcm__option--bad {
+  border-color: var(--color-bad);
+  background: var(--color-bad-bg);
+}
+.drill-qcm__option--neutral {
+  opacity: 0.6;
+}
+
+.drill-qcm__letter {
+  font-family: var(--font-mono);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-muted);
+}
+
+.drill-qcm__text {
+  line-height: 1.4;
+}
+
+.drill-qcm__mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  color: #fff;
+}
+
+.drill-qcm__option--good .drill-qcm__mark { background: var(--color-good); }
+.drill-qcm__option--bad .drill-qcm__mark { background: var(--color-bad); }
+
+.drill-qcm__feedback {
+  margin-top: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  border-left: 3px solid var(--color-border-strong);
+  background: var(--color-surface-alt);
+}
+
+.drill-qcm__feedback--good {
+  border-left-color: var(--color-good);
+  background: var(--color-good-bg);
+}
+
+.drill-qcm__feedback--bad {
+  border-left-color: var(--color-bad);
+  background: var(--color-bad-bg);
+}
+
+.drill-qcm__feedback-verdict {
+  margin: 0;
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+}
+
+.drill-qcm__feedback-explain {
+  margin: var(--space-2) 0 var(--space-3);
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  line-height: 1.5;
+}
+
+/* --- Grille --- */
+
+.drill-grid__consigne {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: var(--font-size-md);
+  color: var(--color-text);
+  line-height: 1.4;
+}
+
+.drill-grid__fragments {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  /* Égalise la hauteur de toutes les rangées sur le plus grand fragment
+     pour une grille visuellement régulière, quel que soit le texte. */
+  grid-auto-rows: 1fr;
+  gap: var(--space-2);
+}
+
+.drill-grid__fragment {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  /* Hauteur plancher pour les fragments à une seule ligne :
+     évite l'écart visuel quand certains tiennent sur 2-3 lignes. */
+  min-height: 4.25rem;
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  font: inherit;
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 120ms ease, background 120ms ease, transform 80ms ease;
+}
+
+.drill-grid__fragment:hover {
+  border-color: var(--color-focus);
+}
+
+.drill-grid__fragment.is-selected {
+  border-color: var(--color-accent);
+  background: color-mix(in srgb, var(--color-accent) 8%, var(--color-surface));
+}
+
+.drill-grid__check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--color-border-strong);
+  background: var(--color-surface);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-accent);
+}
+
+.drill-grid__fragment.is-selected .drill-grid__check {
+  background: var(--color-accent);
+  color: #fff;
+  border-color: var(--color-accent);
+}
+
+.drill-grid__count {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+}
+
+.drill-grid__results {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.drill-grid__result {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: flex-start;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+}
+
+.drill-grid__result--ok {
+  background: var(--color-good-bg);
+  border-left: 3px solid var(--color-good);
+}
+
+.drill-grid__result--ko {
+  background: var(--color-bad-bg);
+  border-left: 3px solid var(--color-bad);
+}
+
+.drill-grid__result-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  color: #fff;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.drill-grid__result--ok .drill-grid__result-mark { background: var(--color-good); }
+.drill-grid__result--ko .drill-grid__result-mark { background: var(--color-bad); }
+
+.drill-grid__result-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.drill-grid__result-text {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text);
+}
+
+.drill-grid__result-justif {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.drill-grid__result-tag {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-muted);
+  padding: 2px 6px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+  align-self: flex-start;
+}
+

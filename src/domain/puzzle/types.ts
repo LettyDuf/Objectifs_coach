@@ -61,6 +61,10 @@ export interface PuzzleSet {
  *
  * Pour les blocs `numericField`, `values` contient les saisies de l'utilisateur
  * (string pour rester libre — un input vide est représenté par "").
+ *
+ * `slotKey` (optionnel) identifie la zone du plateau où le bloc a été déposé
+ * (D25). Quand il est défini sur tous les blocs, l'évaluation et l'assemblage
+ * passent en mode « plateau » : ordre canonique + slots obligatoires.
  */
 export interface PlacedBlock {
   /** Identifiant d'instance (unique dans la phrase). */
@@ -68,4 +72,60 @@ export interface PlacedBlock {
   block: PuzzleBlock;
   /** Valeurs saisies pour les champs numériques (vide pour les TextBlock). */
   values: string[];
+  /** Zone du plateau qui contient ce bloc (cf. SlotKey). Optionnel pour compat. */
+  slotKey?: SlotKey;
 }
+
+/**
+ * Zones du plateau de cartes (D25). Six zones fixes :
+ *   - 4 obligatoires : intention / mesure / cible / horizon
+ *   - 2 bonus       : contexte / liaison
+ * Chaque zone accepte une seule carte (option A validée 2026-06-26).
+ */
+export type SlotKey =
+  | "intention"
+  | "mesure"
+  | "cible"
+  | "horizon"
+  | "contexte"
+  | "liaison";
+
+/** Mapping catégorie de bloc → zone du plateau. */
+export const CATEGORY_TO_SLOT: Record<PuzzleCategory, SlotKey> = {
+  action: "intention",
+  indicator: "mesure",
+  variation: "cible",
+  timeReference: "horizon",
+  context: "contexte",
+  preposition: "liaison",
+};
+
+/** Zones obligatoires : la phrase n'est évaluable que si toutes sont remplies. */
+export const REQUIRED_SLOTS: ReadonlyArray<SlotKey> = [
+  "intention",
+  "mesure",
+  "cible",
+  "horizon",
+];
+
+/** Ordre canonique d'assemblage de la phrase (lecture grammaticale).
+ * La liaison vient juste avant l'horizon ("d'ici la fin du sprint"). */
+export const SLOT_ORDER: ReadonlyArray<SlotKey> = [
+  "intention",
+  "mesure",
+  "cible",
+  "contexte",
+  "liaison",
+  "horizon",
+];
+
+/** Libellés affichables des zones du plateau. */
+export const SLOT_LABELS: Record<SlotKey, string> = {
+  intention: "Intention",
+  mesure: "Mesure",
+  cible: "Cible",
+  horizon: "Horizon",
+  contexte: "Contexte",
+  liaison: "Vers l'échéance",
+};
+

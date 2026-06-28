@@ -24,14 +24,14 @@ export const PI_DEV_EXAMPLES_FR: AnnotatedExample[] = [
       businessValue: 8,
     },
     rationale:
-      "Committed bien calibré : valeur métier explicite, seuil chiffré, échéance PI, confiance >80 % cohérente avec un engagement.",
+      "Engagé bien calibré : valeur métier explicite, seuil chiffré, échéance PI, confiance >80 % cohérente avec un engagement.",
   },
   {
     id: "pi.good.marketplace-stretch",
     verdict: "good",
     draft: {
       type: "pi",
-      text: "Faire entrer 3 clients pilotes sur la nouvelle offre marketplace avant la PI Review.",
+      text: "Faire entrer 3 clients pilotes sur la nouvelle offre marketplace avant la revue de PI.",
       audience: "dev",
       confidence: 50,
       hasExplicitDeadline: true,
@@ -80,7 +80,7 @@ export const PI_DEV_EXAMPLES_FR: AnnotatedExample[] = [
     trapWords: ["améliorer", "stabilité", "et", "dette"],
   },
   {
-    id: "pi.bad.committed-low-confidence",
+    id: "pi.bad.engagé-low-confidence",
     verdict: "bad",
     draft: {
       type: "pi",
@@ -93,7 +93,7 @@ export const PI_DEV_EXAMPLES_FR: AnnotatedExample[] = [
       businessValue: 8,
     },
     rationale:
-      "Mauvais calibrage : un committed estimé à 40 % de confiance est en réalité un stretch mal nommé. Soit reclasser, soit revoir l'ambition.",
+      "Mauvais calibrage : un engagé estimé à 40 % de confiance est en réalité un stretch mal nommé. Soit reclasser, soit revoir l'ambition.",
     expectedFailingCriteria: ["crediblyAmbitious"],
     // Pas de trapWords ici : le piège n'est pas dans les mots mais dans la
     // métadonnée de classe/confiance. Le quiz « trouve le piège » s'effacera.

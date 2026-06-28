@@ -1,40 +1,26 @@
 /**
- * Écran Puzzle générique — multi-type (Sprint / PI / OKR).
+ * Écran Puzzle — Plateau de cartes (D25).
  *
- * Voir D16 : un seul composant, sélecteur de type interne. La pédagogie du puzzle
- * s'exerce par contraste entre les types (la grammaire est universelle, le vocabulaire
- * change selon l'échelle).
+ * Métaphore : on choisit des cartes dans une main et on les pose sur les
+ * zones d'un plateau. 6 zones fixes (4 obligatoires + 2 bonus), 1 carte par
+ * zone. Cartes-pièges (distractor) acceptées (D14) mais marquées d'un picto
+ * « risque ».
  *
- * Métadonnées spécifiques affichées conditionnellement :
- *   - Sprint : aucune.
- *   - PI : sélecteur classe (committed/stretch) + valeur business 1-10.
- *   - OKR : à venir (KR multiples).
+ * Mécanique :
+ *   - clic sur une carte de la main → snap dans la zone correspondant à sa
+ *     catégorie (CATEGORY_TO_SLOT). Si la zone contient déjà une carte, elle
+ *     est remplacée.
+ *   - clic sur la croix d'une carte posée → vide la zone.
+ *   - animation slide-in 180 ms ease-out à chaque dépôt (D24).
  *
- * Synchronisation : si l'utilisateur change de type ici, l'état d'app reflète le
- * nouveau type pour cohérence du fil d'Ariane (callback `onTypeChange`).
+ * Évaluation :
+ *   - se déclenche dès que les 4 zones obligatoires sont remplies ET que
+ *     tous les champs chiffrés sont saisis (cf. isComplete mode plateau).
+ *   - score affiché uniquement dans le panneau Évaluation (pas dans la
+ *     barre d'actions sticky) pour éviter la redondance.
  */
 
-import { useId, useMemo, useState } from "react";
-import {
-  DndContext,
-  PointerSensor,
-  KeyboardSensor,
-  useSensor,
-  useSensors,
-  closestCenter,
-  type DragEndEvent,
-  useDraggable,
-  useDroppable,
-  type Announcements,
-} from "@dnd-kit/core";
-import {
-  SortableContext,
-  rectSwappingStrategy,
-  useSortable,
-  sortableKeyboardCoordinates,
-  arrayMove,
-} from "@dnd-kit/sortable";
-import { CSS } from "@dnd-kit/utilities";
+import { useEffect, useMemo, useState } from "react";
 
 import type { CoachUseCase } from "../../domain/ports";
 import type {
@@ -42,6 +28,11 @@ import type {
   PuzzleCategory,
   PuzzleSet,
   PlacedBlock,
+  SlotKey,
+} from "../../domain/puzzle/types";
+import {
+  CATEGORY_TO_SLOT,
+  REQUIRED_SLOTS,
 } from "../../domain/puzzle/types";
 import type {
   ObjectiveDraft,
@@ -52,11 +43,17 @@ import type {
   SprintDraft,
 } from "../../domain/types";
 import { createContentRepository } from "../../content/repository";
-import { assembleSentence, isComplete, newInstanceId } from "../../domain/puzzle/assemble";
-import { EvaluationPanel } from "../components/EvaluationPanel";
+import {
+  assembleSentence,
+  isComplete,
+  newInstanceId,
+} from "../../domain/puzzle/assemble";
+import { toMarkdown } from "../../adapters/export";
 import { useSession } from "../SessionContext";
 import { Screen } from "../layout/Screen";
 import { Zone } from "../layout/Zone";
+import { PhraseSkeleton } from "../composer/PhraseSkeleton";
+import { HandCard } from "../composer/HandCard";
 
 interface Props {
   coach: CoachUseCase;
@@ -67,30 +64,6 @@ interface Props {
 
 const repo = createContentRepository();
 
-const CATEGORY_LABELS: Record<PuzzleCategory, string> = {
-  action: "1. Action",
-  indicator: "2. Indicateur",
-  variation: "3. Variation",
-  context: "4. Contexte",
-  preposition: "5. Préposition",
-  timeReference: "6. Repère temporel",
-};
-
-const CATEGORY_ORDER: PuzzleCategory[] = [
-  "action",
-  "indicator",
-  "variation",
-  "context",
-  "preposition",
-  "timeReference",
-];
-
-const PASS_SCORE = 80;
-
-const DND_INSTRUCTIONS = {
-  draggable:
-    "Pour saisir un bloc, appuie sur Espace ou Entrée. Utilise les flèches pour déplacer, Espace pour déposer, Échap pour annuler. Tu peux aussi utiliser le bouton « + » à côté de chaque bloc.",
-};
 
 /** Types d'objectif pour lesquels un corpus puzzle existe (V1 actuel). */
 const AVAILABLE_TYPES: ObjectiveType[] = ["sprint", "pi", "okr-equipe"];
@@ -102,10 +75,19 @@ const TYPE_LABELS: Record<ObjectiveType, string> = {
   "okr-entreprise": "OKR entreprise",
 };
 
-export function Puzzle({ coach, initialType, onTypeChange, onExit }: Props) {
-  const typeRadioName = useId();
-  const piClassRadioName = useId();
+/** Onglets de la main : ordre d'apparition + libellé court. */
+const HAND_TABS: Array<{ category: PuzzleCategory; label: string }> = [
+  { category: "action", label: "Verbes" },
+  { category: "indicator", label: "Indicateurs" },
+  { category: "variation", label: "Variations" },
+  { category: "context", label: "Contextes" },
+  { category: "preposition", label: "Liaisons" },
+  { category: "timeReference", label: "Échéances" },
+];
 
+
+
+export function Puzzle({ coach, initialType, onTypeChange, onExit }: Props) {
   const [type, setType] = useState<ObjectiveType>(initialType);
   const set: PuzzleSet | null = useMemo(
     () => repo.getPuzzleSet(type, "dev", "hard"),
@@ -116,41 +98,47 @@ export function Puzzle({ coach, initialType, onTypeChange, onExit }: Props) {
   const [piClass, setPiClass] = useState<PiClass>("committed");
   const [businessValue, setBusinessValue] = useState<number>(5);
   const [solvedThisRound, setSolvedThisRound] = useState(false);
+  const [activeTab, setActiveTab] = useState<PuzzleCategory>("action");
+  const [teamContext, setTeamContext] = useState<string>("");
   const session = useSession();
-
-  const sensors = useSensors(
-    useSensor(PointerSensor, { activationConstraint: { distance: 4 } }),
-    useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates }),
-  );
 
   function changeType(next: ObjectiveType) {
     setType(next);
-    setPlaced([]); // vide la zone : pas de pollution croisée entre types
+    setPlaced([]);
     setSolvedThisRound(false);
+    setActiveTab("action");
     onTypeChange(next);
   }
 
-  function addBlock(block: PuzzleBlock) {
-    setPlaced((p) => [
-      ...p,
-      {
-        instanceId: newInstanceId(),
-        block,
-        values: block.kind === "numericField" ? Array(block.fieldCount).fill("") : [],
-      },
-    ]);
+  /** Pose une carte dans la zone correspondant à sa catégorie.
+   *  Si la zone contient déjà une carte, elle est remplacée. */
+  function playCard(block: PuzzleBlock) {
+    const slot = CATEGORY_TO_SLOT[block.category];
+    setPlaced((prev) => {
+      const others = prev.filter((p) => p.slotKey !== slot);
+      return [
+        ...others,
+        {
+          instanceId: newInstanceId(),
+          block,
+          values:
+            block.kind === "numericField" ? Array(block.fieldCount).fill("") : [],
+          slotKey: slot,
+        },
+      ];
+    });
     setSolvedThisRound(false);
   }
 
-  function removeBlock(instanceId: string) {
-    setPlaced((p) => p.filter((b) => b.instanceId !== instanceId));
+  function removeSlot(slot: SlotKey) {
+    setPlaced((p) => p.filter((b) => b.slotKey !== slot));
     setSolvedThisRound(false);
   }
 
-  function updateFieldValue(instanceId: string, fieldIndex: number, value: string) {
+  function updateFieldValue(slot: SlotKey, fieldIndex: number, value: string) {
     setPlaced((p) =>
       p.map((b) => {
-        if (b.instanceId !== instanceId) return b;
+        if (b.slotKey !== slot) return b;
         const next = [...b.values];
         next[fieldIndex] = value;
         return { ...b, values: next };
@@ -164,52 +152,8 @@ export function Puzzle({ coach, initialType, onTypeChange, onExit }: Props) {
     setSolvedThisRound(false);
   }
 
-  function handleDragEnd(event: DragEndEvent) {
-    const { active, over } = event;
-    if (!over) return;
-    if (
-      typeof active.id === "string" &&
-      active.id.startsWith("placed-") &&
-      typeof over.id === "string" &&
-      over.id.startsWith("placed-")
-    ) {
-      const oldIndex = placed.findIndex((p) => `placed-${p.instanceId}` === active.id);
-      const newIndex = placed.findIndex((p) => `placed-${p.instanceId}` === over.id);
-      if (oldIndex !== -1 && newIndex !== -1 && oldIndex !== newIndex) {
-        setPlaced((p) => arrayMove(p, oldIndex, newIndex));
-      }
-      return;
-    }
-    if (
-      typeof active.id === "string" &&
-      active.id.startsWith("source-") &&
-      typeof over.id === "string" &&
-      (over.id === "target-zone" || over.id.startsWith("placed-"))
-    ) {
-      const sourceBlock = findSourceBlock(set, active.id.replace(/^source-/, ""));
-      if (sourceBlock) addBlock(sourceBlock);
-    }
-  }
-
-  const announcements: Announcements = {
-    onDragStart({ active }) {
-      return `Bloc ${String(active.id)} saisi.`;
-    },
-    onDragOver({ active, over }) {
-      if (over) return `Bloc ${String(active.id)} survole ${String(over.id)}.`;
-      return undefined;
-    },
-    onDragEnd({ active, over }) {
-      if (over) return `Bloc ${String(active.id)} déposé dans ${String(over.id)}.`;
-      return `Bloc ${String(active.id)} relâché hors de toute zone.`;
-    },
-    onDragCancel({ active }) {
-      return `Déplacement du bloc ${String(active.id)} annulé.`;
-    },
-  };
-
   const sentence = assembleSentence(placed);
-  const ready = placed.length > 0 && isComplete(placed);
+  const ready = isComplete(placed);
 
   /** Construit le draft selon le type sélectionné. */
   function buildDraft(): ObjectiveDraft {
@@ -227,13 +171,9 @@ export function Puzzle({ coach, initialType, onTypeChange, onExit }: Props) {
       return piDraft;
     }
     if (type === "okr-equipe") {
-      // Le puzzle OKR assemble UN Key Result (l'Objective est qualitatif et n'est pas
-      // « assemblable » par blocs). On présente le KR comme l'élément central et on
-      // injecte 2 KR « repères » bons pour respecter la contrainte 3-5 KR sans
-      // perturber l'évaluation pédagogique de la grammaire du KR assemblé.
       const okrDraft: OkrTeamDraft = {
         type: "okr-equipe",
-        text: "Objective qualitatif de l'équipe (défini hors puzzle).",
+        text: "Objectif qualitatif de l'équipe (défini hors puzzle).",
         audience: "dev",
         hasExplicitDeadline: true,
         isUnderTeamInfluence: true,
@@ -241,14 +181,13 @@ export function Puzzle({ coach, initialType, onTypeChange, onExit }: Props) {
           { text: sentence, confidence: 60 },
           { text: "Faire passer le NPS de 28 à 50 d'ici la fin du trimestre.", confidence: 60 },
           {
-            text: "Réduire le temps d'onboarding d'une nouvelle équipe de 4 h à 1 h d'ici la fin du trimestre.",
+            text: "Réduire le temps d'intégration d'une nouvelle équipe de 4 h à 1 h d'ici la fin du trimestre.",
             confidence: 60,
           },
         ],
       };
       return okrDraft;
     }
-    // Sprint par défaut
     const sprintDraft: SprintDraft = {
       type: "sprint",
       text: sentence,
@@ -260,24 +199,58 @@ export function Puzzle({ coach, initialType, onTypeChange, onExit }: Props) {
     return sprintDraft;
   }
 
-  const result = ready ? coach.evaluate(buildDraft()) : null;
+  // D26 : pas de score moteur affiché. Le bump session se déclenche dès que
+  // la phrase est composée (4 zones obligatoires + champs chiffrés), sans
+  // exiger un seuil normatif. useEffect pour ne pas appeler setState pendant
+  // le render (anti-pattern React).
+  useEffect(() => {
+    if (ready && !solvedThisRound) {
+      session.bump();
+      setSolvedThisRound(true);
+    }
+  }, [ready, solvedThisRound, session]);
 
-  if (result && result.score >= PASS_SCORE && !solvedThisRound) {
-    queueMicrotask(() => {
-      if (!solvedThisRound) {
-        session.bump();
-        setSolvedThisRound(true);
-      }
-    });
+  const [copyLabel, setCopyLabel] = useState<string>("Copier");
+
+  async function handleCopy() {
+    if (!ready) return;
+    try {
+      await navigator.clipboard.writeText(sentence);
+      setCopyLabel("Copié ✓");
+      window.setTimeout(() => setCopyLabel("Copier"), 1800);
+    } catch {
+      setCopyLabel("Échec");
+      window.setTimeout(() => setCopyLabel("Copier"), 1800);
+    }
+  }
+
+  function handleExportMd() {
+    if (!ready) return;
+    const draft = buildDraft();
+    const result = coach.evaluate(draft);
+    let md = toMarkdown(draft, result);
+    const context = teamContext.trim();
+    if (context) {
+      md = `> Pour : ${context}\n\n` + md;
+    }
+    const blob = new Blob([md], { type: "text/markdown;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `objectif-${type}.md`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
   }
 
   if (!set) {
     return (
       <Screen
         header={{
-          eyebrow: <span>Puzzle · {TYPE_LABELS[type]}</span>,
-          title: "Puzzle indisponible",
-          lede: "Aucun corpus de puzzle n'est défini pour ce type d'objectif.",
+          eyebrow: <span>Composer · {TYPE_LABELS[type]}</span>,
+          title: "Composer indisponible",
+          lede: "Aucun corpus n'est défini pour ce type d'objectif.",
         }}
         body={{
           variant: "single",
@@ -292,323 +265,234 @@ export function Puzzle({ coach, initialType, onTypeChange, onExit }: Props) {
     );
   }
 
-  return (
-    <DndContext
-      sensors={sensors}
-      collisionDetection={closestCenter}
-      onDragEnd={handleDragEnd}
-      accessibility={{ announcements, screenReaderInstructions: DND_INSTRUCTIONS }}
-    >
-      <Screen
-        header={{
-          eyebrow: <span>Puzzle · {TYPE_LABELS[type]}</span>,
-          title: `Assemble un objectif ${TYPE_LABELS[type]}`,
-          lede:
-            "La grammaire d'un bon objectif est la même partout : verbe, indicateur, variation chiffrée, contexte, échéance. Le vocabulaire change selon le type. Bascule pour comparer.",
-          actions: (
-            <>
-              <fieldset className="puzzle-type-toggle" style={{ border: 0, padding: 0, margin: 0, display: "flex", gap: "var(--space-2)" }}>
-                <legend className="sr-only">Type d'objectif</legend>
-                {AVAILABLE_TYPES.map((t) => (
-                  <label key={t} className="field__check" style={{ marginBottom: 0 }}>
-                    <input
-                      type="radio"
-                      name={typeRadioName}
-                      checked={type === t}
-                      onChange={() => changeType(t)}
-                    />
-                    <span>{TYPE_LABELS[t]}</span>
-                  </label>
-                ))}
-              </fieldset>
-              <button className="btn btn--sm" onClick={reset} disabled={placed.length === 0}>
-                Vider
-              </button>
-            </>
-          ),
-        }}
-        body={{
-          variant: "source-aside",
-          primary: (
-            <div className="puzzle-source">
-              {/* Métadonnées spécifiques au type (PI : classe + valeur business). */}
-              {type === "pi" && (
-                <fieldset className="field-group" style={{ gridColumn: "1 / -1", marginBottom: "var(--space-3)" }}>
-                  <legend className="field-group__legend">Métadonnées PI</legend>
-                  <div className="field">
-                    <span className="field__label">Classe</span>
-                    <label className="field__check">
-                      <input
-                        type="radio"
-                        name={piClassRadioName}
-                        checked={piClass === "committed"}
-                        onChange={() => setPiClass("committed")}
-                      />
-                      <span>Committed (engagement)</span>
-                    </label>
-                    <label className="field__check">
-                      <input
-                        type="radio"
-                        name={piClassRadioName}
-                        checked={piClass === "stretch"}
-                        onChange={() => setPiClass("stretch")}
-                      />
-                      <span>Stretch (ambition haute)</span>
-                    </label>
-                  </div>
-                  <div className="field">
-                    <label className="field__label" htmlFor="pi-business-value">
-                      Valeur business
-                    </label>
-                    <div className="confidence-row">
-                      <input
-                        id="pi-business-value"
-                        type="range"
-                        min={1}
-                        max={10}
-                        step={1}
-                        value={businessValue}
-                        onChange={(e) => setBusinessValue(Number(e.target.value))}
-                      />
-                      <span className="confidence-row__value">{businessValue} / 10</span>
-                    </div>
-                  </div>
-                  <div />
-                </fieldset>
-              )}
+  // Index des slots remplis pour rendu rapide
+  const placedBySlot = new Map<SlotKey, PlacedBlock>();
+  for (const p of placed) {
+    if (p.slotKey) placedBySlot.set(p.slotKey, p);
+  }
 
-              {CATEGORY_ORDER.map((cat) => (
-                <div key={cat} className="puzzle-source__column">
-                  <h3 className="puzzle-source__title">{CATEGORY_LABELS[cat]}</h3>
-                  <div className="puzzle-source__blocks">
-                    {set.blocksByCategory[cat].map((block) => (
-                      <SourceBlockRow key={block.id} block={block} onAdd={() => addBlock(block)} />
-                    ))}
-                  </div>
-                </div>
+  const coreFilled = REQUIRED_SLOTS.filter((s) => placedBySlot.has(s)).length;
+  const trapCount = placed.filter((p) => p.block.quality === "distractor").length;
+
+  return (
+    <Screen
+      header={{
+        eyebrow: <span>Composer · {TYPE_LABELS[type]}</span>,
+        title: `Compose un objectif ${TYPE_LABELS[type]}`,
+        lede:
+          "Assistant pour rédiger un vrai objectif d'équipe. Choisis tes cartes, l'outil te guide. 4 zones obligatoires, 2 bonus.",
+        actions: (
+          <>
+            <fieldset className="puzzle-type-toggle">
+              <legend className="sr-only">Type d'objectif</legend>
+              {AVAILABLE_TYPES.map((t) => (
+                <label key={t} className="field__check" style={{ marginBottom: 0 }}>
+                  <input
+                    type="radio"
+                    name="puzzle-type"
+                    checked={type === t}
+                    onChange={() => changeType(t)}
+                  />
+                  <span>{TYPE_LABELS[t]}</span>
+                </label>
               ))}
-            </div>
-          ),
-          context: (
-            <Zone variant="context" aria-label="Zone d'assemblage et évaluation">
-              <TargetZone placed={placed} onRemove={removeBlock} onUpdateField={updateFieldValue} />
-
-              <div className="puzzle-output">
-                <h3 className="puzzle-output__heading">Phrase assemblée</h3>
-                <p className="puzzle-output__sentence">{sentence || "(vide)"}</p>
-                {!ready && placed.length > 0 && (
-                  <p className="puzzle-output__hint">
-                    Remplis tous les champs chiffrés pour déclencher l'évaluation.
-                  </p>
-                )}
-              </div>
-
-              <EvaluationPanel result={result} />
-            </Zone>
-          ),
-        }}
-        actions={{
-          left: (
-            <button className="btn" onClick={onExit}>
-              Quitter le puzzle
+            </fieldset>
+            <button className="btn btn--sm" onClick={reset} disabled={placed.length === 0}>
+              Tout retirer
             </button>
-          ),
-          status: result ? (
-            <span
-              className={`score-chip score-chip--${result.overallStatus}`}
-              aria-label={`Score ${result.score} sur 100`}
+          </>
+        ),
+      }}
+      body={{
+        variant: "single",
+        primary: (
+          <Zone variant="primary">
+            {/* Contexte d'équipe : optionnel, librement saisi, apparaîtra dans l'export. */}
+            <div className="composer-team">
+              <label htmlFor="composer-team-input" className="composer-team__label">
+                Pour quelle équipe composes-tu cet objectif ?
+              </label>
+              <input
+                id="composer-team-input"
+                type="text"
+                className="composer-team__input"
+                placeholder="Ex. Fondations TI · authentification (optionnel)"
+                value={teamContext}
+                onChange={(e) => setTeamContext(e.target.value)}
+                maxLength={120}
+              />
+            </div>
+
+            {/* Métadonnées PI repliées par défaut */}
+            {type === "pi" && (
+              <details className="puzzle-meta">
+                <summary className="puzzle-meta__summary">
+                  Paramètres PI
+                  <span className="puzzle-meta__inline">
+                    {piClass === "committed" ? "Engagé" : "Stretch"} · Valeur business {businessValue} / 10
+                  </span>
+                </summary>
+                <div className="puzzle-meta__body">
+                  <fieldset className="field-group">
+                    <legend className="sr-only">Classe PI</legend>
+                    <div className="field">
+                      <span className="field__label">Classe</span>
+                      <label className="field__check">
+                        <input
+                          type="radio"
+                          name="pi-class"
+                          checked={piClass === "committed"}
+                          onChange={() => setPiClass("committed")}
+                        />
+                        <span>Engagé (engagement)</span>
+                      </label>
+                      <label className="field__check">
+                        <input
+                          type="radio"
+                          name="pi-class"
+                          checked={piClass === "stretch"}
+                          onChange={() => setPiClass("stretch")}
+                        />
+                        <span>Stretch (ambition haute)</span>
+                      </label>
+                    </div>
+                    <div className="field">
+                      <label className="field__label" htmlFor="pi-business-value">
+                        Valeur business
+                      </label>
+                      <div className="confidence-row">
+                        <input
+                          id="pi-business-value"
+                          type="range"
+                          min={1}
+                          max={10}
+                          step={1}
+                          value={businessValue}
+                          onChange={(e) => setBusinessValue(Number(e.target.value))}
+                        />
+                        <span className="confidence-row__value">{businessValue} / 10</span>
+                      </div>
+                    </div>
+                  </fieldset>
+                </div>
+              </details>
+            )}
+
+            {/* Plateau = squelette de phrase à trous. Chaque zone est une pill
+                colorée soulignée (vide en italique muted, remplie avec le texte
+                de la carte). Inspiré du pattern .bricks__phrase--skeleton des
+                fiches théoriques pour cohérence visuelle. */}
+            <section className="puzzle-skeleton" aria-label="Squelette de la phrase">
+              <h3 className="puzzle-skeleton__heading">Ta phrase à construire</h3>
+              <div className="puzzle-skeleton__phrase">
+                <PhraseSkeleton
+                  placedBySlot={placedBySlot}
+                  onRemove={removeSlot}
+                  onUpdateField={updateFieldValue}
+                />
+              </div>
+              {placed.length > 0 && (
+                <div className="puzzle-skeleton__meta">
+                  <span className="puzzle-skeleton__counter">
+                    {coreFilled} / 4 zones obligatoires
+                  </span>
+                  {trapCount > 0 && (
+                    <span className="puzzle-skeleton__trap-count" title="Cartes à risque posées">
+                      <span aria-hidden="true">!</span>
+                      {trapCount} carte{trapCount > 1 ? "s" : ""} à risque
+                    </span>
+                  )}
+                </div>
+              )}
+            </section>
+
+            {/* Main : onglets de catégorie + cartes cliquables */}
+            <section className="puzzle-hand" aria-label="Main de cartes">
+              <div className="puzzle-hand__head">
+                <h3 className="puzzle-hand__heading">Ta main de cartes</h3>
+                <span className="puzzle-hand__hint">Clique une carte pour la jouer</span>
+              </div>
+              <div className="puzzle-hand__tabs" role="tablist">
+                {HAND_TABS.map((tab) => {
+                  const slot = CATEGORY_TO_SLOT[tab.category];
+                  const isFilled = placedBySlot.has(slot);
+                  const isActive = activeTab === tab.category;
+                  return (
+                    <button
+                      key={tab.category}
+                      type="button"
+                      role="tab"
+                      aria-selected={isActive}
+                      className={`puzzle-hand__tab puzzle-hand__tab--${tab.category}${isActive ? " is-active" : ""}${isFilled ? " is-filled" : ""}`}
+                      onClick={() => setActiveTab(tab.category)}
+                    >
+                      <span>{tab.label}</span>
+                      {isFilled && (
+                        <span className="puzzle-hand__tab-dot" aria-label="zone remplie">✓</span>
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
+              <div className="puzzle-hand__deck" role="tabpanel">
+                {set.blocksByCategory[activeTab]
+                  .filter((b) => b.quality !== "distractor")
+                  .map((block) => (
+                    <HandCard
+                      key={block.id}
+                      block={block}
+                      onPlay={() => playCard(block)}
+                    />
+                  ))}
+              </div>
+            </section>
+          </Zone>
+        ),
+      }}
+      actions={{
+        left: (
+          <button className="btn" onClick={onExit}>
+            Quitter
+          </button>
+        ),
+        status: (
+          <span className="composer-status">
+            {placed.length === 0
+              ? "Choisis une carte dans ta main pour commencer."
+              : !ready
+                ? coreFilled < REQUIRED_SLOTS.length
+                  ? `${coreFilled} / 4 zones obligatoires remplies.`
+                  : "Plus qu'à remplir les champs chiffrés."
+                : "Ton objectif est prêt."}
+          </span>
+        ),
+        right: (
+          <div className="composer-actions">
+            <button
+              type="button"
+              className="btn"
+              onClick={handleCopy}
+              disabled={!ready}
+              title={ready ? "Copier l'objectif dans le presse-papier" : "Disponible quand les 4 zones obligatoires sont remplies"}
             >
-              <span className="score-chip__label">Score</span>
-              {result.score} / 100
-            </span>
-          ) : placed.length === 0 ? (
-            <span>Glisse un bloc dans la zone d'assemblage pour commencer.</span>
-          ) : (
-            <span>Remplis tous les champs chiffrés pour déclencher l'évaluation.</span>
-          ),
-        }}
-      />
-    </DndContext>
+              {copyLabel}
+            </button>
+            <button
+              type="button"
+              className="btn btn--primary"
+              onClick={handleExportMd}
+              disabled={!ready}
+              title={ready ? "Télécharger l'objectif en Markdown" : "Disponible quand les 4 zones obligatoires sont remplies"}
+            >
+              Exporter en Markdown
+            </button>
+          </div>
+        ),
+      }}
+    />
   );
 }
 
-function findSourceBlock(set: PuzzleSet | null, blockId: string): PuzzleBlock | null {
-  if (!set) return null;
-  for (const cat of CATEGORY_ORDER) {
-    const found = set.blocksByCategory[cat].find((b) => b.id === blockId);
-    if (found) return found;
-  }
-  return null;
-}
 
-function SourceBlockRow({ block, onAdd }: { block: PuzzleBlock; onAdd: () => void }) {
-  const label = block.kind === "text" ? block.text || "(vide)" : block.template;
-  return (
-    <div className="puzzle-source__block-row">
-      <SourceBlock block={block} label={label} />
-      <button
-        type="button"
-        className="puzzle-block__add"
-        onClick={onAdd}
-        aria-label={`Ajouter le bloc « ${label} » à la zone d'assemblage`}
-        title="Ajouter à la zone"
-      >
-        +
-      </button>
-    </div>
-  );
-}
 
-function SourceBlock({ block, label }: { block: PuzzleBlock; label: string }) {
-  const { attributes, listeners, setNodeRef, transform, isDragging } = useDraggable({
-    id: `source-${block.id}`,
-  });
-  const style: React.CSSProperties = {
-    transform: CSS.Translate.toString(transform),
-    opacity: isDragging ? 0.5 : 1,
-  };
-  return (
-    <span
-      ref={setNodeRef}
-      style={style}
-      className="puzzle-block puzzle-block--source"
-      {...attributes}
-      {...listeners}
-      aria-label={`Bloc à glisser : ${label}`}
-    >
-      {label}
-    </span>
-  );
-}
 
-function TargetZone({
-  placed,
-  onRemove,
-  onUpdateField,
-}: {
-  placed: PlacedBlock[];
-  onRemove: (instanceId: string) => void;
-  onUpdateField: (instanceId: string, fieldIndex: number, value: string) => void;
-}) {
-  const { setNodeRef, isOver } = useDroppable({ id: "target-zone" });
-  return (
-    <div
-      ref={setNodeRef}
-      className={`puzzle-target ${isOver ? "puzzle-target--over" : ""}`}
-      aria-label="Zone d'assemblage de la phrase"
-    >
-      <SortableContext
-        items={placed.map((p) => `placed-${p.instanceId}`)}
-        strategy={rectSwappingStrategy}
-      >
-        {placed.length === 0 && (
-          <p className="puzzle-target__empty">
-            Glisse un bloc ici (ou clique sur « + » à côté d'un bloc) pour commencer.
-          </p>
-        )}
-        {placed.map((p) => (
-          <PlacedBlockView
-            key={p.instanceId}
-            placed={p}
-            onRemove={() => onRemove(p.instanceId)}
-            onUpdateField={(idx, val) => onUpdateField(p.instanceId, idx, val)}
-          />
-        ))}
-      </SortableContext>
-    </div>
-  );
-}
-
-function PlacedBlockView({
-  placed,
-  onRemove,
-  onUpdateField,
-}: {
-  placed: PlacedBlock;
-  onRemove: () => void;
-  onUpdateField: (fieldIndex: number, value: string) => void;
-}) {
-  const id = `placed-${placed.instanceId}`;
-  const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id });
-  const style: React.CSSProperties = {
-    transform: CSS.Transform.toString(transform),
-    transition,
-    opacity: isDragging ? 0.5 : 1,
-  };
-  const { block } = placed;
-  const label = block.kind === "text" ? block.text || "(vide)" : block.template;
-
-  return (
-    <div ref={setNodeRef} style={style} className="puzzle-block puzzle-block--placed">
-      <span
-        className="puzzle-block__handle"
-        aria-label={`Déplacer le bloc ${label}`}
-        {...attributes}
-        {...listeners}
-      >
-        ⋮⋮
-      </span>
-      <span className="puzzle-block__content">
-        {block.kind === "text" ? (
-          block.text || <em>(vide)</em>
-        ) : (
-          renderTemplateWithInputs(block.template, block.fieldCount, placed.values, onUpdateField)
-        )}
-      </span>
-      <button
-        type="button"
-        className="puzzle-block__remove"
-        aria-label={`Retirer le bloc ${label}`}
-        onClick={onRemove}
-      >
-        ✕
-      </button>
-    </div>
-  );
-}
-
-function fieldLabelFor(template: string, fieldCount: 1 | 2, fieldIndex: number): string {
-  if (template.includes("de [X] à [Y]")) {
-    return fieldIndex === 0 ? "Valeur de départ" : "Valeur cible";
-  }
-  if (template.startsWith("par [X]")) return "Facteur (par combien)";
-  if (template.startsWith("à [X]")) return "Valeur cible à atteindre";
-  if (template.includes("[X] %")) return "Pourcentage de variation";
-  return fieldCount === 1 ? "Valeur chiffrée" : `Valeur ${fieldIndex + 1}`;
-}
-
-function renderTemplateWithInputs(
-  template: string,
-  fieldCount: 1 | 2,
-  values: string[],
-  onChange: (fieldIndex: number, value: string) => void,
-): React.ReactNode {
-  const parts: React.ReactNode[] = [];
-  let remaining = template;
-  const placeholders: Array<"[X]" | "[Y]"> = ["[X]", "[Y]"];
-  let placeholderIdx = 0;
-  let key = 0;
-  while (placeholderIdx < fieldCount) {
-    const ph = placeholders[placeholderIdx]!;
-    const at = remaining.indexOf(ph);
-    if (at === -1) break;
-    if (at > 0) parts.push(<span key={`t-${key++}`}>{remaining.slice(0, at)}</span>);
-    const currentIdx = placeholderIdx;
-    parts.push(
-      <input
-        key={`i-${currentIdx}`}
-        type="text"
-        inputMode="numeric"
-        className="puzzle-block__field"
-        value={values[currentIdx] ?? ""}
-        onChange={(e) => onChange(currentIdx, e.target.value)}
-        aria-label={fieldLabelFor(template, fieldCount, currentIdx)}
-        placeholder={ph}
-      />,
-    );
-    remaining = remaining.slice(at + ph.length);
-    placeholderIdx += 1;
-  }
-  if (remaining.length > 0) parts.push(<span key={`t-end`}>{remaining}</span>);
-  return parts;
-}

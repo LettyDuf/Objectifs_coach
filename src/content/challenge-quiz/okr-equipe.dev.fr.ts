@@ -1,11 +1,11 @@
 /**
  * Corpus Défi QCM — OKR équipe × dev × FR.
  *
- * 6 cas. Pattern : contexte + Objective trimestriel déjà posé (acceptable) +
- * 1 Key Result fautif proposé par l'équipe + 4 reformulations à juger.
+ * 6 cas. Pattern : contexte + Objectif trimestriel déjà posé (acceptable) +
+ * 1 Résultat clé fautif proposé par l'équipe + 4 reformulations à juger.
  *
  * Chaque cas cible un piège de KR différent :
- *  1. KR-projet (verbe d'output)
+ *  1. Résultat clé projet (verbe d'output)
  *  2. KR-flou (pas de métrique nommée)
  *  3. KR-health-metric (état à maintenir, pas changement à atteindre)
  *  4. KR-sur-confiance (cible trop facile, c'est une tâche)
@@ -19,17 +19,17 @@
  *  - feedback sur la STRUCTURE du KR, pas sur la pertinence des chiffres.
  *
  * Source pédagogique : DOMAINE.md §4 (doctrine OKR validée 2026-06-21) +
- * fiche « Les 4 pièges du Key Result » (sheets/okr-equipe.dev.fr.ts).
+ * fiche « Les 4 pièges du Résultat clé » (sheets/okr-equipe.dev.fr.ts).
  */
 
 import type { ChallengeQuizCase } from "../../domain/challenge-quiz";
 
 export const OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
   // ============================================================
-  // Cas 1 — KR-projet (verbe d'output)
+  // Cas 1 — Résultat clé projet (verbe d'output)
   // ============================================================
   {
-    id: "quiz.okr-equipe.dev.kr-project-dashboard",
+    id: "quiz.okr-equipe.dev.kr-project-tableau de bord",
     type: "okr-equipe",
     audience: "dev",
     teamLabel: "Équipe Observabilité",
@@ -43,32 +43,32 @@ export const OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
     ],
     objectiveContext:
       "Devenir l'outil de référence des équipes data pour l'observabilité des pipelines.",
-    proposedObjective: "Livrer le nouveau dashboard métriques v2 d'ici fin du trimestre.",
+    proposedObjective: "Livrer le nouveau tableau de bord métriques v2 d'ici fin du trimestre.",
     options: [
       {
         id: "A",
-        text: "Livrer le nouveau dashboard métriques v2 d'ici fin du trimestre.",
+        text: "Livrer le nouveau tableau de bord métriques v2 d'ici fin du trimestre.",
         verdict: "bad",
         explanation:
-          "« Livrer » nomme un projet. Un KR vise un **changement à atteindre**, pas une livraison. Demande-toi : qu'est-ce que le dashboard va faire bouger une fois en place ?",
+          "« Livrer » nomme un projet. Un KR vise un **changement à atteindre**, pas une livraison. Demande-toi : qu'est-ce que le tableau de bord va faire bouger une fois en place ?",
       },
       {
         id: "B",
         text: "Faire passer le NPS dev du module pipeline de 28 à 50 d'ici fin du trimestre.",
         verdict: "good",
         explanation:
-          "Métrique nommée (NPS dev), point de départ (28), cible (50), échéance. Outcome qu'un dashboard v2 peut effectivement faire bouger.",
+          "Métrique nommée (NPS dev), point de départ (28), cible (50), échéance. Outcome qu'un tableau de bord v2 peut effectivement faire bouger.",
       },
       {
         id: "C",
-        text: "Améliorer l'adoption du nouveau dashboard.",
+        text: "Améliorer l'adoption du nouveau tableau de bord.",
         verdict: "bad",
         explanation:
           "« Améliorer » est flou. Pas de métrique, pas de chiffre, pas d'échéance. Non falsifiable.",
       },
       {
         id: "D",
-        text: "Faire adopter le dashboard métriques v2 par les équipes data.",
+        text: "Faire adopter le tableau de bord métriques v2 par les équipes data.",
         verdict: "partial",
         explanation:
           "Outcome correct (adoption), bénéficiaire clair, mais aucun avant/après ni cible chiffrée. Précise : passer de combien d'équipes à combien.",
@@ -152,7 +152,7 @@ export const OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
         text: "Maintenir l'uptime du service paiement au-dessus de 99,9 %.",
         verdict: "bad",
         explanation:
-          "« Maintenir » décrit un garde-fou, pas un changement à atteindre. Un KR vise une progression — sinon, c'est une norme de service à surveiller ailleurs, pas un Key Result.",
+          "« Maintenir » décrit un garde-fou, pas un changement à atteindre. Un KR vise une progression — sinon, c'est une norme de service à surveiller ailleurs, pas un Résultat clé.",
       },
       {
         id: "B",
@@ -173,7 +173,7 @@ export const OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
         text: "Diviser par 3 le temps moyen de détection d'un incident paiement (de 15 min à 5 min).",
         verdict: "partial",
         explanation:
-          "Bon format de KR (point de départ, cible chiffrée, échéance implicite du cycle). Mais lié à l'observabilité, pas directement à la fiabilité perçue par les clients — l'option B correspond mieux à l'Objective de fiabilité.",
+          "Bon format de KR (point de départ, cible chiffrée, échéance implicite du cycle). Mais lié à l'observabilité, pas directement à la fiabilité perçue par les clients — l'option B correspond mieux à l'Objectif de fiabilité.",
       },
     ],
   },
@@ -225,7 +225,7 @@ export const OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
         text: "Diviser par 3 le nombre de bugs critiques en prod (de 23 à 8 sur le trimestre).",
         verdict: "partial",
         explanation:
-          "KR exemplaire dans la forme. Mais il ne parle pas de la couverture de tests — c'est un autre outcome (effet du Tdd vs cause). Peut être un autre KR du même Objective, plutôt qu'une reformulation de celui-ci.",
+          "KR exemplaire dans la forme. Mais il ne parle pas de la couverture de tests — c'est un autre outcome (effet du Tdd vs cause). Peut être un autre KR du même Objectif, plutôt qu'une reformulation de celui-ci.",
       },
     ],
   },
@@ -263,7 +263,7 @@ export const OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
         text: "Faire passer le LCP médian de 3,8 s à 1,8 s d'ici fin du trimestre.",
         verdict: "good",
         explanation:
-          "Un seul résultat, métrique nommée, point de départ, cible, échéance. Le KR sur le bounce est une autre histoire — ce sera un autre KR du même Objective.",
+          "Un seul résultat, métrique nommée, point de départ, cible, échéance. Le KR sur le bounce est une autre histoire — ce sera un autre KR du même Objectif.",
       },
       {
         id: "C",
@@ -286,10 +286,10 @@ export const OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
   // Cas 6 — KR sans avant/après (cible absolue sans point de départ)
   // ============================================================
   {
-    id: "quiz.okr-equipe.dev.kr-no-baseline-onboarding",
+    id: "quiz.okr-equipe.dev.kr-no-baseline-intégration",
     type: "okr-equipe",
     audience: "dev",
-    teamLabel: "Équipe Onboarding Dev",
+    teamLabel: "Équipe Intégration Dev",
     iconName: "learn",
     context:
       "3 devs, 1 Developer Advocate. L'équipe construit la documentation et les outils d'intégration pour les développeurs externes qui consomment l'API publique. Cycle OKR trimestriel.",
@@ -319,7 +319,7 @@ export const OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "C",
-        text: "Rendre l'onboarding fluide et rapide.",
+        text: "Rendre l'intégration fluide et rapide.",
         verdict: "bad",
         explanation:
           "« Fluide » et « rapide » sont flous. Aucune métrique, aucun seuil. Vœu, pas un KR.",
@@ -335,7 +335,7 @@ export const OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
   },
 
   // ============================================================
-  // Cas 7 — KR sans baseline (NPS qui démarre où ?)
+  // Cas 7 — KR sans valeur de référence (NPS qui démarre où ?)
   // ============================================================
   {
     id: "quiz.okr-equipe.dev.mobile-nps-baseline",
@@ -381,13 +381,13 @@ export const OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
         text: "Livrer les 8 améliorations UX prévues sur le backlog mobile ce trimestre.",
         verdict: "bad",
         explanation:
-          "Output / KR-projet. Les 8 améliorations peuvent être livrées sans bouger le NPS.",
+          "Output / Résultat clé projet. Les 8 améliorations peuvent être livrées sans bouger le NPS.",
       },
     ],
   },
 
   // ============================================================
-  // Cas 8 — Confusion KR / Sprint Goal (mauvaise cadence)
+  // Cas 8 — Confusion KR / objectif de Sprint (mauvaise cadence)
   // ============================================================
   {
     id: "quiz.okr-equipe.dev.payment-cadence",
@@ -412,7 +412,7 @@ export const OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
         text: "Réduire le nombre de bugs critiques production sur le paiement de 12 à 3 d'ici la fin du sprint 24.",
         verdict: "bad",
         explanation:
-          "Fenêtre mal calibrée : un KR trimestriel ne se borne pas par un numéro de sprint (~2 semaines). Confusion avec un Sprint Goal. L'horizon OKR équipe = 90 jours, pas une itération.",
+          "Fenêtre mal calibrée : un KR trimestriel ne se borne pas par un numéro de sprint (~2 semaines). Confusion avec un objectif de Sprint. L'horizon OKR équipe = 90 jours, pas une itération.",
       },
       {
         id: "B",
@@ -439,7 +439,7 @@ export const OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
   },
 
   // ============================================================
-  // Cas 9 — KR qui est en réalité un Objective déguisé
+  // Cas 9 — KR qui est en réalité un Objectif déguisé
   // ============================================================
   {
     id: "quiz.okr-equipe.dev.platform-kr-as-objective",
@@ -448,7 +448,7 @@ export const OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
     teamLabel: "Équipe Plateforme API",
     iconName: "wrench",
     context:
-      "4 devs, 1 Tech Lead. L'équipe fournit l'API consommée par les autres équipes produit. L'Objective trimestriel est posé. L'équipe rédige les KR.",
+      "4 devs, 1 Tech Lead. L'équipe fournit l'API consommée par les autres équipes produit. L'Objectif trimestriel est posé. L'équipe rédige les KR.",
     metrics: [
       { label: "Taux de réussite des appels API (actuel)", value: "99,2 %" },
       { label: "p95 latence API", value: "180 ms" },
@@ -463,14 +463,14 @@ export const OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
         text: "Devenir la plateforme de référence pour la fiabilité des appels API ce trimestre.",
         verdict: "bad",
         explanation:
-          "C'est un Objective (qualitatif, inspirant) reformulé en KR — sans chiffre, sans cible. Un KR doit être mesurable. Ici on a reformulé l'Objective au lieu de produire un KR distinct.",
+          "C'est un Objectif (qualitatif, inspirant) reformulé en KR — sans chiffre, sans cible. Un KR doit être mesurable. Ici on a reformulé l'Objectif au lieu de produire un KR distinct.",
       },
       {
         id: "B",
         text: "Faire passer le taux de réussite des appels API plateforme de 99,2 % à 99,9 % d'ici la fin du trimestre.",
         verdict: "good",
         explanation:
-          "Métrique nommée, point de départ, cible (qui demande un vrai effort), fenêtre. Un KR mesurable qui sert l'Objective sans s'y substituer.",
+          "Métrique nommée, point de départ, cible (qui demande un vrai effort), fenêtre. Un KR mesurable qui sert l'Objectif sans s'y substituer.",
       },
       {
         id: "C",
@@ -484,7 +484,7 @@ export const OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
         text: "Réduire le nombre de tickets « API instable » de 6 à 1 par semaine et faire passer le p95 latence à 100 ms d'ici la fin du trimestre.",
         verdict: "bad",
         explanation:
-          "Composite (deux résultats coordonnés par « et »). Sépare en deux KR distincts du même Objective.",
+          "Composite (deux résultats coordonnés par « et »). Sépare en deux KR distincts du même Objectif.",
       },
     ],
   },
@@ -496,10 +496,10 @@ export const OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
     id: "quiz.okr-equipe.dev.adoption-vanity-proxy",
     type: "okr-equipe",
     audience: "dev",
-    teamLabel: "Équipe Adoption Feature",
+    teamLabel: "Équipe Adoption Fonctionnalité",
     iconName: "okr",
     context:
-      "3 devs, 1 Product Manager. L'équipe a livré au PI précédent une nouvelle feature « collaboration en temps réel ». Cycle OKR trimestriel pour faire monter l'adoption.",
+      "3 devs, 1 Product Manager. L'équipe a livré au PI précédent une nouvelle fonctionnalité « collaboration en temps réel ». Cycle OKR trimestriel pour faire monter l'adoption.",
     metrics: [
       { label: "Utilisateurs ayant cliqué sur le bouton « Collaborer »", value: "42 %" },
       { label: "Utilisateurs ayant complété ≥ 3 sessions collaboratives", value: "8 %" },
@@ -515,21 +515,21 @@ export const OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
         text: "Atteindre 80 % de clic sur le bouton « Collaborer » depuis l'écran d'accueil d'ici la fin du trimestre.",
         verdict: "partial",
         explanation:
-          "Métrique observable, cible, fenêtre. Mais le clic en surface ne dit rien de l'usage profond — c'est un proxy vanity. L'Objective parle d'usage quotidien, le KR ne mesure que la curiosité.",
+          "Métrique observable, cible, fenêtre. Mais le clic en surface ne dit rien de l'usage profond — c'est un proxy vanity. L'Objectif parle d'usage quotidien, le KR ne mesure que la curiosité.",
       },
       {
         id: "B",
         text: "Faire passer le pourcentage d'utilisateurs ayant complété au moins 3 sessions collaboratives de 8 % à 35 % d'ici la fin du trimestre.",
         verdict: "good",
         explanation:
-          "Métrique d'usage réel (3 sessions = signal d'adoption), aligné avec l'Objective. Le clic devient un proxy intermédiaire, le KR mesure l'effet de fin.",
+          "Métrique d'usage réel (3 sessions = signal d'adoption), aligné avec l'Objectif. Le clic devient un proxy intermédiaire, le KR mesure l'effet de fin.",
       },
       {
         id: "C",
         text: "Livrer 5 améliorations majeures sur la fonctionnalité de collaboration ce trimestre.",
         verdict: "bad",
         explanation:
-          "KR-projet. 5 améliorations livrées peuvent ne rien changer à l'adoption.",
+          "Résultat clé projet. 5 améliorations livrées peuvent ne rien changer à l'adoption.",
       },
       {
         id: "D",
@@ -581,14 +581,14 @@ export const OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
         text: "Corriger les 23 bugs en attente sur le SDK ce trimestre.",
         verdict: "bad",
         explanation:
-          "KR-projet. Corriger 23 bugs peut être achevé sans bouger le NPS — surtout si les bugs ne sont pas ceux qui frustrent les devs.",
+          "Résultat clé projet. Corriger 23 bugs peut être achevé sans bouger le NPS — surtout si les bugs ne sont pas ceux qui frustrent les devs.",
       },
       {
         id: "D",
         text: "Faire de notre SDK le SDK le mieux noté de notre marché.",
         verdict: "bad",
         explanation:
-          "C'est un Objective qualitatif inspirant, pas un KR. Pas de métrique chiffrée.",
+          "C'est un Objectif qualitatif inspirant, pas un KR. Pas de métrique chiffrée.",
       },
     ],
   },
@@ -600,47 +600,47 @@ export const OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
     id: "quiz.okr-equipe.dev.insights-hidden-composite",
     type: "okr-equipe",
     audience: "dev",
-    teamLabel: "Équipe Insights & Dashboards",
+    teamLabel: "Équipe Insights & Tableaux de bord",
     iconName: "practice",
     context:
-      "5 devs, 1 Product Manager. L'équipe construit les dashboards utilisés par les équipes business. Cycle OKR trimestriel. Le PM veut un KR qui couvre à la fois l'usage et la satisfaction.",
+      "5 devs, 1 Product Manager. L'équipe construit les tableaux de bord utilisés par les équipes business. Cycle OKR trimestriel. Le PM veut un KR qui couvre à la fois l'usage et la satisfaction.",
     metrics: [
-      { label: "Utilisation hebdomadaire du dashboard principal", value: "22 %" },
-      { label: "Score de satisfaction des utilisateurs du dashboard", value: "3,1 / 5" },
-      { label: "Tickets « besoin d'aide dashboard » / sem", value: "14" },
+      { label: "Utilisation hebdomadaire du tableau de bord principal", value: "22 %" },
+      { label: "Score de satisfaction des utilisateurs du tableau de bord", value: "3,1 / 5" },
+      { label: "Tickets « besoin d'aide tableau de bord » / sem", value: "14" },
     ],
     objectiveContext:
-      "Faire des dashboards le réflexe quotidien des équipes business pour piloter.",
+      "Faire des tableaux de bord le réflexe quotidien des équipes business pour piloter.",
     proposedObjective:
-      "Faire passer l'utilisation hebdomadaire du dashboard de 22 % à 45 % et le score de satisfaction de 3,1 à 4,2 d'ici la fin du trimestre.",
+      "Faire passer l'utilisation hebdomadaire du tableau de bord de 22 % à 45 % et le score de satisfaction de 3,1 à 4,2 d'ici la fin du trimestre.",
     options: [
       {
         id: "A",
-        text: "Faire passer l'utilisation hebdomadaire du dashboard de 22 % à 45 % et le score de satisfaction de 3,1 à 4,2 d'ici la fin du trimestre.",
+        text: "Faire passer l'utilisation hebdomadaire du tableau de bord de 22 % à 45 % et le score de satisfaction de 3,1 à 4,2 d'ici la fin du trimestre.",
         verdict: "bad",
         explanation:
           "Composite caché : deux métriques dans le même KR. Si l'usage monte mais la satisfaction baisse, le KR est-il atteint ? Un OKR a 3 à 5 KR distincts pour porter plusieurs dimensions — c'est exactement pour ça.",
       },
       {
         id: "B",
-        text: "Faire passer l'utilisation hebdomadaire du dashboard de 22 % à 45 % d'ici la fin du trimestre.",
+        text: "Faire passer l'utilisation hebdomadaire du tableau de bord de 22 % à 45 % d'ici la fin du trimestre.",
         verdict: "good",
         explanation:
-          "Un seul outcome mesurable. La satisfaction devient un autre KR du même Objective, ou une métrique guardrail surveillée à côté. Clarté + falsifiabilité.",
+          "Un seul outcome mesurable. La satisfaction devient un autre KR du même Objectif, ou une métrique guardrail surveillée à côté. Clarté + falsifiabilité.",
       },
       {
         id: "C",
-        text: "Améliorer significativement l'usage et la satisfaction du dashboard.",
+        text: "Améliorer significativement l'usage et la satisfaction du tableau de bord.",
         verdict: "bad",
         explanation:
           "Composite ET flou (« améliorer », « significativement »). Triple piège.",
       },
       {
         id: "D",
-        text: "Livrer la v3 du dashboard ce trimestre.",
+        text: "Livrer la v3 du tableau de bord ce trimestre.",
         verdict: "bad",
         explanation:
-          "KR-projet. La v3 livrée ≠ adoption ou satisfaction qui bouge.",
+          "Résultat clé projet. La v3 livrée ≠ adoption ou satisfaction qui bouge.",
       },
     ],
   },

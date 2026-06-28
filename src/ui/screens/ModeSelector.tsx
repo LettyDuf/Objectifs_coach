@@ -17,7 +17,7 @@ import type { ObjectiveType } from "../../domain/types";
 import { Screen } from "../layout/Screen";
 import { createContentRepository } from "../../content/repository";
 
-type Mode = "learn" | "practice" | "challenge" | "puzzle";
+type Mode = "learn" | "practice" | "challenge" | "puzzle" | "analyse";
 type Tab = "theory" | "practice";
 
 interface Props {
@@ -39,7 +39,7 @@ const PRACTICE_MODES: ModeChoice[] = [
   {
     mode: "practice",
     label: "S'entraîner",
-    desc: "Trois étapes : échauffement, exemples, puis tu écris. Diagnostic en direct à droite.",
+    desc: "Cinq mini-exercices ludiques, un par pièce d'un objectif : verbe, indicateur, variation, échéance, contexte.",
     icon: "practice",
   },
   {
@@ -50,9 +50,15 @@ const PRACTICE_MODES: ModeChoice[] = [
   },
   {
     mode: "puzzle",
-    label: "Puzzle",
-    desc: "Assemble un objectif bloc par bloc : verbe, indicateur, variation, contexte, échéance.",
+    label: "Composer",
+    desc: "Assistant guidé pour rédiger un vrai objectif d'équipe, brique par brique. À copier ou exporter à la fin.",
     icon: "puzzle",
+  },
+  {
+    mode: "analyse",
+    label: "Analyser un objectif",
+    desc: "Colle un objectif déjà rédigé. L'outil te dit en 30 secondes ce qui tient et ce qui pèche.",
+    icon: "analyse",
   },
 ];
 
@@ -65,7 +71,7 @@ export function ModeSelector({ typeLabel, objectiveType, onSelectTheme, onSelect
   );
   const practiceModes = PRACTICE_MODES;
 
-  const [active, setActive] = useState<Tab>("theory");
+  const [active, setActive] = useState<Tab>("practice");
 
   // Le nombre affiché dans l'onglet Théorie = nombre de thèmes disponibles.
   const theoryCount = themes.length;

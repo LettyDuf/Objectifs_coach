@@ -1,0 +1,248 @@
+/* analyse.css — auto-extrait depuis components.css le 2026-06-27 */
+
+/* ============================================================
+ * Analyser un objectif (page dédiée — diagnostic libre)
+ * ============================================================ */
+
+.analyse-type-toggle {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: var(--space-2);
+}
+
+.analyse-input {
+  margin-bottom: var(--space-4);
+}
+
+.analyse-input__label {
+  display: block;
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+  font-weight: var(--font-weight-medium);
+  margin-bottom: var(--space-2);
+}
+
+.analyse-input__textarea {
+  width: 100%;
+  font-family: var(--font-sans);
+  font-size: var(--font-size-base);
+  line-height: 1.5;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  background: var(--color-bg);
+  color: var(--color-text);
+  resize: vertical;
+  min-height: 80px;
+}
+
+.analyse-input__textarea:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 1px;
+  border-color: var(--color-focus);
+}
+
+.analyse-diagnostic {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
+}
+
+/* Verdict synthétique — une phrase qui dit immédiatement où on en est. */
+.analyse-verdict {
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  border-left: 3px solid var(--color-border-strong);
+  background: var(--color-surface-alt);
+}
+
+.analyse-verdict--good {
+  border-left-color: var(--color-good);
+  background: var(--color-good-bg);
+}
+
+.analyse-verdict--warn {
+  border-left-color: var(--color-warn);
+  background: var(--color-warn-bg);
+}
+
+.analyse-verdict--bad {
+  border-left-color: var(--color-bad);
+  background: var(--color-bad-bg);
+}
+
+.analyse-verdict__label {
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+  font-weight: var(--font-weight-medium);
+}
+
+.analyse-verdict__text {
+  margin: var(--space-1) 0 0;
+  font-family: var(--font-serif);
+  font-size: var(--font-size-base);
+  line-height: 1.4;
+  color: var(--color-text);
+  font-weight: var(--font-weight-medium);
+}
+
+.analyse-section-title {
+  margin: 0 0 var(--space-3);
+  font-size: var(--font-size-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-muted);
+  font-weight: var(--font-weight-semibold);
+}
+
+.analyse-criteria {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.analyse-criterion {
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-border-strong);
+}
+
+.analyse-criterion--bad {
+  background: var(--color-bad-bg);
+  border-left-color: var(--color-bad);
+}
+
+.analyse-criterion--warn {
+  background: var(--color-warn-bg);
+  border-left-color: var(--color-warn);
+}
+
+.analyse-criterion--good {
+  background: var(--color-good-bg);
+  border-left-color: var(--color-good);
+}
+
+.analyse-criterion__head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-2);
+}
+
+.analyse-criterion__num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--color-text);
+  color: var(--color-bg);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  flex-shrink: 0;
+}
+
+.analyse-criterion--bad .analyse-criterion__num { background: var(--color-bad); color: #fff; }
+.analyse-criterion--warn .analyse-criterion__num { background: var(--color-warn); color: #fff; }
+
+.analyse-criterion__check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--color-good);
+  color: #fff;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  flex-shrink: 0;
+}
+
+.analyse-criterion__label {
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+}
+
+.analyse-criterion__message {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  opacity: 0.9;
+  line-height: 1.45;
+}
+
+.analyse-criterion__pistes {
+  margin: var(--space-2) 0 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  line-height: 1.5;
+  padding: var(--space-2) var(--space-3);
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: var(--radius-sm);
+}
+
+.analyse-criterion__pistes-label {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  font-size: var(--font-size-xs);
+  letter-spacing: 0.06em;
+  margin-right: var(--space-1);
+}
+
+.analyse-criteria--passing .analyse-criterion {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-good);
+  opacity: 0.85;
+}
+
+/* Encart de transparence du diagnostic Analyser : on dit ce qu'on évalue,
+   on ne fait pas semblant d'évaluer ce qu'on ne peut pas voir. */
+.analyse-honesty {
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-surface-alt);
+  border-radius: var(--radius-md);
+  border-left: 3px solid var(--color-border-strong);
+}
+
+.analyse-honesty__label {
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+  font-weight: var(--font-weight-semibold);
+}
+
+.analyse-honesty__text {
+  margin: var(--space-1) 0 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  line-height: 1.5;
+}
+
+.analyse-input__hint {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-muted);
+  text-transform: none;
+  letter-spacing: 0;
+  margin-left: var(--space-2);
+}
+

@@ -70,7 +70,7 @@ const PI_DEV_THEMES_FR: LearningTheme[] = [
   {
     id: "pi.engagement",
     label: "Engagement et calibrage",
-    tagline: "Committed, stretch, et où mettre la barre.",
+    tagline: "Engagé, stretch, et où mettre la barre.",
     icon: "challenge",
   },
   {
@@ -98,7 +98,7 @@ const OKR_EQUIPE_DEV_THEMES_FR: LearningTheme[] = [
   },
   {
     id: "okr.pieges-kr",
-    label: "Les pièges du Key Result",
+    label: "Les pièges du Résultat clé",
     tagline: "Les erreurs qu'on voit tous les jours en atelier.",
     icon: "warn",
   },

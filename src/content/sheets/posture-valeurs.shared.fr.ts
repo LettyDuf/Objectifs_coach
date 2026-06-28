@@ -50,7 +50,7 @@ export const POSTURE_VALEURS_SHEETS_FR: PedagogicalSheet[] = [
         examples: [
           {
             bad: "Renforcer l'expérience utilisateur sur le module commande.",
-            good: "Faire passer le CSAT du module commande de 3,2 à 4,1 d'ici fin de sprint, ou ouvrir un spike d'une semaine pour comprendre ce qui le bloque.",
+            good: "Faire passer le CSAT du module commande de 3,2 à 4,1 d'ici fin de sprint, ou ouvrir un exploration d'une semaine pour comprendre ce qui le bloque.",
             note: "Soit on chiffre, soit on assume qu'on cherche encore. Pas d'entre-deux.",
           },
         ],
@@ -76,7 +76,7 @@ export const POSTURE_VALEURS_SHEETS_FR: PedagogicalSheet[] = [
       {
         heading: "Pourquoi",
         icon: "target",
-        body: "Deux dérives opposées sabotent le calibrage : la sur-confiance qui sabote la crédibilité (l'objectif passé en committed à 50 % détruit la confiance au PI suivant), et le sandbagging qui se réserve une marge facile (le KR à 100 % de confiance n'apprend rien). L'honnêteté du calibrage est le contrat invisible qui fait fonctionner OKR et SAFe.",
+        body: "Deux dérives opposées sabotent le calibrage : la sur-confiance qui sabote la crédibilité (l'objectif passé en engagé à 50 % détruit la confiance au PI suivant), et le sandbagging qui se réserve une marge facile (le KR à 100 % de confiance n'apprend rien). L'honnêteté du calibrage est le contrat invisible qui fait fonctionner OKR et SAFe.",
         bullets: [
           "Calibrer trop haut, c'est promettre ce qu'on ne pourra pas tenir.",
           "Calibrer trop bas, c'est se voler un apprentissage potentiel.",
@@ -96,11 +96,11 @@ export const POSTURE_VALEURS_SHEETS_FR: PedagogicalSheet[] = [
       {
         heading: "Comment l'incarner",
         icon: "wrench",
-        body: "Avant de figer le calibrage, poser la question : « si nous étions tous payés à dire la vérité maintenant, qui mettrait quel chiffre ? » Utiliser le confidence vote anonyme quand l'équipe a tendance à converger artificiellement.",
+        body: "Avant de figer le calibrage, poser la question : « si nous étions tous payés à dire la vérité maintenant, qui mettrait quel chiffre ? » Utiliser le vote de confiance anonyme quand l'équipe a tendance à converger artificiellement.",
         examples: [
           {
-            bad: "Committed à 100 % sur un objectif qu'on n'a jamais réussi à atteindre dans les 3 derniers PI.",
-            good: "Stretch à 50 % sur le même objectif, avec un plan B chiffré si on n'y arrive pas avant la PI Review.",
+            bad: "Engagé à 100 % sur un objectif qu'on n'a jamais réussi à atteindre dans les 3 derniers PI.",
+            good: "Stretch à 50 % sur le même objectif, avec un plan B chiffré si on n'y arrive pas avant la revue de PI.",
             note: "Le wording n'est pas magique : c'est le chiffre de confiance qui matérialise l'engagement.",
           },
         ],
@@ -108,7 +108,7 @@ export const POSTURE_VALEURS_SHEETS_FR: PedagogicalSheet[] = [
       {
         heading: "Source",
         kind: "source",
-        body: "Christina Wodtke sur le sandbagging (eleganthack.com). Ben Lamorte sur le confidence vote (The OKRs Field Book). SAFe sur le ROAM et le confidence vote en PI Planning.",
+        body: "Christina Wodtke sur le sandbagging (eleganthack.com). Ben Lamorte sur le vote de confiance (The OKRs Field Book). SAFe sur le ROAM et le vote de confiance en PI Planning.",
       },
     ],
   },
@@ -158,7 +158,7 @@ export const POSTURE_VALEURS_SHEETS_FR: PedagogicalSheet[] = [
       {
         heading: "Source",
         kind: "source",
-        body: "Scrum Guide 2020 sur la co-création par l'équipe Scrum. Christina Wodtke : « OKRs are great bottom up, not just top down. » Patrick Lencioni sur la culture de confiance comme préalable au désaccord productif.",
+        body: "Scrum Guide 2020 sur la co-création par l'équipe Scrum. Christina Wodtke : « OKRs are great bottom up, not just top down. » [traduction : « Les OKR fonctionnent très bien de manière ascendante, pas seulement descendante. »] Patrick Lencioni sur la culture de confiance comme préalable au désaccord productif.",
       },
     ],
   },
@@ -180,7 +180,7 @@ export const POSTURE_VALEURS_SHEETS_FR: PedagogicalSheet[] = [
         bullets: [
           "Un refactor a un bénéficiaire : l'équipe qui livrera plus vite, les ops qui dormiront mieux, l'utilisateur qui aura moins de bugs.",
           "Si on ne peut pas nommer le bénéficiaire et l'effet, le travail est probablement un caprice.",
-          "Le bénéficiaire n'est pas toujours l'utilisateur final : c'est parfois l'équipe support, le commercial, l'oncall.",
+          "Le bénéficiaire n'est pas toujours l'utilisateur final : c'est parfois l'équipe support, le commercial, l'astreinte.",
         ],
       },
       {
@@ -188,7 +188,7 @@ export const POSTURE_VALEURS_SHEETS_FR: PedagogicalSheet[] = [
         icon: "good",
         body: "",
         bullets: [
-          "Un bénéficiaire est nommé dans l'objectif (« pour les nouveaux utilisateurs », « pour l'équipe oncall »).",
+          "Un bénéficiaire est nommé dans l'objectif (« pour les nouveaux utilisateurs », « pour l'équipe astreinte »).",
           "L'effet attendu est formulé côté bénéficiaire, pas côté équipe.",
           "La mesure se fait côté bénéficiaire (NPS, CSAT, temps gagné).",
         ],
@@ -290,13 +290,13 @@ export const POSTURE_VALEURS_SHEETS_FR: PedagogicalSheet[] = [
         bullets: [
           "Au moins une objection est posée pendant la rédaction.",
           "Les juniors et les voix discrètes sont sollicités explicitement.",
-          "Le confidence vote anonyme révèle parfois des écarts que la discussion publique cachait.",
+          "Le vote de confiance anonyme révèle parfois des écarts que la discussion publique cachait.",
         ],
       },
       {
         heading: "Comment l'incarner",
         icon: "wrench",
-        body: "Créer un espace de désaccord sûr : interdire les sarcasmes, accueillir chaque objection comme un cadeau (« merci de l'avoir dit »). Poser la question « qui n'est pas convaincu ? » en fin de rédaction. Pour SAFe : utiliser le ROAM honnêtement. Pour OKR : insister sur le confidence vote.",
+        body: "Créer un espace de désaccord sûr : interdire les sarcasmes, accueillir chaque objection comme un cadeau (« merci de l'avoir dit »). Poser la question « qui n'est pas convaincu ? » en fin de rédaction. Pour SAFe : utiliser le ROAM honnêtement. Pour OKR : insister sur le vote de confiance.",
         examples: [
           {
             bad: "Le facilitateur lit l'objectif et demande « tout le monde est d'accord ? ». Silence interprété comme assentiment.",
@@ -308,7 +308,7 @@ export const POSTURE_VALEURS_SHEETS_FR: PedagogicalSheet[] = [
       {
         heading: "Source",
         kind: "source",
-        body: "Patrick Lencioni, The Five Dysfunctions of a Team, chapitre sur l'absence de désaccord productif. SAFe sur le ROAM et le confidence vote en PI Planning. Ben Lamorte sur le devoir de l'équipe coachée.",
+        body: "Patrick Lencioni, The Five Dysfunctions of a Team, chapitre sur l'absence de désaccord productif. SAFe sur le ROAM et le vote de confiance en PI Planning. Ben Lamorte sur le devoir de l'équipe coachée.",
       },
     ],
   },

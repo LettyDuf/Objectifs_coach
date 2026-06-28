@@ -129,7 +129,8 @@ S'ajoutent au tronc commun §1.
 - **Key Results** : 3 à 5 par Objective. Chacun chiffré, chacun mesurable, chacun **outcome** (pas une tâche, pas un livrable).
 - **Calibrage ambition par KR** : confiance estimée **50 % à 70 %** (déjà encodé dans `CONFIDENCE_RANGES.okr`). 100 % = trop facile, c'est une tâche planifiée. <30 % = irréaliste.
 - **Pas de KR = projet** : « Livrer X », « Migrer Y », « Implémenter Z » ne sont pas des KR, ce sont des moyens.
-- **Health metric ≠ KR** (apport Lamorte) : un seuil de santé qu'on surveille en continu (uptime > 99,9 %, code coverage > 80 %, latence p95 < 200 ms) est un *garde-fou*, pas un KR. Un KR vise un **changement à atteindre**, pas un état à maintenir. Enseigné en fiche, **non détecté par heuristique en V1** (faux positif coûteux).
+- **Health metric ≠ KR** (apport Lamorte) : un seuil de santé qu'on surveille en continu (uptime > 99,9 %, code coverage > 80 %, latence p95 < 200 ms) est un *garde-fou*, pas un KR. Un KR vise un **changement à atteindre**, pas un état à maintenir. Enseigné en fiche, **non détecté par heuristique en V1** (faux positif coûteux). Trois cas du corpus mini-exercice « Indicateur du KR » opposent un vrai KR à une health metric pour ancrer la distinction.
+- **KR auto-centré (sur le fonctionnement propre de l'équipe)** : doctrine retenue **pragmatique (Lamorte)**. Un KR dont le bénéficiaire est l'équipe elle-même (ex. « passer le délai de cycle interne de 11 j à 6 j ») est acceptable à **deux conditions** : (1) l'Objective parent reste tourné vers l'extérieur (ex. livrer plus de demandes aux clients) ; (2) ce n'est pas l'unique KR de l'Objective. L'école stricte (Doerr, Wodtke) refuse les KR auto-centrés ; le module les enseigne comme pratique acceptable mais à surveiller, avec un cas dédié dans le corpus mini-exercice « Contexte ».
 
 ### 4.5 Ce que le module OKR n'enseigne pas en V1 (limites assumées)
 - Le **scoring d'atteinte** en fin de cycle (0.0 → 1.0 par KR, agrégation pondérée). L'outil enseigne à **rédiger**, pas à **scorer en fin de cycle**.
@@ -365,7 +366,112 @@ Format spécial : chaque bloc contient un ou plusieurs champs `[X]` où l'utilis
 
 ---
 
+## 8. Mode Composer (assistant de rédaction, ex-Puzzle — D26)
+
+### 8.1 Promesse
+Outil **productif** : un coach (ou un utilisateur seul) compose un objectif réel pour son équipe, l'outil l'accompagne brique par brique, et il en repart avec un objectif rédigé qu'il peut **copier** ou **exporter en Markdown**.
+
+Différence avec l'ancien Puzzle (D14 : pédagogie de l'erreur) : on n'apprend plus par l'erreur dans le Composer, **on aide à produire**. La pédagogie de l'erreur vit ailleurs (Défi QCM, contre-exemples annotés, fiches théoriques).
+
+### 8.2 Mécanique
+- **Squelette de phrase à trous** sur le plateau central : 6 zones (4 obligatoires `intention/mesure/cible/horizon` + 2 bonus `contexte/liaison`), chacune accepte **une seule carte** (option A validée : cohérent avec l'anti-pattern composite).
+- **Main de cartes** en bas : onglets par catégorie, cartes cliquables qui se posent dans le slot correspondant.
+- **Cartes-pièges (distractor) filtrées** hors de la main du Composer (cohérence D26 : un assistant ne propose pas des choix à éviter).
+- **Garde-fous textuels** quand l'utilisateur compose une combinaison fautive (ex. liaison sans horizon → signalisation visuelle).
+- **Champ « Pour quelle équipe ? »** en tête (optionnel) : apparaît dans l'export Markdown comme contexte.
+- **Cartes personnalisables** dans Contexte (« pour l'équipe [X] ») et Échéance (« le [X] ») : l'utilisateur tape son propre vocabulaire.
+
+### 8.3 Critères d'évaluation
+**Aucun score affiché** dans ce mode (D26). Le moteur d'évaluation reste utilisé en silence pour l'export (toMarkdown) mais ne produit pas de verdict normatif visible.
+
+---
+
+## 9. Mode Analyser un objectif (page dédiée, D27)
+
+### 9.1 Promesse
+Utilitaire : « Tu as déjà rédigé un objectif. Colle-le, je te dis en 30 secondes ce qui tient et ce qui pèche. »
+
+Distinct du Composer (qui produit) et du S'entraîner (qui apprend) : c'est un **outil de diagnostic libre**, page dédiée dans l'onglet Pratique du ModeSelector.
+
+### 9.2 Doctrine d'analyse textuelle honnête
+Avant D27, l'analyse passait des valeurs par défaut bidon au moteur (confidence=80, hasExplicitDeadline=true, isUnderTeamInfluence=true) → produisait des faux positifs (« Borné ✓ » sans échéance, « Confiance 80% » sans saisie). **Faux diagnostic, pas un outil fiable.**
+
+Refondu : l'analyseur **n'évalue que ce qui est détectable dans le texte**. Six critères textuels :
+1. **Verbe d'attaque** : détection des verbes d'output en première position
+2. **Seuil chiffré** : présence d'au moins un chiffre
+3. **Échéance bornée** : reconnaissance de patterns (« d'ici », « fin du », « sprint X », « PI Review », mois nommé, Q1-Q4…)
+4. **Échéance floue** : détection des patterns vagues (« bientôt », « dès que possible »…)
+5. **Mots flous** : extraction des mots-listes (cf. heuristics.fr.ts), avec regex compatible caractères accentués
+6. **Bénéficiaire** : détection de « pour les/la/des/nos/notre/tous… X »
+7. **Abréviations familières** : détection des raccourcis de jargon (prod, dev, perf, ci, qa, ux, ops, po, rte, etc.) à expliciter
+
+### 9.3 Affichage
+- **Encart Note** en tête : avoue ce que l'outil ne peut pas voir (ambition, calibrage, influence d'équipe).
+- **Verdict synthétique** en une phrase.
+- **« N choses à corriger »** : critères ratés priorisés.
+- **« N choses qui tiennent »** : critères validés.
+- **Pistes textuelles** (variante B validée) : pour chaque critère raté, suggestions tirées du corpus puzzle.
+- **Raccourci clavier** : Entrée dans le textarea lance l'analyse (Maj+Entrée pour nouvelle ligne).
+
+### 9.4 Limites assumées
+Le mode Analyser n'évalue **pas** :
+- L'ambition / le calibrage (demande une confidence saisie)
+- L'influence réelle de l'équipe sur le résultat (jugement contextuel)
+- La pertinence stratégique de l'objectif (relève du PO/PM)
+
+Cette transparence est rendue explicite via l'encart Note.
+
+---
+
+## 10. Mode S'entraîner = menu de mini-exercices par partie d'objectif (D28)
+
+### 10.1 Promesse
+Plus de parcours empilé « échauffement + inspiration + écriture libre ». À la place, un **menu de 5 mini-exercices**, chacun adressant une partie de l'objectif. L'utilisateur choisit la partie qu'il veut renforcer.
+
+### 10.2 Les 5 mini-exercices Sprint (MVP V1)
+
+| Partie | Format | Mécanique |
+|---|---|---|
+| **Verbe** | Binaire output / outcome | Pattern Warmup existant. Corpus révisé par expert linguiste : « Mettre en place » → « Installer », « Diviser » → « Faire passer », « Faire entrer » → « Convertir » (3 substitutions pour clarté). |
+| **Indicateur** | QCM 1 parmi 3 | Distinguer indicateur opérationnel d'un concept-parapluie flou (« la performance » vs « le temps moyen de réponse de l'API »). 10 cas validés V3 par panel pluridisciplinaire. Position des bonnes réponses équilibrée a=4, b=3, c=3. |
+| **Variation chiffrée** | Grille à sélection multiple | Cocher les fragments précis (« de 50 à 30 ») et laisser les vagues (« significativement »). 8 fragments. |
+| **Échéance** | Grille à sélection multiple | Cocher les fragments bornés (« d'ici fin du sprint », « avant le 30 septembre ») et laisser les flous. 8 fragments. |
+| **Contexte** | QCM 1 parmi 4 | « Qui est le vrai bénéficiaire ? » Pour chaque objectif présenté, identifier la personne dont la vie change. 8 cas, vocabulaire francophone, sans acronymes ni anglicismes. |
+
+### 10.3 Mécaniques transverses
+- **Composant générique `Drill`** (src/ui/components/Drill.tsx) qui rend `QcmRunner` ou `GridRunner` selon le `kind` du corpus.
+- **Pattern intro → playing → done** inspiré du Warmup.
+- **Randomisation** à chaque lancement (Fisher-Yates non destructif).
+- **Score live** dans le kicker.
+- **Bilan final** avec verdict ("Solide / Bonne base / À retravailler").
+- **Suggestion d'autres exercices** à la fin (`NextDrillsList`) pour proposer une suite naturelle.
+- **Clé React `key={activeDrill}`** sur le composant Drill : force le remontage entre exercices pour éviter la persistance de state (bug fixé).
+
+### 10.4 Corpus — règle de validation
+Tout corpus mini-exercice est validé par Lætitia avant intégration. Méthode de production :
+1. Première version produite par l'assistant
+2. Révision V2 par sous-agent expert (linguiste-pédagogue ou Lean-Agile francophone)
+3. Révision V3 par panel pluridisciplinaire (devs, PO, PM, DevSecOps, data)
+4. Équilibrage final demandé par Lætitia (positions de bonne réponse)
+5. Tests d'intégrité automatiques (cf. `src/content/drills/corpus-integrity.test.ts`)
+
+Le fichier `proposition-corpus-mini-exercices.md` à la racine sert de support de validation entre sessions.
+
+### 10.5 V1 et au-delà
+**V1 MVP : Sprint uniquement**. PI et OKR équipe à étendre dans une session ultérieure (réplique du pattern + production des 4 corpus × 2 modules avec révision experte + validation Lætitia).
+
+---
+
 ## 7. Journal de validation métier
+
+### 2026-06-27 — Refonte doctrinale Composer + Analyser + Drills (D26 / D27 / D28)
+- **D26** : le Puzzle devient « Composer », assistant de rédaction collectif. D14 (pédagogie de l'erreur) ne s'y applique plus.
+- **D27** : nouveau mode « Analyser un objectif » en page dédiée. Diagnostic textuel honnête (n'évalue que ce qui est dans le texte, avoue ce qu'il ne peut pas voir).
+- **D28** : S'entraîner refondu en menu de 5 mini-exercices par partie d'objectif. Verbe, Indicateur, Variation, Échéance, Contexte.
+- Corpus V3 validé en bloc par Lætitia après deux révisions expertes (linguiste-pédagogue + panel pluridisciplinaire devs/PO/PM/DevSecOps/data).
+- Substitutions warmup output/outcome appliquées : Mettre en place → Installer, Diviser → Faire passer, Faire entrer → Convertir.
+- Composer enrichi : cartes Contexte francophones (équipes internes arrimées, consommateurs internes, clients finaux) + cartes personnalisables Contexte et Échéance.
+- Sections 8, 9, 10 ajoutées à DOMAINE.md.
 
 ### 2026-06-21 — Module OKR refondu (bi-niveau, chaîne d'alignement)
 Section 4 complètement réécrite après recherche doctrinale croisée (Morisseau, Lamorte, Niven).

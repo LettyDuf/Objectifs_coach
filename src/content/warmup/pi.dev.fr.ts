@@ -2,7 +2,7 @@
  * Corpus d'échauffement output/outcome — PI × dev × FR.
  *
  * 10 verbes purs (niveau 1) + 10 mini-objectifs PI (niveau 2).
- * Vocabulaire adapté au niveau train SAFe : Business Owner, PI Review,
+ * Vocabulaire adapté au niveau train SAFe : Business Owner, revue de PI,
  * cibles business à 8-12 semaines.
  *
  * L'ordre de présentation est randomisé à chaque lancement (composant Warmup).
@@ -30,7 +30,7 @@ export const PI_DEV_WARMUP_FR: WarmupCase[] = [
     prompt: "Faire passer",
     expected: "outcome",
     explanation:
-      "« Faire passer de X à Y » force à nommer une bascule mesurable. Outcome typique des PI Objectives.",
+      "« Faire passer de X à Y » force à nommer une bascule mesurable. Outcome typique des objectifs de PI.",
   },
   {
     id: "warmup.pi.l1.migrer",
@@ -66,16 +66,16 @@ export const PI_DEV_WARMUP_FR: WarmupCase[] = [
     prompt: "Permettre à",
     expected: "outcome",
     explanation:
-      "« Permettre à [segment de clients] de [faire X] » formule un PI Objective côté valeur métier. Outcome.",
+      "« Permettre à [segment de clients] de [faire X] » formule un objectif de PI côté valeur métier. Outcome.",
   },
   {
-    id: "warmup.pi.l1.mettre-en-place",
+    id: "warmup.pi.l1.installer",
     level: 1,
     kind: "verb",
-    prompt: "Mettre en place",
+    prompt: "Installer",
     expected: "output",
     explanation:
-      "Décrit l'installation d'un dispositif (process, système, organisation). Le dispositif est un moyen, le PI Objective doit nommer son effet métier.",
+      "Décrit l'installation d'un dispositif (process, système, organisation). Le dispositif est un moyen, l'objectif de PI doit nommer son effet métier.",
   },
   {
     id: "warmup.pi.l1.convertir",
@@ -93,7 +93,7 @@ export const PI_DEV_WARMUP_FR: WarmupCase[] = [
     prompt: "Stabiliser",
     expected: "output",
     explanation:
-      "Action technique sans seuil ni mesure du bénéficiaire. Pour passer en outcome, il faudrait nommer la métrique (MTTR, taux d'incidents…) et l'avant/après.",
+      "Action technique sans seuil ni mesure du bénéficiaire. Pour passer en outcome, il faudrait nommer la métrique (TMR, taux d'incidents…) et l'avant/après.",
   },
   {
     id: "warmup.pi.l1.reduire",
@@ -102,7 +102,7 @@ export const PI_DEV_WARMUP_FR: WarmupCase[] = [
     prompt: "Réduire",
     expected: "outcome",
     explanation:
-      "« Réduire X de A à B » porte mécaniquement la mesure. Verbe outcome qui structure les PI Objectives de fiabilité, performance, churn…",
+      "« Réduire X de A à B » porte mécaniquement la mesure. Verbe outcome qui structure les objectifs de PI de fiabilité, performance, churn…",
   },
 
   // ============================================================
@@ -124,13 +124,13 @@ export const PI_DEV_WARMUP_FR: WarmupCase[] = [
     prompt: "Permettre à 80 % de nos clients entreprise d'activer le SSO en self-service d'ici la fin du PI.",
     expected: "outcome",
     explanation:
-      "Bénéficiaire (clients entreprise), seuil (80 %), borne (fin de PI). Tous les ingrédients d'un outcome de PI committed.",
+      "Bénéficiaire (clients entreprise), seuil (80 %), borne (fin de PI). Tous les ingrédients d'un outcome de PI engagé.",
   },
   {
     id: "warmup.pi.l2.churn-premium",
     level: 2,
     kind: "objective",
-    prompt: "Faire passer le taux de churn mensuel des comptes premium de 4 % à 2,5 % avant la PI Review.",
+    prompt: "Faire passer le taux de churn mensuel des comptes premium de 4 % à 2,5 % avant la revue de PI.",
     expected: "outcome",
     explanation:
       "Indicateur clair, avant/après, échéance. Métrique business observable à la revue.",
@@ -145,10 +145,10 @@ export const PI_DEV_WARMUP_FR: WarmupCase[] = [
       "« Stabiliser » sans seuil ni mesure. « Arrivée des nouveaux clients » donne un horizon mais aucune mesure du changement. Output déguisé.",
   },
   {
-    id: "warmup.pi.l2.nps-onboarding",
+    id: "warmup.pi.l2.nps-intégration",
     level: 2,
     kind: "objective",
-    prompt: "Augmenter le NPS du parcours d'onboarding de 32 à 50 sur le dernier mois du PI.",
+    prompt: "Augmenter le NPS du parcours d'intégration de 32 à 50 sur le dernier mois du PI.",
     expected: "outcome",
     explanation:
       "Métrique d'expérience (NPS), avant/après, fenêtre temporelle précise. Le verbe « augmenter » devient outcome grâce au contexte.",
@@ -160,22 +160,22 @@ export const PI_DEV_WARMUP_FR: WarmupCase[] = [
     prompt: "Refactorer l'architecture du tunnel d'achat pour préparer la v3.",
     expected: "output",
     explanation:
-      "Refactor + préparation. Aucune cible métier nommée. Le Business Owner ne saura pas à la PI Review si l'objectif est atteint.",
+      "Refactor + préparation. Aucune cible métier nommée. Le Business Owner ne saura pas à la revue de PI si l'objectif est atteint.",
   },
   {
     id: "warmup.pi.l2.contrats-enterprise",
     level: 2,
     kind: "objective",
-    prompt: "Atteindre 100 contrats signés sur la nouvelle offre Enterprise d'ici la PI Review.",
+    prompt: "Atteindre 100 contrats signés sur la nouvelle offre Enterprise d'ici la revue de PI.",
     expected: "outcome",
     explanation:
-      "Seuil chiffré (100), métrique business (contrats signés), fenêtre (PI Review). Outcome typique d'un train commercial.",
+      "Seuil chiffré (100), métrique business (contrats signés), fenêtre (revue de PI). Outcome typique d'un train commercial.",
   },
   {
     id: "warmup.pi.l2.facturation",
     level: 2,
     kind: "objective",
-    prompt: "Mettre en place le nouveau système de facturation d'ici la PI Review.",
+    prompt: "Mettre en place le nouveau système de facturation d'ici la revue de PI.",
     expected: "output",
     explanation:
       "Le système mis en place est un livrable interne. Il faudrait nommer l'effet attendu (factures émises plus vite, erreurs réduites, équipes finance autonomes…) pour passer en outcome.",

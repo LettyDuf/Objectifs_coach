@@ -2,7 +2,7 @@
  * Corpus d'échauffement output/outcome — OKR équipe × dev × FR.
  *
  * 10 verbes purs (niveau 1) + 10 mini-KR à classer (niveau 2).
- * L'enjeu pédagogique pour OKR équipe : distinguer un Key Result (changement
+ * L'enjeu pédagogique pour OKR équipe : distinguer un Résultat clé (changement
  * mesurable à atteindre) d'un projet/livrable déguisé, et reconnaître le piège
  * de la health metric (« maintenir au-dessus de… »).
  *
@@ -31,7 +31,7 @@ export const OKR_EQUIPE_DEV_WARMUP_FR: WarmupCase[] = [
     prompt: "Livrer",
     expected: "output",
     explanation:
-      "« Livrer » décrit ce qu'on produit, pas le changement obtenu. Si un KR commence par « Livrer », c'est un KR-projet.",
+      "« Livrer » décrit ce qu'on produit, pas le changement obtenu. Si un KR commence par « Livrer », c'est un Résultat clé projet.",
   },
   {
     id: "warmup.okr.l1.faire-passer",
@@ -76,13 +76,13 @@ export const OKR_EQUIPE_DEV_WARMUP_FR: WarmupCase[] = [
     prompt: "Maintenir",
     expected: "output",
     explanation:
-      "Piège classique en OKR : « maintenir au-dessus de N » décrit un état à préserver, pas un changement à atteindre. C'est une health metric — pas un Key Result.",
+      "Piège classique en OKR : « maintenir au-dessus de N » décrit un état à préserver, pas un changement à atteindre. C'est une health metric — pas un Résultat clé.",
   },
   {
-    id: "warmup.okr.l1.mettre-en-place",
+    id: "warmup.okr.l1.installer",
     level: 1,
     kind: "verb",
-    prompt: "Mettre en place",
+    prompt: "Installer",
     expected: "output",
     explanation:
       "Décrit l'installation d'un dispositif. Le dispositif est un moyen pour faire bouger une métrique — c'est cette dernière qui est un KR.",
@@ -116,7 +116,7 @@ export const OKR_EQUIPE_DEV_WARMUP_FR: WarmupCase[] = [
     prompt: "Migrer 100 % des services vers Kubernetes.",
     expected: "output",
     explanation:
-      "Une migration est un projet, pas un Key Result. Reformuler en outcome : qu'est-ce que cette migration va changer ? (temps de déploiement, fiabilité, coût…)",
+      "Une migration est un projet, pas un Résultat clé. Reformuler en outcome : qu'est-ce que cette migration va changer ? (temps de déploiement, fiabilité, coût…)",
   },
   {
     id: "warmup.okr.l2.nps",
@@ -197,6 +197,6 @@ export const OKR_EQUIPE_DEV_WARMUP_FR: WarmupCase[] = [
     prompt: "Documenter complètement notre API publique d'ici la fin du trimestre.",
     expected: "output",
     explanation:
-      "Activité de production. « Complètement » n'est pas mesurable côté changement constaté. Le vrai KR est l'effet attendu : développeurs autonomes, tickets divisés, temps d'onboarding raccourci.",
+      "Activité de production. « Complètement » n'est pas mesurable côté changement constaté. Le vrai KR est l'effet attendu : développeurs autonomes, tickets divisés, temps d'intégration raccourci.",
   },
 ];

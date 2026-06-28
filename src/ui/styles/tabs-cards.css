@@ -1,0 +1,361 @@
+/* tabs-cards.css — auto-extrait depuis components.css le 2026-06-27 */
+
+/* ============================================================
+ * Grille de cartes
+ * ============================================================ */
+
+/* Variante 3 colonnes fixes — TypeSelector, onglet Pratique et ThemeGrid.
+   Audit UX 2026-06-22 : `align-items: start` (pas stretch) pour que la hauteur
+   suive le contenu et non l'inverse. Un `min-height` sur `.card-button` garantit
+   un plancher visuel sans créer de vide gratuit. */
+.card-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-5);
+  margin-top: var(--space-5);
+  align-items: start;
+}
+
+/* Variante 2x2 — ModeSelector */
+.card-grid-2x2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-5);
+  margin-top: var(--space-5);
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .card-grid-3,
+  .card-grid-2x2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card-button {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  padding: var(--space-4) var(--space-5);   /* vertical resserré (audit UX) */
+  min-height: 240px;                         /* plancher, plus de plafond fantôme */
+  gap: var(--space-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);           /* léger durcissement éditorial */
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+  transition: border-color 120ms, box-shadow 200ms, transform 200ms;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-button:hover:not(:disabled),
+.card-button:focus-visible {
+  border-color: var(--color-text);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+/* Liseré accent en haut au survol */
+.card-button::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: var(--color-accent);
+  transform: translateY(-100%);
+  transition: transform 200ms;
+}
+
+.card-button:hover:not(:disabled)::before,
+.card-button:focus-visible::before {
+  transform: translateY(0);
+}
+
+/* Picto dans cercle accent atténué (56 px) */
+.card-button__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;            /* audit UX : 56 → 48, densité gagnée */
+  height: 48px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--color-accent) 10%, transparent);
+  color: var(--color-accent);
+  margin-bottom: var(--space-3);
+}
+
+.card-button__label {
+  font-family: var(--font-serif);
+  font-size: 19px;                      /* audit UX : 21 → 19, rapprocher du corps */
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  margin: 0 0 6px 0;
+}
+
+.card-button__desc {
+  font-size: var(--font-size-sm);       /* audit UX : 17 → 15 */
+  color: var(--color-text-muted);
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* CTA explicite en bas de card. `margin-top: auto` aligne le CTA sur la base
+   visuelle même quand les descriptions varient légèrement, sans gonfler la
+   hauteur de la card grâce au `min-height` fixe en amont. */
+.card-button__cta {
+  margin-top: auto;
+  padding-top: var(--space-3);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  transition: transform 200ms;
+}
+
+.card-button:hover:not(:disabled) .card-button__cta,
+.card-button:focus-visible .card-button__cta {
+  transform: translateX(2px);
+}
+
+/* Second accent teal pour le groupe « Pour s'amuser » — casse la monochromie lavande */
+.card-button--play .card-button__icon {
+  background: color-mix(in srgb, var(--color-accent-2) 12%, transparent);
+  color: var(--color-accent-2);
+}
+
+.card-button--play .card-button__cta {
+  color: var(--color-accent-2);
+}
+
+.card-button--play::before {
+  background: var(--color-accent-2);
+}
+
+/* Variantes Théorie / Pratique (D21) — couleur sémantique forte. */
+.card-button--theory .card-button__icon {
+  background: var(--color-theory-bg);
+  color: var(--color-theory);
+}
+.card-button--theory .card-button__cta {
+  color: var(--color-theory);
+}
+.card-button--theory::before {
+  background: var(--color-theory);
+}
+.card-button--theory .card-button__recommended {
+  background: var(--color-theory-bg);
+  color: var(--color-theory);
+}
+
+.card-button--practice .card-button__icon {
+  background: var(--color-practice-bg);
+  color: var(--color-practice);
+}
+.card-button--practice .card-button__cta {
+  color: var(--color-practice);
+}
+.card-button--practice::before {
+  background: var(--color-practice);
+}
+
+.card-button__badge {
+  align-self: flex-end;
+  margin-top: var(--space-3);
+  font-size: var(--font-size-sm);
+  background: var(--color-neutral-bg);
+  color: var(--color-neutral);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-sm);
+}
+
+/* Badge « Conseillé pour démarrer » placé dans le flux de la card (pas absolute) */
+.card-button__recommended {
+  /* Fix décalage 2026-06-22 : badge sorti du flux normal pour ne pas pousser le
+     picto et le titre vers le bas dans la card où il apparaît. Toutes les cards
+     démarrent au même niveau vertical (picto en haut). */
+  position: absolute;
+  top: var(--space-3);
+  right: var(--space-3);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-accent);
+  background: color-mix(in srgb, var(--color-accent) 12%, transparent);
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  z-index: 1;
+}
+
+/* Levier E : groupes de modes */
+.modes-group {
+  margin-top: var(--space-6);
+}
+
+.modes-group:first-of-type {
+  margin-top: var(--space-3);
+}
+
+.modes-group__title {
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+  font-weight: var(--font-weight-semibold);
+  margin: 0 0 var(--space-3) 0;
+}
+
+/* Levier E : section "Pas encore prêt" */
+.explore-banner {
+  margin-top: var(--space-4);
+  padding: var(--space-3) var(--space-5);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  min-height: 0;
+}
+
+.explore-banner__text { flex: 1; min-width: 240px; }
+.explore-banner__title {
+  font-family: var(--font-serif);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  margin: 0 0 var(--space-1);
+}
+.explore-banner__desc {
+  margin: 0;
+  font-size: var(--font-size-base);
+  color: var(--color-text-muted);
+}
+
+/* Levier F : bannière "Bientôt : OKR" plus discrète */
+.coming-soon-banner {
+  margin-top: var(--space-5);
+  padding: var(--space-4) var(--space-5);
+  background: transparent;
+  border: 1px dashed var(--color-border-strong);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.coming-soon-banner__main {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+.coming-soon-banner__icon {
+  display: inline-flex;
+  color: var(--color-text-muted);
+}
+.coming-soon-banner__label {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+.coming-soon-banner__label strong {
+  color: var(--color-text);
+  font-weight: var(--font-weight-semibold);
+}
+.coming-soon-banner__tag {
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-muted);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* ============================================================
+ * Pratique : hub progressif en 3 étapes (D21)
+ * Étapes 1 et 2 en accordéon (warmup, exemples annotés).
+ * Étape 3 = formulaire d'écriture, toujours visible et encadré.
+ * ============================================================ */
+
+.practice-steps {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.practice-step {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-alt);
+  overflow: hidden;
+}
+
+.practice-step__summary {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  cursor: pointer;
+  list-style: none;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+}
+
+.practice-step__summary::-webkit-details-marker {
+  display: none;
+}
+
+.practice-step__summary::after {
+  content: "›";
+  margin-left: auto;
+  font-size: var(--font-size-md);
+  color: var(--color-text-muted);
+  transition: transform 0.12s ease;
+}
+
+.practice-step[open] > .practice-step__summary::after {
+  transform: rotate(90deg);
+}
+
+.practice-step__num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-pill);
+  background: var(--color-practice-bg);
+  color: var(--color-practice);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-sm);
+  font-family: var(--font-mono);
+  flex-shrink: 0;
+}
+
+.practice-step__title {
+  font-family: var(--font-serif);
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+}
+
+.practice-step__hint {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  font-style: italic;
+  font-weight: var(--font-weight-regular);
+}
+
+.practice-step__body {
+  padding: var(--space-3) var(--space-4) var(--space-4);
+  background: transparent;             /* fix triple encadrement : laisser le contenu
+                                          (warmup, exemples) porter son propre style */
+  border-top: 1px solid var(--color-border);
+}
+

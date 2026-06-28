@@ -30,6 +30,10 @@ interface Props {
   cases: WarmupCase[];
   /** Callback optionnel après la complétion (pour stats / dismissal). */
   onComplete?: (stats: { total: number; correct: number }) => void;
+  /** Démarre directement en mode "playing" (saute l'écran intro avec l'encart règle). */
+  skipIntro?: boolean;
+  /** Contenu additionnel rendu après le bouton « Recommencer » dans l'état done. */
+  endSlot?: import("react").ReactNode;
 }
 
 interface Answer {
@@ -40,7 +44,7 @@ interface Answer {
 
 type Stage = "intro" | "playing" | "level-transition" | "done";
 
-export function Warmup({ cases, onComplete }: Props) {
+export function Warmup({ cases, onComplete, skipIntro = false, endSlot }: Props) {
   // Groupement par niveau — mémorisé pour stabilité de référence côté init.
   const allLevel1 = useMemo(() => cases.filter((c) => c.level === 1), [cases]);
   const allLevel2 = useMemo(() => cases.filter((c) => c.level === 2), [cases]);
@@ -50,7 +54,7 @@ export function Warmup({ cases, onComplete }: Props) {
   const [level1, setLevel1] = useState<WarmupCase[]>(() => shuffle(allLevel1));
   const [level2, setLevel2] = useState<WarmupCase[]>(() => shuffle(allLevel2));
 
-  const [stage, setStage] = useState<Stage>("intro");
+  const [stage, setStage] = useState<Stage>(skipIntro ? "playing" : "intro");
   const [currentLevel, setCurrentLevel] = useState<1 | 2>(1);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState<Answer[]>([]);
@@ -123,9 +127,19 @@ export function Warmup({ cases, onComplete }: Props) {
         <h3 id="warmup-intro-title" className="warmup__title">
           Output ou outcome ? Repère la différence.
         </h3>
+        <div className="warmup__rule" role="note">
+          <p>
+            <strong>Si le verbe décrit ce que tu fais</strong>, c'est un <em>output</em>.
+            <br />
+            <strong>S'il décrit ce qui change après</strong>, c'est un <em>outcome</em>.
+          </p>
+          <p className="warmup__rule-aside">
+            Un bon objectif vise un <em>outcome</em> : un effet mesurable côté utilisateur ou métier.
+          </p>
+        </div>
         <p className="warmup__lede">
           {level1.length} verbes à classer, puis {level2.length} mini-objectifs où le contexte tranche.
-          C'est la distinction fondatrice pour rédiger un bon objectif. L'ordre change à chaque lancement.
+          L'ordre change à chaque lancement.
         </p>
         <div className="warmup__actions">
           <button className="btn btn--primary" onClick={() => setStage("playing")}>
@@ -176,16 +190,17 @@ export function Warmup({ cases, onComplete }: Props) {
         </h3>
         <p className="warmup__lede">
           {ratio >= 0.9
-            ? "Tu maîtrises la distinction. Les fiches ci-dessous vont approfondir."
+            ? "Tu maîtrises la distinction. Tu peux passer à un autre exercice ou recommencer pour aller plus vite."
             : ratio >= 0.7
-              ? "Tu connais l'essentiel. Les fiches ci-dessous vont consolider les cas ambigus."
-              : "C'est l'occasion idéale de lire les fiches ci-dessous. Reviens refaire l'échauffement après."}
+              ? "Tu connais l'essentiel. Recommence quelques fois pour consolider les cas ambigus, ou explore la Théorie pour creuser."
+              : "Reprends doucement : recommence pour t'imprégner du pattern, ou va lire les fiches dans l'onglet Théorie."}
         </p>
         <div className="warmup__actions">
           <button className="btn" onClick={reset}>
             Recommencer
           </button>
         </div>
+        {endSlot}
       </section>
     );
   }

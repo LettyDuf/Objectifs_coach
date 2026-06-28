@@ -32,7 +32,7 @@ const CHOICES: LevelChoice[] = [
     label: "OKR équipe",
     cadence: "Trimestriel · 90 jours",
     desc:
-      "L'équipe se fixe un Objective qualitatif et 3 à 5 Key Results mesurables pour le trimestre. Co-construit, calibré ambitieux.",
+      "L'équipe se fixe un Objectif qualitatif et 3 à 5 Résultats clés mesurables pour le trimestre. Co-construit, calibré ambitieux.",
     available: true,
     icon: "okr",
   },
@@ -41,7 +41,7 @@ const CHOICES: LevelChoice[] = [
     label: "OKR entreprise",
     cadence: "Annuel · révision trimestrielle",
     desc:
-      "Le comité de direction se fixe ses Objectives stratégiques pour l'année. Animé par un coach OKR.",
+      "Le comité de direction se fixe ses Objectifs stratégiques pour l'année. Animé par un coach OKR.",
     available: false,
     icon: "okr",
   },
