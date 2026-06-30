@@ -1,0 +1,79 @@
+/* skeleton.css — encart « le squelette d'un objectif » (D31).
+   Affiché en tête de l'onglet Pratique du ModeSelector. Volontairement
+   dépouillé : 5 rectangles outline colorés portant chacun un libellé,
+   plus un lien discret vers la fiche théorique fondamentale. */
+
+.skeleton-overview {
+  margin: 0 0 var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-surface);
+  border: 0.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.skeleton-overview__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.skeleton-overview__title {
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+  font-weight: var(--font-weight-semibold);
+  margin: 0;
+}
+
+.skeleton-overview__link {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  font-size: var(--font-size-sm);
+  color: var(--color-accent);
+  cursor: pointer;
+  transition: opacity 120ms ease;
+}
+
+.skeleton-overview__link:hover,
+.skeleton-overview__link:focus-visible {
+  opacity: 0.75;
+  text-decoration: underline;
+}
+
+.skeleton-overview__row {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--space-2);
+}
+
+.skeleton-overview__brick {
+  padding: var(--space-3) var(--space-3);
+  border: 1.5px solid;
+  border-radius: var(--radius-md);
+  background: transparent;
+  font-family: var(--font-serif);
+  font-size: var(--font-size-base);
+  text-align: center;
+  line-height: 1.25;
+  /* Hauteur plancher pour qu'un terme à 2 lignes (« Variation chiffrée »)
+     n'écrase pas la régularité visuelle de la rangée. */
+  min-height: 3.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 720px) {
+  .skeleton-overview__row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

@@ -13,6 +13,7 @@
 import { useMemo, useState } from "react";
 import { Icon, type IconName } from "../components/Icon";
 import { ThemeGrid } from "../components/ThemeGrid";
+import { SkeletonOverview } from "../components/SkeletonOverview";
 import type { ObjectiveType } from "../../domain/types";
 import { Screen } from "../layout/Screen";
 import { createContentRepository } from "../../content/repository";
@@ -144,6 +145,10 @@ export function ModeSelector({ typeLabel, objectiveType, onSelectTheme, onSelect
                 aria-labelledby="mode-tab-practice"
                 className="mode-tabs__panel mode-tabs__panel--practice"
               >
+                <SkeletonOverview
+                  objectiveType={objectiveType}
+                  onOpenTheory={onSelectTheme}
+                />
                 <div className="card-grid-3">
                   {practiceModes.map((m) => (
                     <ModeCard key={m.mode} choice={m} onSelect={onSelect} />
