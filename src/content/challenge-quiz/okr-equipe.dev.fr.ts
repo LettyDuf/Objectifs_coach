@@ -34,8 +34,6 @@ export const OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
     audience: "dev",
     teamLabel: "Équipe Observabilité",
     iconName: "okr",
-    context:
-      "6 devs, 1 Product Manager. L'équipe maintient les outils internes d'observabilité utilisés par les autres équipes data. Cycle OKR trimestriel.",
     metrics: [
       { label: "Équipes data actives sur le module pipeline / mois", value: "8" },
       { label: "NPS dev du module pipeline (dernier sondage)", value: "28" },
@@ -85,8 +83,6 @@ export const OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
     audience: "dev",
     teamLabel: "Équipe Plateforme API",
     iconName: "wrench",
-    context:
-      "5 devs, 1 Product Manager. L'équipe fournit les APIs internes consommées par les équipes produit de l'entreprise. Cycle OKR trimestriel.",
     metrics: [
       { label: "Équipes consommatrices internes", value: "12" },
       { label: "CSAT moyen des équipes consommatrices", value: "3,2 / 5" },
@@ -136,8 +132,6 @@ export const OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
     audience: "dev",
     teamLabel: "Équipe Paiement",
     iconName: "target",
-    context:
-      "8 devs, 1 Product Manager, 1 SRE. L'équipe maintient et fait évoluer le système de paiement d'une plateforme e-commerce. Cycle OKR trimestriel.",
     metrics: [
       { label: "Taux de réussite des paiements", value: "96,2 %" },
       { label: "Temps moyen de détection d'un incident", value: "15 min" },
@@ -187,8 +181,6 @@ export const OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
     audience: "dev",
     teamLabel: "Équipe Qualité Logicielle",
     iconName: "challenge",
-    context:
-      "4 devs, 1 référent technique. L'équipe transverse outille la qualité logicielle pour toutes les équipes produit. Cycle OKR trimestriel.",
     metrics: [
       { label: "Couverture de tests automatisés (moyenne entreprise)", value: "78 %" },
       { label: "Bugs critiques en prod / trimestre précédent", value: "23" },
@@ -239,8 +231,6 @@ export const OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
     audience: "dev",
     teamLabel: "Équipe Performance",
     iconName: "practice",
-    context:
-      "5 devs, 1 Product Manager. L'équipe travaille sur la performance front-end de l'application principale. Cycle OKR trimestriel.",
     metrics: [
       { label: "LCP médian (Largest Contentful Paint)", value: "3,8 s" },
       { label: "INP médian (Interaction to Next Paint)", value: "320 ms" },
@@ -291,8 +281,6 @@ export const OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
     audience: "dev",
     teamLabel: "Équipe Intégration Dev",
     iconName: "learn",
-    context:
-      "3 devs, 1 Developer Advocate. L'équipe construit la documentation et les outils d'intégration pour les développeurs externes qui consomment l'API publique. Cycle OKR trimestriel.",
     metrics: [
       { label: "Temps moyen avant 1er appel API réussi (« time to hello world »)", value: "4 h" },
       { label: "Nouveaux développeurs intégrés / trimestre", value: "65" },
@@ -447,8 +435,6 @@ export const OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
     audience: "dev",
     teamLabel: "Équipe Plateforme API",
     iconName: "wrench",
-    context:
-      "4 devs, 1 référent technique. L'équipe fournit l'API consommée par les autres équipes produit. L'Objectif trimestriel est posé. L'équipe rédige les KR.",
     metrics: [
       { label: "Taux de réussite des appels API (actuel)", value: "99,2 %" },
       { label: "p95 latence API", value: "180 ms" },

@@ -38,8 +38,14 @@ export interface ChallengeQuizCase {
   teamLabel: string;
   /** Pictogramme. */
   iconName?: string;
-  /** Contexte narratif court et neutre (équipe + produit + situation). */
-  context: string;
+  /**
+   * Contexte narratif court et neutre (équipe + produit + situation).
+   * Optionnel : certains cas n'ont aucun fait spécifique repris par une
+   * explication (le raisonnement tient entièrement sur les métriques) — dans
+   * ce cas, pas de contexte plutôt qu'une phrase décorative qui n'aide pas la
+   * décision (audit du 2026-07-04, voir DECISIONS.md).
+   */
+  context?: string;
   /** Métriques d'usage actuelles, sans cible imposée. */
   metrics?: ContextMetric[];
   /**

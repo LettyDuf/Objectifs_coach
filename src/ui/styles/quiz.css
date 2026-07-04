@@ -809,6 +809,15 @@
   margin: var(--space-2) 0 0;
 }
 
+/* L'objectif proposé est ce que l'utilisateur doit juger : il doit dominer
+   visuellement le reste du bloc Contexte (métriques, contexte narratif),
+   pas se fondre au même niveau qu'eux (retour Lætitia). */
+.quiz-context .quiz-context__quote--proposed {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.4;
+}
+
 .quiz-options__hint {
   margin: var(--space-2) 0 var(--space-3) !important;
 }

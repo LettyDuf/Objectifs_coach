@@ -17,8 +17,6 @@ export const SPRINT_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
     audience: "dev",
     teamLabel: "Équipe Checkout",
     iconName: "wrench",
-    context:
-      "5 devs, 1 Product Owner. L'équipe travaille sur le module de paiement d'une plateforme SaaS B2B. Sprint dédié à la maintenance après une vague d'incidents en production.",
     metrics: [
       { label: "Incidents production / semaine (module commande)", value: "14" },
       { label: "Tickets support escaladés vers la dev / semaine", value: "8" },
@@ -63,8 +61,6 @@ export const SPRINT_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
     audience: "dev",
     teamLabel: "Équipe Intégration",
     iconName: "practice",
-    context:
-      "7 devs, 1 Product Owner. L'équipe travaille sur le parcours d'inscription d'une plateforme B2C en croissance. Sprint fonctionnalité.",
     metrics: [
       { label: "Taux d'activation des nouveaux comptes à J+30", value: "42 %" },
       { label: "Temps moyen pour compléter l'inscription", value: "9 min" },
@@ -247,8 +243,6 @@ export const SPRINT_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
     audience: "dev",
     teamLabel: "Équipe Data",
     iconName: "wrench",
-    context:
-      "4 devs, 1 SRE. L'équipe maintient les pipelines ETL nocturnes qui alimentent les tableaux de bord de l'équipe Business. Une astreinte hebdomadaire est tenue par les devs à tour de rôle.",
     metrics: [
       { label: "Pipelines qui tombent / semaine", value: "2 à 3" },
       { label: "Bugs ouverts sur les pipelines", value: "11" },
@@ -296,8 +290,6 @@ export const SPRINT_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
     audience: "dev",
     teamLabel: "Équipe Search",
     iconName: "practice",
-    context:
-      "5 devs, 1 Product Owner. L'équipe travaille sur la recherche d'un site e-commerce. Sprint dédié à la refonte de l'algorithme de tri des résultats.",
     metrics: [
       { label: "CTR sur les résultats de recherche", value: "18 %" },
       { label: "Sessions avec recherche / jour", value: "4 500" },
@@ -495,8 +487,6 @@ export const SPRINT_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
     audience: "dev",
     teamLabel: "Équipe Auth",
     iconName: "target",
-    context:
-      "5 devs, 1 Product Owner. L'équipe travaille sur l'authentification du site marchand. Sprint sur l'ouverture de la connexion OAuth pour réduire la friction au paiement.",
     metrics: [
       { label: "Tentatives OAuth / jour", value: "480" },
       { label: "Sessions OAuth réussies / jour", value: "12" },
@@ -545,8 +535,6 @@ export const SPRINT_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
     audience: "dev",
     teamLabel: "Équipe Frontend Search",
     iconName: "practice",
-    context:
-      "4 devs front, 1 Product Owner. L'équipe maintient l'affichage des résultats de recherche. Sprint d'optimisation du rendu (composant ResultsList).",
     metrics: [
       { label: "Temps de rendu front p95 des résultats", value: "320 ms" },
       { label: "NPS de la fonctionnalité recherche (enquête trimestrielle)", value: "42" },

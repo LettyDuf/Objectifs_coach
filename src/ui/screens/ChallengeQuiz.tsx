@@ -76,6 +76,8 @@ export function ChallengeQuiz({ type, onExit }: Props) {
   const source = useMemo(() => repo.getChallengeQuizCases(type, "dev"), [type]);
   const typeLabel = TYPE_LABELS[type];
   const proposedLabel = type === "okr-equipe" ? "Résultat clé" : "objectif";
+  // Élision : "cet objectif" (voyelle) mais "ce Résultat clé" (consonne).
+  const proposedArticle = type === "okr-equipe" ? "ce" : "cet";
 
   // Ordre randomisé à chaque mount (cas + options). Re-shuffle au clic « Rejouer ».
   const [cases, setCases] = useState<ChallengeQuizCase[]>(() => shuffleCases(source));
@@ -192,14 +194,16 @@ export function ChallengeQuiz({ type, onExit }: Props) {
           <>
           <Zone variant="primary" title="Contexte" meta={currentCase.teamLabel}>
             <article className="quiz-context">
-              <div className="quiz-context__header">
-                {currentCase.iconName && (
-                  <span className="quiz-context__avatar" aria-hidden="true">
-                    <Icon name={currentCase.iconName as IconName} size={22} />
-                  </span>
-                )}
-                <p className="quiz-context__text">{currentCase.context}</p>
-              </div>
+              {currentCase.context && (
+                <div className="quiz-context__header">
+                  {currentCase.iconName && (
+                    <span className="quiz-context__avatar" aria-hidden="true">
+                      <Icon name={currentCase.iconName as IconName} size={22} />
+                    </span>
+                  )}
+                  <p className="quiz-context__text">{currentCase.context}</p>
+                </div>
+              )}
 
               {currentCase.metrics && currentCase.metrics.length > 0 && (
                 <dl className="quiz-context__metrics">
@@ -231,9 +235,9 @@ export function ChallengeQuiz({ type, onExit }: Props) {
               )}
 
               <p style={{ fontSize: "var(--font-size-sm)", color: "var(--color-text-muted)", margin: "var(--space-4) 0 var(--space-2)" }}>
-                L'équipe propose ce {proposedLabel} :
+                L'équipe propose {proposedArticle} {proposedLabel} :
               </p>
-              <blockquote className="quiz-context__quote">
+              <blockquote className="quiz-context__quote quiz-context__quote--proposed">
                 « {currentCase.proposedObjective} »
               </blockquote>
             </article>
