@@ -218,6 +218,7 @@ export const OKR_EQUIPE_DEV_SHEETS_FR: PedagogicalSheet[] = [
   },
   {
     id: "okr-equipe.sheet.too-many-okrs",
+    isNamedPitfall: true,
     themeId: "okr.fondamentaux",
     icon: "warn",
     title: "Trop d'OKR par équipe",
@@ -267,6 +268,7 @@ export const OKR_EQUIPE_DEV_SHEETS_FR: PedagogicalSheet[] = [
   },
   {
     id: "okr-equipe.sheet.sandbagging",
+    isNamedPitfall: true,
     themeId: "okr.pieges-kr",
     icon: "bad",
     title: "Le sandbagging",
@@ -311,6 +313,7 @@ export const OKR_EQUIPE_DEV_SHEETS_FR: PedagogicalSheet[] = [
   },
   {
     id: "okr-equipe.sheet.project-tracking",
+    isNamedPitfall: true,
     themeId: "okr.pieges-kr",
     icon: "bad",
     title: "L'OKR utilisé comme suivi de projet",
@@ -360,6 +363,7 @@ export const OKR_EQUIPE_DEV_SHEETS_FR: PedagogicalSheet[] = [
   },
   {
     id: "okr-equipe.sheet.top-down",
+    isNamedPitfall: true,
     themeId: "okr.pieges-kr",
     icon: "bad",
     title: "L'OKR équipe dicté top-down",
@@ -399,6 +403,51 @@ export const OKR_EQUIPE_DEV_SHEETS_FR: PedagogicalSheet[] = [
         heading: "Source",
         kind: "source",
         body: "Wodtke, OKR Mistakes : « OKRs are great bottom up, not just top down ». Lamorte, The OKRs Field Book : Phase 1 Deployment Coaching, distinction Top-Level vs Team-Level Ateliers. Niven, OKRs For Dummies (co-construction comme condition d'engagement).",
+      },
+    ],
+  },
+  {
+    id: "okr-equipe.sheet.individual-cascade",
+    isNamedPitfall: true,
+    themeId: "okr.pieges-kr",
+    icon: "bad",
+    title: "La cascade individuelle depuis l'objectif de la direction",
+    heroPhrase:
+      "Un objectif individuel qui recopie celui de la direction n'engage personne de plus qu'une liste de tâches — c'est le niveau équipe qu'on a sauté.",
+    intro: "",
+    practiceCtaLabel: "Va construire un OKR équipe co-construit",
+    sections: [
+      {
+        heading: "Le scénario",
+        icon: "bad",
+        body: "La direction (DP, direction produit, ou tout n+1 porteur d'un objectif de haut niveau) annonce son objectif. Au lieu de le faire descendre au niveau de l'équipe, le manager le découpe directement en « objectifs individuels » : chaque personne reçoit une reformulation réduite du même objectif, avec son nom dessus.",
+        bullets: [
+          "Symptôme : l'objectif individuel est la même phrase que celui de la direction, en plus petit.",
+          "Symptôme : personne ne sait dire en une phrase pourquoi ce résultat est sa responsabilité propre et pas celle du collectif.",
+          "Symptôme : le « Résultat clé » individuel est en réalité une tâche assignée (« livrer X », « finir Y »), pas un résultat mesurable dont la personne est seule maîtresse.",
+        ],
+      },
+      {
+        heading: "Pourquoi c'est un problème",
+        icon: "warn",
+        body: "Ce n'est pas une variante acceptable du bon flux, c'est un saut de niveau. L'OKR équipe (co-construit, calibré collectivement) est remplacé par une distribution individuelle qui viole le critère « sous influence » du tronc commun : le résultat final dépend du travail de plusieurs personnes, pas d'une seule. Mesurer un individu dessus est à la fois injuste et peu falsifiable. C'est la même famille que « L'OKR équipe dicté top-down » (voir fiche liée), un niveau plus bas : au lieu d'imposer l'OKR à l'équipe, on saute directement l'équipe.",
+      },
+      {
+        heading: "Le bon niveau",
+        icon: "good",
+        body: "L'équipe co-construit un seul OKR équipe qui contribue à l'objectif de la direction — et c'est cet OKR équipe partagé, pas des fragments individuels, qui relie le travail de chacun. Le lien avec le travail quotidien de chaque personne se fait par les rituels d'équipe (planification, priorisation du backlog), pas par un objectif personnel dupliqué.",
+        examples: [
+          {
+            bad: "Dev A : Améliorer la fiabilité de l'API de paiement. Dev B : Réduire les frictions du parcours de paiement. Dev C : Contribuer à l'amélioration du taux de conversion sur le paiement.",
+            good: "OKR équipe : Faire de notre parcours de paiement la référence de fluidité pour nos clients entreprise, avec des Résultats clés partagés (taux d'abandon, satisfaction post-paiement, incidents de production).",
+            note: "Le travail de Dev A, B et C contribue à un seul OKR équipe via le backlog partagé — aucun n'a besoin d'un objectif personnel dupliqué.",
+          },
+        ],
+      },
+      {
+        heading: "Source",
+        kind: "source",
+        body: "Morisseau, La boîte à outils de la méthode OKR (bi-niveau annuel/trimestriel, pas d'OKR individuel). Lamorte, The OKRs Field Book (distinction Top-Level vs Team-Level Workshops). Niven, OKRs For Dummies (structure 1 O + 3-5 KR portée par l'équipe, pas par l'individu). Voir aussi la fiche « L'OKR équipe dicté top-down » : même famille de piège, un niveau plus haut.",
       },
     ],
   },

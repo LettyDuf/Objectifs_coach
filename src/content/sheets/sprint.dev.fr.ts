@@ -287,6 +287,7 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
   // ============================================================
   {
     id: "sprint.sheet.not-a-récit-list",
+    isNamedPitfall: true,
     themeId: "sprint.pieges-classiques",
     icon: "warn",
     title: "L'objectif de Sprint n'est pas la liste des récits",
@@ -337,6 +338,7 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
 
   {
     id: "sprint.sheet.vanity-goal",
+    isNamedPitfall: true,
     themeId: "sprint.pieges-classiques",
     icon: "warn",
     title: "Le vanity goal",
@@ -387,6 +389,7 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
 
   {
     id: "sprint.sheet.pet-project-goal",
+    isNamedPitfall: true,
     themeId: "sprint.pieges-classiques",
     icon: "warn",
     title: "Le goal de confort",
@@ -437,6 +440,7 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
 
   {
     id: "sprint.sheet.renew-the-goal",
+    isNamedPitfall: true,
     themeId: "sprint.pieges-classiques",
     icon: "warn",
     title: "Renouveler le goal, pas le copier-coller",

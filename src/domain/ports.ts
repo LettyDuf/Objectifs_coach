@@ -12,6 +12,7 @@ import type { PuzzleSet, PuzzleLevel } from "./puzzle/types";
 import type { ScenarioCard } from "./scenario";
 import type { WarmupCase } from "./warmup";
 import type { ChallengeQuizCase } from "./challenge-quiz";
+import type { PitfallQuizCase } from "./pitfall-quiz";
 
 /** Port d'entrée — ce que fait le moteur, vu de l'UI. */
 export interface CoachUseCase {
@@ -78,6 +79,17 @@ export interface PedagogicalSheet {
    * thème par défaut « Toutes les fiches ».
    */
   themeId?: string;
+  /**
+   * Marque cette fiche comme un anti-pattern nommé et reconnaissable, éligible
+   * au quiz « Anti-patterns » du mode Pratique. Poser ce marqueur exige que la
+   * fiche contienne **exactement un** exemple `{ bad, good }` dans une de ses
+   * sections — une fiche panorama qui regroupe plusieurs pièges (ex. « Les 4
+   * pièges du Résultat clé ») ne doit pas être marquée : le quiz dérive sa
+   * question de l'unique exemple de la fiche, il n'y a pas de règle pour choisir
+   * lequel prendre si plusieurs existent. Poser ce marqueur est un choix éditorial
+   * délibéré (liste validée avec Lætitia), pas une inférence automatique.
+   */
+  isNamedPitfall?: boolean;
 }
 
 /**
@@ -167,4 +179,10 @@ export interface ContentRepository {
   getWarmupCases(type: ObjectiveType, audience: Audience): WarmupCase[];
   /** Cas du Défi version QCM (4 propositions à juger). */
   getChallengeQuizCases(type: ObjectiveType, audience: Audience): ChallengeQuizCase[];
+  /**
+   * Cas du quiz « Anti-patterns » (mode Pratique) — dérivés des fiches marquées
+   * `isNamedPitfall` dans `getSheets`. Aucun contenu à part : le port recalcule
+   * à partir des fiches déjà validées.
+   */
+  getPitfallQuizCases(type: ObjectiveType, audience: Audience): PitfallQuizCase[];
 }

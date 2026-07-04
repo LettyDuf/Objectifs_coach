@@ -158,6 +158,35 @@ S'ajoutent au tronc commun §1.
 - **Ben Lamorte** — *The OKRs Field Book : A Step-by-Step Guide for Objectives and Key Results Coaches*, 2021 (PDF dossier). Apporte la distinction Top-Level vs Team-Level Workshops, et **health metrics vs measurable objectives**.
 - **Paul Niven** — *OKRs For Dummies* (PDF dossier). Référence standard : structure 1 O + 3-5 KR, stretch ~70 %.
 
+### 4.8 Piège « Trop d'Objectives par équipe » (déjà en code — corrigé le 2026-07-03)
+
+> ⚠️ **Correction** : la première version de cette section (ajoutée le 2026-07-03) proposait ce piège comme un contenu candidat inédit. Erreur de vérification — ce piège **existe déjà**, livré dans `src/content/sheets/okr-equipe.dev.fr.ts` sous l'id `okr-equipe.sheet.too-many-okrs` (thème `okr.fondamentaux`), avant même cette session. Cette entrée documente l'existant a posteriori au lieu de dupliquer.
+
+**Doctrine** : une équipe = un Objectif par cycle. Au-delà, dilution de la focalisation, plus d'arbitrage possible quand le temps manque. Sourcé Wodtke (*Radical Focus*, « Have a maximum of one OKR per team per quarter »), Lamorte (*The OKRs Field Book*, « Common mistakes in OKR design »), Doerr (*Measure What Matters*, focus comme premier super-pouvoir des OKR).
+
+**Contenu déjà livré** : trois causes documentées (peur de laisser un sujet de côté, pression descendante, confusion OKR / liste de chantiers), méthode de tranchage (« lequel des trois, si on échoue, fait le plus mal au trimestre ? »), un exemple à 3 Objectifs empilés avec sa correction (un seul retenu, les autres vivent en KR ou en backlog).
+
+**Pour aller plus loin (piste ouverte, non tranchée)** : le cas de terrain apporté par Lætitia le 2026-07-03 combinait prolifération **et** cascade individuelle simultanément. La fiche existante couvre bien la prolifération côté équipe ; le lien avec l'origine « objectif du DP » qui en surcharge l'équipe n'est pas explicitement traité. À rouvrir si des retours d'atelier montrent que c'est un manque réel — pas de contenu ajouté tant que ce n'est pas confirmé par l'usage.
+
+---
+
+### 4.9 Piège « Cascade individuelle depuis l'objectif de la direction »
+
+> ✅ Codé le 2026-07-03 (validé Lætitia), livré dans `src/content/sheets/okr-equipe.dev.fr.ts` sous l'id `okr-equipe.sheet.individual-cascade` (thème `okr.pieges-kr`). Illustre par un cas de terrain la doctrine déjà validée en §4.1 (« pas d'OKR individuel »). Complète — sans le dupliquer — le piège voisin `okr-equipe.sheet.top-down` (§ ci-dessous « Sources ») : le top-down agit au niveau de l'équipe (l'OKR équipe est dicté), la cascade individuelle saute l'équipe entièrement (chaque personne reçoit une part de l'objectif de la direction). **Contenu narratif, ne passe pas par le moteur** (comme les exemples multi-objectifs Sprint §6 bis.2 et le piège §4.8 ci-dessus).
+
+**Symptôme observé** : la direction (DP, direction produit, ou tout n+1 porteur d'un objectif de haut niveau) annonce son objectif, puis chaque membre de l'équipe se voit distribuer un « objectif individuel » qui reformule presque mot pour mot l'objectif de la direction, réduit à sa portion personnelle.
+
+**Pourquoi c'est un problème** : trois défauts cumulés — (1) duplication, pas contribution (l'objectif individuel ne dit rien de plus que « je fais ma part ») ; (2) perte du critère « sous influence » (tronc commun §1.1) : le résultat dépend du collectif, pas de la personne seule ; (3) absence de co-construction, contraire à l'esprit OKR équipe (§4.2).
+
+**Signaux à repérer sur le terrain** :
+- L'objectif individuel est la même phrase que celui de la direction, en plus petit ou avec un chiffre réduit.
+- La personne ne sait pas expliquer en une phrase pourquoi ce résultat est *sa* responsabilité propre et pas celle du collectif.
+- Le « Résultat clé » individuel est en réalité une tâche assignée, pas un résultat dont elle est seule maîtresse.
+- Tous les objectifs individuels de l'équipe se ressemblent fortement, peu de différenciation par rôle.
+- Verbatim fréquent en entretien : « on m'a donné mes objectifs » plutôt que « j'ai construit les miens avec l'équipe ».
+
+**Ce qu'on enseigne à la place** : il n'existe pas de version individuelle correcte de ce cas — c'est le point doctrinal (§4.1). La correction n'est pas de mieux écrire l'objectif individuel, c'est de remonter au bon niveau : l'équipe co-construit un seul OKR équipe qui contribue à l'objectif de la direction, et c'est cet OKR équipe partagé — pas des fragments individuels — qui relie le travail de chacun.
+
 ---
 
 ## 5. Modèle de score (proposition à valider)

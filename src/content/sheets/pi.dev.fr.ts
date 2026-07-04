@@ -279,6 +279,7 @@ export const PI_DEV_SHEETS_FR: PedagogicalSheet[] = [
   // ============================================================
   {
     id: "pi.sheet.objective-impose",
+    isNamedPitfall: true,
     themeId: "pi.engagement",
     icon: "warn",
     title: "L'objectif de PI imposé",
@@ -333,6 +334,7 @@ export const PI_DEV_SHEETS_FR: PedagogicalSheet[] = [
   // ============================================================
   {
     id: "pi.sheet.bv-uniforme",
+    isNamedPitfall: true,
     themeId: "pi.valeur-business",
     icon: "warn",
     title: "La Business Value uniforme",
@@ -386,6 +388,7 @@ export const PI_DEV_SHEETS_FR: PedagogicalSheet[] = [
   // ============================================================
   {
     id: "pi.sheet.fonctionnalité-vs-objective",
+    isNamedPitfall: true,
     themeId: "pi.pieges-classiques",
     icon: "warn",
     title: "Une fonctionnalité n'est pas un objectif de PI",
@@ -436,6 +439,7 @@ export const PI_DEV_SHEETS_FR: PedagogicalSheet[] = [
 
   {
     id: "pi.sheet.tous-committed",
+    isNamedPitfall: true,
     themeId: "pi.pieges-classiques",
     icon: "warn",
     title: "Tous les objectifs de PI en engagé",

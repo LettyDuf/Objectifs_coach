@@ -18,6 +18,7 @@ import { SprintLearn } from "./screens/SprintLearn";
 // `Challenge` (rédaction libre) reste exporté pour compat historique mais n'est plus
 // utilisé par le routing : tous les Défis passent par `ChallengeQuiz` depuis 2026-06-22.
 import { ChallengeQuiz } from "./screens/ChallengeQuiz";
+import { PitfallQuiz } from "./screens/PitfallQuiz";
 import { Puzzle } from "./screens/Puzzle";
 import { Analyse } from "./screens/Analyse";
 import { PIPractice } from "./screens/PIPractice";
@@ -27,7 +28,7 @@ import { OkrTeamLearn } from "./screens/OkrTeamLearn";
 import { ComingSoon } from "./screens/ComingSoon";
 import { SessionProvider, useSession } from "./SessionContext";
 
-type Mode = "learn" | "practice" | "challenge" | "puzzle" | "analyse";
+type Mode = "learn" | "practice" | "challenge" | "puzzle" | "analyse" | "pitfalls";
 
 interface AppState {
   type: ObjectiveType | null;
@@ -221,6 +222,21 @@ function AppShell() {
               onExit={backToModes}
             />
           )}
+
+        {/* Anti-patterns : reconnaître un piège nommé à partir d'un mauvais exemple
+            déjà enseigné en Théorie. Mono-type comme ChallengeQuiz (pas d'exception
+            à D9) — un routage par type, pas de sélecteur interne. */}
+        {state.type === "sprint" && state.mode === "pitfalls" && (
+          <PitfallQuiz type="sprint" onExit={backToModes} />
+        )}
+
+        {state.type === "pi" && state.mode === "pitfalls" && (
+          <PitfallQuiz type="pi" onExit={backToModes} />
+        )}
+
+        {state.type === "okr-equipe" && state.mode === "pitfalls" && (
+          <PitfallQuiz type="okr-equipe" onExit={backToModes} />
+        )}
       </main>
     </div>
   );
@@ -269,7 +285,7 @@ function isScreenFrame(state: AppState): boolean {
   }
   // OKR équipe : Practice et Learn migrés
   if (state.type === "okr-equipe") {
-    return state.mode === "practice" || state.mode === "learn";
+    return state.mode === "practice" || state.mode === "learn" || state.mode === "pitfalls";
   }
   return false;
 }
@@ -290,5 +306,6 @@ function labelForMode(mode: Mode): string {
     case "challenge": return "Défi";
     case "puzzle": return "Composer";
     case "analyse": return "Analyser un objectif";
+    case "pitfalls": return "Anti-patterns";
   }
 }

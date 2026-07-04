@@ -41,4 +41,8 @@ export const SKELETON_THEME_TARGET: Record<ObjectiveType, string> = {
   sprint: "sprint.fondamentaux",
   pi: "pi.fondamentaux",
   "okr-equipe": "okr.fondamentaux",
+  // OKR entreprise n'est pas encore routable (D20, "à venir") : cible de repli
+  // vers le thème équipe le temps que le module entreprise existe. Corrige un
+  // build cassé depuis l'ajout du 4e ObjectiveType (aucun contenu ajouté ici).
+  "okr-entreprise": "okr.fondamentaux",
 };

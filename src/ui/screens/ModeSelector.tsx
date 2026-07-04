@@ -18,7 +18,7 @@ import type { ObjectiveType } from "../../domain/types";
 import { Screen } from "../layout/Screen";
 import { createContentRepository } from "../../content/repository";
 
-type Mode = "learn" | "practice" | "challenge" | "puzzle" | "analyse";
+type Mode = "learn" | "practice" | "challenge" | "puzzle" | "analyse" | "pitfalls";
 type Tab = "theory" | "practice";
 
 interface Props {
@@ -60,6 +60,12 @@ const PRACTICE_MODES: ModeChoice[] = [
     label: "Analyser un objectif",
     desc: "Colle un objectif déjà rédigé. L'outil te dit en 30 secondes ce qui tient et ce qui pèche.",
     icon: "analyse",
+  },
+  {
+    mode: "pitfalls",
+    label: "Anti-patterns",
+    desc: "Un mauvais exemple déjà vu en Théorie : reconnais à quel piège il correspond.",
+    icon: "warn",
   },
 ];
 

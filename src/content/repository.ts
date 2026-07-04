@@ -36,6 +36,7 @@ import { SPRINT_DEV_CHALLENGE_QUIZ_FR } from "./challenge-quiz/sprint.dev.fr";
 import { PI_DEV_CHALLENGE_QUIZ_FR } from "./challenge-quiz/pi.dev.fr";
 import { OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR } from "./challenge-quiz/okr-equipe.dev.fr";
 import type { ChallengeQuizCase } from "../domain/challenge-quiz";
+import { buildPitfallQuizCases, type PitfallQuizCase } from "../domain/pitfall-quiz";
 import { OKR_EQUIPE_DEV_EXAMPLES_FR } from "./examples/okr-equipe.dev.fr";
 import { OKR_EQUIPE_DEV_SHEETS_FR } from "./sheets/okr-equipe.dev.fr";
 import { POSTURE_VALEURS_SHEETS_FR } from "./sheets/posture-valeurs.shared.fr";
@@ -167,6 +168,10 @@ export function createContentRepository(): ContentRepository {
     },
     getChallengeQuizCases(type: ObjectiveType, audience: Audience): ChallengeQuizCase[] {
       return CHALLENGE_QUIZ_INDEX[type]?.[audience] ?? [];
+    },
+    getPitfallQuizCases(type: ObjectiveType, audience: Audience): PitfallQuizCase[] {
+      const sheets = SHEETS_INDEX[type]?.[audience] ?? [];
+      return buildPitfallQuizCases(sheets);
     },
   };
 }
