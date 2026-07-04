@@ -224,21 +224,50 @@ export function PitfallQuiz({ type, onExit, onGoToTheme }: Props) {
                   })}
                 </div>
 
-                {chosenOption && (
-                  <div className={`quiz-feedback quiz-feedback--${chosenOption.isCorrect ? "good" : "bad"}`}>
-                    <p className="quiz-feedback__verdict">
-                      {chosenOption.isCorrect ? (
-                        <>
-                          <Icon name="good" size={16} /> <strong>Bien vu.</strong>
-                        </>
-                      ) : (
-                        <>
-                          <Icon name="bad" size={16} /> <strong>Pas ce piège-là.</strong>
-                        </>
+                {chosenOption && chosenOption.isCorrect && (
+                  <div className="quiz-feedback quiz-feedback--good quiz-feedback--card">
+                    <div className="quiz-feedback__band">
+                      <span className="quiz-feedback__band-label">
+                        <Icon name="good" size={15} /> Piège évité
+                      </span>
+                      <span className="quiz-feedback__band-name">{currentCase.correctLabel}</span>
+                    </div>
+                    <div className="quiz-feedback__card-body">
+                      <div className="quiz-feedback__rule">
+                        <p className="quiz-feedback__rule-label">La règle</p>
+                        <p className="quiz-feedback__rule-text">{currentCase.categoryRule}</p>
+                      </div>
+
+                      <p className="quiz-feedback__flavor">{currentCase.explanation}</p>
+
+                      {currentCase.detectionSignal && (
+                        <p className="quiz-feedback__flavor">Signal à surveiller : {currentCase.detectionSignal}</p>
                       )}
+
+                      <p className="quiz-feedback__reformulation">
+                        Reformulation solide : « {currentCase.goodExample} »
+                      </p>
+
+                      {currentCase.themeId && (
+                        <button
+                          type="button"
+                          className="btn btn--ghost btn--sm"
+                          onClick={() => onGoToTheme(currentCase.themeId!)}
+                        >
+                          Voir la fiche complète ›
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                )}
+
+                {chosenOption && !chosenOption.isCorrect && (
+                  <div className="quiz-feedback quiz-feedback--bad">
+                    <p className="quiz-feedback__verdict">
+                      <Icon name="bad" size={16} /> <strong>Pas ce piège-là.</strong>
                     </p>
 
-                    {!chosenOption.isCorrect && correctOption && (
+                    {correctOption && (
                       <p style={{ margin: "0 0 var(--space-3)", fontWeight: 500, fontSize: "var(--font-size-sm)" }}>
                         Le bon piège : <strong>{correctOption.id}. {correctOption.label}</strong>
                       </p>
