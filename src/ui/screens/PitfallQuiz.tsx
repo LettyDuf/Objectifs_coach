@@ -13,6 +13,7 @@ import { useMemo, useState } from "react";
 import type { PitfallQuizCase } from "../../domain/pitfall-quiz";
 import type { ObjectiveType } from "../../domain/types";
 import { createContentRepository } from "../../content/repository";
+import { HighlightNumbers } from "../components/HighlightNumbers";
 import { Icon } from "../components/Icon";
 import { Screen } from "../layout/Screen";
 import { Zone } from "../layout/Zone";
@@ -235,17 +236,23 @@ export function PitfallQuiz({ type, onExit, onGoToTheme }: Props) {
                     <div className="quiz-feedback__card-body">
                       <div className="quiz-feedback__rule">
                         <p className="quiz-feedback__rule-label">La règle</p>
-                        <p className="quiz-feedback__rule-text">{currentCase.categoryRule}</p>
+                        <p className="quiz-feedback__rule-text">
+                          <HighlightNumbers text={currentCase.categoryRule} />
+                        </p>
                       </div>
 
-                      <p className="quiz-feedback__flavor">{currentCase.explanation}</p>
+                      <p className="quiz-feedback__why">
+                        <HighlightNumbers text={currentCase.explanation} />
+                      </p>
 
                       {currentCase.detectionSignal && (
-                        <p className="quiz-feedback__flavor">Signal à surveiller : {currentCase.detectionSignal}</p>
+                        <p className="quiz-feedback__signal">
+                          <strong>Signal à surveiller</strong> : <HighlightNumbers text={currentCase.detectionSignal} />
+                        </p>
                       )}
 
                       <p className="quiz-feedback__reformulation">
-                        Reformulation solide : « {currentCase.goodExample} »
+                        Reformulation solide : « <HighlightNumbers text={currentCase.goodExample} /> »
                       </p>
 
                       {currentCase.themeId && (

@@ -302,11 +302,30 @@
   color: var(--color-text);
 }
 
-.quiz-feedback__flavor {
+/* D50 — nuances typographiques dans la carte "carte à jouer" (D46), suite retour
+   Lætitia. Les deux paragraphes de contexte n'ont plus le même poids : le
+   "pourquoi" reste secondaire (italique, atténué), le "signal à surveiller"
+   (la partie transférable, à retenir au-delà de ce cas précis) passe en texte
+   plein avec un repère visuel (filet ocre), et les valeurs chiffrées de tous
+   les textes de la carte sont mises en évidence via `<HighlightNumbers>`. */
+.quiz-feedback__why {
   margin: 0;
   font-size: var(--font-size-sm);
   color: var(--color-text-muted);
   font-style: italic;
+}
+
+.quiz-feedback__signal {
+  margin: 0;
+  padding-left: var(--space-3);
+  border-left: 2px solid var(--color-accent-2);
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+}
+
+.quiz-feedback__highlight {
+  font-weight: var(--font-weight-bold);
+  color: color-mix(in srgb, var(--color-good) 55%, black);
 }
 
 .quiz-feedback__reformulation {
