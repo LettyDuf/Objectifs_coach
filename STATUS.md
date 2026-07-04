@@ -13,9 +13,9 @@ Briques (option C, 5 couleurs) en place pour Sprint Goal, PI Objective et Key Re
 > Relu à chaque ouverture de session. Rayer une ligne seulement quand elle est traitée, pas seulement mentionnée.
 
 - [x] ~~Rattraper le journal « Fait » pour la session d'étoffement des fiches~~ (12 fiches candidates anti-patterns → Sprint 16 / PI 15 / OKR équipe 13 fiches actuelles). Cette session n'a jamais été datée ni détaillée ici, seule la « Phase actuelle » ci-dessus en garde la trace agrégée. Distinct du rattrapage D26-D31 déjà fait le 2026-07-03.
-- [ ] **Ménage manuel côté utilisatrice** (l'environnement d'exécution n'a pas les permissions pour le faire) : supprimer `.git/index.lock` (résiduel, bloquera un futur commit) et les dossiers `dist-verif-2026-07-03/` et `dist-verif-pitfalls/` (vérifications de build, sans valeur) — un `rm -rf .git/index.lock dist-verif-*` depuis le Terminal règle tout d'un coup.
+- [x] ~~Ménage manuel côté utilisatrice~~ (`.git/index.lock`, dossiers `dist-verif-*`) — résolu, plus aucune trace au 2026-07-04.
 - [ ] **Piste ouverte, non tranchée** (DOMAINE.md §4.8) : le lien explicite entre prolifération d'Objectives et origine « objectif de la direction » n'est traité par aucune fiche — à rouvrir seulement si des retours d'atelier confirment que c'est un manque réel.
-- [ ] **Renumérotation D22 à trancher** : `DECISIONS.md` contient un D22 (« Puzzle : clic direct sur les blocs source ») qui entre en collision avec un « D22 — Refonte visuelle A+ » cité dans le message du commit `cc4eec5`, jamais rédigé dans `DECISIONS.md`. Repéré le 2026-07-03, pas encore corrigé — nécessite de relire le contexte complet du commit avant de choisir lequel renuméroter.
+- [x] ~~Renumérotation D22~~ : résolu 2026-07-04 (D42) — le D22 Puzzle reste inchangé (confirmé exact par Lætitia), la refonte visuelle A+ du 2026-06-25 est rédigée rétroactivement sous D42.
 - [ ] **9 cas Défi QCM à écart modéré** (raccourci numérique moins franc, voir entrée D35 du 2026-07-03) — non corrigés, priorité mineure.
 
 ## Phase précédente
@@ -219,3 +219,5 @@ Recommandation : A (OKR) pour atteindre le périmètre V1 complet. Si OKR doit a
 
 - **2026-07-04** : **fix D41 — vide interne dans les cartes**, signalé par Lætitia sur 3 captures (Anti-patterns, TypeSelector, ModeSelector). Investigation : bug structurel présent depuis le tout premier commit (`layout.css` non modifié avant aujourd'hui) — `.screen-body` (grille CSS) étirait ses enfants (`Zone`) pour remplir toute la hauteur d'écran disponible par défaut. Fix : `align-items: start` ajouté sur `.screen-body`, une ligne. 162 tests verts / 1 skip, `tsc --noEmit` OK, build vérifié (555 Ko / gzip 143 Ko).
   **À confirmer visuellement par Lætitia après déploiement** : pas d'outil de prévisualisation navigateur dans ce sandbox, le rendu réel (en particulier sur les gabarits avec sidebar sticky : rail, wide-rail, source-aside) n'a pas pu être vérifié à l'œil.
+
+- **2026-07-04** : **collision D22 résolue (D42)**. Lætitia a confirmé le contenu du D22 déjà écrit (Puzzle : clic direct sur les blocs source + signalisation live) comme exact et inchangé. La refonte visuelle A+ du 2026-06-25 (commit `cc4eec5`, jamais rédigée dans `DECISIONS.md` à l'époque) est documentée rétroactivement sous **D42**, avec sa date réelle indiquée. Aucun changement de code, uniquement la documentation.
