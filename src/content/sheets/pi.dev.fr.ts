@@ -301,6 +301,7 @@ export const PI_DEV_SHEETS_FR: PedagogicalSheet[] = [
       {
         heading: "Comment ça se voit",
         icon: "warn",
+        kind: "signals",
         body: "",
         bullets: [
           "L'objectif est annoncé, pas débattu : « voici ce qu'on attend de vous ce PI ».",
@@ -356,6 +357,7 @@ export const PI_DEV_SHEETS_FR: PedagogicalSheet[] = [
       {
         heading: "Comment ça se voit",
         icon: "warn",
+        kind: "signals",
         body: "",
         bullets: [
           "Les valeurs business sont remplies en quelques secondes, sans discussion.",
@@ -410,6 +412,7 @@ export const PI_DEV_SHEETS_FR: PedagogicalSheet[] = [
       {
         heading: "Comment ça se voit",
         icon: "warn",
+        kind: "signals",
         body: "",
         bullets: [
           "L'objectif de PI porte un nom de fonctionnalité ou de projet (« Livrer X », « Refondre Y »).",
@@ -461,6 +464,7 @@ export const PI_DEV_SHEETS_FR: PedagogicalSheet[] = [
       {
         heading: "Comment ça se voit",
         icon: "warn",
+        kind: "signals",
         body: "",
         bullets: [
           "Aucun objectif classé stretch sur la page de PI Planning.",

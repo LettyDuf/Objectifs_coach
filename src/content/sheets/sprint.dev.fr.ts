@@ -7,69 +7,6 @@ import type { PedagogicalSheet } from "../../domain/ports";
 
 export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
   {
-    id: "sprint.sheet.single-goal",
-    themeId: "sprint.fondamentaux",
-    icon: "target",
-    title: "Un seul objectif de Sprint",
-    heroPhrase: "Un seul objectif par sprint. Pas deux. Pas une liste.",
-    intro: "",
-    practiceCtaLabel: "Va corriger un objectif mal posé",
-    sections: [
-      {
-        heading: "Pourquoi",
-        icon: "target",
-        body: "",
-        bullets: [
-          "Focus : un seul objectif force l'arbitrage des récits.",
-          "Mémorisable : récitable sans lire l'écran.",
-          "Trie le backlog : « cette récit contribue-t-elle à l'objectif ? »",
-          "Bilan clair en fin de sprint : atteint / pas atteint.",
-        ],
-      },
-      {
-        heading: "Signaux d'alerte",
-        icon: "warn",
-        body: "",
-        bullets: [
-          "Le tableau affiche « Objectif 1 / Objectif 2 / Objectif 3 ».",
-          "L'objectif est rédigé après la sélection des récits.",
-          "Il contient un « et » coordonnant deux résultats.",
-          "Personne ne le récite à la rétro sans le relire.",
-        ],
-      },
-      {
-        heading: "Comment consolider",
-        icon: "wrench",
-        body: "Identifier l'enjeu transverse qui relie les N objectifs proposés, puis le reformuler en un seul outcome. Si aucun enjeu transverse n'existe vraiment, c'est que le sprint mélange deux travaux qui auraient dû être deux sprints.",
-        examples: [
-          {
-            bad: "Objectif 1 : Migrer l'authentification vers OAuth. Objectif 2 : Réduire les bugs sur le panier de 8 à 2.",
-            good: "Augmenter le taux de connexions sans incident (auth + panier) de 92 % à 99 % d'ici fin de sprint.",
-            note: "Enjeu transverse : la confiance utilisateur dans le tunnel d'achat. Les deux travaux y contribuent.",
-          },
-        ],
-      },
-      {
-        heading: "Qui le rédige, sur quelle base",
-        icon: "learn",
-        body: "Co-construit en Sprint Planning par l'équipe Scrum entière : le PO propose un cap dérivé du objectif de produit, les Devs challengent au regard de leur capacité et de leur connaissance technique, le Scrum Master facilite la convergence. Pas un acte solo du PO. L'objectif de Sprint défini, les récits du backlog deviennent des hypothèses de ce qui aidera à l'atteindre.",
-        bullets: [
-          "objectif de produit (le cap moyen terme du produit, l'amont)",
-          "État du backlog produit (ce qui est prioritaire et prêt)",
-          "Vélocité historique de l'équipe (capacité réaliste sur l'itération)",
-          "Retour de la dernière rétrospective (ce qu'on change ou garde)",
-          "Retour de la dernière Sprint Review (ce qui a bougé côté utilisateur)",
-        ],
-      },
-      {
-        heading: "Source",
-        kind: "source",
-        body: "Scrum Guide 2020 : « The Sprint Goal is the single objective for the Sprint » [traduction : « L'objectif de Sprint est l'unique objectif du Sprint »] et « The Developers… define a Sprint Goal that communicates why the Sprint is valuable to stakeholders. » [traduction : « Les Developers… définissent un objectif de Sprint qui communique pourquoi le Sprint a de la valeur pour les parties prenantes. »] Convergent avec Kniberg, Cohn. SAFe : pluralité au niveau PI uniquement.",
-      },
-    ],
-  },
-
-  {
     id: "sprint.sheet.anatomy",
     themeId: "sprint.fondamentaux",
     icon: "target",
@@ -150,6 +87,69 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
         heading: "Source",
         kind: "source",
         body: "Cette grammaire à cinq briques recoupe la doctrine du puzzle (voir mode Puzzle dans la pratique). Elle s'inspire des SMART goals (Doran, 1981) débarrassés de leur ambiguïté Mesurable/Atteignable, et de Kniberg pour le rôle du contexte.",
+      },
+    ],
+  },
+
+  {
+    id: "sprint.sheet.single-goal",
+    themeId: "sprint.fondamentaux",
+    icon: "target",
+    title: "Un seul objectif de Sprint",
+    heroPhrase: "Un seul objectif par sprint. Pas deux. Pas une liste.",
+    intro: "",
+    practiceCtaLabel: "Va corriger un objectif mal posé",
+    sections: [
+      {
+        heading: "Pourquoi",
+        icon: "target",
+        body: "",
+        bullets: [
+          "Focus : un seul objectif force l'arbitrage des récits.",
+          "Mémorisable : récitable sans lire l'écran.",
+          "Trie le backlog : « cette récit contribue-t-elle à l'objectif ? »",
+          "Bilan clair en fin de sprint : atteint / pas atteint.",
+        ],
+      },
+      {
+        heading: "Signaux d'alerte",
+        icon: "warn",
+        body: "",
+        bullets: [
+          "Le tableau affiche « Objectif 1 / Objectif 2 / Objectif 3 ».",
+          "L'objectif est rédigé après la sélection des récits.",
+          "Il contient un « et » coordonnant deux résultats.",
+          "Personne ne le récite à la rétro sans le relire.",
+        ],
+      },
+      {
+        heading: "Comment consolider",
+        icon: "wrench",
+        body: "Identifier l'enjeu transverse qui relie les N objectifs proposés, puis le reformuler en un seul outcome. Si aucun enjeu transverse n'existe vraiment, c'est que le sprint mélange deux travaux qui auraient dû être deux sprints.",
+        examples: [
+          {
+            bad: "Objectif 1 : Migrer l'authentification vers OAuth. Objectif 2 : Réduire les bugs sur le panier de 8 à 2.",
+            good: "Augmenter le taux de connexions sans incident (auth + panier) de 92 % à 99 % d'ici fin de sprint.",
+            note: "Enjeu transverse : la confiance utilisateur dans le tunnel d'achat. Les deux travaux y contribuent.",
+          },
+        ],
+      },
+      {
+        heading: "Qui le rédige, sur quelle base",
+        icon: "learn",
+        body: "Co-construit en Sprint Planning par l'équipe Scrum entière : le PO propose un cap dérivé du objectif de produit, les Devs challengent au regard de leur capacité et de leur connaissance technique, le Scrum Master facilite la convergence. Pas un acte solo du PO. L'objectif de Sprint défini, les récits du backlog deviennent des hypothèses de ce qui aidera à l'atteindre.",
+        bullets: [
+          "objectif de produit (le cap moyen terme du produit, l'amont)",
+          "État du backlog produit (ce qui est prioritaire et prêt)",
+          "Vélocité historique de l'équipe (capacité réaliste sur l'itération)",
+          "Retour de la dernière rétrospective (ce qu'on change ou garde)",
+          "Retour de la dernière Sprint Review (ce qui a bougé côté utilisateur)",
+        ],
+      },
+      {
+        heading: "Source",
+        kind: "source",
+        body: "Scrum Guide 2020 : « The Sprint Goal is the single objective for the Sprint » [traduction : « L'objectif de Sprint est l'unique objectif du Sprint »] et « The Developers… define a Sprint Goal that communicates why the Sprint is valuable to stakeholders. » [traduction : « Les Developers… définissent un objectif de Sprint qui communique pourquoi le Sprint a de la valeur pour les parties prenantes. »] Convergent avec Kniberg, Cohn. SAFe : pluralité au niveau PI uniquement.",
       },
     ],
   },
@@ -309,6 +309,7 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
       {
         heading: "Signaux d'alerte",
         icon: "warn",
+        kind: "signals",
         body: "",
         bullets: [
           "« On a fini tous les récits » devient la fierté de fin de sprint, indépendamment du résultat constaté.",
@@ -360,6 +361,7 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
       {
         heading: "Signaux d'alerte",
         icon: "warn",
+        kind: "signals",
         body: "",
         bullets: [
           "Présence de mots flous (« renforcer », « valoriser », « consolider », « explorer »).",
@@ -411,6 +413,7 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
       {
         heading: "Signaux d'alerte",
         icon: "warn",
+        kind: "signals",
         body: "",
         bullets: [
           "Le bénéficiaire nommé est un membre de l'équipe ou un manager.",
@@ -462,6 +465,7 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
       {
         heading: "Signaux d'alerte",
         icon: "warn",
+        kind: "signals",
         body: "",
         bullets: [
           "Trois sprints consécutifs avec le même goal (ou variantes mineures).",

@@ -55,6 +55,8 @@ function buildOptions(current: PitfallQuizCase, all: PitfallQuizCase[]): QuizOpt
 interface Props {
   type: ObjectiveType;
   onExit: () => void;
+  /** Route vers la fiche Théorie du thème donné (réutilise `selectTheme` d'App.tsx). */
+  onGoToTheme: (themeId: string) => void;
 }
 
 const repo = createContentRepository();
@@ -66,7 +68,7 @@ const TYPE_LABELS: Record<ObjectiveType, string> = {
   "okr-entreprise": "OKR entreprise",
 };
 
-export function PitfallQuiz({ type, onExit }: Props) {
+export function PitfallQuiz({ type, onExit, onGoToTheme }: Props) {
   const source = useMemo(() => repo.getPitfallQuizCases(type, "dev"), [type]);
   const typeLabel = TYPE_LABELS[type];
 
@@ -235,19 +237,42 @@ export function PitfallQuiz({ type, onExit }: Props) {
                         </>
                       )}
                     </p>
-                    <p className="quiz-feedback__explanation">{currentCase.explanation}</p>
 
                     {!chosenOption.isCorrect && correctOption && (
-                      <div className="quiz-feedback__correct">
-                        <p style={{ margin: "0 0 var(--space-2)", fontWeight: 500, fontSize: "var(--font-size-sm)" }}>
-                          Le bon piège : <strong>{correctOption.id}. {correctOption.label}</strong>
-                        </p>
-                      </div>
+                      <p style={{ margin: "0 0 var(--space-3)", fontWeight: 500, fontSize: "var(--font-size-sm)" }}>
+                        Le bon piège : <strong>{correctOption.id}. {correctOption.label}</strong>
+                      </p>
                     )}
+
+                    <dl className="pitfall-feedback">
+                      <dt>Pourquoi cet exemple précis pèche</dt>
+                      <dd>{currentCase.explanation}</dd>
+
+                      <dt>Pourquoi c'est « {currentCase.correctLabel} »</dt>
+                      <dd>{currentCase.categoryRule}</dd>
+
+                      {currentCase.detectionSignal && (
+                        <>
+                          <dt>Comment le repérer la prochaine fois</dt>
+                          <dd>{currentCase.detectionSignal}</dd>
+                        </>
+                      )}
+                    </dl>
 
                     <p style={{ margin: "var(--space-3) 0 0", fontSize: "var(--font-size-sm)", color: "var(--color-text-muted)" }}>
                       Reformulation solide : « {currentCase.goodExample} »
                     </p>
+
+                    {currentCase.themeId && (
+                      <button
+                        type="button"
+                        className="btn btn--ghost btn--sm"
+                        style={{ marginTop: "var(--space-3)" }}
+                        onClick={() => onGoToTheme(currentCase.themeId!)}
+                      >
+                        Voir la fiche complète ›
+                      </button>
+                    )}
                   </div>
                 )}
               </div>

@@ -47,7 +47,7 @@ export const OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
     options: [
       {
         id: "A",
-        text: "Livrer le nouveau tableau de bord métriques v2 d'ici fin du trimestre.",
+        text: "Livrer, avec les 6 devs de l'équipe, le nouveau tableau de bord métriques v2 d'ici fin du trimestre.",
         verdict: "bad",
         explanation:
           "« Livrer » nomme un projet. Un KR vise un **changement à atteindre**, pas une livraison. Demande-toi : qu'est-ce que le tableau de bord va faire bouger une fois en place ?",
@@ -61,14 +61,14 @@ export const OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "C",
-        text: "Améliorer l'adoption du nouveau tableau de bord.",
+        text: "Améliorer l'adoption du nouveau tableau de bord, aujourd'hui utilisé par 8 équipes data actives par mois, avec un temps de détection moyen de 45 min.",
         verdict: "bad",
         explanation:
           "« Améliorer » est flou. Pas de métrique, pas de chiffre, pas d'échéance. Non falsifiable.",
       },
       {
         id: "D",
-        text: "Faire adopter le tableau de bord métriques v2 par les équipes data.",
+        text: "Faire adopter le tableau de bord métriques v2 par les 8 équipes data actives.",
         verdict: "partial",
         explanation:
           "Outcome correct (adoption), bénéficiaire clair, mais aucun avant/après ni cible chiffrée. Précise : passer de combien d'équipes à combien.",
@@ -188,7 +188,7 @@ export const OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
     teamLabel: "Équipe Qualité Logicielle",
     iconName: "challenge",
     context:
-      "4 devs, 1 Tech Lead. L'équipe transverse outille la qualité logicielle pour toutes les équipes produit. Cycle OKR trimestriel.",
+      "4 devs, 1 référent technique. L'équipe transverse outille la qualité logicielle pour toutes les équipes produit. Cycle OKR trimestriel.",
     metrics: [
       { label: "Couverture de tests automatisés (moyenne entreprise)", value: "78 %" },
       { label: "Bugs critiques en prod / trimestre précédent", value: "23" },
@@ -305,7 +305,7 @@ export const OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
     options: [
       {
         id: "A",
-        text: "Atteindre un « time to hello world » de 30 minutes d'ici fin du trimestre.",
+        text: "Atteindre, pour les 3 devs de l'équipe, un « time to hello world » de 30 minutes d'ici fin du trimestre.",
         verdict: "partial",
         explanation:
           "Métrique nommée, cible chiffrée, échéance. Mais sans le point de départ (4 h aujourd'hui), on perd la mesure de l'effort. Un KR montre l'avant ET l'après.",
@@ -319,14 +319,14 @@ export const OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "C",
-        text: "Rendre l'intégration fluide et rapide.",
+        text: "Rendre l'intégration fluide et rapide, pour les 65 nouveaux développeurs intégrés chaque trimestre, alors que 38 % abandonnent avant leur premier appel API.",
         verdict: "bad",
         explanation:
           "« Fluide » et « rapide » sont flous. Aucune métrique, aucun seuil. Vœu, pas un KR.",
       },
       {
         id: "D",
-        text: "Réduire le « time to hello world » d'au moins 80 % d'ici fin du trimestre.",
+        text: "Réduire, pour les 65 nouveaux développeurs intégrés chaque trimestre, le « time to hello world » d'au moins 80 % d'ici fin du trimestre.",
         verdict: "partial",
         explanation:
           "Variation chiffrée, échéance, métrique nommée — bonne base. Mais formulation relative (« d'au moins 80 % ») qui demande un calcul mental. La forme « de 4 h à 30 min » se vérifie d'un coup d'œil.",
@@ -357,7 +357,7 @@ export const OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
     options: [
       {
         id: "A",
-        text: "Atteindre un NPS de 60 sur l'appli mobile d'ici la fin du trimestre.",
+        text: "Atteindre, pour les 5 devs de l'équipe, un NPS de 60 sur l'appli mobile d'ici la fin du trimestre.",
         verdict: "partial",
         explanation:
           "Cible chiffrée, fenêtre. Mais sans le point de départ (32 aujourd'hui), on perd la lecture de l'effort (+28 pts = ambition forte). Un KR montre l'avant ET l'après.",
@@ -371,14 +371,14 @@ export const OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "C",
-        text: "Améliorer la satisfaction des utilisateurs de l'appli mobile.",
+        text: "Améliorer la satisfaction des utilisateurs de l'appli mobile, notée aujourd'hui 4,1 / 5 sur les stores.",
         verdict: "bad",
         explanation:
           "Pas de métrique nommée, pas de chiffre. Non falsifiable.",
       },
       {
         id: "D",
-        text: "Livrer les 8 améliorations UX prévues sur le backlog mobile ce trimestre.",
+        text: "Livrer, avec les 5 devs de l'équipe, les 8 améliorations UX prévues sur le backlog mobile ce trimestre.",
         verdict: "bad",
         explanation:
           "Output / Résultat clé projet. Les 8 améliorations peuvent être livrées sans bouger le NPS.",
@@ -448,7 +448,7 @@ export const OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
     teamLabel: "Équipe Plateforme API",
     iconName: "wrench",
     context:
-      "4 devs, 1 Tech Lead. L'équipe fournit l'API consommée par les autres équipes produit. L'Objectif trimestriel est posé. L'équipe rédige les KR.",
+      "4 devs, 1 référent technique. L'équipe fournit l'API consommée par les autres équipes produit. L'Objectif trimestriel est posé. L'équipe rédige les KR.",
     metrics: [
       { label: "Taux de réussite des appels API (actuel)", value: "99,2 %" },
       { label: "p95 latence API", value: "180 ms" },
@@ -512,7 +512,7 @@ export const OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
     options: [
       {
         id: "A",
-        text: "Atteindre 80 % de clic sur le bouton « Collaborer » depuis l'écran d'accueil d'ici la fin du trimestre.",
+        text: "Atteindre, pour les 3 devs de l'équipe, 80 % de clic sur le bouton « Collaborer » depuis l'écran d'accueil d'ici la fin du trimestre.",
         verdict: "partial",
         explanation:
           "Métrique observable, cible, fenêtre. Mais le clic en surface ne dit rien de l'usage profond — c'est un proxy vanity. L'Objectif parle d'usage quotidien, le KR ne mesure que la curiosité.",
@@ -526,14 +526,14 @@ export const OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "C",
-        text: "Livrer 5 améliorations majeures sur la fonctionnalité de collaboration ce trimestre.",
+        text: "Livrer, avec les 3 devs de l'équipe, 5 améliorations majeures sur la fonctionnalité de collaboration ce trimestre.",
         verdict: "bad",
         explanation:
           "Résultat clé projet. 5 améliorations livrées peuvent ne rien changer à l'adoption.",
       },
       {
         id: "D",
-        text: "Améliorer l'adoption de la collaboration en temps réel.",
+        text: "Améliorer l'adoption de la collaboration en temps réel, aujourd'hui utilisée par 12 400 utilisateurs actifs.",
         verdict: "bad",
         explanation:
           "Pas de métrique, pas de chiffre. Vœu pieux.",

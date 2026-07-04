@@ -131,8 +131,12 @@ export interface PedagogicalSection {
    * - `"source"` : encart citation différencié, italique, icône livre.
    * - `"bricks"` : grille colorée des composants grammaticaux d'un objectif,
    *   précédée d'une phrase exemple annotée (couleurs assorties).
+   * - `"signals"` : la section « signaux d'alerte » d'une fiche piège — sert de
+   *   source explicite au champ `detectionSignal` du quiz Anti-patterns
+   *   (voir `pitfall-quiz.ts`). Exactement une section par fiche marquée
+   *   `isNamedPitfall`, portée par ses `bullets`.
    */
-  kind?: "source" | "bricks";
+  kind?: "source" | "bricks" | "signals";
   /** Briques (5 max) à afficher quand `kind: "bricks"`. */
   bricks?: Brick[];
   /** Phrase exemple complète quand `kind: "bricks"`. Les `snippet` de chaque

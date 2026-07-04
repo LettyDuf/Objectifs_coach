@@ -20,10 +20,24 @@ export interface PitfallQuizCase {
   correctPitfallId: string;
   /** Libellé du piège (titre de la fiche), affiché comme option de réponse. */
   correctLabel: string;
-  /** Explication pédagogique (le `note` de l'exemple), affichée après réponse. */
+  /** Explication pédagogique sur CET exemple précis (le `note` de l'exemple). */
   explanation: string;
   /** La bonne reformulation, affichée après réponse pour boucler la boucle. */
   goodExample: string;
+  /**
+   * La règle qui définit ce piège en général (le `heroPhrase` de la fiche) —
+   * répond à « pourquoi ça appartient à CETTE famille de piège », pas
+   * seulement « pourquoi cet exemple précis est raté ».
+   */
+  categoryRule: string;
+  /**
+   * Signal concret pour repérer ce piège la prochaine fois, en dehors de cet
+   * exemple précis — dérivé de la section marquée `kind: "signals"` de la
+   * fiche. Vide si la fiche n'a pas (encore) une telle section.
+   */
+  detectionSignal: string;
+  /** Thème de la fiche source — sert à construire le lien « Voir la fiche ». */
+  themeId: string | undefined;
 }
 
 /**
@@ -44,6 +58,9 @@ export function buildPitfallQuizCases(sheets: PedagogicalSheet[]): PitfallQuizCa
       correctLabel: sheet.title,
       explanation: example.note ?? "",
       goodExample: example.good,
+      categoryRule: sheet.heroPhrase ?? "",
+      detectionSignal: signalsBullets(sheet),
+      themeId: sheet.themeId,
     });
   }
   return cases;
@@ -56,4 +73,11 @@ function firstExample(sheet: PedagogicalSheet) {
     }
   }
   return undefined;
+}
+
+/** Concatène les bullets de la section marquée `kind: "signals"`, s'il y en a une. */
+function signalsBullets(sheet: PedagogicalSheet): string {
+  const section = sheet.sections.find((s) => s.kind === "signals");
+  if (!section || !section.bullets || section.bullets.length === 0) return "";
+  return section.bullets.join(" ");
 }

@@ -47,12 +47,20 @@ describe("buildPitfallQuizCases", () => {
       sheet({
         id: "s.d",
         title: "Le vanity goal",
+        heroPhrase: "Un goal qui sonne bien mais n'engage personne.",
+        themeId: "sprint.pieges-classiques",
         isNamedPitfall: true,
         sections: [
           {
             heading: "h",
             body: "b",
             examples: [{ bad: "Augmenter les téléchargements.", good: "Augmenter l'activation à J7.", note: "Le téléchargement n'est pas l'usage." }],
+          },
+          {
+            heading: "Signaux d'alerte",
+            kind: "signals",
+            body: "",
+            bullets: ["Aucun chiffre.", "Aucun bénéficiaire nommé."],
           },
         ],
       }),
@@ -65,8 +73,23 @@ describe("buildPitfallQuizCases", () => {
         correctLabel: "Le vanity goal",
         explanation: "Le téléchargement n'est pas l'usage.",
         goodExample: "Augmenter l'activation à J7.",
+        categoryRule: "Un goal qui sonne bien mais n'engage personne.",
+        detectionSignal: "Aucun chiffre. Aucun bénéficiaire nommé.",
+        themeId: "sprint.pieges-classiques",
       },
     ]);
+  });
+
+  it("renvoie un detectionSignal vide si la fiche n'a pas de section kind=signals", () => {
+    const sheets = [
+      sheet({
+        id: "s.h",
+        isNamedPitfall: true,
+        sections: [{ heading: "h", body: "b", examples: [{ bad: "x", good: "y" }] }],
+      }),
+    ];
+    expect(buildPitfallQuizCases(sheets)[0]?.detectionSignal).toBe("");
+    expect(buildPitfallQuizCases(sheets)[0]?.categoryRule).toBe("");
   });
 
   it("prend le premier exemple trouvé si une fiche marquée a plusieurs sections avec exemples", () => {

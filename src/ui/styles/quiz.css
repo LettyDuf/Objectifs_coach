@@ -197,6 +197,28 @@
   border-top: 1px solid color-mix(in srgb, var(--color-text) 10%, transparent);
 }
 
+/* Feedback structuré du quiz Anti-patterns (raison / catégorie / signal de détection) */
+.pitfall-feedback {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.pitfall-feedback dt {
+  margin: 0 0 var(--space-1);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: var(--color-text-muted);
+}
+
+.pitfall-feedback dd {
+  margin: 0;
+  line-height: 1.5;
+}
+
 /* Sidebar progression */
 .quiz-progress {
   padding: var(--space-4);

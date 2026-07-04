@@ -227,15 +227,15 @@ function AppShell() {
             déjà enseigné en Théorie. Mono-type comme ChallengeQuiz (pas d'exception
             à D9) — un routage par type, pas de sélecteur interne. */}
         {state.type === "sprint" && state.mode === "pitfalls" && (
-          <PitfallQuiz type="sprint" onExit={backToModes} />
+          <PitfallQuiz type="sprint" onExit={backToModes} onGoToTheme={selectTheme} />
         )}
 
         {state.type === "pi" && state.mode === "pitfalls" && (
-          <PitfallQuiz type="pi" onExit={backToModes} />
+          <PitfallQuiz type="pi" onExit={backToModes} onGoToTheme={selectTheme} />
         )}
 
         {state.type === "okr-equipe" && state.mode === "pitfalls" && (
-          <PitfallQuiz type="okr-equipe" onExit={backToModes} />
+          <PitfallQuiz type="okr-equipe" onExit={backToModes} onGoToTheme={selectTheme} />
         )}
       </main>
     </div>

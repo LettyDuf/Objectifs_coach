@@ -248,6 +248,17 @@ export const OKR_EQUIPE_DEV_SHEETS_FR: PedagogicalSheet[] = [
         ],
       },
       {
+        heading: "Signaux d'alerte",
+        icon: "warn",
+        kind: "signals",
+        body: "",
+        bullets: [
+          "Plus de 3 Objectifs actifs pour la même équipe sur le même trimestre.",
+          "Chaque Objectif capte une part mineure de la capacité de l'équipe — aucun n'est clairement le cap du trimestre.",
+          "L'équipe ne peut pas réciter ses Objectifs de mémoire sans les relire.",
+        ],
+      },
+      {
         heading: "Comment trancher",
         icon: "good",
         body: "Si la liste contient trois Objectifs, demande : « Lequel des trois, si on échoue, fait le plus mal au trimestre ? ». Garde celui-là. Les autres sont du business as usual, des KR d'un autre Objectif, ou attendent le cycle suivant.",
@@ -280,6 +291,7 @@ export const OKR_EQUIPE_DEV_SHEETS_FR: PedagogicalSheet[] = [
       {
         heading: "Le réflexe : poser la barre où on sait l'atteindre",
         icon: "bad",
+        kind: "signals",
         body: "Sandbagging = poser un KR volontairement bas pour garantir un score de 100 %. C'est souvent rationnel à court terme (bonus, image, peur de l'échec) mais cela vide l'OKR de son sens : la cible n'est plus ambitieuse, elle décrit ce qui allait se produire de toute façon.",
         bullets: [
           "Symptôme : tous les KR atteints à 100 %, cycle après cycle.",
@@ -325,6 +337,7 @@ export const OKR_EQUIPE_DEV_SHEETS_FR: PedagogicalSheet[] = [
       {
         heading: "Le glissement",
         icon: "bad",
+        kind: "signals",
         body: "L'équipe ouvre son OKR comme un fichier de suivi : on coche les jalons, on remonte les pourcentages d'avancement projet. Le KR devient « livrer le module X à 50 %, puis 80 %, puis 100 % ». On a transformé un outil d'outcome en un outil de gestion de projet.",
         bullets: [
           "Symptôme : les KR parlent de jalons (« phase 1 livrée », « MVP déployé »).",
@@ -375,6 +388,7 @@ export const OKR_EQUIPE_DEV_SHEETS_FR: PedagogicalSheet[] = [
       {
         heading: "Le scénario",
         icon: "bad",
+        kind: "signals",
         body: "Le management déroule l'OKR entreprise puis distribue à chaque équipe son OKR équipe préparé en comité. L'équipe découvre ses Résultats clés dans un slide. C'est efficace en apparence : tout est aligné, tout est documenté. C'est inefficace en réalité : personne dans l'équipe ne se sent comptable de cibles qu'elle n'a pas calibrées.",
         bullets: [
           "Symptôme : les KR sont écrits avec un vocabulaire que l'équipe n'emploie pas.",
@@ -420,6 +434,7 @@ export const OKR_EQUIPE_DEV_SHEETS_FR: PedagogicalSheet[] = [
       {
         heading: "Le scénario",
         icon: "bad",
+        kind: "signals",
         body: "La direction (DP, direction produit, ou tout n+1 porteur d'un objectif de haut niveau) annonce son objectif. Au lieu de le faire descendre au niveau de l'équipe, le manager le découpe directement en « objectifs individuels » : chaque personne reçoit une reformulation réduite du même objectif, avec son nom dessus.",
         bullets: [
           "Symptôme : l'objectif individuel est la même phrase que celui de la direction, en plus petit.",

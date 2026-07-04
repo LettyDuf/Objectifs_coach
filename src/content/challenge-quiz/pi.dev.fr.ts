@@ -45,7 +45,7 @@ export const PI_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
     options: [
       {
         id: "A",
-        text: "Refactorer le tunnel d'achat mobile et améliorer l'UX globale.",
+        text: "Refactorer, avec les 4 équipes du train, le tunnel d'achat mobile utilisé par 1,4 M visites par mois, et améliorer l'UX globale.",
         verdict: "bad",
         explanation:
           "« Refactorer » est un output technique. « Améliorer l'UX » est flou. Le Business Owner ne saura pas à la revue de PI si l'objectif est atteint ou pas.",
@@ -59,14 +59,14 @@ export const PI_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "C",
-        text: "Augmenter les conversions sur mobile.",
+        text: "Augmenter les conversions sur mobile, un sujet suivi par les 4 équipes du train sur 1,4 M visites mensuelles.",
         verdict: "partial",
         explanation:
           "Outcome correct, métrique implicite. Mais aucun seuil chiffré, aucune fenêtre. À renforcer avec « de X à Y » et l'échéance de PI.",
       },
       {
         id: "D",
-        text: "Livrer la v2 du tunnel d'achat mobile sur le PI.",
+        text: "Livrer, avec les 4 équipes du train, la v2 du tunnel d'achat mobile sur le PI.",
         verdict: "bad",
         explanation:
           "« Livrer la v2 » est une livraison, pas un résultat de valeur. Et si la v2 est livrée mais que la conversion baisse ? La revue de PI devra trancher sans critère.",
@@ -290,7 +290,7 @@ export const PI_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
     options: [
       {
         id: "A",
-        text: "Réduire le churn premium de manière notable d'ici la fin du PI.",
+        text: "Réduire, sur les 2 400 comptes premium actifs, le churn de manière notable d'ici la fin du PI.",
         verdict: "bad",
         explanation:
           "« De manière notable » est non mesurable. Sur un engagé à 80 % de confiance, on attend une cible chiffrée nette — la métrique et la référence historique existent.",
@@ -304,14 +304,14 @@ export const PI_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "C",
-        text: "Diviser le churn premium par deux d'ici la fin du PI.",
+        text: "Diviser par deux, sur les 2 400 comptes premium actifs, le churn d'ici la fin du PI.",
         verdict: "partial",
         explanation:
           "Variation chiffrée, fenêtre — bonne base. Mais formulation relative (« par deux ») qui demande un calcul mental. La forme « de 4 % à 2 % » se vérifie d'un coup d'œil.",
       },
       {
         id: "D",
-        text: "Améliorer la rétention des comptes premium.",
+        text: "Améliorer la rétention des 2 400 comptes premium actifs, avec une confiance équipe estimée à 80 %.",
         verdict: "bad",
         explanation:
           "Pas de chiffre, pas de seuil, mot flou (« améliorer »). À la revue de PI, deux personnes peuvent défendre que c'est atteint sans s'accorder.",
@@ -390,7 +390,7 @@ export const PI_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
     options: [
       {
         id: "A",
-        text: "Permettre aux équipes business de prendre 80 % de leurs décisions via la plateforme analytics d'ici la revue de PI.",
+        text: "Permettre aux 9 équipes business sur 14 de prendre 80 % de leurs décisions via la plateforme analytics d'ici la revue de PI.",
         verdict: "partial",
         explanation:
           "Bonne intention, métrique attractive — mais qu'une équipe business « prenne une décision via la plateforme » dépend autant de leur maturité analytique que de la plateforme. Le train n'a pas la main directe : sous-influence partielle. Et la métrique est difficile à instrumenter objectivement.",
@@ -404,14 +404,14 @@ export const PI_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "C",
-        text: "Améliorer la plateforme analytics pour les équipes business.",
+        text: "Améliorer la plateforme analytics, aujourd'hui utilisée par 9 équipes business sur 14, pour ces mêmes équipes.",
         verdict: "bad",
         explanation:
           "Flou pur. Aucune métrique, aucun seuil. À la revue de PI, personne ne saura trancher.",
       },
       {
         id: "D",
-        text: "Mettre en place les 12 nouveaux tableaux de bord demandés par les équipes business sur ce PI.",
+        text: "Mettre en place, pour les 9 équipes business sur 14, les 12 nouveaux tableaux de bord demandés sur ce PI.",
         verdict: "bad",
         explanation:
           "Output. Les 12 tableaux peuvent être livrés sans changer le temps de réponse ni l'usage réel. Mesure le travail, pas la valeur.",
@@ -590,7 +590,7 @@ export const PI_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
     options: [
       {
         id: "A",
-        text: "Atteindre 90 % de couverture de tests d'intégration sur la plateforme d'ici la revue de PI.",
+        text: "Atteindre, pour les 6 équipes du train, 90 % de couverture de tests d'intégration sur la plateforme d'ici la revue de PI.",
         verdict: "partial",
         explanation:
           "Métrique nommée, cible, fenêtre — forme correcte. Mais la couverture est une métrique de moyen, pas de fin. Atteindre 90 % de couverture ne garantit pas que la plateforme est plus fiable côté équipes fonctionnalité. Le Business Owner attend une métrique de fin.",
@@ -604,14 +604,14 @@ export const PI_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "C",
-        text: "Stabiliser la plateforme et alléger la charge astreinte.",
+        text: "Stabiliser, pour les 6 équipes du train, la plateforme et alléger la charge d'astreinte qui pèse aujourd'hui pour 30 % du temps.",
         verdict: "bad",
         explanation:
           "Composite + flou. Deux objectifs (stabilisation + astreinte) sans seuils chiffrés.",
       },
       {
         id: "D",
-        text: "Mettre en place le nouveau système d'alerting.",
+        text: "Mettre en place, pour les 6 équipes du train, le nouveau système d'alerting face aux incidents dont le TMR atteint 45 min.",
         verdict: "bad",
         explanation:
           "Output. Le système peut être en place sans effet sur la fiabilité ressentie.",
