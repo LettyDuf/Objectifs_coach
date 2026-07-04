@@ -788,20 +788,25 @@
   color: var(--color-text-muted);
 }
 
-/* Compactage agressif du Contexte du QCM (single column, éviter le scroll) */
-.quiz-context__text {
-  font-size: var(--font-size-sm) !important;
-  line-height: 1.45 !important;
-  margin: 0 !important;
+/* Compactage agressif du Contexte du QCM (single column, éviter le scroll).
+   Scopé à .quiz-context (le bloc contexte de ChallengeQuiz) : .quiz-context__quote
+   est une classe partagée, réutilisée telle quelle (hors de ce bloc) par le
+   "Mauvais exemple" de PitfallQuiz et le brouillon de MaintenanceWorksheet — un
+   override global la rendait illisible partout ailleurs (retour Lætitia, énoncé
+   trop petit). */
+.quiz-context .quiz-context__text {
+  font-size: var(--font-size-sm);
+  line-height: 1.45;
+  margin: 0;
 }
 
-.quiz-context__metrics {
-  font-size: var(--font-size-sm) !important;
+.quiz-context .quiz-context__metrics {
+  font-size: var(--font-size-sm);
 }
 
-.quiz-context__quote {
-  font-size: var(--font-size-sm) !important;
-  margin: var(--space-2) 0 0 !important;
+.quiz-context .quiz-context__quote {
+  font-size: var(--font-size-sm);
+  margin: var(--space-2) 0 0;
 }
 
 .quiz-options__hint {
