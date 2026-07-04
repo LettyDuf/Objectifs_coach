@@ -205,3 +205,14 @@ Format : pour chaque décision, trois lignes — **Contexte**, **Choix**, **Alte
 - Alternative écartée (retirer les chiffres de la bonne réponse) : impossible — la bonne réponse a structurellement besoin d'un avant/après chiffré et/ou d'une échéance, c'est précisément ce qui en fait un bon outcome mesurable. Le problème n'est pas que la bonne réponse ait des chiffres, mais que les distracteurs n'en aient pas.
 - Reste en suspens : 9 cas à écart plus modéré (bonne réponse strictement au-dessus des distracteurs mais sans l'écart franc 2+ vs 0-1) laissés tels quels — priorité mineure, à retoucher seulement si signalé.
 
+## D36 — Renommage de fiche « Renouveler le goal, pas le copier-coller » → « Le goal recyclé »
+- Contexte : retour Lætitia sur le quiz Anti-patterns — le titre de cette fiche est le seul des 13 pièges à être phrasé comme un conseil d'action (« Renouveler le goal, pas le copier-coller ») plutôt que comme le nom du piège lui-même (comparer à « Le vanity goal », « Le goal de confort »...). Confusant en contexte quiz, où chaque option doit se lire comme la réponse à « à quel piège ça correspond ? », pas comme une recommandation.
+- Choix : renommage du titre de la fiche elle-même (`sprint.sheet.renew-the-goal`), pas d'un simple libellé propre au quiz — un seul nom à maintenir, cohérent partout (Théorie, breadcrumb, Anti-patterns). Nom validé par Lætitia : « Le goal recyclé ».
+- Alternative écartée (champ `quizLabel` séparé, gardant le titre Théorie inchangé) : proposée mais non retenue par Lætitia — aurait maintenu deux noms différents pour le même piège selon l'écran, au lieu d'un renommage franc.
+- Impact : uniquement le champ `title` de la fiche (heroPhrase, sections, exemples inchangés). `correctLabel` du quiz Anti-patterns le reprend automatiquement (dérivé de `sheet.title`, pas de code à toucher).
+
+## D37 — Cartes détachées pour le feedback Anti-patterns (lisibilité)
+- Contexte : retour Lætitia — l'encart de feedback (fond teinté rouge/vert/ambre) « ressemble à un gros paragraphe gris », malgré les trois titres de section (D34). Les trois blocs dt/dd flottaient tous sur le même fond plat, sans séparation visuelle.
+- Choix : chaque paire titre/texte devient une carte détachée (`pitfall-feedback__item`, fond blanc semi-transparent superposé au fond teinté, coins arrondis, padding) — casse la masse en trois unités de lecture distinctes. Titre de section passé de `color-text-muted` à `color-text` à 65 % d'opacité (plus de présence sans dépendre d'une teinte figée au rouge, puisque le même bloc sert aussi pour les bonnes réponses sur fond vert).
+- Alternative écartée (garder la liste plate mais foncer le texte) : aurait amélioré le contraste sans résoudre le vrai problème signalé — l'absence de séparation entre les trois idées.
+

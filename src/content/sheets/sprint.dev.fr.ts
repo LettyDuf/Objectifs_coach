@@ -446,7 +446,7 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
     isNamedPitfall: true,
     themeId: "sprint.pieges-classiques",
     icon: "warn",
-    title: "Renouveler le goal, pas le copier-coller",
+    title: "Le goal recyclé",
     heroPhrase:
       "Le même goal sprint après sprint signale soit qu'on n'apprend rien, soit qu'on ne mesure jamais.",
     intro: "",

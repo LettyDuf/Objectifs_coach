@@ -202,7 +202,15 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
+  gap: var(--space-2);
+}
+
+/* Chaque paire titre/texte devient une carte détachée du fond coloré du verdict,
+   pour éviter l'effet "un seul gros paragraphe" sur fond teinté (retour Lætitia). */
+.pitfall-feedback__item {
+  background: color-mix(in srgb, white 55%, transparent);
+  border-radius: var(--radius-sm);
+  padding: var(--space-3);
 }
 
 .pitfall-feedback dt {
@@ -210,13 +218,15 @@
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-semibold);
   text-transform: uppercase;
-  letter-spacing: 0.02em;
-  color: var(--color-text-muted);
+  letter-spacing: 0.04em;
+  color: var(--color-text);
+  opacity: 0.65;
 }
 
 .pitfall-feedback dd {
   margin: 0;
   line-height: 1.5;
+  color: var(--color-text);
 }
 
 /* Sidebar progression */

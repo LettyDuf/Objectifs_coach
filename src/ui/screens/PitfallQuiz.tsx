@@ -245,17 +245,21 @@ export function PitfallQuiz({ type, onExit, onGoToTheme }: Props) {
                     )}
 
                     <dl className="pitfall-feedback">
-                      <dt>Pourquoi cet exemple précis pèche</dt>
-                      <dd>{currentCase.explanation}</dd>
+                      <div className="pitfall-feedback__item">
+                        <dt>Pourquoi cet exemple précis pèche</dt>
+                        <dd>{currentCase.explanation}</dd>
+                      </div>
 
-                      <dt>Pourquoi c'est « {currentCase.correctLabel} »</dt>
-                      <dd>{currentCase.categoryRule}</dd>
+                      <div className="pitfall-feedback__item">
+                        <dt>Pourquoi c'est « {currentCase.correctLabel} »</dt>
+                        <dd>{currentCase.categoryRule}</dd>
+                      </div>
 
                       {currentCase.detectionSignal && (
-                        <>
+                        <div className="pitfall-feedback__item">
                           <dt>Comment le repérer la prochaine fois</dt>
                           <dd>{currentCase.detectionSignal}</dd>
-                        </>
+                        </div>
                       )}
                     </dl>
 
