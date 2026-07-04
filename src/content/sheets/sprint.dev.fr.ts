@@ -290,7 +290,7 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
     isNamedPitfall: true,
     themeId: "sprint.pieges-classiques",
     icon: "warn",
-    title: "L'objectif de Sprint n'est pas la liste des récits",
+    title: "L'objectif liste de tâches",
     heroPhrase:
       "L'équipe s'engage sur un résultat. Les récits sont une hypothèse de ce qui aidera à l'atteindre.",
     intro: "",
@@ -342,16 +342,16 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
     isNamedPitfall: true,
     themeId: "sprint.pieges-classiques",
     icon: "warn",
-    title: "Le vanity goal",
+    title: "L'objectif vitrine",
     heroPhrase:
       "Un goal qui sonne bien mais n'engage personne. Il rassure les parties prenantes sans rien promettre.",
     intro: "",
-    practiceCtaLabel: "Va corriger un vanity goal",
+    practiceCtaLabel: "Va corriger un objectif vitrine",
     sections: [
       {
         heading: "Pourquoi c'est piégeux",
         icon: "target",
-        body: "Le vanity goal coche la case « on a un objectif de Sprint » sans accepter le coût d'un engagement vérifiable. Personne ne saura à la fin du sprint si l'objectif est atteint ou pas, donc tout le monde déclare la victoire.",
+        body: "L'objectif vitrine coche la case « on a un objectif de Sprint » sans accepter le coût d'un engagement vérifiable. Personne ne saura à la fin du sprint si l'objectif est atteint ou pas, donc tout le monde déclare la victoire.",
         bullets: [
           "Aucune mesure ne tranche en fin de sprint.",
           "Le goal est compatible avec n'importe quel résultat.",
@@ -394,7 +394,7 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
     isNamedPitfall: true,
     themeId: "sprint.pieges-classiques",
     icon: "warn",
-    title: "Le goal de confort",
+    title: "L'objectif de confort",
     heroPhrase:
       "Un goal qui sert un seul interlocuteur ou une obsession interne. Aucun bénéficiaire externe ne ressent l'effet.",
     intro: "",
@@ -403,7 +403,7 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
       {
         heading: "Pourquoi",
         icon: "target",
-        body: "Le goal de confort est techniquement bien rédigé mais sert un public minoritaire ou interne : demande d'un manager isolé, refactor que seule l'équipe verra, fonctionnalité réclamée par un seul client. La vélocité est dépensée sans contrepartie utilisateur.",
+        body: "L'objectif de confort est techniquement bien rédigé mais sert un public minoritaire ou interne : demande d'un manager isolé, refactor que seule l'équipe verra, fonctionnalité réclamée par un seul client. La vélocité est dépensée sans contrepartie utilisateur.",
         bullets: [
           "Aucun bénéficiaire externe n'est nommé, ou un seul.",
           "L'effet attendu reste dans l'équipe (vélocité, propreté du code).",
@@ -446,7 +446,7 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
     isNamedPitfall: true,
     themeId: "sprint.pieges-classiques",
     icon: "warn",
-    title: "Le goal recyclé",
+    title: "L'objectif recyclé",
     heroPhrase:
       "Le même goal sprint après sprint signale soit qu'on n'apprend rien, soit qu'on ne mesure jamais.",
     intro: "",
