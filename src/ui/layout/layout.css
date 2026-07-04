@@ -83,6 +83,11 @@
   padding: var(--space-6) 0;
   display: grid;
   gap: var(--space-6);
+  /* Sans ça, la grille étire ses enfants (Zone) pour remplir toute la hauteur
+     disponible sur un écran haut / contenu court — les cartes se retrouvent
+     avec un grand vide interne au lieu de s'ajuster à leur contenu. Corrigé
+     le 2026-07-04 (bug présent depuis le premier commit, D41). */
+  align-items: start;
 }
 
 .screen-body--single       { grid-template-columns: minmax(0, 1fr); }
