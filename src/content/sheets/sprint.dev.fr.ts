@@ -20,7 +20,7 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
         heading: "Les cinq briques",
         icon: "target",
         kind: "bricks",
-        body: "Un objectif de Sprint solide tient en une phrase et porte cinq briques. Chacune répond à une question. Si l'une manque, le goal est ambigu : quelqu'un finira par défendre un verdict qu'un autre contestera.",
+        body: "Un objectif de Sprint solide tient en une phrase et porte cinq briques. Chacune répond à une question. Si l'une manque, l'objectif est ambigu : quelqu'un finira par défendre un verdict qu'un autre contestera.",
         bricksSentence:
           "Réduire le taux d'abandon au paiement de 50 % sur mobile d'ici la fin du sprint 24.",
         bricks: [
@@ -69,7 +69,7 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
       {
         heading: "Le test des cinq briques",
         icon: "good",
-        body: "Lire son goal à voix haute et compter. Si une brique manque, l'identifier explicitement avant de figer.",
+        body: "Lire son objectif à voix haute et compter. Si une brique manque, l'identifier explicitement avant de figer.",
         examples: [
           {
             bad: "Améliorer le tunnel de paiement.",
@@ -205,7 +205,7 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
     icon: "good",
     title: "Comment savoir que l'objectif de Sprint est atteint",
     heroPhrase:
-      "La définition de succès se pose en Sprint Planning, pas à la Sprint Review. Tu écris le goal et son critère d'atteinte ensemble.",
+      "La définition de succès se pose en Sprint Planning, pas à la Sprint Review. Tu écris l'objectif et son critère d'atteinte ensemble.",
     intro: "",
     practiceCtaLabel: "Va définir le critère d'atteinte",
     sections: [
@@ -222,7 +222,7 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
       {
         heading: "Trois niveaux d'atteinte (à connaître, sans les multiplier)",
         icon: "learn",
-        body: "Tu peux formaliser trois verdicts en fin de sprint, mais le goal doit fonctionner même avec un binaire atteint/raté. Les nuances servent en rétro, pas à l'affichage du résultat.",
+        body: "Tu peux formaliser trois verdicts en fin de sprint, mais l'objectif doit fonctionner même avec un binaire atteint/raté. Les nuances servent en rétro, pas à l'affichage du résultat.",
         bullets: [
           "**Atteint** : le critère mesurable est rempli ou dépassé.",
           "**Partiel** : on n'a pas atteint la cible mais on a appris quelque chose qui change le sprint suivant.",
@@ -232,12 +232,12 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
       {
         heading: "Le test de la phrase « Comment saurons-nous »",
         icon: "wrench",
-        body: "À la fin du Sprint Planning, demander : « comment saurons-nous, en fin de sprint, si nous l'avons atteint ? » Si l'équipe ne sait pas répondre en moins de 30 secondes, le goal est mal posé. Reformuler avant de démarrer.",
+        body: "À la fin du Sprint Planning, demander : « comment saurons-nous, en fin de sprint, si nous l'avons atteint ? » Si l'équipe ne sait pas répondre en moins de 30 secondes, l'objectif est mal posé. Reformuler avant de démarrer.",
         examples: [
           {
             bad: "objectif de Sprint : « Rendre le module commande plus fiable. » Critère d'atteinte : non posé.",
             good: "objectif de Sprint : « Réduire le nombre d'incidents production du module commande de 14 à 5 par semaine d'ici la fin du sprint. » Critère : nombre d'incidents mesuré la dernière semaine du sprint, comparé à la moyenne hebdomadaire précédente.",
-            note: "Le critère d'atteinte est implicite dans le goal bien rédigé, mais le formuler explicitement protège contre les divergences d'interprétation.",
+            note: "Le critère d'atteinte est implicite dans l'objectif bien rédigé, mais le formuler explicitement protège contre les divergences d'interprétation.",
           },
         ],
       },
@@ -299,11 +299,11 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
       {
         heading: "Pourquoi",
         icon: "target",
-        body: "Le Scrum Guide est clair : la sélection des items du backlog produit (Product Backlog Items) est une **hypothèse** de ce qui aidera à atteindre l'objectif de Sprint, pas l'engagement en soi. Si l'équipe s'engage sur les récits au lieu du goal, le sprint devient une course à la complétion, pas une recherche de valeur.",
+        body: "Le Scrum Guide est clair : la sélection des items du backlog produit (Product Backlog Items) est une **hypothèse** de ce qui aidera à atteindre l'objectif de Sprint, pas l'engagement en soi. Si l'équipe s'engage sur les récits au lieu de l'objectif, le sprint devient une course à la complétion, pas une recherche de valeur.",
         bullets: [
           "L'engagement porte sur le résultat, pas sur la livraison.",
-          "Si la moitié des récits suffisent à atteindre le goal, on s'arrête.",
-          "Si les récits ne suffisent pas, on ajuste les récits, pas le goal.",
+          "Si la moitié des récits suffisent à atteindre l'objectif, on s'arrête.",
+          "Si les récits ne suffisent pas, on ajuste les récits, pas l'objectif.",
         ],
       },
       {
@@ -320,7 +320,7 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
       {
         heading: "Comment recadrer",
         icon: "wrench",
-        body: "Reformuler le goal en outcome avant de finaliser la sélection. Demander : « quelles récits nous permettent vraiment d'atteindre ce goal ? » et laisser tomber le reste.",
+        body: "Reformuler l'objectif en outcome avant de finaliser la sélection. Demander : « quelles récits nous permettent vraiment d'atteindre cet objectif ? » et laisser tomber le reste.",
         examples: [
           {
             bad: "Livrer les 12 récits de l'epic intégration.",
@@ -344,7 +344,7 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
     icon: "warn",
     title: "L'objectif vitrine",
     heroPhrase:
-      "Un goal qui sonne bien mais n'engage personne. Il rassure les parties prenantes sans rien promettre.",
+      "Un objectif qui sonne bien mais n'engage personne. Il rassure les parties prenantes sans rien promettre.",
     intro: "",
     practiceCtaLabel: "Va corriger un objectif vitrine",
     sections: [
@@ -354,7 +354,7 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
         body: "L'objectif vitrine coche la case « on a un objectif de Sprint » sans accepter le coût d'un engagement vérifiable. Personne ne saura à la fin du sprint si l'objectif est atteint ou pas, donc tout le monde déclare la victoire.",
         bullets: [
           "Aucune mesure ne tranche en fin de sprint.",
-          "Le goal est compatible avec n'importe quel résultat.",
+          "L'objectif est compatible avec n'importe quel résultat.",
           "Il rassure les parties prenantes mais ne change pas le comportement de l'équipe.",
         ],
       },
@@ -372,7 +372,7 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
       {
         heading: "Comment reformuler",
         icon: "wrench",
-        body: "Repérer le mot flou, demander « tu veux dire quoi, concrètement, mesurable comment ? » et écrire la réponse comme nouveau goal.",
+        body: "Repérer le mot flou, demander « tu veux dire quoi, concrètement, mesurable comment ? » et écrire la réponse comme nouvel objectif.",
         examples: [
           {
             bad: "Renforcer l'expérience utilisateur sur le module commande.",
@@ -384,7 +384,7 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
       {
         heading: "Source",
         kind: "source",
-        body: "Scrum.org, Sprint Anti-Patterns. Convergent avec le test pédagogique de Mike Cohn : « can two people defending opposite verdicts both be right ? » [traduction : « deux personnes défendant des verdicts opposés peuvent-elles avoir raison toutes les deux ? »] Si oui, le goal est creux.",
+        body: "Scrum.org, Sprint Anti-Patterns. Convergent avec le test pédagogique de Mike Cohn : « can two people defending opposite verdicts both be right ? » [traduction : « deux personnes défendant des verdicts opposés peuvent-elles avoir raison toutes les deux ? »] Si oui, l'objectif est creux.",
       },
     ],
   },
@@ -396,9 +396,9 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
     icon: "warn",
     title: "L'objectif de confort",
     heroPhrase:
-      "Un goal qui sert un seul interlocuteur ou une obsession interne. Aucun bénéficiaire externe ne ressent l'effet.",
+      "Un objectif qui sert un seul interlocuteur ou une obsession interne. Aucun bénéficiaire externe ne ressent l'effet.",
     intro: "",
-    practiceCtaLabel: "Va recentrer un goal mal aligné",
+    practiceCtaLabel: "Va recentrer un objectif mal aligné",
     sections: [
       {
         heading: "Pourquoi",
@@ -418,13 +418,13 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
         bullets: [
           "Le bénéficiaire nommé est un membre de l'équipe ou un manager.",
           "L'effet attendu n'est observable qu'en interne.",
-          "Le sprint d'avant avait déjà un goal sur le même sous-sujet.",
+          "Le sprint d'avant avait déjà un objectif sur le même sous-sujet.",
         ],
       },
       {
         heading: "Le test « qui en profite hors de l'équipe ? »",
         icon: "wrench",
-        body: "Avant de figer le goal, nommer 3 bénéficiaires hors équipe et l'effet observable sur chacun. Si la liste est vide, le goal est un goal de confort.",
+        body: "Avant de figer l'objectif, nommer 3 bénéficiaires hors équipe et l'effet observable sur chacun. Si la liste est vide, l'objectif est un objectif de confort.",
         examples: [
           {
             bad: "Refactorer le module de gestion des permissions pour qu'il soit plus clair.",
@@ -448,18 +448,18 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
     icon: "warn",
     title: "L'objectif recyclé",
     heroPhrase:
-      "Le même goal sprint après sprint signale soit qu'on n'apprend rien, soit qu'on ne mesure jamais.",
+      "Le même objectif sprint après sprint signale soit qu'on n'apprend rien, soit qu'on ne mesure jamais.",
     intro: "",
-    practiceCtaLabel: "Va écrire un nouveau goal",
+    practiceCtaLabel: "Va écrire un nouvel objectif",
     sections: [
       {
         heading: "Pourquoi le renouveler",
         icon: "target",
-        body: "Si le goal du sprint N est identique à celui du sprint N-1 (et N-2), trois lectures possibles : (1) le goal n'est pas atteint, donc il faut le revoir ou changer d'approche ; (2) il est atteint mais on ne le mesure pas ; (3) c'est un faux goal qui ne sert que d'étiquette. Aucune n'est saine.",
+        body: "Si l'objectif du sprint N est identique à celui du sprint N-1 (et N-2), trois lectures possibles : (1) l'objectif n'est pas atteint, donc il faut le revoir ou changer d'approche ; (2) il est atteint mais on ne le mesure pas ; (3) c'est un faux objectif qui ne sert que d'étiquette. Aucune n'est saine.",
         bullets: [
-          "Un goal porte une intention bornée : quand l'intention est servie, le goal passe à autre chose.",
-          "Répéter sans mesurer transforme le goal en formule magique.",
-          "L'apprentissage d'un sprint doit modifier le suivant : nouveau goal ou approche modifiée.",
+          "Un objectif porte une intention bornée : quand l'intention est servie, l'objectif passe à autre chose.",
+          "Répéter sans mesurer transforme l'objectif en formule magique.",
+          "L'apprentissage d'un sprint doit modifier le suivant : nouvel objectif ou approche modifiée.",
         ],
       },
       {
@@ -468,20 +468,20 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
         kind: "signals",
         body: "",
         bullets: [
-          "Trois sprints consécutifs avec le même goal (ou variantes mineures).",
-          "Personne ne sait dire si le goal précédent a été atteint.",
-          "La rétro ne parle pas du goal, seulement des récits.",
+          "Trois sprints consécutifs avec le même objectif (ou variantes mineures).",
+          "Personne ne sait dire si l'objectif précédent a été atteint.",
+          "La rétro ne parle pas de l'objectif, seulement des récits.",
         ],
       },
       {
         heading: "Comment renouveler",
         icon: "wrench",
-        body: "À la fin de chaque sprint, statuer sur le goal : atteint, partiel, raté. Si atteint, passer à l'enjeu suivant. Si partiel ou raté, soit relever le seuil de la prochaine étape, soit changer d'approche (le goal ne se reproduit pas à l'identique).",
+        body: "À la fin de chaque sprint, statuer sur l'objectif : atteint, partiel, raté. Si atteint, passer à l'enjeu suivant. Si partiel ou raté, soit relever le seuil de la prochaine étape, soit changer d'approche (l'objectif ne se reproduit pas à l'identique).",
         examples: [
           {
             bad: "Améliorer la conversion du tunnel de paiement (sprint après sprint).",
             good: "Sprint 24 : faire passer la conversion de 12 % à 18 %. Sprint 25 (si atteint) : faire passer le taux d'abandon mobile de 35 % à 22 %. Sprint 25 (si raté) : reformuler l'hypothèse, peut-être que le problème n'est pas la conversion mais le ré-engagement.",
-            note: "Le sprint suivant porte un goal **différent**, soit qu'on monte d'un cran, soit qu'on change d'angle.",
+            note: "Le sprint suivant porte un objectif **différent**, soit qu'on monte d'un cran, soit qu'on change d'angle.",
           },
         ],
       },
@@ -509,7 +509,7 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
       {
         heading: "La logique de l'exploration",
         icon: "target",
-        body: "Un sprint d'exploration sert à trancher une incertitude (technique, produit, marché) avant de s'engager sur du développement. L'objectif de Sprint n'est donc pas « livrer X » mais « répondre à la question Y avec une preuve observable ». Le piège : confondre le sprint d'exploration avec un sprint sans goal.",
+        body: "Un sprint d'exploration sert à trancher une incertitude (technique, produit, marché) avant de s'engager sur du développement. L'objectif de Sprint n'est donc pas « livrer X » mais « répondre à la question Y avec une preuve observable ». Le piège : confondre le sprint d'exploration avec un sprint sans objectif.",
         bullets: [
           "L'incertitude à lever est nommée explicitement (la question).",
           "Le critère de réponse est observable : un prototype, un test utilisateur, une mesure de performance, une preuve de concept chiffrée.",
@@ -519,7 +519,7 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
       {
         heading: "Reformuler en outcome",
         icon: "wrench",
-        body: "L'objectif de Sprint d'exploration prend la forme « répondre à [question] avec [preuve] d'ici fin de sprint ». La preuve est ce qui rend le goal mesurable.",
+        body: "L'objectif de Sprint d'exploration prend la forme « répondre à [question] avec [preuve] d'ici fin de sprint ». La preuve est ce qui rend l'objectif mesurable.",
         examples: [
           {
             bad: "Explorer la faisabilité du paiement en crypto.",
@@ -547,9 +547,9 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
     icon: "challenge",
     title: "Sprint préparatoire à un événement",
     heroPhrase:
-      "Une release, une démo, une conférence. Le goal ne dit pas « tout préparer » mais ce qui changera chez le public visé.",
+      "Une release, une démo, une conférence. L'objectif ne dit pas « tout préparer » mais ce qui changera chez le public visé.",
     intro: "",
-    practiceCtaLabel: "Va écrire le goal d'un sprint d'événement",
+    practiceCtaLabel: "Va écrire l'objectif d'un sprint d'événement",
     sections: [
       {
         heading: "Pourquoi c'est piégeux",
@@ -576,7 +576,7 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
       {
         heading: "Le piège de la échéance floue",
         icon: "warn",
-        body: "L'événement crée une échéance forte (la date), ce qui peut faire croire que l'échéance suffit comme borne. Mais une échéance n'est pas un goal : le goal dit ce qu'on cherche à obtenir avant ou après cette échéance. Sans cet ajout, la date devient le seul critère et tout le travail s'aligne dessus, même s'il rate l'effet.",
+        body: "L'événement crée une échéance forte (la date), ce qui peut faire croire que l'échéance suffit comme borne. Mais une échéance n'est pas un objectif : l'objectif dit ce qu'on cherche à obtenir avant ou après cette échéance. Sans cet ajout, la date devient le seul critère et tout le travail s'aligne dessus, même s'il rate l'effet.",
       },
       {
         heading: "Source",
@@ -592,17 +592,17 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
     icon: "wrench",
     title: "Sprint avec dépendances bloquantes externes",
     heroPhrase:
-      "Tu ne contrôles pas tout. Le goal dit ce que tu peux honnêtement engager, avec un plan B explicite.",
+      "Tu ne contrôles pas tout. L'objectif dit ce que tu peux honnêtement engager, avec un plan B explicite.",
     intro: "",
-    practiceCtaLabel: "Va écrire un goal honnête face aux blocages",
+    practiceCtaLabel: "Va écrire un objectif honnête face aux blocages",
     sections: [
       {
         heading: "La situation",
         icon: "target",
-        body: "L'équipe attend une API externe, une validation légale, un accès production, une décision d'un autre département. Sans cette entrée, une partie du goal est inatteignable. Deux mauvais réflexes : (1) prétendre que le blocage va se lever et s'engager comme si de rien n'était ; (2) renoncer au goal et faire un sprint « au mieux » sans cap.",
+        body: "L'équipe attend une API externe, une validation légale, un accès production, une décision d'un autre département. Sans cette entrée, une partie de l'objectif est inatteignable. Deux mauvais réflexes : (1) prétendre que le blocage va se lever et s'engager comme si de rien n'était ; (2) renoncer à l'objectif et faire un sprint « au mieux » sans cap.",
         bullets: [
           "Le blocage est nommé en début de sprint, pas découvert à mi-parcours.",
-          "Le goal porte sur ce que l'équipe peut vraiment engager (donc parfois sur une étape antérieure au blocage).",
+          "L'objectif porte sur ce que l'équipe peut vraiment engager (donc parfois sur une étape antérieure au blocage).",
           "Un plan B explicite est posé pour les ressources non bloquées.",
         ],
       },
@@ -613,7 +613,7 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
         bullets: [
           "**Si le blocage est probable à se lever** : « Faire passer X de A à B **conditionnellement à la réception de Y avant le jour J du sprint**. À défaut, livrer la version isolée prête à intégrer dès réception. »",
           "**Si le blocage est durable** : « Réduire de 30 % le temps de traitement des cas sans dépendance Y, en isolant l'intégration Y pour livraison dès qu'elle est disponible. »",
-          "**Si le blocage est inconnu** : « Lever en première semaine la dépendance Y (sous responsabilité du Product Owner) puis exécuter sur le reste du sprint ». Le goal devient en partie l'engagement à débloquer.",
+          "**Si le blocage est inconnu** : « Lever en première semaine la dépendance Y (sous responsabilité du Product Owner) puis exécuter sur le reste du sprint ». L'objectif devient en partie l'engagement à débloquer.",
         ],
       },
       {
