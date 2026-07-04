@@ -1,6 +1,6 @@
 # STATUS — Coach Objectifs
 
-_Dernière mise à jour : 2026-07-03_
+_Dernière mise à jour : 2026-07-04_
 
 ## Phase actuelle
 Onglet **Théorie complet sur les 3 modules**. Étoffement contenu pédagogique terminé :
@@ -213,3 +213,6 @@ Recommandation : A (OKR) pour atteindre le périmètre V1 complet. Si OKR doit a
   **Dette identifiée, hors périmètre aujourd'hui** : ~51 usages génériques de « goal » restent dans le corps des fiches Sprint (heroPhrase, texte courant) — purge complète à faire dans une session dédiée si souhaité (voir backlog ci-dessus).
 
 - **2026-07-04** : **purge complète de « goal » dans le corps des fiches Sprint (D39)**, suite à un nouveau retour Lætitia sur une capture montrant encore « goal » partout dans le feedback de la fiche « L'objectif recyclé ». J'avais classé ça en dette différée (D38) — corrigé : 39 remplacements dans `src/content/sheets/sprint.dev.fr.ts` (heroPhrase, bullets, notes, `practiceCtaLabel`), élisions et contractions françaises traitées à la main (l'objectif, de l'objectif, à l'objectif, nouvel objectif, cet objectif). Citations littérales anglaises (Scrum Guide, Scrum.org, Cohn, Kniberg) non touchées, conformes à D30. Seuls les identifiants de code internes (`sprint.sheet.vanity-goal` etc., invisibles à l'utilisatrice) gardent « goal ». 158 tests verts / 1 skip, `tsc --noEmit` OK, build vérifié (549 Ko / gzip 141 Ko).
+
+- **2026-07-04** : **module « Maintenance : trouver la valeur » (D40)**, parti d'un cas de terrain (une équipe jugeait qu'un test de reprise annuel « ne peut pas avoir d'objectif ») élargi par Lætitia à toute la diversité du travail de maintenance. Taxonomie ISO/IEC 14764 (corrective / adaptative / perfective / préventive) retenue comme grille de lecture, avec un exemple bad/good validé par famille. Livré à deux endroits : fiche Théorie « Sprint de maintenance : trouver la valeur » enrichie d'une nouvelle section (4 familles + 4 exemples + source), et nouveau 6e mini-exercice **Pratique** (`sprint.maintenance.fr.ts`, QCM 1-parmi-4, réutilise le composant Drill existant — aucune nouvelle mécanique UI). Le parcours guidé interactif proposé en alternative (option 1 du cadrage) est mis en attente, pas construit aujourd'hui. 162 tests verts / 1 skip (+4 tests d'intégrité corpus), `tsc --noEmit` OK, build vérifié (555 Ko / gzip 143 Ko, +7 Ko / +2 Ko gzip).
+  **Reste en suspens, si le besoin se confirme** : le parcours guidé pas-à-pas (option 1) qui réutiliserait les 3 questions déjà dans la fiche comme un assistant de rédaction interactif — plus coûteux, non construit.

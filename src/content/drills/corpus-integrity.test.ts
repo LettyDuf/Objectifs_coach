@@ -11,6 +11,7 @@ import { SPRINT_INDICATOR_DRILL_FR } from "./sprint.indicator.fr";
 import { SPRINT_CONTEXTE_DRILL_FR } from "./sprint.contexte.fr";
 import { SPRINT_VARIATION_DRILL_FR } from "./sprint.variation.fr";
 import { SPRINT_ECHEANCE_DRILL_FR } from "./sprint.echeance.fr";
+import { SPRINT_MAINTENANCE_DRILL_FR } from "./sprint.maintenance.fr";
 
 describe("Corpus Indicateur (QCM 1-parmi-3)", () => {
   const corpus = SPRINT_INDICATOR_DRILL_FR;
@@ -63,6 +64,29 @@ describe("Corpus Contexte (QCM 1-parmi-4)", () => {
       expect(c.options.length, `cas ${c.id}`).toBe(4);
       expect(c.options.filter((o) => o.isCorrect).length, `cas ${c.id}`).toBe(1);
     }
+  });
+});
+
+describe("Corpus Maintenance : trouver la valeur (QCM 1-parmi-4)", () => {
+  const corpus = SPRINT_MAINTENANCE_DRILL_FR;
+  it("est de kind qcm", () => {
+    expect(corpus.kind).toBe("qcm");
+  });
+  it("a 4 cas (un par famille ISO/IEC 14764 : corrective, adaptative, perfective, préventive)", () => {
+    if (corpus.kind !== "qcm") throw new Error("type erroné");
+    expect(corpus.cases.length).toBe(4);
+  });
+  it("chaque cas a 4 options et exactement 1 bonne réponse", () => {
+    if (corpus.kind !== "qcm") throw new Error("type erroné");
+    for (const c of corpus.cases) {
+      expect(c.options.length, `cas ${c.id}`).toBe(4);
+      expect(c.options.filter((o) => o.isCorrect).length, `cas ${c.id}`).toBe(1);
+    }
+  });
+  it("IDs uniques", () => {
+    if (corpus.kind !== "qcm") throw new Error("type erroné");
+    const ids = corpus.cases.map((c) => c.id);
+    expect(new Set(ids).size).toBe(ids.length);
   });
 });
 

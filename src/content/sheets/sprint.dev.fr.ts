@@ -279,6 +279,49 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
           "Équipe dev : vélocité retrouvée, moins de temps sur les bugs hérités.",
         ],
       },
+      {
+        heading: "Quatre familles de maintenance (ISO/IEC 14764)",
+        icon: "puzzle",
+        body: "Nommer la famille aide à reconnaître qu'on a bien un travail de maintenance avec un bénéficiaire — pas une tâche sans objectif.",
+        bullets: [
+          "Corrective : corriger un défaut déjà en production (bugs, incidents).",
+          "Adaptative : s'ajuster à un changement d'environnement (dépendances, OS, réglementation).",
+          "Perfective : améliorer la performance ou l'expérience sur un usage déjà en place.",
+          "Préventive : réduire un risque futur avant qu'il ne devienne un incident (tests de reprise, durcissement, supervision).",
+        ],
+      },
+      {
+        heading: "Un exemple par famille",
+        icon: "wrench",
+        body: "Le réflexe est le même dans les quatre cas : remplacer la tâche par ce qu'elle change pour quelqu'un, avec une mesure.",
+        examples: [
+          {
+            bad: "Corriger les bugs du backlog support avant la fin du sprint.",
+            good: "Faire passer le nombre de tickets support ouverts depuis plus de 30 jours de 27 à 10, d'ici fin de sprint.",
+            note: "Corrective : traiter des tickets est un output. Le nombre de tickets anciens non résolus montre l'effet réel côté équipe support.",
+          },
+          {
+            bad: "Migrer les services vers la version supportée de Node.js.",
+            good: "Éliminer les 8 vulnérabilités critiques liées aux dépendances obsolètes, sans régression sur les 3 parcours critiques testés, d'ici fin de sprint.",
+            note: "Adaptative : migrer est un output technique. Ce qui compte, c'est la réduction du risque de sécurité réel.",
+          },
+          {
+            bad: "Refactorer le module de recherche pour améliorer les performances.",
+            good: "Faire passer le temps de réponse p95 de la recherche de 1,2 s à 400 ms, d'ici fin de sprint.",
+            note: "Perfective : la complexité du code est un moyen. Ce que l'utilisateur perçoit, c'est la vitesse de réponse.",
+          },
+          {
+            bad: "Préparer et exécuter le test de reprise annuel en staging.",
+            good: "Faire passer le nombre d'écarts critiques de reprise non résolus de 4 à 0, avec preuve : test de bascule complet exécuté en staging (RTO et RPO mesurés), d'ici fin de sprint.",
+            note: "Préventive : faire le test est un output. La preuve d'écarts résolus est ce qui donne une vraie valeur au sprint — sinon le test devient un rituel qu'on coche.",
+          },
+        ],
+      },
+      {
+        heading: "Source",
+        kind: "source",
+        body: "ISO/IEC 14764 (taxonomie corrective / adaptative / perfective / préventive), reprise par Lientz & Swanson (1980) et la littérature technique courante sur la maintenance logicielle.",
+      },
     ],
   },
 
@@ -574,7 +617,7 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
         ],
       },
       {
-        heading: "Le piège de la échéance floue",
+        heading: "Le piège de l'échéance floue",
         icon: "warn",
         body: "L'événement crée une échéance forte (la date), ce qui peut faire croire que l'échéance suffit comme borne. Mais une échéance n'est pas un objectif : l'objectif dit ce qu'on cherche à obtenir avant ou après cette échéance. Sans cet ajout, la date devient le seul critère et tout le travail s'aligne dessus, même s'il rate l'effet.",
       },

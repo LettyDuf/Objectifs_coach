@@ -19,6 +19,7 @@ import { SPRINT_INDICATOR_DRILL_FR } from "../../content/drills/sprint.indicator
 import { SPRINT_VARIATION_DRILL_FR } from "../../content/drills/sprint.variation.fr";
 import { SPRINT_ECHEANCE_DRILL_FR } from "../../content/drills/sprint.echeance.fr";
 import { SPRINT_CONTEXTE_DRILL_FR } from "../../content/drills/sprint.contexte.fr";
+import { SPRINT_MAINTENANCE_DRILL_FR } from "../../content/drills/sprint.maintenance.fr";
 import { Screen } from "../layout/Screen";
 import { Zone } from "../layout/Zone";
 
@@ -26,7 +27,7 @@ interface Props {
   coach: CoachUseCase;
 }
 
-type DrillKey = "verbe" | "indicateur" | "variation" | "echeance" | "contexte";
+type DrillKey = "verbe" | "indicateur" | "variation" | "echeance" | "contexte" | "maintenance";
 
 interface DrillDef {
   key: DrillKey;
@@ -72,6 +73,13 @@ const DRILLS: DrillDef[] = [
     desc: "Qui est le vrai bénéficiaire de l'objectif ? Apprends à identifier pour qui ça change.",
     status: "active",
   },
+  {
+    key: "maintenance",
+    num: "6",
+    title: "Maintenance : trouver la valeur",
+    desc: "Bug, migration, refactor, test de reprise : ce travail a toujours un bénéficiaire. Apprends à le formuler en outcome.",
+    status: "active",
+  },
 ];
 
 const repo = createContentRepository();
@@ -86,6 +94,7 @@ export function SprintPractice(_props: Props) {
     variation: { corpus: SPRINT_VARIATION_DRILL_FR, title: "La variation chiffrée : précise ou vague ?", lede: "Coche tous les fragments précis dans la grille. Les vagues, laisse-les." },
     echeance: { corpus: SPRINT_ECHEANCE_DRILL_FR, title: "L'échéance : bornée ou floue ?", lede: "Coche toutes les échéances précises dans la grille. Les floues, laisse-les." },
     contexte: { corpus: SPRINT_CONTEXTE_DRILL_FR, title: "Le contexte : qui est le vrai bénéficiaire ?", lede: "Pour chaque objectif, identifie la personne ou le groupe dont la vie change quand l'objectif est atteint." },
+    maintenance: { corpus: SPRINT_MAINTENANCE_DRILL_FR, title: "Maintenance : trouver la valeur", lede: "Bug, migration, refactor, test de reprise : repère la reformulation qui porte la vraie valeur de ce travail." },
   } as const;
 
   if (activeDrill && activeDrill !== "verbe") {

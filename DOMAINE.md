@@ -307,6 +307,25 @@ Position non négociable du module Sprint, alignée sur la **littérature reconn
 - Nouveau type de contenu : **fiches pédagogiques** (`PedagogicalSheet`) indexées par (type d'objectif, audience). V1 : une fiche pour Sprint × dev.
 - Les exemples multi-objectifs ne sont pas insérés comme `AnnotatedExample` mais comme illustrations dans la fiche pédagogique (texte libre, pas de scoring).
 
+### 6 bis.6 Les 4 familles de maintenance (ISO/IEC 14764) — validé 2026-07-04
+> Ajouté suite à un retour terrain de Lætitia : une équipe estimait que certains sprints de maintenance (ex. test de reprise annuel en staging) « ne peuvent pas avoir d'objectif ». Diagnostic : confusion output/outcome classique (§6 bis.3), sur un type de maintenance pas encore illustré (préventive).
+
+Le §6 bis.3 couvrait déjà la doctrine générale (nommer bénéficiaire / changement / mesure) mais sans grille de lecture pour reconnaître le **type** de maintenance en jeu. La littérature technique (ISO/IEC 14764, Lientz & Swanson 1980) distingue 4 familles, utiles comme repère pédagogique (pas comme heuristique moteur) :
+- **Corrective** : corriger un défaut déjà en production (bugs, incidents).
+- **Adaptative** : s'ajuster à un changement d'environnement (dépendances, OS, réglementation).
+- **Perfective** : améliorer la performance ou l'expérience sur un usage déjà en place.
+- **Préventive** : réduire un risque futur avant qu'il ne devienne un incident (tests de reprise, durcissement, supervision).
+
+**Un exemple par famille (validé 2026-07-04)**, intégré à la fiche « Sprint de maintenance : trouver la valeur » et au corpus du mini-exercice associé :
+1. *Corrective* — mauvais : « Corriger les bugs du backlog support avant la fin du sprint. » Bon : « Faire passer le nombre de tickets support ouverts depuis plus de 30 jours de 27 à 10, d'ici fin de sprint. »
+2. *Adaptative* — mauvais : « Migrer les services vers la version supportée de Node.js. » Bon : « Éliminer les 8 vulnérabilités critiques liées aux dépendances obsolètes, sans régression sur les 3 parcours critiques testés, d'ici fin de sprint. »
+3. *Perfective* — mauvais : « Refactorer le module de recherche pour améliorer les performances. » Bon : « Faire passer le temps de réponse p95 de la recherche de 1,2 s à 400 ms, d'ici fin de sprint. »
+4. *Préventive* — mauvais : « Préparer et exécuter le test de reprise annuel en staging. » Bon : « Faire passer le nombre d'écarts critiques de reprise non résolus de 4 à 0, avec preuve : test de bascule complet exécuté en staging (RTO et RPO mesurés), d'ici fin de sprint. »
+
+**Point de vigilance retenu** (cas du test annuel récurrent) : un test récurrent n'est pas prévisible pour autant — l'infrastructure change d'une année sur l'autre. Un test de reprise qui ne débouche sur aucune action corrective devient un rituel coché plutôt qu'une preuve exploitée (écho à §6 bis.3 et à la fiche « L'objectif recyclé »).
+
+**Implications techniques** : nouveau mini-exercice « S'entraîner » (6e, après Verbe/Indicateur/Variation/Échéance/Contexte) — QCM 1-parmi-4 réutilisant ces 4 cas comme corpus (`sprint.maintenance.fr.ts`). Pas de nouvelle mécanique UI, réutilise le composant Drill existant.
+
 ---
 
 ## 6 ter. Spec « Puzzle Sprint » — corpus à valider
