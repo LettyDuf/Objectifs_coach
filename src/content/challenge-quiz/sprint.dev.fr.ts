@@ -428,7 +428,7 @@ export const SPRINT_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "D",
-        text: "Optimiser les performances de l'API.",
+        text: "Optimiser les performances de l'API (850 ms de p95 actuellement), sujette à 4 incidents signalés par semaine.",
         verdict: "bad",
         explanation:
           "Pas de métrique, pas de cible, pas d'échéance. « Optimiser » seul ne crée aucun engagement vérifiable.",
@@ -571,14 +571,14 @@ export const SPRINT_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "C",
-        text: "Optimiser le rendu des résultats de recherche.",
+        text: "Optimiser le rendu des résultats de recherche, un sujet suivi par les 4 devs front et 1 PO, sur un taux de clic de 18 %.",
         verdict: "bad",
         explanation:
           "« Optimiser » est flou. Pas de seuil ni d'échéance.",
       },
       {
         id: "D",
-        text: "Refactorer le composant ResultsList en suivant les nouvelles règles d'architecture.",
+        text: "Refactorer le composant ResultsList (temps de rendu actuel 320 ms) en suivant les nouvelles règles d'architecture.",
         verdict: "bad",
         explanation:
           "Output technique. Aucun effet nommé côté rendu, utilisateur ou métrique observable.",

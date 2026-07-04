@@ -98,7 +98,7 @@ export const OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
     options: [
       {
         id: "A",
-        text: "Améliorer la satisfaction des équipes consommatrices.",
+        text: "Améliorer la satisfaction des 12 équipes consommatrices (CSAT actuel 3,2 / 5), qui envoient 40 tickets « comment faire » par semaine.",
         verdict: "bad",
         explanation:
           "« Améliorer » sans chiffre. Pas de métrique nommée, pas de seuil, pas d'échéance. Vœu pieux.",
@@ -112,7 +112,7 @@ export const OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "C",
-        text: "Avoir des équipes consommatrices contentes.",
+        text: "Avoir des équipes consommatrices contentes, parmi les 12 équipes qui envoient 40 tickets par semaine, avec un CSAT actuel de 3,2 / 5.",
         verdict: "bad",
         explanation:
           "« Contentes » n'est pas mesurable. Pas de métrique, pas de seuil. Reformulation à éviter complètement.",
@@ -149,7 +149,7 @@ export const OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
     options: [
       {
         id: "A",
-        text: "Maintenir l'uptime du service paiement au-dessus de 99,9 %.",
+        text: "Maintenir l'uptime du service paiement au-dessus de 99,9 %, un système suivi par 8 devs et 1 SRE.",
         verdict: "bad",
         explanation:
           "« Maintenir » décrit un garde-fou, pas un changement à atteindre. Un KR vise une progression — sinon, c'est une norme de service à surveiller ailleurs, pas un Résultat clé.",
@@ -163,7 +163,7 @@ export const OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "C",
-        text: "Garantir 99,9 % d'uptime sur la plateforme paiement.",
+        text: "Garantir 99,9 % d'uptime sur la plateforme paiement, qui génère aujourd'hui 12 escalades support par semaine.",
         verdict: "bad",
         explanation:
           "Même piège que A reformulé. « Garantir » est aussi un état à maintenir, pas un outcome à atteindre. C'est une SLO (service level objective), pas un KR.",

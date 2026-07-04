@@ -20,6 +20,7 @@ import { SPRINT_VARIATION_DRILL_FR } from "../../content/drills/sprint.variation
 import { SPRINT_ECHEANCE_DRILL_FR } from "../../content/drills/sprint.echeance.fr";
 import { SPRINT_CONTEXTE_DRILL_FR } from "../../content/drills/sprint.contexte.fr";
 import { SPRINT_MAINTENANCE_DRILL_FR } from "../../content/drills/sprint.maintenance.fr";
+import { MaintenanceWorksheet } from "./MaintenanceWorksheet";
 import { Screen } from "../layout/Screen";
 import { Zone } from "../layout/Zone";
 
@@ -87,6 +88,7 @@ const repo = createContentRepository();
 export function SprintPractice(_props: Props) {
   const warmupCases = useMemo(() => repo.getWarmupCases("sprint", "dev"), []);
   const [activeDrill, setActiveDrill] = useState<DrillKey | null>(null);
+  const [maintenanceView, setMaintenanceView] = useState<"qcm" | "worksheet">("qcm");
 
   // Vue d'un exercice plein écran : Indicateur / Variation / Échéance / Contexte
   const drillConfigs = {
@@ -96,6 +98,53 @@ export function SprintPractice(_props: Props) {
     contexte: { corpus: SPRINT_CONTEXTE_DRILL_FR, title: "Le contexte : qui est le vrai bénéficiaire ?", lede: "Pour chaque objectif, identifie la personne ou le groupe dont la vie change quand l'objectif est atteint." },
     maintenance: { corpus: SPRINT_MAINTENANCE_DRILL_FR, title: "Maintenance : trouver la valeur", lede: "Bug, migration, refactor, test de reprise : repère la reformulation qui porte la vraie valeur de ce travail." },
   } as const;
+
+  // Vue dédiée « Maintenance » : QCM (D40) ou worksheet guidé sur son propre cas (D44),
+  // au choix — D44 cadré comme un format en plus du QCM, pas un remplacement.
+  if (activeDrill === "maintenance") {
+    if (maintenanceView === "worksheet") {
+      return (
+        <MaintenanceWorksheet
+          onExit={() => {
+            setMaintenanceView("qcm");
+            setActiveDrill(null);
+          }}
+        />
+      );
+    }
+    const cfg = drillConfigs.maintenance;
+    return (
+      <Screen
+        header={{
+          eyebrow: <span>Sprint · S'entraîner · Maintenance : trouver la valeur</span>,
+          title: cfg.title,
+          lede: cfg.lede,
+          actions: (
+            <>
+              <button className="btn btn--ghost" onClick={() => setMaintenanceView("worksheet")} type="button">
+                Travailler mon propre cas ›
+              </button>
+              <button className="btn" onClick={() => setActiveDrill(null)}>
+                ‹ Retour aux exercices
+              </button>
+            </>
+          ),
+        }}
+        body={{
+          variant: "single",
+          primary: (
+            <Zone variant="primary">
+              <Drill
+                key="maintenance"
+                corpus={cfg.corpus}
+                endSlot={<NextDrillsList currentKey="maintenance" onChoose={(k) => setActiveDrill(k)} />}
+              />
+            </Zone>
+          ),
+        }}
+      />
+    );
+  }
 
   if (activeDrill && activeDrill !== "verbe") {
     const cfg = drillConfigs[activeDrill];

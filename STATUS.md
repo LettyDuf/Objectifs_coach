@@ -16,7 +16,7 @@ Briques (option C, 5 couleurs) en place pour Sprint Goal, PI Objective et Key Re
 - [x] ~~Ménage manuel côté utilisatrice~~ (`.git/index.lock`, dossiers `dist-verif-*`) — résolu, plus aucune trace au 2026-07-04.
 - [ ] **Piste ouverte, non tranchée** (DOMAINE.md §4.8) : le lien explicite entre prolifération d'Objectives et origine « objectif de la direction » n'est traité par aucune fiche — à rouvrir seulement si des retours d'atelier confirment que c'est un manque réel.
 - [x] ~~Renumérotation D22~~ : résolu 2026-07-04 (D42) — le D22 Puzzle reste inchangé (confirmé exact par Lætitia), la refonte visuelle A+ du 2026-06-25 est rédigée rétroactivement sous D42.
-- [ ] **9 cas Défi QCM à écart modéré** (raccourci numérique moins franc, voir entrée D35 du 2026-07-03) — non corrigés, priorité mineure.
+- [x] ~~9 cas Défi QCM à écart modéré~~ — résolu 2026-07-04 (D43) : 7/9 totalement corrigés, 2/9 réduits à un écart d'1 chiffre (jugé suffisant, voir D43).
 
 ## Phase précédente
 Incrément 2 livré : UI fonctionnelle Sprint (sélecteur → mode → entraînement / apprendre → export). 39 tests verts, build production OK. Premier vrai outil utilisable en atelier sur le périmètre Sprint × dev.
@@ -221,3 +221,8 @@ Recommandation : A (OKR) pour atteindre le périmètre V1 complet. Si OKR doit a
   **À confirmer visuellement par Lætitia après déploiement** : pas d'outil de prévisualisation navigateur dans ce sandbox, le rendu réel (en particulier sur les gabarits avec sidebar sticky : rail, wide-rail, source-aside) n'a pas pu être vérifié à l'œil.
 
 - **2026-07-04** : **collision D22 résolue (D42)**. Lætitia a confirmé le contenu du D22 déjà écrit (Puzzle : clic direct sur les blocs source + signalisation live) comme exact et inchangé. La refonte visuelle A+ du 2026-06-25 (commit `cc4eec5`, jamais rédigée dans `DECISIONS.md` à l'époque) est documentée rétroactivement sous **D42**, avec sa date réelle indiquée. Aucun changement de code, uniquement la documentation.
+
+- **2026-07-04** : **anti-raccourci numérique — cas restants (D43)**. Les 9 cas modérés identifiés en D35 corrigés selon le même principe (chiffres décoratifs, jamais de valeur comblant le vrai défaut pédagogique). 7/9 totalement résolus, 2/9 réduits à 1 chiffre d'écart (non poussé plus loin, retour décroissant). État global du corpus : 24 cas problématiques au départ → 6 restants, tous à 1 chiffre d'écart maximum. 162 tests verts / 1 skip, `tsc --noEmit` OK, build vérifié (556 Ko / gzip 144 Ko).
+
+- **2026-07-04** : **worksheet guidé « Maintenance : trouver la valeur » (D44)**, option 1 du cadrage précédent, construite après clarification d'une contrainte technique (pas de NLP dans l'architecture — le parcours ne peut pas "comprendre" un texte libre). Solution retenue : worksheet non noté façon Composer (D26), 4 étapes texte libre (tâche → bénéficiaire → changement → mesure) puis récapitulatif + brouillon de phrase assemblé (`buildMaintenanceDraftSentence`, domaine pur, 6 tests). Questions dérivées de la fiche Théorie existante, zéro contenu dupliqué. Intégré comme bouton « Travailler mon propre cas › » dans l'écran Maintenance existant (D40), pas un nouveau mode séparé. 168 tests verts / 1 skip, `tsc --noEmit` OK, build vérifié (561 Ko / gzip 145 Ko).
+  **Les deux formats du cadrage du 2026-07-04 sont maintenant livrés** : QCM (D40) et worksheet guidé (D44).
