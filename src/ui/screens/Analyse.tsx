@@ -18,6 +18,7 @@
 import { useMemo, useState } from "react";
 
 import type { ObjectiveType } from "../../domain/types";
+import { audienceForType, relatedTypesFor } from "../../domain/types";
 import { Screen } from "../layout/Screen";
 import { Zone } from "../layout/Zone";
 import { HEURISTICS_FR } from "../../content/heuristics.fr";
@@ -36,7 +37,7 @@ const TYPE_LABELS: Record<ObjectiveType, string> = {
   "okr-entreprise": "OKR entreprise",
 };
 
-const AVAILABLE_TYPES: ObjectiveType[] = ["sprint", "pi", "okr-equipe"];
+
 
 const PLACEHOLDER: Record<ObjectiveType, string> = {
   sprint:
@@ -44,7 +45,8 @@ const PLACEHOLDER: Record<ObjectiveType, string> = {
   pi: "Ex. Faire passer le NPS clients entreprise de 28 à 50 d'ici la revue de PI.",
   "okr-equipe":
     "Colle un Résultat clé mesurable. Ex. Faire passer le taux d'activation SSO de 40 à 80 % d'ici fin Q3.",
-  "okr-entreprise": "À venir.",
+  "okr-entreprise":
+    "Colle un Résultat clé entreprise mesurable. Ex. Faire passer le NPS entreprise de 18 à 40 d'ici la fin de l'année.",
 };
 
 const repo = createContentRepository();
@@ -163,6 +165,7 @@ export function analyseText(raw: string): TextDiagnostic {
 
 export function Analyse({ initialType, onTypeChange, onExit }: Props) {
   const [type, setType] = useState<ObjectiveType>(initialType);
+  const availableTypes = useMemo(() => relatedTypesFor(initialType), [initialType]);
   const [text, setText] = useState<string>("");
   const [analyzed, setAnalyzed] = useState<boolean>(false);
 
@@ -194,22 +197,23 @@ export function Analyse({ initialType, onTypeChange, onExit }: Props) {
         title: "Analyser un objectif",
         lede:
           "Colle un objectif déjà rédigé. L'outil te dit ce qu'il sait détecter dans le texte. Il ne juge pas ce qu'il ne peut pas voir.",
-        actions: (
-          <fieldset className="analyse-type-toggle">
-            <legend className="sr-only">Type d'objectif</legend>
-            {AVAILABLE_TYPES.map((t) => (
-              <label key={t} className="field__check" style={{ marginBottom: 0 }}>
-                <input
-                  type="radio"
-                  name="analyse-type"
-                  checked={type === t}
-                  onChange={() => changeType(t)}
-                />
-                <span>{TYPE_LABELS[t]}</span>
-              </label>
-            ))}
-          </fieldset>
-        ),
+        actions:
+          availableTypes.length > 1 ? (
+            <fieldset className="analyse-type-toggle">
+              <legend className="sr-only">Type d'objectif</legend>
+              {availableTypes.map((t) => (
+                <label key={t} className="field__check" style={{ marginBottom: 0 }}>
+                  <input
+                    type="radio"
+                    name="analyse-type"
+                    checked={type === t}
+                    onChange={() => changeType(t)}
+                  />
+                  <span>{TYPE_LABELS[t]}</span>
+                </label>
+              ))}
+            </fieldset>
+          ) : undefined,
       }}
       body={{
         variant: "single",
@@ -467,7 +471,7 @@ function DiagnosticReport({
 }
 
 function buildPistes(type: ObjectiveType): Record<keyof typeof PISTES_LABELS, string[]> {
-  const set = repo.getPuzzleSet(type, "dev", "hard");
+  const set = repo.getPuzzleSet(type, audienceForType(type), "hard");
   if (!set) return { verbe: [], echeance: [] };
   const goods = (cat: "action" | "timeReference") =>
     set.blocksByCategory[cat]

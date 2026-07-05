@@ -466,4 +466,264 @@ export const OKR_EQUIPE_DEV_SHEETS_FR: PedagogicalSheet[] = [
       },
     ],
   },
+
+  {
+    id: "okr-equipe.sheet.set-and-forget",
+    isNamedPitfall: true,
+    themeId: "okr.pieges-kr",
+    icon: "warn",
+    title: "Le set-it-and-forget-it",
+    heroPhrase:
+      "L'OKR est fixé en début de trimestre, puis plus jamais rouvert. Il redevient réel seulement le jour du bilan.",
+    intro: "",
+    practiceCtaLabel: "Va remettre un OKR au centre d'un suivi régulier",
+    sections: [
+      {
+        heading: "Pourquoi c'est piégeux",
+        icon: "target",
+        body: "Un OKR fixé sans suivi régulier ne guide aucune décision entre le jour où il est écrit et le jour où il est jugé. Sans check-in, une dérive de trois semaines n'est découverte qu'à la fin du trimestre, l'équipe découvre l'échec au bilan, jamais assez tôt pour corriger le tir.",
+        bullets: [
+          "Un OKR fixé sans suivi régulier ne guide aucune décision entre sa rédaction et son bilan.",
+          "Sans check-in, une dérive de plusieurs semaines n'est découverte qu'à la fin du trimestre.",
+          "L'équipe découvre l'échec au bilan, jamais assez tôt pour corriger le tir.",
+        ],
+      },
+      {
+        heading: "Comment ça se voit",
+        icon: "warn",
+        kind: "signals",
+        body: "",
+        bullets: [
+          "Aucun rituel ne mentionne l'OKR entre sa rédaction et la revue de fin de trimestre.",
+          "Personne ne sait dire, à mi-trimestre, si l'OKR est en bonne voie ou pas.",
+          "Le premier vrai bilan de la progression a lieu le jour même du bilan final.",
+        ],
+      },
+      {
+        heading: "Réintroduire le check-in",
+        icon: "wrench",
+        body: "Mettre en place un point dédié toutes les deux semaines qui vérifie la progression du Résultat clé, pas seulement l'état des tâches.",
+        examples: [
+          {
+            bad: "OKR rédigé en semaine 1 du trimestre, jamais revu jusqu'au bilan en semaine 12.",
+            good: "Point dédié toutes les deux semaines : « où en est le Résultat clé, qu'est-ce qui bloque, faut-il ajuster l'effort ? »",
+            note: "Le suivi régulier transforme l'OKR d'un vœu figé en un outil de pilotage vivant.",
+          },
+        ],
+      },
+      {
+        heading: "Source",
+        kind: "source",
+        body: "Ben Lamorte, sur la nécessité de check-ins bi-hebdomadaires plutôt qu'une seule revue en fin de trimestre pour éviter le « set it and forget it ».",
+      },
+    ],
+  },
+
+  {
+    id: "okr-equipe.sheet.reverse-engineered-kr",
+    isNamedPitfall: true,
+    themeId: "okr.pieges-kr",
+    icon: "warn",
+    title: "Le KR reverse-engineered",
+    heroPhrase:
+      "L'équipe part de son backlog déjà décidé, puis invente un Résultat clé qui colle dessus. Rien ne change dans le travail réel.",
+    intro: "",
+    practiceCtaLabel: "Va vérifier si un KR a vraiment changé un plan",
+    sections: [
+      {
+        heading: "Pourquoi c'est piégeux",
+        icon: "target",
+        body: "Le backlog ne change pas d'un mot après la rédaction des OKR : ils ne font que l'habiller. Le Résultat clé est choisi parce qu'il est facile à atteindre avec le travail déjà prévu, pas l'inverse, et les OKR ne font jamais reconsidérer ou reprioriser le plan existant.",
+        bullets: [
+          "Le backlog ne change pas d'un mot après la rédaction des OKR : ils ne font que l'habiller.",
+          "Le Résultat clé est choisi parce qu'il colle au travail déjà prévu, pas l'inverse.",
+          "Les OKR ne font jamais reconsidérer ou reprioriser le plan existant.",
+        ],
+      },
+      {
+        heading: "Comment ça se voit",
+        icon: "warn",
+        kind: "signals",
+        body: "",
+        bullets: [
+          "Le Résultat clé est rédigé après que la roadmap du trimestre est déjà figée.",
+          "Aucun élément du backlog n'a été retiré ou ajouté à cause des OKR.",
+          "Le Résultat clé se mesure exactement par ce que l'équipe avait déjà prévu de livrer.",
+        ],
+      },
+      {
+        heading: "Laisser le KR reprioriser",
+        icon: "wrench",
+        body: "Rédiger le Résultat clé à partir de l'effet recherché, puis le laisser challenger le backlog existant. Si rien dans le plan ne change, le Résultat clé n'était pas réel.",
+        examples: [
+          {
+            bad: "Le backlog du trimestre est déjà arbitré ; le Résultat clé rédigé ensuite reprend exactement les livrables déjà prévus.",
+            good: "Le Résultat clé est fixé sur l'effet recherché ; deux éléments du backlog jugés non alignés sont retirés, un nouveau est ajouté pour l'atteindre.",
+            note: "Un vrai OKR change ce que l'équipe fait, pas seulement comment elle le raconte.",
+          },
+        ],
+      },
+      {
+        heading: "Source",
+        kind: "source",
+        body: "Jeff Gothelf, OKR Anti-pattern: reverse engineering key results to match your backlog.",
+      },
+    ],
+  },
+
+  {
+    id: "okr-equipe.sheet.no-stretch",
+    isNamedPitfall: true,
+    themeId: "okr.pieges-kr",
+    icon: "warn",
+    title: "L'objectif sans stretch",
+    heroPhrase:
+      "La cible est fixée sans ambition. La confiance de réussite frôle 100 % dès le premier jour.",
+    intro: "",
+    practiceCtaLabel: "Va recalibrer l'ambition d'un KR trop facile",
+    sections: [
+      {
+        heading: "Pourquoi c'est piégeux",
+        icon: "target",
+        body: "Un Résultat clé fixé à 95-100 % de confiance de réussite n'est plus un OKR, c'est une tâche planifiée. Sans tension créative, l'équipe ne cherche pas de nouvelle façon de faire, elle exécute du connu. L'ambition calibrée, autour de 50 à 70 % de confiance, est ce qui distingue un OKR d'un engagement classique.",
+        bullets: [
+          "Un Résultat clé fixé à 95-100 % de confiance n'est plus un OKR, c'est une tâche planifiée.",
+          "Sans tension créative, l'équipe exécute du connu au lieu de chercher une nouvelle façon de faire.",
+          "L'ambition calibrée (50 à 70 % de confiance) distingue un OKR d'un engagement classique.",
+        ],
+      },
+      {
+        heading: "Comment ça se voit",
+        icon: "warn",
+        kind: "signals",
+        body: "",
+        bullets: [
+          "L'équipe est certaine, dès la rédaction, d'atteindre la cible.",
+          "Le Résultat clé est atteint dans les toutes premières semaines du trimestre, sans effort notable.",
+          "Personne ne peut citer une nouvelle façon de travailler que cet OKR a demandée.",
+        ],
+      },
+      {
+        heading: "Recalibrer l'ambition",
+        icon: "wrench",
+        body: "Demander à l'équipe son niveau de confiance honnête sur la cible. Viser 50 à 70 % : en dessous, la cible est déraisonnable ; au-dessus, elle n'est pas un OKR.",
+        examples: [
+          {
+            bad: "Faire passer la couverture de tests automatisés de 78 % à 80 % d'ici fin du trimestre.",
+            good: "Faire passer la couverture de tests automatisés de 78 % à 92 % d'ici fin du trimestre, à environ 60 % de confiance pour l'équipe.",
+            note: "L'écart demande un vrai effort, dans la fourchette OKR.",
+          },
+        ],
+      },
+      {
+        heading: "Source",
+        kind: "source",
+        body: "Christina Wodtke (Radical Focus), sur les objectifs « trop faciles » comme l'un des trois modes d'échec courants des OKR, avec le trop nombreux et le trop vague.",
+      },
+    ],
+  },
+
+  {
+    id: "okr-equipe.sheet.vague-objective",
+    isNamedPitfall: true,
+    themeId: "okr.pieges-kr",
+    icon: "warn",
+    title: "L'objectif trop vague",
+    heroPhrase:
+      "Personne ne sait dire la même chose de ce à quoi ressemble la réussite. Chacun se fait sa propre idée.",
+    intro: "",
+    practiceCtaLabel: "Va tester la clarté d'un objectif qualitatif",
+    sections: [
+      {
+        heading: "Pourquoi c'est piégeux",
+        icon: "target",
+        body: "Un objectif qualitatif doit être inspirant mais interprétable de façon univoque, pas ouvert à toutes les lectures. Deux membres de l'équipe qui décrivent séparément « à quoi ressemble la réussite » racontent alors deux histoires différentes, et le flou de l'objectif se répercute sur le choix des Résultats clés, qui partent dans des directions disjointes.",
+        bullets: [
+          "Un objectif qualitatif doit être inspirant mais interprétable de façon univoque.",
+          "Deux membres de l'équipe qui le décrivent séparément racontent deux histoires différentes.",
+          "Le flou de l'objectif se répercute sur des Résultats clés qui partent dans des directions disjointes.",
+        ],
+      },
+      {
+        heading: "Comment ça se voit",
+        icon: "warn",
+        kind: "signals",
+        body: "",
+        bullets: [
+          "Demander à deux personnes de décrire l'objectif dans leurs mots produit deux réponses très différentes.",
+          "L'objectif pourrait s'appliquer à n'importe quelle équipe de l'entreprise sans rien changer au libellé.",
+          "Les Résultats clés rattachés semblent parfois sans lien évident entre eux.",
+        ],
+      },
+      {
+        heading: "Le test des deux voix",
+        icon: "wrench",
+        body: "Faire reformuler l'objectif indépendamment par deux membres de l'équipe. Si leurs versions divergent nettement, l'objectif est trop vague et doit être réécrit.",
+        examples: [
+          {
+            bad: "Objectif : « Être excellents pour nos utilisateurs. »",
+            good: "Objectif : « Faire de notre plateforme de paiement la plus fiable de notre marché. »",
+            note: "Le second objectif reste qualitatif et inspirant, mais désigne un terrain précis (fiabilité, paiement, marché) que tout le monde peut se représenter pareil.",
+          },
+        ],
+      },
+      {
+        heading: "Source",
+        kind: "source",
+        body: "Christina Wodtke (Radical Focus), sur les objectifs « trop vagues » comme mode d'échec courant des OKR.",
+      },
+    ],
+  },
+
+  {
+    id: "okr-equipe.sheet.kr-without-guardrail",
+    isNamedPitfall: true,
+    themeId: "okr.pieges-kr",
+    icon: "warn",
+    title: "Le KR sans garde-fou",
+    heroPhrase:
+      "Un Résultat clé de croissance poussé seul, sans contre-mesure. L'effet secondaire se dégrade en coulisse, hors du radar.",
+    intro: "",
+    practiceCtaLabel: "Va ajouter un garde-fou à un KR de croissance",
+    sections: [
+      {
+        heading: "Pourquoi c'est piégeux",
+        icon: "target",
+        body: "Un Résultat clé de croissance poussé seul crée une incitation à optimiser ce chiffre au détriment du reste. L'effet secondaire indésirable se dégrade en coulisse, sans qu'aucun indicateur ne l'alerte, et le succès affiché du KR peut cacher une dégradation réelle ailleurs dans le produit.",
+        bullets: [
+          "Un Résultat clé de croissance poussé seul incite à optimiser ce chiffre au détriment du reste.",
+          "L'effet secondaire indésirable se dégrade en coulisse, sans qu'aucun indicateur ne l'alerte.",
+          "Le succès affiché du KR peut cacher une dégradation réelle ailleurs dans le produit.",
+        ],
+      },
+      {
+        heading: "Comment ça se voit",
+        icon: "warn",
+        kind: "signals",
+        body: "",
+        bullets: [
+          "Un seul KR de volume ou de croissance existe, sans aucun KR de qualité en vis-à-vis.",
+          "Une autre équipe (support, rétention, qualité) signale une dégradation qui coïncide avec la poussée du KR.",
+          "Personne n'a listé, à la rédaction du KR, ce qui pourrait se dégrader en le poussant fort.",
+        ],
+      },
+      {
+        heading: "Ajouter le garde-fou",
+        icon: "wrench",
+        body: "Associer à tout Résultat clé de croissance ou de volume un indicateur garde-fou explicite, qui ne doit pas se dégrader au-delà d'un seuil défini à l'avance.",
+        examples: [
+          {
+            bad: "Faire passer le taux d'inscription depuis la landing page de 4 % à 12 %.",
+            good: "Faire passer le taux d'inscription depuis la landing page de 4 % à 12 %, garde-fou : le taux de churn à 30 jours des nouveaux inscrits ne doit pas dépasser 8 % (actuellement 6 %).",
+            note: "Le garde-fou rend visible l'effet secondaire avant qu'il ne devienne un problème caché.",
+          },
+        ],
+      },
+      {
+        heading: "Source",
+        kind: "source",
+        body: "Pratique OKR courante (Doerr, Lamorte) recommandant d'associer un indicateur garde-fou à tout Résultat clé de croissance pour éviter les effets pervers.",
+      },
+    ],
+  },
 ];

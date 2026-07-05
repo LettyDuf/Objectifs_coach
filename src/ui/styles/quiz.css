@@ -142,13 +142,13 @@
   color: var(--color-warn);
 }
 
+/* D51 — harmonisé avec .quiz-option--good (retour Lætitre) : même poids visuel
+   (pas d'opacité réduite, pas de texte barré) entre bonne et mauvaise réponse.
+   Seules la couleur et l'icône ✓/✕ distinguent les deux, pas l'intensité. */
 .quiz-option--bad {
   background: var(--color-bad-bg);
   border-color: var(--color-bad);
   color: var(--color-bad);
-  opacity: 0.75;
-  text-decoration: line-through;
-  text-decoration-color: var(--color-bad);
 }
 
 .quiz-option--chosen {

@@ -478,7 +478,7 @@ export const PI_DEV_SHEETS_FR: PedagogicalSheet[] = [
         body: "Le RTE peut suggérer un mix de référence : autour de 60 à 70 % d'engagé, 30 à 40 % de stretch. Le Business Owner peut demander explicitement « quel objectif vous engagez à coup sûr, et quel objectif vous tentez sans garantir ? ». La discrimination crée la lisibilité.",
         examples: [
           {
-            bad: "5 objectifs de PI, tous engagé, tous notés à valeur business 10.",
+            bad: "5 objectifs de PI ce trimestre, tous classés engagé. Aucun stretch.",
             good: "3 objectifs de PI engagés (cap commercial, fiabilité, conformité), 2 stretch (marketplace pilote, intégration nouveau partenaire).",
             note: "Le mix raconte une histoire stratégique : voici ce qu'on tient, voici ce qu'on tente.",
           },
@@ -488,6 +488,318 @@ export const PI_DEV_SHEETS_FR: PedagogicalSheet[] = [
         heading: "Source",
         kind: "source",
         body: "Scaled Agile Framework, recommandations sur le mix engagé / stretch. Ben Lamorte (The OKRs Field Book) sur la valeur d'apprentissage du stretch, transposable à PI.",
+      },
+    ],
+  },
+
+  {
+    id: "pi.sheet.ip-iteration-overloaded",
+    isNamedPitfall: true,
+    themeId: "pi.pieges-classiques",
+    icon: "warn",
+    title: "L'Innovation and Planning phagocyté",
+    heroPhrase:
+      "L'itération IP existe pour respirer, innover et se stabiliser. Le train la remplit de tickets comme n'importe quelle autre itération.",
+    intro: "",
+    practiceCtaLabel: "Va protéger une itération IP menacée",
+    sections: [
+      {
+        heading: "Pourquoi c'est piégeux",
+        icon: "target",
+        body: "L'Innovation and Planning (IP) Iteration est prévue par SAFe comme un tampon : absorber l'incertitude d'estimation, dégager du temps d'innovation et de formation, stabiliser, préparer le PI suivant. Quand le train y planifie une charge normale, ce tampon disparaît, la marge de manœuvre du train aussi, et le rythme devient intenable.",
+        bullets: [
+          "L'itération IP est un espace tampon, pas une itération de plus pour rattraper le retard.",
+          "Sans cette marge, la moindre estimation optimiste rend tout le PI intenable.",
+          "Le temps d'innovation et de formation prévu par SAFe disparaît en premier.",
+        ],
+      },
+      {
+        heading: "Comment ça se voit",
+        icon: "warn",
+        kind: "signals",
+        body: "",
+        bullets: [
+          "La charge planifiée sur l'itération IP est proche de celle des autres itérations.",
+          "Le train n'a jamais de créneau formation ou hackathon sur un PI entier.",
+          "L'itération IP sert systématiquement à finir ce qui a débordé des itérations précédentes.",
+        ],
+      },
+      {
+        heading: "Rendre le tampon à l'itération IP",
+        icon: "wrench",
+        body: "Protéger explicitement l'itération IP comme du temps sans charge planifiée dédiée à rattraper du retard, et suivre son taux de charge comme un indicateur de santé du train à part entière.",
+        examples: [
+          {
+            bad: "Itération IP planifiée à 90 % de charge avec les tickets en retard des itérations précédentes.",
+            good: "Itération IP réservée à la stabilisation, l'innovation et la préparation du PI suivant : moins de 20 % de charge planifiée, le reste laissé ouvert.",
+            note: "Le tampon retrouve sa fonction : absorber l'imprévu du PI qui vient de se terminer, pas prolonger sa charge.",
+          },
+        ],
+      },
+      {
+        heading: "Source",
+        kind: "source",
+        body: "Scaled Agile Framework, description de l'Innovation and Planning Iteration comme espace de stabilisation, innovation et préparation, distinct des itérations de développement.",
+      },
+    ],
+  },
+
+  {
+    id: "pi.sheet.iteration-by-iteration-planning",
+    isNamedPitfall: true,
+    themeId: "pi.pieges-classiques",
+    icon: "warn",
+    title: "Le plan iteration par iteration",
+    heroPhrase:
+      "Le train détaille l'itération 1 dans les moindres détails. Le reste du PI n'existe encore nulle part.",
+    intro: "",
+    practiceCtaLabel: "Va esquisser un PI entier avant de le détailler",
+    sections: [
+      {
+        heading: "Pourquoi c'est piégeux",
+        icon: "target",
+        body: "Une itération parfaitement détaillée ne dit rien sur la faisabilité du PI entier. Quand le train ne construit sa vision qu'itération après itération, les dépendances entre équipes n'apparaissent qu'en fin de PI, quand il est trop tard pour les anticiper, et la revue du plan de draft ne peut challenger que ce qui a été rendu visible.",
+        bullets: [
+          "Une itération parfaitement détaillée ne dit rien sur la faisabilité du PI entier.",
+          "Les dépendances entre équipes n'apparaissent qu'en fin de PI, trop tard pour les anticiper.",
+          "La revue du plan de draft ne peut challenger que ce qui a été rendu visible.",
+        ],
+      },
+      {
+        heading: "Comment ça se voit",
+        icon: "warn",
+        kind: "signals",
+        body: "",
+        bullets: [
+          "À la revue du plan de draft, seule l'itération 1 a un contenu détaillé.",
+          "Le Program Board reste vide au-delà de l'itération 1.",
+          "Les risques identifiés portent tous sur le court terme, aucun sur la fin du PI.",
+        ],
+      },
+      {
+        heading: "Planifier en largeur avant la profondeur",
+        icon: "wrench",
+        body: "Esquisser les 5 itérations à haut niveau dès la revue du plan de draft, avec les dépendances inter-équipes posées sur le Program Board, avant d'affiner le détail d'une seule itération.",
+        examples: [
+          {
+            bad: "Itération 1 planifiée récit par récit ; itérations 2 à 5 laissées en blanc en attendant d'y voir plus clair.",
+            good: "Les 5 itérations esquissées à haut niveau dès la revue du plan de draft, dépendances inter-équipes posées sur le Program Board avant d'affiner le détail de l'itération 1.",
+            note: "La vision d'ensemble précède le détail, pas l'inverse.",
+          },
+        ],
+      },
+      {
+        heading: "Source",
+        kind: "source",
+        body: "Scaled Agile Journey, PI Planning — Plan to Discover the Next PI, sur la nécessité d'un plan de bout en bout avant l'approfondissement itération par itération.",
+      },
+    ],
+  },
+
+  {
+    id: "pi.sheet.commitment-ceremony",
+    isNamedPitfall: true,
+    themeId: "pi.engagement",
+    icon: "warn",
+    title: "La cérémonie d'engagement",
+    heroPhrase:
+      "Chaque récit découpé, estimé, verrouillé au chiffre près. Le PI Planning devient un rituel de contrôle, pas un dialogue sur la valeur.",
+    intro: "",
+    practiceCtaLabel: "Va recentrer un PI Planning sur la valeur",
+    sections: [
+      {
+        heading: "Pourquoi c'est piégeux",
+        icon: "target",
+        body: "Le temps du PI Planning part dans le découpage et l'estimation des récits, pas dans la discussion de la valeur avec le Business Owner. Les objectifs de PI deviennent une formalité signée en fin de journée, pas le fil conducteur de l'événement : l'équipe s'engage sur un chiffre d'estimation plus que sur un effet à produire.",
+        bullets: [
+          "Le temps de Planning part dans le découpage et l'estimation, pas dans la discussion de la valeur.",
+          "Les objectifs de PI sont rédigés en fin d'événement, dans la précipitation.",
+          "Le vote de confiance porte sur « avoir fini d'estimer », pas sur l'atteinte de l'objectif.",
+        ],
+      },
+      {
+        heading: "Comment ça se voit",
+        icon: "warn",
+        kind: "signals",
+        body: "",
+        bullets: [
+          "La majorité du temps de Planning est passée à estimer et découper, pas à discuter des objectifs.",
+          "Les objectifs de PI sont rédigés dans les dernières minutes avant le vote de confiance.",
+          "Le Business Owner n'intervient jamais pendant les deux jours de l'événement.",
+        ],
+      },
+      {
+        heading: "Remettre l'objectif avant l'estimation",
+        icon: "wrench",
+        body: "Garder le découpage et l'estimation comme des moyens, pas comme le centre de l'événement. Ouvrir la journée 1 par la discussion des objectifs de PI avec les Business Owners ; le détail d'exécution vient ensuite, au service de ces objectifs déjà clarifiés.",
+        examples: [
+          {
+            bad: "Journée 1 du PI Planning entièrement consacrée au découpage et à l'estimation des récits ; les objectifs de PI rédigés en 20 minutes juste avant le vote de confiance.",
+            good: "La discussion des objectifs de PI avec le Business Owner ouvre la journée 1 ; le découpage des récits vient ensuite, au service des objectifs déjà clarifiés.",
+            note: "L'ordre du Planning matérialise ce qui compte vraiment : l'objectif d'abord, le détail d'exécution ensuite.",
+          },
+        ],
+      },
+      {
+        heading: "Source",
+        kind: "source",
+        body: "Top 12 mistakes to avoid during PI Planning (LinkedIn), sur la dérive du PI Planning en cérémonie d'engagement centrée sur l'estimation plutôt que sur la valeur.",
+      },
+    ],
+  },
+
+  {
+    id: "pi.sheet.unprepared-pi-planning",
+    isNamedPitfall: true,
+    themeId: "pi.pieges-classiques",
+    icon: "warn",
+    title: "Le PI Planning non préparé",
+    heroPhrase:
+      "Les équipes découvrent les fonctionnalités en direct, pendant l'événement. La préparation qui devait précéder n'a pas eu lieu.",
+    intro: "",
+    practiceCtaLabel: "Va préparer un PI Planning en amont",
+    sections: [
+      {
+        heading: "Pourquoi c'est piégeux",
+        icon: "target",
+        body: "Le backlog n'est pas préparé : les équipes découvrent les fonctionnalités pendant l'événement, pas avant. Les dépendances inter-équipes ne sont pas identifiées en amont, elles surgissent en direct. Les objectifs de PI rédigés sur cette base restent fragiles, car personne n'a eu le temps d'en vérifier la faisabilité.",
+        bullets: [
+          "Le backlog n'est pas préparé : les équipes découvrent les fonctionnalités pendant l'événement.",
+          "Les dépendances inter-équipes ne sont pas identifiées en amont, elles surgissent en direct.",
+          "Les objectifs de PI rédigés sur cette base restent fragiles, jamais vérifiés en amont.",
+        ],
+      },
+      {
+        heading: "Comment ça se voit",
+        icon: "warn",
+        kind: "signals",
+        body: "",
+        bullets: [
+          "Le Pre-PI Planning n'a pas eu lieu, ou sans les bonnes personnes.",
+          "Des questions de compréhension basique sur une fonctionnalité se posent en pleine séance de Planning.",
+          "Le contenu proposé change significativement entre le début et la fin de l'événement.",
+        ],
+      },
+      {
+        heading: "Préparer avant de planifier",
+        icon: "wrench",
+        body: "Investir dans le Pre-PI Planning : backlog relu et clarifié, dépendances pré-identifiées, rôles clés briefés avant l'événement.",
+        examples: [
+          {
+            bad: "Les Product Managers présentent des fonctionnalités inédites en séance ; les équipes découvrent le périmètre en même temps qu'elles doivent en tirer des objectifs de PI.",
+            good: "Le contenu du backlog est revu et clarifié en Pre-PI Planning deux semaines avant ; les équipes arrivent au PI Planning avec les questions de compréhension déjà résolues.",
+            note: "La qualité des objectifs de PI dépend de la préparation qui précède l'événement, pas de l'événement lui-même.",
+          },
+        ],
+      },
+      {
+        heading: "Source",
+        kind: "source",
+        body: "Agile Seekers, Overcoming Common PI Planning Anti-Patterns With Discovery Mindset, sur le manque de préparation comme cause principale d'un PI Planning désorganisé.",
+      },
+    ],
+  },
+
+  {
+    id: "pi.sheet.empty-program-board",
+    isNamedPitfall: true,
+    themeId: "pi.pieges-classiques",
+    icon: "warn",
+    title: "Le Program Board vide",
+    heroPhrase:
+      "Aucune dépendance inter-équipes n'est rendue visible. L'objectif d'une équipe dépend pourtant d'une autre, en silence.",
+    intro: "",
+    practiceCtaLabel: "Va tracer une dépendance sur un Program Board",
+    sections: [
+      {
+        heading: "Pourquoi c'est piégeux",
+        icon: "target",
+        body: "Un objectif de PI peut dépendre d'une livraison d'une autre équipe sans que ce lien soit jamais tracé. Sans Program Board rempli, personne ne voit venir le risque avant qu'il ne se matérialise, et le ROAM reste vide alors que les dépendances existent bel et bien.",
+        bullets: [
+          "Un objectif de PI peut dépendre d'une autre équipe sans que ce lien soit jamais tracé.",
+          "Sans le Program Board rempli, personne ne voit venir le risque avant qu'il ne se matérialise.",
+          "Le ROAM reste vide alors que les dépendances existent bel et bien.",
+        ],
+      },
+      {
+        heading: "Comment ça se voit",
+        icon: "warn",
+        kind: "signals",
+        body: "",
+        bullets: [
+          "Le Program Board est vide ou quasi vide à la fin du PI Planning.",
+          "Un objectif de PI mentionne un livrable d'une autre équipe sans fil visible vers cette équipe.",
+          "Les glissements de dépendances sont découverts à la revue de PI, jamais avant.",
+        ],
+      },
+      {
+        heading: "Rendre la dépendance visible",
+        icon: "wrench",
+        body: "Rendre chaque dépendance explicite sur le Program Board pendant le Planning, et la référencer directement dans le ROAM de l'objectif de PI concerné.",
+        examples: [
+          {
+            bad: "Objectif de PI : « Lancer le paiement en un clic », qui suppose une API de tokenisation livrée par l'équipe Paiement Plateforme, jamais tracée sur le Program Board.",
+            good: "Objectif de PI : « Lancer le paiement en un clic », dépendance vers l'équipe Paiement Plateforme tracée sur le Program Board (API de tokenisation, semaine 3), risque inscrit au ROAM.",
+            note: "La dépendance devient un objet suivi, pas un pari silencieux.",
+          },
+        ],
+      },
+      {
+        heading: "Source",
+        kind: "source",
+        body: "Scaled Agile Framework, Program Board et ROAM, artefacts destinés à rendre visibles les dépendances inter-équipes dès le PI Planning.",
+      },
+    ],
+  },
+
+  {
+    id: "pi.sheet.po-bypass",
+    isNamedPitfall: true,
+    themeId: "pi.pieges-classiques",
+    icon: "warn",
+    title: "Le contournement du Product Owner",
+    heroPhrase:
+      "Le travail arrive directement à l'équipe, sans passer par le Product Owner. L'objectif de PI perd son garant.",
+    intro: "",
+    practiceCtaLabel: "Va rediriger une demande qui a contourné le PO",
+    sections: [
+      {
+        heading: "Pourquoi c'est piégeux",
+        icon: "target",
+        body: "Le Product Owner est le garant du lien entre le travail réel et les objectifs de PI engagés. Une demande qui arrive en direct à l'équipe n'est jamais confrontée à cet objectif, et le train perd la capacité de dire non à une demande qui ne sert aucun objectif validé.",
+        bullets: [
+          "Le Product Owner est le garant du lien entre le travail réel et les objectifs de PI engagés.",
+          "Une demande qui arrive en direct à l'équipe n'est jamais confrontée à cet objectif.",
+          "Le train perd la capacité de dire non à une demande qui ne sert aucun objectif validé.",
+        ],
+      },
+      {
+        heading: "Comment ça se voit",
+        icon: "warn",
+        kind: "signals",
+        body: "",
+        bullets: [
+          "Un manager ou un client sollicite directement un développeur, sans passer par le Product Owner.",
+          "Du travail apparaît dans le sprint sans lien tracé vers un objectif de PI engagé.",
+          "Le Product Owner découvre après coup qu'une demande a été traitée en dehors de son arbitrage.",
+        ],
+      },
+      {
+        heading: "Rediriger vers le Product Owner",
+        icon: "wrench",
+        body: "Rappeler que toute demande entrante passe par le Product Owner, qui l'évalue face aux objectifs de PI engagés avant qu'elle entre au plan.",
+        examples: [
+          {
+            bad: "Un directeur commercial demande directement à un développeur d'ajouter un champ au formulaire, en urgence, sans passer par le Product Owner.",
+            good: "La demande du directeur commercial est redirigée vers le Product Owner, qui l'évalue face aux objectifs de PI engagés avant de décider si et quand elle entre au plan.",
+            note: "Le Product Owner reste le point de passage qui protège la cohérence des objectifs, même sous pression hiérarchique.",
+          },
+        ],
+      },
+      {
+        heading: "Source",
+        kind: "source",
+        body: "Top 12 mistakes to avoid during PI Planning (LinkedIn), sur le contournement du Product Owner comme cause de perte d'alignement et de vélocité.",
       },
     ],
   },

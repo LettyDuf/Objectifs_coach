@@ -3,8 +3,9 @@
  *
  * Routage minimal par état React. Voir D9 : parcours mono-type.
  * Vague 1 (D15) : skip link, badge session sans remount, label width adaptatif.
- * D18/D19/D20 : OKR à deux niveaux (équipe actif, entreprise « à venir »), avec
- * une page intermédiaire `LevelSelector` quand l'utilisateur clique « OKR » sur la home.
+ * D18/D19 : OKR à deux niveaux (équipe, entreprise), avec une page
+ * intermédiaire `LevelSelector` quand l'utilisateur clique « OKR » sur la home.
+ * D53 : OKR entreprise activé (revient sur D20, qui le marquait « à venir »).
  */
 
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -25,7 +26,8 @@ import { PIPractice } from "./screens/PIPractice";
 import { PILearn } from "./screens/PILearn";
 import { OkrTeamPractice } from "./screens/OkrTeamPractice";
 import { OkrTeamLearn } from "./screens/OkrTeamLearn";
-import { ComingSoon } from "./screens/ComingSoon";
+import { OkrEnterprisePractice } from "./screens/OkrEnterprisePractice";
+import { OkrEnterpriseLearn } from "./screens/OkrEnterpriseLearn";
 import { SessionProvider, useSession } from "./SessionContext";
 
 type Mode = "learn" | "practice" | "challenge" | "puzzle" | "analyse" | "pitfalls";
@@ -135,20 +137,14 @@ function AppShell() {
           <LevelSelector onSelectLevel={selectOkrLevel} onBack={goHome} />
         )}
 
-        {state.type === "okr-entreprise" && state.mode === null && (
-          <ComingSoon typeLabel={labelForType(state.type)} onBack={goHome} />
+        {state.type !== null && state.mode === null && (
+          <ModeSelector
+            typeLabel={labelForType(state.type)}
+            objectiveType={state.type}
+            onSelect={selectMode}
+            onSelectTheme={selectTheme}
+          />
         )}
-
-        {state.type !== null &&
-          state.mode === null &&
-          state.type !== "okr-entreprise" && (
-            <ModeSelector
-              typeLabel={labelForType(state.type)}
-              objectiveType={state.type}
-              onSelect={selectMode}
-              onSelectTheme={selectTheme}
-            />
-          )}
 
         {state.type === "sprint" && state.mode === "practice" && (
           <SprintPractice coach={coach} />
@@ -202,26 +198,42 @@ function AppShell() {
           />
         )}
 
-        {/* Puzzle générique multi-type — voir D16. Accessible depuis Sprint, PI ou OKR équipe ;
-            le sélecteur interne permet la bascule rapide et resynchronise le state d'app. */}
-        {(state.type === "sprint" || state.type === "pi" || state.type === "okr-equipe") &&
-          state.mode === "puzzle" && (
-            <Puzzle
-              coach={coach}
-              initialType={state.type}
-              onTypeChange={(newType) => setState({ type: newType, mode: "puzzle" })}
-              onExit={backToModes}
-            />
-          )}
+        {state.type === "okr-entreprise" && state.mode === "challenge" && (
+          <ChallengeQuiz coach={coach} type="okr-entreprise" onExit={backToModes} />
+        )}
 
-        {(state.type === "sprint" || state.type === "pi" || state.type === "okr-equipe") &&
-          state.mode === "analyse" && (
-            <Analyse
-              initialType={state.type}
-              onTypeChange={(newType) => setState({ type: newType, mode: "analyse" })}
-              onExit={backToModes}
-            />
-          )}
+        {state.type === "okr-entreprise" && state.mode === "practice" && (
+          <OkrEnterprisePractice coach={coach} />
+        )}
+
+        {state.type === "okr-entreprise" && state.mode === "learn" && (
+          <OkrEnterpriseLearn
+            coach={coach}
+            themeId={state.themeId}
+            onBack={backToModes}
+            onEvaluateExample={() => setState({ type: "okr-entreprise", mode: "practice" })}
+          />
+        )}
+
+        {/* Puzzle générique multi-type — voir D16. Accessible depuis Sprint, PI, OKR équipe
+            ou OKR entreprise ; le sélecteur interne (cloisonné par audience, D53) permet la
+            bascule rapide et resynchronise le state d'app. */}
+        {state.type !== null && state.mode === "puzzle" && (
+          <Puzzle
+            coach={coach}
+            initialType={state.type}
+            onTypeChange={(newType) => setState({ type: newType, mode: "puzzle" })}
+            onExit={backToModes}
+          />
+        )}
+
+        {state.type !== null && state.mode === "analyse" && (
+          <Analyse
+            initialType={state.type}
+            onTypeChange={(newType) => setState({ type: newType, mode: "analyse" })}
+            onExit={backToModes}
+          />
+        )}
 
         {/* Anti-patterns : reconnaître un piège nommé à partir d'un mauvais exemple
             déjà enseigné en Théorie. Mono-type comme ChallengeQuiz (pas d'exception
@@ -236,6 +248,10 @@ function AppShell() {
 
         {state.type === "okr-equipe" && state.mode === "pitfalls" && (
           <PitfallQuiz type="okr-equipe" onExit={backToModes} onGoToTheme={selectTheme} />
+        )}
+
+        {state.type === "okr-entreprise" && state.mode === "pitfalls" && (
+          <PitfallQuiz type="okr-entreprise" onExit={backToModes} onGoToTheme={selectTheme} />
         )}
       </main>
     </div>
@@ -279,11 +295,12 @@ function isScreenFrame(state: AppState): boolean {
   // Sélecteurs et page intermédiaire OKR : toujours Screen
   if (state.type === null) return true;
   if (state.mode === null) return true;
-  // Sprint et PI : Practice, Challenge, Learn et Puzzle migrés
-  if (state.type === "sprint" || state.type === "pi") {
+  // Sprint, PI et OKR entreprise : tous les écrans consomment déjà Screen (D17).
+  if (state.type === "sprint" || state.type === "pi" || state.type === "okr-entreprise") {
     return true;
   }
-  // OKR équipe : Practice et Learn migrés
+  // OKR équipe : Practice et Learn migrés (Challenge/Puzzle/Analyse restent à vérifier,
+  // hors périmètre de D53 — cf. STATUS.md).
   if (state.type === "okr-equipe") {
     return state.mode === "practice" || state.mode === "learn" || state.mode === "pitfalls";
   }

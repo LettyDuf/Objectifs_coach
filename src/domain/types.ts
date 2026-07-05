@@ -21,10 +21,34 @@
 export type ObjectiveType = "sprint" | "pi" | "okr-equipe" | "okr-entreprise";
 
 /**
- * Audience cible. V1 active uniquement "dev" (équipe de développeurs).
- * Les autres audiences viendront en V2 sans modification du moteur (voir D8 DECISIONS.md).
+ * Audience cible. V1 active "dev" (équipe de développeurs) et, depuis le module
+ * OKR entreprise, "manager" (CODIR). "po"/"pm" restent déclarés mais inutilisés
+ * (voir D8 DECISIONS.md).
  */
 export type Audience = "dev" | "po" | "pm" | "manager";
+
+/**
+ * Résout l'audience qui correspond à un type d'objectif. Source unique de vérité
+ * pour les écrans génériques multi-type (ChallengeQuiz, PitfallQuiz, Puzzle, Analyse) :
+ * évite de disséminer un "dev" en dur dans 4 fichiers UI (voir D53 DECISIONS.md).
+ */
+export function audienceForType(type: ObjectiveType): Audience {
+  return type === "okr-entreprise" ? "manager" : "dev";
+}
+
+/**
+ * Types d'objectif accessibles depuis une session Composer/Analyser démarrée
+ * sur `type`, pour un même bloc d'écrans multi-type (D16/D27). Cloisonne les
+ * deux familles d'audience : OKR entreprise (CODIR, manager) ne se mélange
+ * jamais avec le trio dev (Sprint/PI/OKR équipe) dans le même sélecteur
+ * interne, pour ne pas faire atterrir un manager sur du contenu dev ou
+ * inversement (voir D53 DECISIONS.md).
+ */
+export function relatedTypesFor(type: ObjectiveType): ObjectiveType[] {
+  return type === "okr-entreprise"
+    ? ["okr-entreprise"]
+    : ["sprint", "pi", "okr-equipe"];
+}
 
 /** Classe PI : committed (engagement) ou stretch (ambition haute). Voir DOMAINE.md §3.2. */
 export type PiClass = "committed" | "stretch";

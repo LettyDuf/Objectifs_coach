@@ -18,6 +18,7 @@ import type {
   QuizVerdict,
 } from "../../domain/challenge-quiz";
 import type { ObjectiveType } from "../../domain/types";
+import { audienceForType } from "../../domain/types";
 import { createContentRepository } from "../../content/repository";
 import { Icon, type IconName } from "../components/Icon";
 import { Screen } from "../layout/Screen";
@@ -73,7 +74,7 @@ const TYPE_LABELS: Record<ObjectiveType, string> = {
 
 export function ChallengeQuiz({ type, onExit }: Props) {
   // Source non mélangée — utilisée comme entrée du shuffle, jamais affichée directement.
-  const source = useMemo(() => repo.getChallengeQuizCases(type, "dev"), [type]);
+  const source = useMemo(() => repo.getChallengeQuizCases(type, audienceForType(type)), [type]);
   const typeLabel = TYPE_LABELS[type];
   const proposedLabel = type === "okr-equipe" ? "Résultat clé" : "objectif";
   // Élision : "cet objectif" (voyelle) mais "ce Résultat clé" (consonne).

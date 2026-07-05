@@ -37,11 +37,13 @@ import {
 import type {
   ObjectiveDraft,
   ObjectiveType,
+  OkrCompanyDraft,
   OkrTeamDraft,
   PiClass,
   PiDraft,
   SprintDraft,
 } from "../../domain/types";
+import { audienceForType, relatedTypesFor } from "../../domain/types";
 import { createContentRepository } from "../../content/repository";
 import {
   assembleSentence,
@@ -65,8 +67,6 @@ interface Props {
 const repo = createContentRepository();
 
 
-/** Types d'objectif pour lesquels un corpus puzzle existe (V1 actuel). */
-const AVAILABLE_TYPES: ObjectiveType[] = ["sprint", "pi", "okr-equipe"];
 
 const TYPE_LABELS: Record<ObjectiveType, string> = {
   sprint: "Sprint",
@@ -89,8 +89,9 @@ const HAND_TABS: Array<{ category: PuzzleCategory; label: string }> = [
 
 export function Puzzle({ coach, initialType, onTypeChange, onExit }: Props) {
   const [type, setType] = useState<ObjectiveType>(initialType);
+  const availableTypes = useMemo(() => relatedTypesFor(initialType), [initialType]);
   const set: PuzzleSet | null = useMemo(
-    () => repo.getPuzzleSet(type, "dev", "hard"),
+    () => repo.getPuzzleSet(type, audienceForType(type), "hard"),
     [type],
   );
 
@@ -188,6 +189,24 @@ export function Puzzle({ coach, initialType, onTypeChange, onExit }: Props) {
       };
       return okrDraft;
     }
+    if (type === "okr-entreprise") {
+      const okrCompanyDraft: OkrCompanyDraft = {
+        type: "okr-entreprise",
+        text: "Objective qualitatif de l'entreprise (défini hors composer).",
+        audience: "manager",
+        hasExplicitDeadline: true,
+        isUnderTeamInfluence: true,
+        keyResults: [
+          { text: sentence, confidence: 60 },
+          { text: "Faire passer le NPS entreprise de 18 à 40 d'ici la fin de l'année.", confidence: 60 },
+          {
+            text: "Faire passer la marge opérationnelle de 14 % à 20 % d'ici la fin de l'année.",
+            confidence: 60,
+          },
+        ],
+      };
+      return okrCompanyDraft;
+    }
     const sprintDraft: SprintDraft = {
       type: "sprint",
       text: sentence,
@@ -280,23 +299,27 @@ export function Puzzle({ coach, initialType, onTypeChange, onExit }: Props) {
         eyebrow: <span>Composer · {TYPE_LABELS[type]}</span>,
         title: `Compose un objectif ${TYPE_LABELS[type]}`,
         lede:
-          "Assistant pour rédiger un vrai objectif d'équipe. Choisis tes cartes, l'outil te guide. 4 zones obligatoires, 2 bonus.",
+          type === "okr-entreprise"
+            ? "Assistant pour rédiger un vrai Résultat clé d'entreprise. Choisis tes cartes, l'outil te guide. 4 zones obligatoires, 2 bonus."
+            : "Assistant pour rédiger un vrai objectif d'équipe. Choisis tes cartes, l'outil te guide. 4 zones obligatoires, 2 bonus.",
         actions: (
           <>
-            <fieldset className="puzzle-type-toggle">
-              <legend className="sr-only">Type d'objectif</legend>
-              {AVAILABLE_TYPES.map((t) => (
-                <label key={t} className="field__check" style={{ marginBottom: 0 }}>
-                  <input
-                    type="radio"
-                    name="puzzle-type"
-                    checked={type === t}
-                    onChange={() => changeType(t)}
-                  />
-                  <span>{TYPE_LABELS[t]}</span>
-                </label>
-              ))}
-            </fieldset>
+            {availableTypes.length > 1 && (
+              <fieldset className="puzzle-type-toggle">
+                <legend className="sr-only">Type d'objectif</legend>
+                {availableTypes.map((t) => (
+                  <label key={t} className="field__check" style={{ marginBottom: 0 }}>
+                    <input
+                      type="radio"
+                      name="puzzle-type"
+                      checked={type === t}
+                      onChange={() => changeType(t)}
+                    />
+                    <span>{TYPE_LABELS[t]}</span>
+                  </label>
+                ))}
+              </fieldset>
+            )}
             <button className="btn btn--sm" onClick={reset} disabled={placed.length === 0}>
               Tout retirer
             </button>

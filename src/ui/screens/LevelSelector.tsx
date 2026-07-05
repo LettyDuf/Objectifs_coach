@@ -5,7 +5,9 @@
  * plutôt que carrousel) : la carte OKR de la home ouvre cet écran qui permet de
  * choisir le niveau, en cohérence avec le pattern TypeSelector → ModeSelector.
  *
- * V1 : OKR équipe est actif, OKR entreprise marqué « à venir » (D20).
+ * OKR entreprise actif depuis D53 (revient sur D20) : parité complète avec
+ * OKR équipe (Théorie, S'entraîner, Défi, Composer, Anti-patterns), audience
+ * "manager".
  */
 
 import type { ObjectiveType } from "../../domain/types";
@@ -42,7 +44,7 @@ const CHOICES: LevelChoice[] = [
     cadence: "Annuel · révision trimestrielle",
     desc:
       "Le comité de direction se fixe ses Objectifs stratégiques pour l'année. Animé par un coach OKR.",
-    available: false,
+    available: true,
     icon: "okr",
   },
 ];

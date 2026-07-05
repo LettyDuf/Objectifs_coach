@@ -671,4 +671,316 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
       },
     ],
   },
+
+  {
+    id: "sprint.sheet.alibi-goal",
+    isNamedPitfall: true,
+    themeId: "sprint.pieges-classiques",
+    icon: "warn",
+    title: "L'objectif alibi",
+    heroPhrase:
+      "Les récits sont choisis avant l'objectif. L'objectif n'est qu'une étiquette collée après coup pour leur donner un air de cohérence.",
+    intro: "",
+    practiceCtaLabel: "Va vérifier l'ordre d'un objectif suspect",
+    sections: [
+      {
+        heading: "Pourquoi c'est piégeux",
+        icon: "target",
+        body: "La sélection des récits précède la rédaction de l'objectif, jamais l'inverse. Le Product Owner ou l'équipe remplit le sprint avec ce qui rentre dans la vélocité, puis rédige une phrase qui les relie après coup. L'objectif n'a alors aucun pouvoir de décision : il ne change rien au travail réel.",
+        bullets: [
+          "La sélection des récits précède la rédaction de l'objectif, jamais l'inverse.",
+          "Plusieurs formulations d'objectif colleraient aussi bien aux mêmes récits.",
+          "Retirer l'objectif de la page ne changerait rien au travail du sprint.",
+        ],
+      },
+      {
+        heading: "Comment ça se voit",
+        icon: "warn",
+        kind: "signals",
+        body: "",
+        bullets: [
+          "L'objectif est écrit en dernier, après la sélection des récits au Sprint Planning.",
+          "Personne ne sait dire ce qui ferait échouer le sprint si tous les récits étaient livrés.",
+          "Changer l'ordre des mots de l'objectif ne changerait rien au travail prévu.",
+        ],
+      },
+      {
+        heading: "Le test de l'ordre",
+        icon: "wrench",
+        body: "Avant de sélectionner le moindre récit, décider et écrire l'effet attendu. Les récits deviennent ensuite une hypothèse sur ce qui devrait produire cet effet, pas une liste qu'on habille après coup.",
+        examples: [
+          {
+            bad: "Objectif : « Améliorer le parcours d'achat. » Récits sélectionnés : filtre prix, tri par avis, bouton d'achat fixe, choisis pour remplir la vélocité, objectif écrit après.",
+            good: "Faire passer le taux d'ajout au panier de 24 % à 30 % d'ici la fin du sprint. Hypothèse à vérifier : le filtre prix, le tri par avis et le bouton fixe y contribuent.",
+            note: "Le même travail, mais l'ordre s'inverse : l'effet attendu est décidé avant les moyens, pas déduit après.",
+          },
+        ],
+      },
+      {
+        heading: "Source",
+        kind: "source",
+        body: "Scrum.org, 27 Sprint Anti-Patterns : les équipes sélectionnent des éléments du backlog puis tentent de leur fabriquer un objectif commun, même sans fil conducteur réel.",
+      },
+    ],
+  },
+
+  {
+    id: "sprint.sheet.composite-goal",
+    isNamedPitfall: true,
+    themeId: "sprint.pieges-classiques",
+    icon: "warn",
+    title: "L'objectif composite",
+    heroPhrase:
+      "Deux objectifs recousus par « et ». Si l'un échoue et l'autre réussit, personne ne sait si le sprint a gagné.",
+    intro: "",
+    practiceCtaLabel: "Va séparer un objectif composite",
+    sections: [
+      {
+        heading: "Pourquoi c'est piégeux",
+        icon: "target",
+        body: "Le tronc commun d'un bon objectif de Sprint est un but unique et cohérent. Un « et » qui relie deux effets mesurés séparément casse cette unité : l'un des deux peut être atteint sans que l'autre le soit, et le verdict de réussite devient une négociation, pas un fait.",
+        bullets: [
+          "« Et » relie deux effets mesurés séparément, pas un seul.",
+          "L'équipe protège en priorité le plus facile des deux, pas forcément le plus important.",
+          "À la Revue, la réussite se discute au lieu de se constater.",
+        ],
+      },
+      {
+        heading: "Comment ça se voit",
+        icon: "warn",
+        kind: "signals",
+        body: "",
+        bullets: [
+          "L'objectif contient « et » entre deux verbes ou deux indicateurs différents.",
+          "À la Revue, l'équipe négocie lequel des deux comptait vraiment.",
+          "Deux tableaux de bord différents sont montrés pour justifier la réussite.",
+        ],
+      },
+      {
+        heading: "Le test du split",
+        icon: "wrench",
+        body: "Séparer mentalement l'objectif de part et d'autre du « et ». Si les deux morceaux ont chacun leur propre indicateur et leur propre sens sans l'autre, ce sont deux objectifs, pas un. Choisir celui qui compte le plus pour ce sprint ; l'autre attend son tour.",
+        examples: [
+          {
+            bad: "Réduire le temps de chargement de la page produit et augmenter le taux de clic sur les recommandations.",
+            good: "Faire passer le temps de chargement de la page produit de 3,2 s à 1,5 s d'ici la fin du sprint.",
+            note: "Le taux de clic sur les recommandations devient un sujet du sprint suivant, pas un objectif caché dans celui-ci.",
+          },
+        ],
+      },
+      {
+        heading: "Source",
+        kind: "source",
+        body: "Scrum.org, Sprint Anti-Patterns, sur les objectifs qui juxtaposent plusieurs éléments du backlog sans fil conducteur unique.",
+      },
+    ],
+  },
+
+  {
+    id: "sprint.sheet.invisible-goal",
+    isNamedPitfall: true,
+    themeId: "sprint.pieges-classiques",
+    icon: "warn",
+    title: "L'objectif invisible",
+    heroPhrase:
+      "Il existe sur le tableau. Il n'existe nulle part ailleurs : ni au Daily, ni à la Revue, ni à la Rétrospective.",
+    intro: "",
+    practiceCtaLabel: "Va ramener un objectif dans les rituels",
+    sections: [
+      {
+        heading: "Pourquoi c'est piégeux",
+        icon: "target",
+        body: "L'objectif est rempli dans l'outil de suivi puis jamais rouvert. Le Daily Scrum se résume à un tour de statut des tickets. La Revue présente les récits livrés, pas l'effet visé. L'objectif ne pilote alors aucune décision réelle : c'est un champ de formulaire, pas un cap.",
+        bullets: [
+          "Le Daily Scrum ne mentionne jamais où en est l'objectif, seulement les tickets.",
+          "À la Revue, on présente des récits livrés, pas l'effet attendu par l'objectif.",
+          "L'équipe pourrait citer les récits du sprint sans pouvoir citer l'objectif.",
+        ],
+      },
+      {
+        heading: "Comment ça se voit",
+        icon: "warn",
+        kind: "signals",
+        body: "",
+        bullets: [
+          "L'objectif n'est mentionné dans aucun rituel après le Sprint Planning.",
+          "Demander l'objectif du sprint en cours à un membre de l'équipe produit une hésitation.",
+          "Le champ objectif de l'outil de suivi est rempli, mais jamais rouvert.",
+        ],
+      },
+      {
+        heading: "Le test du silence",
+        icon: "wrench",
+        body: "Réintroduire l'objectif dans chaque rituel : le Daily s'ouvre en s'y rapportant, la Revue le rappelle avant de montrer les récits, la Rétro demande explicitement s'il a été atteint.",
+        examples: [
+          {
+            bad: "Daily Scrum : « Hier j'ai fait le ticket X, aujourd'hui je fais le ticket Y. »",
+            good: "Daily Scrum : « Le ticket X que j'ai fini nous rapproche de l'objectif du sprint parce que... »",
+            note: "Le rituel change de forme : on relie le travail du jour à l'effet visé, pas seulement à la tâche.",
+          },
+        ],
+      },
+      {
+        heading: "Source",
+        kind: "source",
+        body: "Age-of-Product.com, Missing Sprint Goals : un objectif absent des rituels quotidiens n'a d'existence que sur le papier.",
+      },
+    ],
+  },
+
+  {
+    id: "sprint.sheet.never-renegotiated-goal",
+    isNamedPitfall: true,
+    themeId: "sprint.pieges-classiques",
+    icon: "warn",
+    title: "L'objectif jamais renégocié",
+    heroPhrase:
+      "Le Sprint Backlog change en cours de route. Personne ne se demande si l'objectif tient encore.",
+    intro: "",
+    practiceCtaLabel: "Va protéger un objectif face à un imprévu",
+    sections: [
+      {
+        heading: "Pourquoi c'est piégeux",
+        icon: "target",
+        body: "Le Scrum Guide autorise à renégocier le périmètre en cours de sprint avec le Product Owner, tant que l'objectif reste protégé. Beaucoup d'équipes renégocient le périmètre sans jamais revenir sur l'objectif : il devient un vœu figé au premier jour, jamais réévalué à la lumière des faits du sprint.",
+        bullets: [
+          "Le périmètre peut légitimement bouger en cours de sprint ; l'objectif, lui, doit rester une décision consciente.",
+          "Quand un récit est retiré ou ajouté, personne ne revérifie si l'objectif est toujours atteignable.",
+          "L'objectif devient un vœu figé au premier jour, jamais réévalué.",
+        ],
+      },
+      {
+        heading: "Comment ça se voit",
+        icon: "warn",
+        kind: "signals",
+        body: "",
+        bullets: [
+          "Un récit qui portait l'objectif est abandonné en cours de sprint sans discussion sur l'objectif lui-même.",
+          "La Rétrospective ne pose jamais la question « avons-nous protégé l'objectif ou seulement la liste ? »",
+          "Le Scrum Master ne relance jamais l'objectif quand le périmètre bouge.",
+        ],
+      },
+      {
+        heading: "Protéger l'objectif, pas la liste",
+        icon: "wrench",
+        body: "Quand le périmètre change, poser explicitement la question à l'équipe : l'objectif tient-il encore ? Si non, deux choix honnêtes : réduire l'ambition chiffrée, ou protéger l'objectif en repoussant l'imprévu après la Revue.",
+        examples: [
+          {
+            bad: "Le récit qui portait la mesure de l'objectif est retiré à mi-sprint pour absorber un incident. Personne ne revient sur l'objectif.",
+            good: "« Le récit qui portait notre objectif est retiré. On réduit l'ambition chiffrée de l'objectif, ou on protège l'objectif en repoussant l'incident après la Revue. » Décision prise en équipe.",
+            note: "L'objectif reste la boussole, même quand le contenu du sprint change.",
+          },
+        ],
+      },
+      {
+        heading: "Source",
+        kind: "source",
+        body: "Scrum Guide 2020, sur l'adaptation du Sprint Backlog en cours de sprint et la protection du Sprint Goal.",
+      },
+    ],
+  },
+
+  {
+    id: "sprint.sheet.unnamed-dependency",
+    isNamedPitfall: true,
+    themeId: "sprint.pieges-classiques",
+    icon: "warn",
+    title: "La dépendance non nommée",
+    heroPhrase:
+      "L'objectif dépend d'une autre équipe ou d'un service externe, mais ce risque n'est jamais dit à voix haute.",
+    intro: "",
+    practiceCtaLabel: "Va nommer une dépendance avant qu'elle ne casse un objectif",
+    sections: [
+      {
+        heading: "Pourquoi c'est piégeux",
+        icon: "target",
+        body: "L'objectif suppose qu'une autre équipe ou qu'un service externe livre à temps, sans que cela soit vérifié ni nommé au Sprint Planning. Si la dépendance glisse, l'objectif échoue pour une raison jamais discutée, et l'équipe porte seule la responsabilité d'un risque qu'elle ne maîtrisait pas.",
+        bullets: [
+          "L'objectif suppose une livraison externe sans qu'elle soit vérifiée ni nommée.",
+          "Si la dépendance glisse, l'objectif échoue pour une raison jamais discutée au Planning.",
+          "L'équipe porte seule la responsabilité d'un risque qu'elle ne maîtrise pas.",
+        ],
+      },
+      {
+        heading: "Comment ça se voit",
+        icon: "warn",
+        kind: "signals",
+        body: "",
+        bullets: [
+          "L'objectif contient un verbe d'action sur un système que l'équipe ne possède pas.",
+          "Aucune conversation avec l'équipe ou le service dépendant n'a eu lieu avant le Planning.",
+          "À la Rétro, l'échec de l'objectif s'explique par « on attendait après l'équipe X ».",
+        ],
+      },
+      {
+        heading: "Nommer le risque avant le Planning",
+        icon: "wrench",
+        body: "Vérifier la dépendance avec l'équipe concernée avant de figer l'objectif, et prévoir un plan de repli dans l'objectif lui-même si elle glisse.",
+        examples: [
+          {
+            bad: "Faire passer le taux de connexion réussie de 80 % à 95 %, en s'appuyant sur la nouvelle API d'authentification de l'équipe Plateforme (date de livraison non confirmée).",
+            good: "Vérifié auprès de l'équipe Plateforme : l'API sera livrée mardi. Faire passer le taux de connexion réussie de 80 % à 95 % d'ici la fin du sprint, avec un plan de repli testé si l'API glisse.",
+            note: "La dépendance devient un fait vérifié et un risque nommé, pas un espoir silencieux.",
+          },
+        ],
+      },
+      {
+        heading: "Source",
+        kind: "source",
+        body: "SAFe propose le ROAM (Risks Owned, Accepted, Mitigated) au PI Planning ; la même discipline s'applique à l'échelle d'un sprint dès qu'une dépendance externe existe.",
+      },
+    ],
+  },
+
+  {
+    id: "sprint.sheet.hypothesis-as-certainty",
+    isNamedPitfall: true,
+    themeId: "sprint.pieges-classiques",
+    icon: "warn",
+    title: "L'hypothèse maquillée en certitude",
+    heroPhrase:
+      "« On veut voir si… » devient « on va prouver que… ». L'expérimentation perd son droit à l'échec.",
+    intro: "",
+    practiceCtaLabel: "Va redonner à un objectif le droit d'avoir tort",
+    sections: [
+      {
+        heading: "Pourquoi c'est piégeux",
+        icon: "target",
+        body: "Une expérimentation a deux issues légitimes : l'hypothèse tient, ou elle ne tient pas, les deux sont un succès d'apprentissage. Rédigée comme une certitude, seule l'issue positive compte comme réussite, et l'équipe évite ensuite les sujets vraiment incertains pour ne pas « rater » un objectif qu'elle ne maîtrisait pas.",
+        bullets: [
+          "Une expérimentation a deux issues légitimes ; les deux sont un succès d'apprentissage.",
+          "Rédigée comme une certitude, seule l'issue positive compte comme réussite.",
+          "L'équipe évite ensuite les sujets incertains pour ne pas « rater » un objectif hasardeux.",
+        ],
+      },
+      {
+        heading: "Comment ça se voit",
+        icon: "warn",
+        kind: "signals",
+        body: "",
+        bullets: [
+          "Le mot « tester », « explorer » ou « voir si » a disparu entre l'intention initiale et l'objectif écrit.",
+          "Aucun critère n'est prévu pour le cas où l'hypothèse est invalidée.",
+          "L'équipe qualifie déjà au Planning le résultat attendu comme acquis.",
+        ],
+      },
+      {
+        heading: "Garder le droit d'avoir tort",
+        icon: "wrench",
+        body: "Garder la nature d'hypothèse explicite dans l'objectif et définir à l'avance ce que signifie « apprendre », même si l'hypothèse échoue.",
+        examples: [
+          {
+            bad: "Faire passer l'engagement sur la recherche de 12 % à 20 % grâce à la nouvelle autocomplétion.",
+            good: "Tester si la nouvelle autocomplétion améliore l'engagement sur la recherche. Réussite si le taux de clic dépasse 15 % (vs 12 % aujourd'hui) ; en dessous, l'hypothèse est invalidée et documentée pour la suite.",
+            note: "Les deux issues sont écrites à l'avance : l'objectif reste falsifiable même quand la réponse est non.",
+          },
+        ],
+      },
+      {
+        heading: "Source",
+        kind: "source",
+        body: "Marty Cagan (Inspired), sur la distinction entre découverte (hypothèses à tester) et livraison (engagements à tenir).",
+      },
+    ],
+  },
 ];

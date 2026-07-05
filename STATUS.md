@@ -3,11 +3,14 @@
 _Dernière mise à jour : 2026-07-04_
 
 ## Phase actuelle
-Onglet **Théorie complet sur les 3 modules**. Étoffement contenu pédagogique terminé :
-- **Sprint** : 4 thèmes / 18 fiches (Fondamentaux 4 + Pièges classiques 4 + Cas particuliers 4 = 12 spécifiques + 6 partagées Posture et valeurs). *(Chiffre corrigé le 2026-07-03 — la formulation précédente était erronée, voir entrée du jour.)*
-- **PI** : 5 thèmes / 9 fiches techniques + 6 transverses = 15.
-- **OKR équipe** : 3 thèmes / 7 fiches techniques (Fondamentaux 3 + Pièges du KR 4) + 6 transverses = 13.
-Briques (option C, 5 couleurs) en place pour Sprint Goal, PI Objective et Key Result. Pattern maître-détail (sidebar + contenu) sur ThemeDetail. Build monofichier 517 Ko / gzip 142 Ko. (Chiffre de tests obsolète : 151 tests verts / 1 skip au 2026-07-03, voir entrée du jour — le décompte n'a plus été mis à jour ici depuis l'étoffement de contenu non journalisé.)
+_Rafraîchi le 2026-07-04 (D53) — OKR entreprise activé, périmètre V1 (D20) désormais bouclé sur les 4 types._
+
+**Parité complète sur 4 modules (Sprint, PI, OKR équipe, OKR entreprise)** — chacun couvre : Théorie (fiches + thèmes), S'entraîner (Warmup + 5-6 mini-exercices QCM/grille), Défi (ChallengeQuiz scénarisé), Anti-patterns (PitfallQuiz, 10 cas par module), Composer (Puzzle générique, D16), Analyser un objectif (page dédiée, D27).
+- **Sprint** : 18 fiches (dont 10 pièges nommés), 6 mini-exercices dont Maintenance : trouver la valeur (D40, + worksheet guidé D44).
+- **PI** : 15 fiches (dont 10 pièges nommés).
+- **OKR équipe** : 13 fiches (dont 10 pièges nommés). Les 5 mini-exercices S'entraîner sont désormais tous actifs (D54, 2026-07-04 — les 4 corpus dormants viennent d'être câblés, dette résolue).
+- **OKR entreprise** (D53, 2026-07-04) : 11 fiches (fondamentaux + 10 pièges nommés), audience `manager`. Les 5 mini-exercices S'entraîner sont actifs dès la livraison (pas de dette équivalente à OKR équipe). Défi : 12 cas. Composer : jeu de blocs dédié (vocabulaire entreprise, échéances annuelles).
+Build monofichier 690 Ko / gzip 174 Ko. 228 tests verts / 1 skip.
 
 ## Backlog / dette connue (à ne pas oublier)
 > Relu à chaque ouverture de session. Rayer une ligne seulement quand elle est traitée, pas seulement mentionnée.
@@ -17,6 +20,8 @@ Briques (option C, 5 couleurs) en place pour Sprint Goal, PI Objective et Key Re
 - [ ] **Piste ouverte, non tranchée** (DOMAINE.md §4.8) : le lien explicite entre prolifération d'Objectives et origine « objectif de la direction » n'est traité par aucune fiche — à rouvrir seulement si des retours d'atelier confirment que c'est un manque réel.
 - [x] ~~Renumérotation D22~~ : résolu 2026-07-04 (D42) — le D22 Puzzle reste inchangé (confirmé exact par Lætitia), la refonte visuelle A+ du 2026-06-25 est rédigée rétroactivement sous D42.
 - [x] ~~9 cas Défi QCM à écart modéré~~ — résolu 2026-07-04 (D43) : 7/9 totalement corrigés, 2/9 réduits à un écart d'1 chiffre (jugé suffisant, voir D43).
+- [x] ~~OKR équipe — 4 mini-exercices S'entraîner non câblés dans l'UI~~ — résolu 2026-07-04 (D54). Nouveau test d'intégrité `okr-equipe-corpus.test.ts` (15 tests) au passage.
+- [ ] **Fichiers orphelins à supprimer via Terminal** (non supprimables depuis la sandbox) : `src/ui/screens/ComingSoon.tsx` (plus aucun import depuis l'activation d'OKR entreprise) et `src/content/check-entreprise-manager.test.ts` (fichier de vérification temporaire d'un sous-agent, neutralisé en test trivial). Commande : `rm src/ui/screens/ComingSoon.tsx src/content/check-entreprise-manager.test.ts`.
 
 ## Phase précédente
 Incrément 2 livré : UI fonctionnelle Sprint (sélecteur → mode → entraînement / apprendre → export). 39 tests verts, build production OK. Premier vrai outil utilisable en atelier sur le périmètre Sprint × dev.
@@ -42,18 +47,18 @@ Incrément 2 livré : UI fonctionnelle Sprint (sélecteur → mode → entraîne
 - Rien.
 
 ## Prochain pas (au choix)
-A. **Module OKR** : Objective + 3-5 KR + règles spécifiques + UI multi-KR. Termine le périmètre V1 complet (Sprint + PI + OKR).
-B. **Défi PI** : étendre le mode ludique restant au PI (corpus mauvais exemples PI à enrichir).
-C. **Refactor `PuzzleBoard` générique** : extraction de la mécanique commune Sprint/PI dans un composant unique. Préalable utile avant OKR si OKR récupère aussi un puzzle.
-D. **Enrichir le contenu PI** : plus d'exemples annotés pour le mode Apprendre et Défi.
-E. **Quiz « Diagnostic en aveugle »** dans Apprendre.
-F. **Vague 3 UX** (polissage) : mode plein écran, chip mode actif, toggle densité.
+_Le périmètre V1 (D20) est désormais complet sur les 4 types. Options réelles restantes :_
 
-Recommandation : A (OKR) pour atteindre le périmètre V1 complet. Si OKR doit avoir un puzzle multi-KR, faire C avant pour éviter la triplication.
+B. **DOMAINE.md §4.8** : lien prolifération d'Objectives / origine « objectif de la direction ». Volontairement en attente d'un retour d'atelier réel, pas actionnable seul.
+C. **Harmonisation visuelle** : la carte "Piège évité" (D46/D50) n'existe que sur Anti-patterns ; ChallengeQuiz/Drill/Warmup gardent le feedback plat. Signalé, pas tranché.
+D. **6 cas Défi QCM à écart d'1 chiffre** (D43) : diminishing returns, non prioritaire sauf demande explicite.
+E. **Corpus Défi OKR entreprise plus large** : 12 cas livrés (parité avec les 3 autres modules), mais pas de plancher doctrinal empêchant d'en ajouter si l'usage en atelier montre un besoin.
+
+Recommandation : B ou C selon ce qui te semble le plus utile en atelier — aucune urgence sur les deux.
 
 ## Risques actifs
-- **Scope V1 large** : trois types d'objectifs (Sprint, PI, OKR) couverts dès le V1. Mitigation : livraison par modules, Sprint en premier, démontrable indépendamment.
-- **Charge de validation contenu** : la qualité pédagogique dépend des exemples annotés. Mitigation : commencer petit (3 bons + 3 mauvais par module suffisent au V1), enrichir ensuite.
+- **Charge de validation contenu** : la qualité pédagogique dépend des exemples annotés. Mitigation en place : recherche de candidats + validation explicite de Lætitia avant toute rédaction (voir D52, D53).
+- **Registre rédactionnel des futures fiches** : après le retour du 2026-07-04 sur le module OKR entreprise (jargon de consultant détecté dans un premier jet), toute nouvelle fiche pédagogique doit être vulgarisée avant livraison, pas seulement sourcée. Voir mémoire `feedback-vulgariser-conseils`.
 
 ## Journal des sessions
 - **2026-06-28** : **francisation systématique du vocabulaire pédagogique (D30)**.
@@ -238,3 +243,19 @@ Recommandation : A (OKR) pour atteindre le périmètre V1 complet. Si OKR doit a
 - **2026-07-04** : **contextes narratifs non pertinents retirés (D49)**, Lætitia a validé la liste de 13 cas proposée après D48 sans la revoir ligne à ligne ("je te fais confiance, trop de projets en parallèle"). `context` devenu optionnel dans le domaine ; 6 cas Sprint + 7 cas OKR équipe perdent leur paragraphe de contexte narratif (jamais référencé par aucune explication) ; PI intact (contextes tous structurants) ; le cas montré en exemple par Lætitia (`upgrade-leading`) a été explicitement écarté de la suppression après vérification que son contexte est cité dans l'explication de la bonne réponse. 168 tests verts / 1 skip, `tsc --noEmit` OK, build vérifié (562 Ko / gzip 145 Ko).
 
 - **2026-07-04** : **nuances typographiques dans la carte "Piège évité" (D50)**, suite retour Lætitia ("plus lisible avec des nuances de couleur et des zones en gras"). Nouveau composant `HighlightNumbers` (présentation pure, aucun contenu modifié) qui met en gras coloré les valeurs chiffrées de la carte — cohérent avec la pédagogie du domaine où le chiffre est ce qui rend un objectif falsifiable. Le paragraphe "signal à surveiller" se distingue désormais visuellement du "pourquoi" ponctuel (filet ocre vs italique atténué). 172 tests verts / 1 skip, `tsc --noEmit` OK, build vérifié (563 Ko / gzip 145 Ko).
+
+- **2026-07-04** : **D51 — harmonisation des options + fix d'un exemple à deux pièges superposés**. Lætitre a repéré que l'exemple de la fiche "Tous les objectifs de PI en engagé" contenait aussi le signal de "La Business Value uniforme" (une autre fiche), rendant le QCM Anti-patterns ambigu (deux réponses légitimes possibles). Exemple corrigé pour ne porter qu'un seul piège. Au passage, harmonisation du style des réponses validées/invalidées dans les QCM (plus d'opacité réduite ni de texte barré sur les mauvaises réponses, seule la couleur + l'icône distinguent). 172 tests verts / 1 skip, `tsc --noEmit` OK, build vérifié (563 Ko / gzip 145 Ko).
+
+- **2026-07-04** : **corpus Anti-patterns étoffé 4/4/5 → 10/10/10 (D52)**, suite retour Lætitre ("4 cas c'est trop peu"). 17 nouvelles fiches piège rédigées (6 Sprint, 6 PI, 5 OKR équipe), candidats sourcés dans la littérature Lean-Agile/SAFe (Scrum.org, Age-of-Product, SAFe, Gothelf, Wodtke, Lamorte) et validés en bloc par Lætitre avant rédaction. Chaque fiche alimente automatiquement le Défi QCM sans code supplémentaire (architecture D14/D33 confirmée). Nouveau test d'intégrité dédié (12 tests, verrouille le 10/10/10). 184 tests verts / 1 skip, `tsc --noEmit` OK, build vérifié (600 Ko / gzip 155 Ko).
+
+- **2026-07-04** : **module OKR entreprise activé (D53), revient sur D20**. Après la parité anti-patterns (D52), Lætitia demande à cadrer OKR entreprise (audience CODIR, jusque-là « à venir » faute d'audience dédiée). Décision : réutiliser la valeur `Audience = "manager"`, déjà déclarée mais inutilisée, plutôt qu'ouvrir un nouveau type — coût d'architecture nul. Scope confirmé par Lætitia : parité complète des 5 pièces (Théorie, S'entraîner, Défi, Composer, Anti-patterns), même angle rédaction que OKR équipe.
+  - **Contenu fondateur** : tronc commun spécifique (porteur CODIR + sondage de faisabilité, échelle du langage, rythme de revue) + fiche fondamentaux + 10 fiches Anti-patterns, produits par un sous-agent expert (Doerr/Lamorte/Wodtke/Felipe Castro), citations vérifiées indépendamment (WebSearch). Première version jugée trop dense par Lætitia (« je veux des consignes et des conseils clairs et vulgarisés ») : toutes les fiches réécrites en français simple avant livraison (voir mémoire `feedback-vulgariser-conseils`).
+  - **Corpus S'entraîner** : Warmup (10+10 cas) + 4 drills (Indicateur 10, Variation 8, Échéance 8, Contexte 8), mêmes garde-fous D35 (anti-raccourci numérique) que les autres modules, vérifiés par script avant intégration. Les 5 exercices sont actifs dès la livraison (pas de dette « à venir » comme sur OKR équipe — voir dette signalée en Backlog).
+  - **Corpus Défi** : 12 cas ChallengeQuiz, 6 pièges structurels × 2 (projet, flou, health metric, sur-confiance, composite, sans baseline), vérifiés programmatiquement contre le raccourci « densité de chiffres = bonne réponse ».
+  - **Composer** : nouveau jeu de blocs 6 catégories (vocabulaire entreprise : NPS, marge, part de marché, notoriété ; échéances annuelles). `Puzzle.tsx::buildDraft` gagne une branche `okr-entreprise` explicite (absente jusqu'ici, retombait par défaut sur un `SprintDraft` — jamais exercée faute de routage).
+  - **Câblage transverse** : nouvelles fonctions domaine `audienceForType`/`relatedTypesFor` (`src/domain/types.ts`) remplaçant 4 `"dev"` codés en dur (ChallengeQuiz, PitfallQuiz, Analyse, Puzzle, ModeSelector). Le moteur d'évaluation (`engine.ts`/`criteria/okr.ts`) traitait déjà `okr-equipe`/`okr-entreprise` de façon identique : zéro modification nécessaire côté scoring.
+  - **Routage** : `App.tsx` perd son garde `ComingSoon` sur `okr-entreprise` ; nouvelles routes Learn/Practice/Challenge/Puzzle/Analyse/Anti-patterns ; nouveaux écrans `OkrEnterpriseLearn.tsx`/`OkrEnterprisePractice.tsx` ; `LevelSelector.tsx` passe `available: true`.
+  - **Dette découverte au passage, non traitée ici** : 4 des 5 mini-exercices d'OKR équipe existent en corpus mais restent « à venir » dans `OkrTeamPractice.tsx` (jamais câblés) ; `ComingSoon.tsx` devient orphelin ; un fichier de test temporaire d'un sous-agent (`check-entreprise-manager.test.ts`) est neutralisé faute de suppression possible depuis la sandbox — les trois consignés en Backlog.
+  - **Vérifié** : `tsc --noEmit` OK, 213 tests verts / 1 skip (+41 vs D52), build vérifié (676 Ko / gzip 172 Ko).
+- **2026-07-04** : **D54 — câblage des 4 mini-exercices dormants d'OKR équipe**, dette découverte en construisant OKR entreprise et traitée dans la foulée à la demande de Lætitia. `OkrTeamPractice.tsx` affichait Indicateur/Variation/Échéance/Contexte en « à venir » alors que leurs corpus existaient et étaient valides depuis le 2026-06-28. Câblage mécanique identique au pattern Sprint/OKR entreprise, aucune modification de contenu. Nouveau test d'intégrité dédié (15 tests, jamais eu de garde-fou malgré l'ancienneté du corpus). 228 tests verts / 1 skip, `tsc --noEmit` OK, build vérifié (690 Ko / gzip 174 Ko).
+

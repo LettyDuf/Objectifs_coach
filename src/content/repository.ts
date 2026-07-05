@@ -25,6 +25,7 @@ import { PI_DEV_EXAMPLES_FR } from "./examples/pi.dev.fr";
 import { PI_DEV_SHEETS_FR } from "./sheets/pi.dev.fr";
 import { PI_DEV_PUZZLE_SETS_FR } from "./puzzles/pi.dev.fr";
 import { OKR_EQUIPE_DEV_PUZZLE_SETS_FR } from "./puzzles/okr-equipe.dev.fr";
+import { OKR_ENTREPRISE_MANAGER_PUZZLE_SETS_FR } from "./puzzles/okr-entreprise.manager.fr";
 import { SPRINT_DEV_SCENARIOS_FR } from "./scenarios/sprint.dev.fr";
 import { PI_DEV_SCENARIOS_FR } from "./scenarios/pi.dev.fr";
 import type { ScenarioCard } from "../domain/scenario";
@@ -35,11 +36,14 @@ import type { WarmupCase } from "../domain/warmup";
 import { SPRINT_DEV_CHALLENGE_QUIZ_FR } from "./challenge-quiz/sprint.dev.fr";
 import { PI_DEV_CHALLENGE_QUIZ_FR } from "./challenge-quiz/pi.dev.fr";
 import { OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR } from "./challenge-quiz/okr-equipe.dev.fr";
+import { OKR_ENTREPRISE_MANAGER_CHALLENGE_QUIZ_FR } from "./challenge-quiz/okr-entreprise.manager.fr";
 import type { ChallengeQuizCase } from "../domain/challenge-quiz";
 import { buildPitfallQuizCases, type PitfallQuizCase } from "../domain/pitfall-quiz";
 import { OKR_EQUIPE_DEV_EXAMPLES_FR } from "./examples/okr-equipe.dev.fr";
 import { OKR_EQUIPE_DEV_SHEETS_FR } from "./sheets/okr-equipe.dev.fr";
 import { POSTURE_VALEURS_SHEETS_FR } from "./sheets/posture-valeurs.shared.fr";
+import { OKR_ENTREPRISE_MANAGER_SHEETS_FR } from "./sheets/okr-entreprise.manager.fr";
+import { OKR_ENTREPRISE_MANAGER_WARMUP_FR } from "./warmup/okr-entreprise.manager.fr";
 
 type ExamplesIndex = Partial<Record<ObjectiveType, Partial<Record<Audience, AnnotatedExample[]>>>>;
 type SheetsIndex = Partial<Record<ObjectiveType, Partial<Record<Audience, PedagogicalSheet[]>>>>;
@@ -75,6 +79,9 @@ const SHEETS_INDEX: SheetsIndex = {
   "okr-equipe": {
     dev: [...POSTURE_VALEURS_SHEETS_FR, ...OKR_EQUIPE_DEV_SHEETS_FR],
   },
+  "okr-entreprise": {
+    manager: [...POSTURE_VALEURS_SHEETS_FR, ...OKR_ENTREPRISE_MANAGER_SHEETS_FR],
+  },
 };
 
 const PUZZLE_INDEX: PuzzleIndex = {
@@ -86,6 +93,9 @@ const PUZZLE_INDEX: PuzzleIndex = {
   },
   "okr-equipe": {
     dev: OKR_EQUIPE_DEV_PUZZLE_SETS_FR,
+  },
+  "okr-entreprise": {
+    manager: OKR_ENTREPRISE_MANAGER_PUZZLE_SETS_FR,
   },
 };
 
@@ -108,6 +118,9 @@ const WARMUP_INDEX: WarmupIndex = {
   "okr-equipe": {
     dev: OKR_EQUIPE_DEV_WARMUP_FR,
   },
+  "okr-entreprise": {
+    manager: OKR_ENTREPRISE_MANAGER_WARMUP_FR,
+  },
 };
 
 const CHALLENGE_QUIZ_INDEX: ChallengeQuizIndex = {
@@ -119,6 +132,9 @@ const CHALLENGE_QUIZ_INDEX: ChallengeQuizIndex = {
   },
   "okr-equipe": {
     dev: OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR,
+  },
+  "okr-entreprise": {
+    manager: OKR_ENTREPRISE_MANAGER_CHALLENGE_QUIZ_FR,
   },
 };
 

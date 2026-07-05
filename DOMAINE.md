@@ -105,7 +105,7 @@ Un OKR = **un Objective qualitatif** + **3 à 5 Key Results quantitatifs outcome
 
 | Niveau | Horizon | Porteur | Couverture V1 |
 |---|---|---|---|
-| **OKR entreprise** | Annuel, révision trimestrielle | CODIR animé par un coach OKR | À venir (D20) |
+| **OKR entreprise** | Annuel, révision trimestrielle | CODIR animé par un coach OKR | Couvert (D53, 2026-07-04) |
 | **OKR équipe** | Trimestriel (90 jours) | Équipe en co-construction, animée par un facilitateur | Couvert |
 
 ### 4.3 Place dans la chaîne d'alignement vertical (matériel pédagogique central)
@@ -186,6 +186,36 @@ S'ajoutent au tronc commun §1.
 - Verbatim fréquent en entretien : « on m'a donné mes objectifs » plutôt que « j'ai construit les miens avec l'équipe ».
 
 **Ce qu'on enseigne à la place** : il n'existe pas de version individuelle correcte de ce cas — c'est le point doctrinal (§4.1). La correction n'est pas de mieux écrire l'objectif individuel, c'est de remonter au bon niveau : l'équipe co-construit un seul OKR équipe qui contribue à l'objectif de la direction, et c'est cet OKR équipe partagé — pas des fragments individuels — qui relie le travail de chacun.
+
+---
+
+### 4.10 Module OKR entreprise (activé le 2026-07-04, D53 — revient sur D20)
+
+> ✅ Parité complète avec OKR équipe : Théorie, S'entraîner, Défi, Composer, Anti-patterns. Audience `"manager"` (valeur `Audience` déjà déclarée, jusque-là inutilisée — voir D8) plutôt qu'une nouvelle audience, pour ne pas ouvrir un chantier multi-audience non cadré.
+
+**Ce qui distingue l'OKR entreprise de l'OKR équipe** (au-delà de l'horizon annuel/trimestriel du §4.2) :
+- **Porteur** : le CODIR, qui en répond devant le board — mais sonde la faisabilité auprès des équipes avant d'engager le cap (pas un diktat descendant).
+- **Échelle du langage** : l'Objective doit être compris et répétable par toute l'entreprise, pas seulement par le CODIR (piège « jargon-codir » ci-dessous).
+- **Rythme de revue** : trimestriel mais sur un engagement annuel — la revue doit rester un vrai moment de vérité (piège « théâtre-revue »), pas une formalité.
+- **Grammaire du Résultat clé** : strictement la même que l'OKR équipe (outcome, chiffré, borné, non health-metric) — aucune règle de scoring dupliquée, le moteur (`src/domain/engine.ts`, `src/domain/criteria/okr.ts`) traite déjà `okr-equipe` et `okr-entreprise` de façon identique (`isOkr` : voir D18).
+
+**10 pièges nommés** (fiches complètes dans `src/content/sheets/okr-entreprise.manager.fr.ts`, alimentent automatiquement le Défi Anti-patterns par le même mécanisme que les 3 autres modules — voir D14/D33) :
+1. Le bilan financier déguisé en OKR (Objective = un seul chiffre financier)
+2. Le gouffre entre l'ambition et la capacité (cap fixé sans sonder la faisabilité)
+3. Le cap qui change sans prévenir (ajustements hors revue trimestrielle)
+4. Le mur invisible entre l'entreprise et les équipes (aucun lien de sens entretenu)
+5. Le théâtre de la revue trimestrielle (revue qui ne remet jamais rien en question)
+6. L'OKR que personne ne comprend hors CODIR (langage de plan stratégique, pas de langage commun)
+7. L'OKR écrit par un seul service (rédaction non multi-fonctionnelle)
+8. L'objectif reconduit sans jamais se remettre en question (routine du cycle annuel)
+9. La revue du CODIR sans les équipes (décisions prises sans retour terrain)
+10. L'OKR entreprise sans responsable identifié (« le CODIR » = personne en particulier)
+
+**Sources doctrinales** : Doerr (*Measure What Matters*), Lamorte (*The OKRs Field Book*), Wodtke (*Radical Focus* — citant Jeff Weiner), Felipe Castro (read.felipecastro.com), pratique SAFe (thèmes stratégiques de portefeuille, sponsor exécutif). Citations vérifiées indépendamment (WebSearch) avant rédaction, conformément à l'esprit critique attendu du projet.
+
+**Registre rédactionnel** : après une première version jugée trop dense par Lætitia (« je veux des consignes et des conseils clairs et vulgarisés »), tout le corps des fiches (hors titres de piège et citations Source) est rédigé en français simple, sans jargon de consultant — voir mémoire projet `feedback-vulgariser-conseils`.
+
+**Ce qui reste hors périmètre** (cohérent avec §4.5) : l'alignement bi-directionnel formel OKR équipe ↔ OKR entreprise (concept avancé, toujours reporté) ; le scoring d'atteinte en fin de cycle.
 
 ---
 
@@ -524,7 +554,7 @@ Le fichier `proposition-corpus-mini-exercices.md` à la racine sert de support d
 ### 2026-06-21 — Module OKR refondu (bi-niveau, chaîne d'alignement)
 Section 4 complètement réécrite après recherche doctrinale croisée (Morisseau, Lamorte, Niven).
 - **Bi-niveau strict** acté : OKR entreprise (annuel) et OKR équipe (trimestriel), jamais fondus. Pas d'OKR individuel.
-- **Phasage V1** : OKR équipe seulement, OKR entreprise reporté (cohérent avec audience `dev` actuelle, D20).
+- **Phasage V1** : OKR équipe seulement. **Mise à jour 2026-07-04 (D53)** : OKR entreprise activé avec parité complète, audience `manager` (voir §4.10).
 - **Chaîne d'alignement vertical** (Entreprise → Équipe → PI → Sprint) consignée comme matériel pédagogique central — répond à la confusion historique entre OKR équipe et Sprint Goal / PI Objective.
 - **Health metric ≠ KR** (apport Lamorte) enseigné en fiche, pas codé comme heuristique en V1 (faux positif coûteux).
 - Scoring d'atteinte en fin de cycle et alignement bi-directionnel explicitement hors périmètre V1.

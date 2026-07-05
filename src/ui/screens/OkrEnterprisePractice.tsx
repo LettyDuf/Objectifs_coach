@@ -1,10 +1,11 @@
 /**
- * OKR équipe S'entraîner — menu de mini-exercices par partie d'objectif.
+ * OKR entreprise S'entraîner — menu de mini-exercices par partie d'un Résultat clé.
  *
- * Réplique du pattern SprintPractice (D28). Les 5 exercices sont actifs
- * (corpus Indicateur/Variation/Échéance/Contexte existaient depuis le
- * 2026-06-28 mais n'avaient jamais été câblés dans cet écran — dette
- * découverte le 2026-07-04 en construisant OKR entreprise, corrigée ici).
+ * Réplique SprintPractice.tsx / OkrTeamPractice.tsx (D28), audience "manager".
+ * Contrairement à OkrTeamPractice (où 4 des 5 exercices restent "à venir"),
+ * les 5 exercices sont actifs dès la livraison : le corpus complet
+ * (Indicateur, Variation, Échéance, Contexte, Verbe) a été rédigé et testé
+ * en même temps que le module (voir D53 DECISIONS.md).
  */
 
 import { useMemo, useState } from "react";
@@ -13,10 +14,10 @@ import type { CoachUseCase } from "../../domain/ports";
 import { createContentRepository } from "../../content/repository";
 import { Warmup } from "../components/Warmup";
 import { Drill } from "../components/Drill";
-import { OKR_EQUIPE_INDICATOR_DRILL_FR } from "../../content/drills/okr-equipe.indicator.fr";
-import { OKR_EQUIPE_VARIATION_DRILL_FR } from "../../content/drills/okr-equipe.variation.fr";
-import { OKR_EQUIPE_ECHEANCE_DRILL_FR } from "../../content/drills/okr-equipe.echeance.fr";
-import { OKR_EQUIPE_CONTEXTE_DRILL_FR } from "../../content/drills/okr-equipe.contexte.fr";
+import { OKR_ENTREPRISE_MANAGER_INDICATOR_FR } from "../../content/drills/okr-entreprise.indicator.fr";
+import { OKR_ENTREPRISE_MANAGER_VARIATION_FR } from "../../content/drills/okr-entreprise.variation.fr";
+import { OKR_ENTREPRISE_MANAGER_ECHEANCE_FR } from "../../content/drills/okr-entreprise.echeance.fr";
+import { OKR_ENTREPRISE_MANAGER_CONTEXTE_FR } from "../../content/drills/okr-entreprise.contexte.fr";
 import { Screen } from "../layout/Screen";
 import { Zone } from "../layout/Zone";
 
@@ -38,66 +39,66 @@ const DRILLS: DrillDef[] = [
   {
     key: "verbe",
     num: "1",
-    title: "Le verbe d'un KR",
-    desc: "Output ou outcome ? Apprends à reconnaître le verbe qui décrit un changement à atteindre.",
+    title: "Le verbe d'un Résultat clé",
+    desc: "Output ou outcome ? Apprends à reconnaître le verbe qui décrit un changement à atteindre, à l'échelle entreprise.",
     status: "active",
   },
   {
     key: "indicateur",
     num: "2",
-    title: "L'indicateur du KR",
-    desc: "Indicateur opérationnel, health metric ou concept flou ? Repère ce qui se mesure trimestriellement.",
+    title: "L'indicateur du Résultat clé",
+    desc: "Indicateur mesurable ou health metric déguisée ? Repère ce qui se vérifie sans ambiguïté en revue.",
     status: "active",
   },
   {
     key: "variation",
     num: "3",
     title: "La variation chiffrée",
-    desc: "Précise ou vague ? Un KR sans valeur de référence ni cible ne tient pas.",
+    desc: "Précise ou vague ? Un Résultat clé sans valeur de référence ni cible ne tient pas.",
     status: "active",
   },
   {
     key: "echeance",
     num: "4",
-    title: "L'échéance trimestrielle",
-    desc: "Fin de trimestre, mois précis ? Bornes valides pour un KR.",
+    title: "L'échéance annuelle",
+    desc: "Fin d'année, jalon trimestriel ? Bornes valides pour un Résultat clé entreprise.",
     status: "active",
   },
   {
     key: "contexte",
     num: "5",
     title: "Le contexte",
-    desc: "Qui est le vrai bénéficiaire ? L'utilisateur, l'équipe arrimée, la direction ?",
+    desc: "Qui est le vrai bénéficiaire ? Le client, le salarié, ou l'entreprise elle-même.",
     status: "active",
   },
 ];
 
 const repo = createContentRepository();
 
-export function OkrTeamPractice(_props: Props) {
-  const warmupCases = useMemo(() => repo.getWarmupCases("okr-equipe", "dev"), []);
+export function OkrEnterprisePractice(_props: Props) {
+  const warmupCases = useMemo(() => repo.getWarmupCases("okr-entreprise", "manager"), []);
   const [activeDrill, setActiveDrill] = useState<DrillKey | null>(null);
 
   const drillConfigs = {
     indicateur: {
-      corpus: OKR_EQUIPE_INDICATOR_DRILL_FR,
-      title: "L'indicateur : opérationnel, health metric ou flou ?",
-      lede: "Un indicateur opérationnel se mesure trimestriellement sans ambiguïté. Une health metric (seuil à maintenir) est un garde-fou, pas un KR.",
+      corpus: OKR_ENTREPRISE_MANAGER_INDICATOR_FR,
+      title: "L'indicateur : mesurable ou health metric ?",
+      lede: "Un indicateur de Résultat clé entreprise se mesure avec exactitude. Une health metric (seuil à préserver) est un garde-fou, pas un Résultat clé.",
     },
     variation: {
-      corpus: OKR_EQUIPE_VARIATION_DRILL_FR,
+      corpus: OKR_ENTREPRISE_MANAGER_VARIATION_FR,
       title: "La variation chiffrée : précise ou vague ?",
-      lede: "Coche tous les fragments précis dans la grille. Les vagues, laisse-les.",
+      lede: "Coche tous les fragments qui donnent une valeur de référence et une cible. Les vagues, laisse-les.",
     },
     echeance: {
-      corpus: OKR_EQUIPE_ECHEANCE_DRILL_FR,
+      corpus: OKR_ENTREPRISE_MANAGER_ECHEANCE_FR,
       title: "L'échéance : bornée ou floue ?",
-      lede: "Coche toutes les échéances précises dans la grille. Les floues, laisse-les.",
+      lede: "Coche toutes les échéances bornées à l'échelle d'un OKR entreprise (annuel, jalon trimestriel). Les floues, laisse-les.",
     },
     contexte: {
-      corpus: OKR_EQUIPE_CONTEXTE_DRILL_FR,
+      corpus: OKR_ENTREPRISE_MANAGER_CONTEXTE_FR,
       title: "Le contexte : qui est le vrai bénéficiaire ?",
-      lede: "Pour chaque KR, identifie la personne ou le groupe dont la vie change quand le résultat est atteint.",
+      lede: "Pour chaque Résultat clé, identifie qui vit le changement mesuré : client, salarié, ou l'entreprise elle-même.",
     },
   } as const;
 
@@ -106,7 +107,7 @@ export function OkrTeamPractice(_props: Props) {
     return (
       <Screen
         header={{
-          eyebrow: <span>OKR équipe · S'entraîner · {DRILLS.find((d) => d.key === activeDrill)?.title}</span>,
+          eyebrow: <span>OKR entreprise · S'entraîner · {DRILLS.find((d) => d.key === activeDrill)?.title}</span>,
           title: cfg.title,
           lede: cfg.lede,
           actions: (
@@ -135,10 +136,10 @@ export function OkrTeamPractice(_props: Props) {
     return (
       <Screen
         header={{
-          eyebrow: <span>OKR équipe · S'entraîner · Verbe</span>,
-          title: "Le verbe d'un KR : output ou outcome ?",
+          eyebrow: <span>OKR entreprise · S'entraîner · Verbe</span>,
+          title: "Le verbe d'un Résultat clé : output ou outcome ?",
           lede:
-            "Un KR vise un changement mesurable, pas une livraison. Entraîne-toi à reconnaître la distinction.",
+            "Un Résultat clé vise un changement mesurable, pas une livraison. Entraîne-toi à reconnaître la distinction à l'échelle entreprise.",
           actions: (
             <button className="btn" onClick={() => setActiveDrill(null)}>
               ‹ Retour aux exercices
@@ -151,16 +152,16 @@ export function OkrTeamPractice(_props: Props) {
             <Zone variant="primary">
               <div className="warmup__rule warmup__rule--standalone" role="note">
                 <p>
-                  <strong>Si le verbe décrit ce que tu fais</strong>, c'est un <em>output</em>.
+                  <strong>Si le verbe décrit ce que fait l'entreprise</strong>, c'est un <em>output</em>.
                   <br />
                   <strong>S'il décrit ce qui change après</strong>, c'est un <em>outcome</em>.
                 </p>
                 <p className="warmup__rule-aside">
-                  Un bon KR vise un <em>outcome</em> mesurable, jamais un livrable ni une tâche.
+                  Un bon Résultat clé vise un <em>outcome</em> mesurable, jamais un projet ni une activité.
                 </p>
               </div>
               <Warmup
-                key="warmup-verbe-okr"
+                key="warmup-verbe-okr-entreprise"
                 cases={warmupCases}
                 skipIntro
                 endSlot={
@@ -177,10 +178,10 @@ export function OkrTeamPractice(_props: Props) {
   return (
     <Screen
       header={{
-        eyebrow: <span>OKR équipe · S'entraîner</span>,
+        eyebrow: <span>OKR entreprise · S'entraîner</span>,
         title: "Choisis l'exercice qui te parle",
         lede:
-          "Un Résultat clé solide est fait de 5 pièces. Travaille celle que tu veux renforcer.",
+          "Un Résultat clé entreprise solide est fait de 5 pièces. Travaille celle que tu veux renforcer.",
       }}
       body={{
         variant: "single",
@@ -237,7 +238,7 @@ function NextDrillsList({
   const others = DRILLS.filter((d) => d.key !== currentKey);
   return (
     <section className="next-drills" aria-label="Autres exercices">
-      <h4 className="next-drills__title">Travaille une autre partie du KR</h4>
+      <h4 className="next-drills__title">Travaille une autre partie du Résultat clé</h4>
       <ul className="next-drills__list" role="list">
         {others.map((d) => {
           const isActive = d.status === "active";

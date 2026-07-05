@@ -15,6 +15,7 @@ import { Icon, type IconName } from "../components/Icon";
 import { ThemeGrid } from "../components/ThemeGrid";
 import { SkeletonOverview } from "../components/SkeletonOverview";
 import type { ObjectiveType } from "../../domain/types";
+import { audienceForType } from "../../domain/types";
 import { Screen } from "../layout/Screen";
 import { createContentRepository } from "../../content/repository";
 
@@ -52,7 +53,7 @@ const PRACTICE_MODES: ModeChoice[] = [
   {
     mode: "puzzle",
     label: "Composer",
-    desc: "Assistant guidé pour rédiger un vrai objectif d'équipe, brique par brique. À copier ou exporter à la fin.",
+    desc: "Assistant guidé pour rédiger un vrai objectif, brique par brique. À copier ou exporter à la fin.",
     icon: "puzzle",
   },
   {
@@ -73,7 +74,7 @@ const repo = createContentRepository();
 
 export function ModeSelector({ typeLabel, objectiveType, onSelectTheme, onSelect }: Props) {
   const themes = useMemo(
-    () => repo.getThemes(objectiveType, "dev"),
+    () => repo.getThemes(objectiveType, audienceForType(objectiveType)),
     [objectiveType],
   );
   const practiceModes = PRACTICE_MODES;

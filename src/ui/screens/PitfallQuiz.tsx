@@ -12,6 +12,7 @@
 import { useMemo, useState } from "react";
 import type { PitfallQuizCase } from "../../domain/pitfall-quiz";
 import type { ObjectiveType } from "../../domain/types";
+import { audienceForType } from "../../domain/types";
 import { createContentRepository } from "../../content/repository";
 import { HighlightNumbers } from "../components/HighlightNumbers";
 import { Icon } from "../components/Icon";
@@ -70,7 +71,7 @@ const TYPE_LABELS: Record<ObjectiveType, string> = {
 };
 
 export function PitfallQuiz({ type, onExit, onGoToTheme }: Props) {
-  const source = useMemo(() => repo.getPitfallQuizCases(type, "dev"), [type]);
+  const source = useMemo(() => repo.getPitfallQuizCases(type, audienceForType(type)), [type]);
   const typeLabel = TYPE_LABELS[type];
 
   const [cases, setCases] = useState<PitfallQuizCase[]>(() => shuffle(source));

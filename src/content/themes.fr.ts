@@ -104,8 +104,26 @@ const OKR_EQUIPE_DEV_THEMES_FR: LearningTheme[] = [
   },
 ];
 
+const OKR_ENTREPRISE_MANAGER_THEMES_FR: LearningTheme[] = [
+  VALEURS_THEME,
+  {
+    id: "okr-entreprise.fondamentaux",
+    label: "Les fondamentaux",
+    tagline: "Par où commencer.",
+    icon: "okr",
+    recommendedFirst: true,
+  },
+  {
+    id: "okr-entreprise.pieges",
+    label: "Les pièges du CODIR",
+    tagline: "Les erreurs qu'on voit au niveau entreprise.",
+    icon: "warn",
+  },
+];
+
 export const THEMES_INDEX: ThemesIndex = {
   sprint: { dev: SPRINT_DEV_THEMES_FR },
   pi: { dev: PI_DEV_THEMES_FR },
   "okr-equipe": { dev: OKR_EQUIPE_DEV_THEMES_FR },
+  "okr-entreprise": { manager: OKR_ENTREPRISE_MANAGER_THEMES_FR },
 };
