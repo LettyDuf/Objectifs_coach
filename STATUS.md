@@ -1,6 +1,6 @@
 # STATUS — Coach Objectifs
 
-_Dernière mise à jour : 2026-07-08_
+_Dernière mise à jour : 2026-07-09_
 
 ## Phase actuelle
 _Rafraîchi le 2026-07-08 (D55 à D61) — session retours d'atelier : Défi simplifié, « Ça dépend » au Warmup, fiche « Les verbes ambigus », Composer élargi + cartes libres, exemples des fiches dé-spoilés, groupe « Situations réelles », exercice « Du trimestre au sprint » livré._
@@ -58,7 +58,7 @@ A. **Panel jokers « Qui veut gagner des points »** (retour d'atelier, décisio
 B. **Allègement du corps des fiches porteuses** (recommandation du panel D59) : passe éditoriale, un exemple gardé = un body raccourci.
 C. **Harmonisation visuelle** : la carte « Piège évité » (D46/D50) n'existe que sur Anti-patterns ; ChallengeQuiz/Drill/Warmup gardent le feedback plat. Signalé, pas tranché.
 D. **DOMAINE.md §4.8** : lien prolifération d'Objectives / « objectif de la direction ». En attente d'un retour d'atelier réel.
-E. **Vérification visuelle par Lætitia** des livraisons du 2026-07-08 (Composer élargi, repli des exemples, Situations réelles, Du trimestre au sprint) : à faire au premier lancement, remonter toute anomalie avec capture.
+E. **Vérification visuelle par Lætitia** des livraisons du 2026-07-08 (Composer élargi, repli des exemples, Situations réelles, Du trimestre au sprint) : partiellement faite le 2026-07-09 (les 3 réécritures posture-valeurs validées en contexte, voir journal). Reste à vérifier : Composer élargi, Situations réelles, Du trimestre au sprint.
 
 Recommandation : E d'abord (5 minutes), puis A en session dédiée. Note : l'ancien point « 6 cas Défi à écart d'1 chiffre » (D43) est caduc, la passe D55 a réécrit ces options.
 
@@ -67,6 +67,10 @@ Recommandation : E d'abord (5 minutes), puis A en session dédiée. Note : l'anc
 - **Registre rédactionnel des futures fiches** : après le retour du 2026-07-04 sur le module OKR entreprise (jargon de consultant détecté dans un premier jet), toute nouvelle fiche pédagogique doit être vulgarisée avant livraison, pas seulement sourcée. Voir mémoire `feedback-vulgariser-conseils`.
 
 ## Journal des sessions
+- **2026-07-09** : **vérification visuelle des 3 réécritures posture-valeurs (D59)**.
+  - Capacité de capture d'écran rétablie dans ce bac à sable (Chromium headless shell + stub `libXdamage` compilé localement, cf. mémoire `screenshot-capability-sandbox`) : plus de correction à l'aveugle.
+  - Les 3 fiches réécrites (Transparence, Honnêteté du calibrage, Service du bénéficiaire) capturées en contexte dans le build `coach-objectifs.html` (tampon 09/07/2026 14:26, inchangé) et validées une à une par Lætitia.
+  - Reste ouvert sur l'option E du backlog : Composer élargi, Situations réelles et « Du trimestre au sprint » pas encore vérifiés visuellement.
 - **2026-07-08 (suite 7)** : **exercice « Du trimestre au sprint » livré (D61)**.
   - Corpus validé par Lætitia (jouable + fichier), reformulé « en sprint » à sa demande (plus aucun « 14 jours », verrouillé par test). Domaine pur (9 tests) + corpus (6 tests) + écran ImpactChain dans « Situations réelles » à côté de Maintenance.
   - 278 tests verts / 1 skip, build `dist-d61` recopié dans `coach-objectifs.html` (tampon 09/07/2026 14:26, 711 Ko). `CORPUS-DESCENTE-PROPOSITION.md` passé en statut VALIDÉ (archive de cadrage).
@@ -76,7 +80,7 @@ Recommandation : E d'abord (5 minutes), puis A en session dédiée. Note : l'anc
   - Méthode validée par Lætitia (mémoire feedback-mvp-exemples-concrets) : MVP jouable d'abord, jamais de questions de design abstraites. MVP cas 1 joué et validé ; nom « Du trimestre au sprint », sous-titre « Visible dans 14 jours » ; ligne = choisir le maillon le plus haut montrable (vert/ambre/rouge) ; vocabulaire simple, leading/lagging en aparté unique.
   - **Corpus v1 rédigé et soumis** : `CORPUS-DESCENTE-PROPOSITION.md` (4 cas : tickets paiement, activation J+30, réveils d'astreinte, cas alerte « référence du marché » où le drapeau est la bonne réponse + conversation sponsor). Version jouable livrée en widget. EN ATTENTE DE VALIDATION avant toute intégration (domaine, moteur, écran Situations réelles).
 - **2026-07-08 (suite 5)** : **D59 exemples des fiches + D60 Situations réelles**.
-  - **D59** : panel (sciences cognitives + pédagogue) sur les 89 exemples des fiches. Découverte majeure : 8 exemples verbatim des exercices (spoilers qui détruisent l'effet test). Appliqué : 8 spoilers → renvois vers l'exercice ; 5 doublons internes → renvois ou surfaces variées (3 réécritures dans posture-valeurs, à relire par Lætitia dans le rendu) ; 10 porteurs inchangés ; exemples des 40 fiches pièges repliés derrière « Voir un exemple » (protège le quiz Anti-patterns) ; exemple de pi.planning-to-objective supprimé. Heading orphelin renommé (« Le même réflexe dans les quatre familles »).
+  - **D59** : panel (sciences cognitives + pédagogue) sur les 89 exemples des fiches. Découverte majeure : 8 exemples verbatim des exercices (spoilers qui détruisent l'effet test). Appliqué : 8 spoilers → renvois vers l'exercice ; 5 doublons internes → renvois ou surfaces variées (3 réécritures dans posture-valeurs, validées par Lætitia le 2026-07-09 après vérification visuelle) ; 10 porteurs inchangés ; exemples des 40 fiches pièges repliés derrière « Voir un exemple » (protège le quiz Anti-patterns) ; exemple de pi.planning-to-objective supprimé. Heading orphelin renommé (« Le même réflexe dans les quatre familles »).
   - **D60** : S'entraîner Sprint scindé en « Les 5 briques de l'objectif » (1-5) et « Situations réelles » (Maintenance, icône outil, sans numéro ; futur emplacement de « chaîne d'impact »). NextDrillsList aligné.
   - Vérifié : tsc OK, 261 tests verts / 1 skip, build `dist-d60` recopié dans `coach-objectifs.html` (tampon 09/07/2026 03:28). Dossiers `dist-d55*`, `dist-d57`, `dist-d58`, `dist-d59`, `dist-d60` à supprimer via Terminal.
 - **2026-07-08 (suite 4)** : **tampon de build dans le titre d'onglet**. Le fix NextDrillsList était mesurablement présent dans `coach-objectifs.html` (minmax 240, nowrap, nbsp échappé \xA0) mais la capture de Lætitia montrait encore l'ancien rendu : elle ne regardait donc pas ce fichier (cache ou autre copie, indécidable à distance). Ajout `__BUILD_STAMP__` (vite define) affiché dans `document.title` : « Coach Objectifs · build JJ/MM/AAAA HH:MM ». Build `dist-d59` recopié dans `coach-objectifs.html` (tampon : 09/07/2026 03:00, horloge du bac à sable). Vérification côté Lætitia en attente.
