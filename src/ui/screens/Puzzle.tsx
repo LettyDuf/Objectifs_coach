@@ -33,7 +33,9 @@ import type {
 import {
   CATEGORY_TO_SLOT,
   REQUIRED_SLOTS,
+  isFreeTextBlock,
 } from "../../domain/puzzle/types";
+import { assessFreeVerb } from "../../domain/puzzle/free-text";
 import type {
   ObjectiveDraft,
   ObjectiveType,
@@ -293,6 +295,17 @@ export function Puzzle({ coach, initialType, onTypeChange, onExit }: Props) {
   const coreFilled = REQUIRED_SLOTS.filter((s) => placedBySlot.has(s)).length;
   const trapCount = placed.filter((p) => p.block.quality === "distractor").length;
 
+  // Cartes libres (D26) : jamais jugées, mais signalées honnêtement.
+  const hasFreeText = placed.some((p) => isFreeTextBlock(p.block));
+  const freeVerbPlaced = placed.find(
+    (p) => p.block.category === "action" && isFreeTextBlock(p.block),
+  );
+  const freeVerbValue = (freeVerbPlaced?.values[0] ?? "").trim();
+  const freeVerbAssessment =
+    freeVerbValue.length > 0
+      ? assessFreeVerb(freeVerbValue, repo.getHeuristicsConfig())
+      : null;
+
   return (
     <Screen
       header={{
@@ -427,6 +440,33 @@ export function Puzzle({ coach, initialType, onTypeChange, onExit }: Props) {
                   )}
                 </div>
               )}
+              {hasFreeText && (
+                <p
+                  className={`puzzle-skeleton__free-note${
+                    freeVerbAssessment === "output-verb" || freeVerbAssessment === "fuzzy-word"
+                      ? " puzzle-skeleton__free-note--warn"
+                      : ""
+                  }`}
+                  role="note"
+                >
+                  {freeVerbAssessment === "output-verb" ? (
+                    <>
+                      Le verbe « {freeVerbValue} » décrit plutôt du travail à faire
+                      (output). Vérifie qu'une mesure et un bénéficiaire suivent.
+                    </>
+                  ) : freeVerbAssessment === "fuzzy-word" ? (
+                    <>
+                      « {freeVerbValue} » contient un mot difficile à constater sans
+                      mesure. À débattre en équipe.
+                    </>
+                  ) : (
+                    <>
+                      Carte libre : l'outil ne juge pas ce que tu écris. Valide-le en
+                      équipe.
+                    </>
+                  )}
+                </p>
+              )}
             </section>
 
             {/* Main : onglets de catégorie + cartes cliquables */}
@@ -460,6 +500,7 @@ export function Puzzle({ coach, initialType, onTypeChange, onExit }: Props) {
               <div className="puzzle-hand__deck" role="tabpanel">
                 {set.blocksByCategory[activeTab]
                   .filter((b) => b.quality !== "distractor")
+                  .filter((b) => !(b.kind === "text" && b.text.length === 0))
                   .map((block) => (
                     <HandCard
                       key={block.id}

@@ -40,20 +40,13 @@ export const PI_DEV_SHEETS_FR: PedagogicalSheet[] = [
       {
         heading: "Qui le rédige, sur quelle base",
         icon: "learn",
-        body: "Co-construit en PI Planning (event de 2 jours) par chaque équipe du train avec son Product Owner. Le Release Train Engineer facilite. Les fonctionnalités descendent de Product Management ; les objectifs de PI sont rédigés côté équipes, et traduisent les fonctionnalités en outcomes attendus à la revue de PI. Une équipe peut transformer 3 fonctionnalités en 2 objectifs de PI, ou un objectif de PI peut être servi par 4 fonctionnalités.",
+        body: "Co-construit en PI Planning (event de 2 jours) par chaque équipe du train avec son Product Owner. Le Release Train Engineer facilite. Les fonctionnalités descendent de Product Management ; les objectifs de PI sont rédigés côté équipes, et traduisent les fonctionnalités en outcomes attendus à la revue de PI. Une équipe peut transformer 3 fonctionnalités en 2 objectifs de PI, ou un objectif de PI peut être servi par 4 fonctionnalités. Le piège de la fonctionnalité recopiée a sa propre fiche dans « Les pièges classiques ».",
         bullets: [
           "Vision produit (~10 min en ouverture du PI Planning)",
           "Fonctionnalités du PI (descendues de Product Management, déjà priorisées)",
           "Dépendances cross-équipes matérialisées sur le Program Board",
           "Objectifs stratégiques énoncés par les Business Owners en ouverture",
           "Capacité historique du train et de chaque équipe",
-        ],
-        examples: [
-          {
-            bad: "Recopier une fonctionnalité comme objectif de PI : « Livrer la fonctionnalité SSO Enterprise ».",
-            good: "« Permettre à 80 % des clients entreprise d'activer le SSO en self-service avant la fin du PI. »",
-            note: "L'objectif de PI traduit la fonctionnalité en outcome attendu côté Business Owner.",
-          },
         ],
       },
       {
@@ -189,18 +182,11 @@ export const PI_DEV_SHEETS_FR: PedagogicalSheet[] = [
       {
         heading: "Trois mouvements d'élaboration",
         icon: "wrench",
-        body: "L'objectif de PI n'apparaît pas de nulle part. Il naît du croisement de trois mouvements clairs, chacun porté par un acteur différent.",
+        body: "L'objectif de PI n'apparaît pas de nulle part. Il naît du croisement de trois mouvements clairs, chacun porté par un acteur différent. Quand les objectifs arrivent tout écrits dans le train, c'est le piège de l'objectif imposé : sa fiche détaille comment le recadrer.",
         bullets: [
           "**Descente du contexte** : Product Management donne la vision, les Business Owners donnent les enjeux stratégiques. Sans cette descente, l'équipe planifie dans le vide.",
           "**Descente des fonctionnalités** : Product Management priorise et descend les fonctionnalités candidates au PI. L'équipe ne choisit pas tout, mais elle choisit comment les traduire.",
           "**Remontée des objectifs de PI** : chaque équipe traduit les fonctionnalités en outcomes attendus, en intégrant ses contraintes de capacité et ses dépendances. La traduction remonte au train.",
-        ],
-        examples: [
-          {
-            bad: "Product Management arrive avec les fonctionnalités ET les objectifs de PI déjà rédigés. Les équipes ne font qu'estimer.",
-            good: "Product Management apporte la vision + les fonctionnalités. Les équipes proposent les objectifs de PI qui traduisent les fonctionnalités dans leur réalité. Le train ajuste collectivement.",
-            note: "La co-construction n'est pas un détail formel : c'est ce qui rend l'objectif de PI porteur d'engagement réel.",
-          },
         ],
       },
       {

@@ -39,6 +39,13 @@ Ces listes vivent dans `src/content/heuristics.ts` (donnée, pas code), enrichis
 
 ---
 
+### 1.4 Verbes ambigus et question test (validé 2026-07-08, D56)
+Certains verbes semblent décrire un changement (stabiliser, fiabiliser, sécuriser, accélérer, simplifier, moderniser, harmoniser) : ils promettent un avant/après sans dire comment on le constatera. Doctrine :
+- **La question test** : « comment le constatera-t-on, sans demander à ceux qui ont fait le travail ? » Un outcome se lit dans une mesure. Ce qui disqualifie un objectif, ce n'est pas d'être son propre bénéficiaire, c'est de se juger sans mesure.
+- **Le bénéficiaire peut être l'équipe elle-même** (astreinte qui dort, support déchargé) : cohérent avec D29 et le module Maintenance. La formulation « il faut un observateur externe » est fausse et a été retirée.
+- **Trois familles de verbes** (fiche partagée « Les verbes ambigus », thème fondamentaux des 4 modules) : verbes d'activité (livrer, coder, installer : output presque toujours), verbes de variation (réduire, faire passer, convertir : appellent une mesure), verbes de promesse (les ambigus ci-dessus).
+- **Au Warmup niveau 1**, ces verbes acceptent la réponse « Ça dépend » (réservée aux verbes seuls ; au niveau 2 le contexte est donné, on tranche). Les heuristiques du moteur restent inchangées : le verbe ambigu reste un signal output à la rédaction, le signal alerte et le contexte tranche.
+
 ## 2. Module Sprint
 
 ### 2.1 Définition de l'objectif de sprint
@@ -357,6 +364,15 @@ Le §6 bis.3 couvrait déjà la doctrine générale (nommer bénéficiaire / cha
 **Implications techniques** : nouveau mini-exercice « S'entraîner » (6e, après Verbe/Indicateur/Variation/Échéance/Contexte) — QCM 1-parmi-4 réutilisant ces 4 cas comme corpus (`sprint.maintenance.fr.ts`). Pas de nouvelle mécanique UI, réutilise le composant Drill existant.
 
 ---
+
+## 6 quater. La chaîne d'impact sprint ↔ trimestre (exercice « Du trimestre au sprint », validé 2026-07-08, D61)
+
+Réponse doctrinale à l'objection d'atelier « en 2 semaines on ne peut pas livrer un outcome » :
+- **Deux niveaux qui se répondent** : l'impact final (lagging) vit au trimestre (OKR, objectif de PI) ; l'objectif de sprint vise un outcome intermédiaire (leading), constatable à la revue de sprint, qui contribue visiblement au trimestre. On parle en sprint (revue de sprint), jamais en jours calendaires : l'exercice vaut pour toute durée de sprint.
+- **Quatre techniques** : rétrécir le périmètre (un segment, un parcours) ; choisir un bénéficiaire proche (support, astreinte, sous-groupe) ; viser l'indicateur leading de la chaîne et livrer tôt pour mesurer avant la revue ; sinon formuler une hypothèse falsifiable (apprentissage validé).
+- **Le signal d'alerte (drapeau)** : si aucun maillon constatable n'existe entre le sprint et le trimestre, le problème n'est pas le sprint, c'est l'objectif trimestriel qui est flou. La posture enseignée : « donne-moi un indicateur, je te donne un objectif de sprint ».
+- **La ligne de la revue de sprint** : choisir le maillon le plus haut montrable à la revue. Verdicts : impact trimestriel = rouge (hors influence à l'échelle d'un sprint), outcome de sprint = vert, output = ambre (prudent mais on peut viser mieux en livrant tôt ; à débattre en équipe).
+- Corpus de référence : 4 cas validés en bloc le 2026-07-08 (`src/content/impact-chain/sprint.dev.fr.ts` ; archive de cadrage `CORPUS-DESCENTE-PROPOSITION.md`). Cas 4 : le drapeau est la bonne réponse, suivi de la conversation sponsor.
 
 ## 6 ter. Spec « Puzzle Sprint » — corpus à valider
 

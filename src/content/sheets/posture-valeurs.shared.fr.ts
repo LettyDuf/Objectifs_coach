@@ -49,8 +49,8 @@ export const POSTURE_VALEURS_SHEETS_FR: PedagogicalSheet[] = [
         body: "Devant chaque mot flou, demander « tu veux dire quoi, concrètement, mesurable comment ? » et écrire la réponse comme nouvel objectif. Si la réponse est « je ne sais pas », c'est un sujet de discovery, pas un objectif d'engagement.",
         examples: [
           {
-            bad: "Renforcer l'expérience utilisateur sur le module commande.",
-            good: "Faire passer le CSAT du module commande de 3,2 à 4,1 d'ici fin de sprint, ou ouvrir un exploration d'une semaine pour comprendre ce qui le bloque.",
+            bad: "Enrichir l'expérience de consultation des factures.",
+            good: "Faire passer le CSAT de la consultation des factures de 3,2 à 4,1 d'ici fin de sprint, ou ouvrir une exploration d'une semaine pour comprendre ce qui la bloque.",
             note: "Soit on chiffre, soit on assume qu'on cherche encore. Pas d'entre-deux.",
           },
         ],
@@ -99,8 +99,8 @@ export const POSTURE_VALEURS_SHEETS_FR: PedagogicalSheet[] = [
         body: "Avant de figer le calibrage, poser la question : « si nous étions tous payés à dire la vérité maintenant, qui mettrait quel chiffre ? » Utiliser le vote de confiance anonyme quand l'équipe a tendance à converger artificiellement.",
         examples: [
           {
-            bad: "Engagé à 100 % sur un objectif qu'on n'a jamais réussi à atteindre dans les 3 derniers PI.",
-            good: "Stretch à 50 % sur le même objectif, avec un plan B chiffré si on n'y arrive pas avant la revue de PI.",
+            bad: "Engagé à 100 % sur un taux de disponibilité de 99,9 % pour le service interne de facturation, alors qu'il plafonne à 98 % depuis un an.",
+            good: "Stretch à 50 % pour viser 99,9 %, avec un plan B chiffré si on n'y arrive pas : stabiliser au moins 99 % avant la revue.",
             note: "Le wording n'est pas magique : c'est le chiffre de confiance qui matérialise l'engagement.",
           },
         ],
@@ -199,9 +199,9 @@ export const POSTURE_VALEURS_SHEETS_FR: PedagogicalSheet[] = [
         body: "Avant de figer un objectif, faire le test « qui en profite hors de l'équipe ? ». Si la liste est vide, reformuler. Si elle est vide pour de bon, accepter que ce travail n'est peut-être pas prioritaire ce cycle.",
         examples: [
           {
-            bad: "Refactorer le module de gestion des permissions.",
-            good: "Permettre aux administrateurs clients de modifier les rôles utilisateurs en moins de 30 secondes (vs 4 min aujourd'hui).",
-            note: "Le refactor reste possible, mais comme moyen au service du bénéficiaire, pas comme fin en soi.",
+            bad: "Moderniser le pipeline de déploiement.",
+            good: "Réduire le temps entre la fusion d'un correctif et sa mise en production de 45 à 10 minutes, pour les équipes qui livrent chaque jour.",
+            note: "La modernisation reste possible, mais comme moyen au service du bénéficiaire, pas comme fin en soi.",
           },
         ],
       },

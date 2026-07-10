@@ -45,7 +45,7 @@ export const PI_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
     options: [
       {
         id: "A",
-        text: "Refactorer, avec les 4 équipes du train, le tunnel d'achat mobile utilisé par 1,4 M visites par mois, et améliorer l'UX globale.",
+        text: "Refactorer le tunnel d'achat mobile et améliorer l'UX globale.",
         verdict: "bad",
         explanation:
           "« Refactorer » est un output technique. « Améliorer l'UX » est flou. Le Business Owner ne saura pas à la revue de PI si l'objectif est atteint ou pas.",
@@ -59,14 +59,14 @@ export const PI_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "C",
-        text: "Augmenter les conversions sur mobile, un sujet suivi par les 4 équipes du train sur 1,4 M visites mensuelles.",
+        text: "Augmenter les conversions sur le tunnel mobile.",
         verdict: "partial",
         explanation:
           "Outcome correct, métrique implicite. Mais aucun seuil chiffré, aucune fenêtre. À renforcer avec « de X à Y » et l'échéance de PI.",
       },
       {
         id: "D",
-        text: "Livrer, avec les 4 équipes du train, la v2 du tunnel d'achat mobile sur le PI.",
+        text: "Livrer la v2 du tunnel d'achat mobile sur le PI.",
         verdict: "bad",
         explanation:
           "« Livrer la v2 » est une livraison, pas un résultat de valeur. Et si la v2 est livrée mais que la conversion baisse ? La revue de PI devra trancher sans critère.",
@@ -108,14 +108,14 @@ export const PI_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "C",
-        text: "Réduire le temps d'activation SSO d'un client entreprise (12 jours aujourd'hui), sur les 47 clients concernés, un frein qui bloque déjà 11 deals depuis 6 mois.",
+        text: "Réduire le temps d'activation SSO d'un client entreprise.",
         verdict: "partial",
         explanation:
           "Bonne métrique, mais sans seuil ni point de départ. Préciser : passer de 12 jours à 1 jour, par exemple.",
       },
       {
         id: "D",
-        text: "Mettre en place le self-service pour le SSO d'ici la revue de PI, pour les 47 clients entreprise, dont 8 l'ont déjà aujourd'hui.",
+        text: "Mettre en place le self-service SSO d'ici la revue de PI.",
         verdict: "bad",
         explanation:
           "« Mettre en place » nomme un projet, pas un changement constaté. Si le self-service est en place mais utilisé par 2 clients, est-ce un succès ?",
@@ -192,7 +192,7 @@ export const PI_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
     options: [
       {
         id: "A",
-        text: "Augmenter significativement l'activation utilisateur, un sujet qui stagne depuis 2 trimestres malgré 1 200 nouveaux comptes créés chaque mois.",
+        text: "Augmenter significativement l'activation utilisateur.",
         verdict: "bad",
         explanation:
           "« Significativement » est flou alors que la cible est connue (+20 pts, 62 %). Sur un engagé, l'absence de seuil chiffré est une faute.",
@@ -206,7 +206,7 @@ export const PI_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "C",
-        text: "Améliorer le parcours d'inscription et réduire le taux d'abandon, pour les 1 200 nouveaux comptes créés chaque mois sur les 2 derniers trimestres.",
+        text: "Améliorer le parcours d'inscription et réduire le taux d'abandon.",
         verdict: "bad",
         explanation:
           "« Améliorer » est flou, et c'est composite (deux objectifs). Sur un engagé, on attend un cap unique chiffré.",
@@ -241,7 +241,7 @@ export const PI_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
     options: [
       {
         id: "A",
-        text: "Stabiliser la plateforme (TMR actuel 45 min, 8 incidents majeurs ce trimestre) et alléger la charge astreinte des 6 équipes fonctionnalité.",
+        text: "Stabiliser la plateforme et alléger la charge astreinte des équipes fonctionnalité.",
         verdict: "bad",
         explanation:
           "Composite (« et » coordonne deux objectifs distincts) + verbe d'output (« stabiliser ») + flou. Sépare en deux objectifs de PI, chacun mesurable.",
@@ -255,7 +255,7 @@ export const PI_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "C",
-        text: "Réduire la dette technique de la plateforme, à l'origine de 8 incidents majeurs ce trimestre pour les 6 équipes fonctionnalité, qui y consacrent 30 % de leur temps d'astreinte.",
+        text: "Réduire la dette technique de la plateforme, à l'origine de 8 incidents majeurs ce trimestre.",
         verdict: "bad",
         explanation:
           "« Dette technique » est flou. Le Business Owner ne pourra pas juger à la revue de PI. Aucun bénéficiaire externe ne ressent directement la dette technique.",
@@ -290,7 +290,7 @@ export const PI_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
     options: [
       {
         id: "A",
-        text: "Réduire, sur les 2 400 comptes premium actifs, le churn de manière notable d'ici la fin du PI.",
+        text: "Réduire le churn premium de manière notable d'ici la fin du PI.",
         verdict: "bad",
         explanation:
           "« De manière notable » est non mesurable. Sur un engagé à 80 % de confiance, on attend une cible chiffrée nette — la métrique et la référence historique existent.",
@@ -304,14 +304,14 @@ export const PI_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "C",
-        text: "Diviser par deux, sur les 2 400 comptes premium actifs, le churn d'ici la fin du PI.",
+        text: "Diviser par deux le churn premium d'ici la fin du PI.",
         verdict: "partial",
         explanation:
           "Variation chiffrée, fenêtre — bonne base. Mais formulation relative (« par deux ») qui demande un calcul mental. La forme « de 4 % à 2 % » se vérifie d'un coup d'œil.",
       },
       {
         id: "D",
-        text: "Améliorer la rétention des 2 400 comptes premium actifs, avec une confiance équipe estimée à 80 %.",
+        text: "Améliorer la rétention des comptes premium.",
         verdict: "bad",
         explanation:
           "Pas de chiffre, pas de seuil, mot flou (« améliorer »). À la revue de PI, deux personnes peuvent défendre que c'est atteint sans s'accorder.",
@@ -354,14 +354,14 @@ export const PI_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "C",
-        text: "Améliorer significativement la valeur des utilisateurs mobile, aujourd'hui au nombre de 62 000 utilisateurs actifs mensuels pour les 5 équipes du train mobile.",
+        text: "Améliorer significativement la valeur des utilisateurs mobile.",
         verdict: "bad",
         explanation:
           "« Améliorer » + « significativement » : double flou. Pas de métrique nommée, pas de seuil, pas de fenêtre.",
       },
       {
         id: "D",
-        text: "Livrer la refonte UX mobile sur ce PI, portée par les 5 équipes du train sur 8 semaines, pour les 62 000 utilisateurs actifs mensuels.",
+        text: "Livrer la refonte UX mobile sur ce PI.",
         verdict: "bad",
         explanation:
           "Output. La refonte peut être livrée sans effet sur la valeur produit. Mauvais objectif de PI.",
@@ -390,7 +390,7 @@ export const PI_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
     options: [
       {
         id: "A",
-        text: "Permettre aux 9 équipes business sur 14 de prendre 80 % de leurs décisions via la plateforme analytics d'ici la revue de PI.",
+        text: "Permettre aux équipes business de prendre 80 % de leurs décisions via la plateforme analytics d'ici la revue de PI.",
         verdict: "partial",
         explanation:
           "Bonne intention, métrique attractive — mais qu'une équipe business « prenne une décision via la plateforme » dépend autant de leur maturité analytique que de la plateforme. Le train n'a pas la main directe : sous-influence partielle. Et la métrique est difficile à instrumenter objectivement.",
@@ -404,14 +404,14 @@ export const PI_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "C",
-        text: "Améliorer la plateforme analytics, aujourd'hui utilisée par 9 équipes business sur 14, pour ces mêmes équipes.",
+        text: "Améliorer la plateforme analytics pour les équipes business.",
         verdict: "bad",
         explanation:
           "Flou pur. Aucune métrique, aucun seuil. À la revue de PI, personne ne saura trancher.",
       },
       {
         id: "D",
-        text: "Mettre en place, pour les 9 équipes business sur 14, les 12 nouveaux tableaux de bord demandés sur ce PI.",
+        text: "Mettre en place les 12 nouveaux tableaux de bord demandés sur ce PI.",
         verdict: "bad",
         explanation:
           "Output. Les 12 tableaux peuvent être livrés sans changer le temps de réponse ni l'usage réel. Mesure le travail, pas la valeur.",
@@ -554,14 +554,14 @@ export const PI_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "C",
-        text: "Augmenter le volume d'inscriptions sur la landing page sans dégrader la rétention, aujourd'hui à 320 inscriptions qualifiées par mois (taux d'activation J+7 de 45 %) pour les 4 équipes du train.",
+        text: "Augmenter le volume d'inscriptions sur la landing page sans dégrader la rétention.",
         verdict: "partial",
         explanation:
           "Intention juste (le guardrail est nommé) mais pas de chiffre, pas de seuil, pas de fenêtre. Pour un objectif de PI, il faut quantifier.",
       },
       {
         id: "D",
-        text: "Refondre la landing page et améliorer le tunnel d'acquisition, porté par les 4 équipes du train Acquisition, alors que le board vise 3x plus d'inscriptions sur les 320 actuelles.",
+        text: "Refondre la landing page et améliorer le tunnel d'acquisition.",
         verdict: "bad",
         explanation:
           "Composite (« et »), deux outputs. Aucune métrique. Vœu pieux côté valeur.",
@@ -590,7 +590,7 @@ export const PI_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
     options: [
       {
         id: "A",
-        text: "Atteindre, pour les 6 équipes du train, 90 % de couverture de tests d'intégration sur la plateforme d'ici la revue de PI.",
+        text: "Atteindre 90 % de couverture de tests d'intégration sur la plateforme d'ici la revue de PI.",
         verdict: "partial",
         explanation:
           "Métrique nommée, cible, fenêtre — forme correcte. Mais la couverture est une métrique de moyen, pas de fin. Atteindre 90 % de couverture ne garantit pas que la plateforme est plus fiable côté équipes fonctionnalité. Le Business Owner attend une métrique de fin.",
@@ -604,14 +604,14 @@ export const PI_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "C",
-        text: "Stabiliser, pour les 6 équipes du train, la plateforme et alléger la charge d'astreinte qui pèse aujourd'hui pour 30 % du temps.",
+        text: "Stabiliser la plateforme et alléger la charge d'astreinte des équipes fonctionnalité.",
         verdict: "bad",
         explanation:
           "Composite + flou. Deux objectifs (stabilisation + astreinte) sans seuils chiffrés.",
       },
       {
         id: "D",
-        text: "Mettre en place, pour les 6 équipes du train, le nouveau système d'alerting face aux incidents dont le TMR atteint 45 min.",
+        text: "Mettre en place le nouveau système d'alerting sur la plateforme.",
         verdict: "bad",
         explanation:
           "Output. Le système peut être en place sans effet sur la fiabilité ressentie.",

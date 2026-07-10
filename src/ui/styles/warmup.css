@@ -125,6 +125,16 @@
   margin: var(--space-3) 0;
 }
 
+.warmup__choices--triple {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+@media (max-width: 640px) {
+  .warmup__choices--triple {
+    grid-template-columns: 1fr;
+  }
+}
+
 .warmup__choice {
   display: flex;
   flex-direction: column;

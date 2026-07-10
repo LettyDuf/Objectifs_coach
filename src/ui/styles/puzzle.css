@@ -537,6 +537,40 @@
 .puzzle-card--context      { border-left-color: var(--color-warn); }
 .puzzle-card--preposition  { border-left-color: var(--color-text-muted); }
 
+.puzzle-card--write {
+  border-style: dashed;
+}
+
+.puzzle-card__write {
+  color: var(--color-text-muted);
+  margin-right: var(--space-1);
+}
+
+.puzzle-bond.is-custom .puzzle-bond__text {
+  font-style: normal;
+}
+
+.plateau-slot__field--text {
+  width: auto;
+  min-width: 9rem;
+  text-align: left;
+}
+
+.puzzle-bond .plateau-slot__field--text {
+  width: auto;
+  min-width: 8rem;
+}
+
+.puzzle-skeleton__free-note {
+  margin: var(--space-2) 0 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.puzzle-skeleton__free-note--warn {
+  color: var(--color-warn);
+}
+
 .puzzle-card--trap {
   background: color-mix(in srgb, var(--color-warn) 5%, var(--color-bg));
 }

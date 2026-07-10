@@ -26,14 +26,14 @@ export const SPRINT_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
     options: [
       {
         id: "A",
-        text: "Refactorer le module commande, qui mobilise 5 devs et génère 8 tickets support par semaine, en suivant les règles d'architecture définies.",
+        text: "Refactorer le module commande, source de 8 tickets support par semaine.",
         verdict: "bad",
         explanation:
           "« Refactorer » reste un output technique. Aucun bénéficiaire nommé, aucune mesure observable du changement.",
       },
       {
         id: "B",
-        text: "Diminuer le nombre d'incidents sur le module commande, qui mobilise 5 devs face à 8 tickets support par semaine.",
+        text: "Diminuer le nombre d'incidents production sur le module commande.",
         verdict: "partial",
         explanation:
           "Outcome correct mais sans avant/après chiffré ni échéance. Reste un vœu.",
@@ -47,7 +47,7 @@ export const SPRINT_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "D",
-        text: "Améliorer la stabilité du module commande, dont le temps moyen de résolution atteint 3 h avec les 5 devs mobilisés, et réduire la dette technique.",
+        text: "Améliorer la stabilité du module commande et réduire la dette technique.",
         verdict: "bad",
         explanation:
           "Composite (« et »), deux formulations floues (« améliorer », « dette technique »), aucun seuil ni échéance.",
@@ -70,7 +70,7 @@ export const SPRINT_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
     options: [
       {
         id: "A",
-        text: "Améliorer significativement l'expérience utilisateur du parcours d'inscription, empruntée par 1 200 nouveaux comptes chaque semaine et complétée en 9 minutes en moyenne.",
+        text: "Améliorer significativement l'expérience utilisateur du parcours d'inscription.",
         verdict: "bad",
         explanation:
           "« Améliorer » et « significativement » sont flous. Aucun seuil mesurable, aucune échéance.",
@@ -84,14 +84,14 @@ export const SPRINT_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "C",
-        text: "Livrer, avec les 7 devs de l'équipe, un nouveau parcours d'inscription plus fluide pour les 1 200 comptes créés chaque semaine.",
+        text: "Livrer un nouveau parcours d'inscription plus fluide pour les 1 200 comptes créés chaque semaine.",
         verdict: "bad",
         explanation:
           "« Livrer » est un output. « Plus fluide » est subjectif et non mesurable.",
       },
       {
         id: "D",
-        text: "Augmenter le taux d'activation à J+30, un sujet suivi par les 7 devs de l'équipe.",
+        text: "Augmenter le taux d'activation des nouveaux comptes à J+30.",
         verdict: "partial",
         explanation:
           "Indicateur correct mais ni avant/après ni échéance. La structure est incomplète.",
@@ -116,7 +116,7 @@ export const SPRINT_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
     options: [
       {
         id: "A",
-        text: "Mettre en place, avec les 8 devs de l'équipe, la nouvelle architecture micro-services sur le périmètre prévu pour les 6 équipes consommatrices.",
+        text: "Mettre en place la nouvelle architecture micro-services pour les 6 équipes consommatrices.",
         verdict: "bad",
         explanation:
           "« Mettre en place » est un output. Aucune mesure du bénéfice côté équipes consommatrices ni côté ops.",
@@ -130,14 +130,14 @@ export const SPRINT_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "C",
-        text: "Permettre aux 6 équipes fonctionnalité de déployer plus rapidement leurs hotfixs, aujourd'hui autour de 12 releases par mois.",
+        text: "Permettre aux 6 équipes fonctionnalité de déployer leurs hotfixs plus rapidement.",
         verdict: "partial",
         explanation:
           "Bénéficiaire nommé, outcome correct, mais ni seuil ni échéance. Reste qualitatif.",
       },
       {
         id: "D",
-        text: "Refactorer, avec les 8 devs de l'équipe, le module de déploiement et finaliser l'orchestrateur, en réponse aux 5 incidents d'infra du mois dernier.",
+        text: "Refactorer le module de déploiement et finaliser l'orchestrateur.",
         verdict: "bad",
         explanation:
           "Composite (« et »), deux outputs techniques juxtaposés, aucune mesure côté bénéficiaire.",
@@ -169,7 +169,7 @@ export const SPRINT_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "B",
-        text: "Augmenter la conversion mobile, suivie par les 6 devs de l'équipe sur une base de 80 000 utilisateurs actifs.",
+        text: "Augmenter la conversion mobile sur les 80 000 utilisateurs actifs.",
         verdict: "partial",
         explanation:
           "Outcome correct mais sans seuil ni échéance. Reste un vœu.",
@@ -183,7 +183,7 @@ export const SPRINT_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "D",
-        text: "Améliorer le tunnel de réservation, notée 3,8 / 5 sur l'App Store, et finir les 4 récits prioritaires.",
+        text: "Améliorer le tunnel de réservation et finir les 4 récits prioritaires.",
         verdict: "bad",
         explanation:
           "Composite (« et »), « améliorer » est flou, retour à du travail sur les récits.",
@@ -208,14 +208,14 @@ export const SPRINT_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
     options: [
       {
         id: "A",
-        text: "Livrer la v2 de la recherche en autocomplétion avant la démo, avec les 3 devs de l'équipe.",
+        text: "Livrer la v2 de la recherche en autocomplétion avant la démo.",
         verdict: "bad",
         explanation:
           "« Livrer » est un output. L'autocomplétion livrée n'a aucune mesure de succès — elle pourrait n'être pas utilisée.",
       },
       {
         id: "B",
-        text: "Améliorer l'expérience de recherche, utilisée pour 9 500 requêtes par jour dont 3 400 sans clic.",
+        text: "Améliorer l'expérience de recherche.",
         verdict: "bad",
         explanation:
           "« Améliorer » et « expérience » sont flous. Aucun bénéficiaire mesurable, aucun seuil.",
@@ -229,7 +229,7 @@ export const SPRINT_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "D",
-        text: "Permettre aux utilisateurs de trouver plus rapidement, parmi les 9 500 recherches quotidiennes, ce qu'ils cherchent.",
+        text: "Permettre aux utilisateurs de trouver plus rapidement ce qu'ils cherchent.",
         verdict: "partial",
         explanation:
           "Bénéficiaire et direction corrects mais aucune mesure (que veut dire « plus rapidement » ?) ni échéance.",
@@ -252,14 +252,14 @@ export const SPRINT_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
     options: [
       {
         id: "A",
-        text: "Stabiliser les pipelines ETL, avec les 4 devs et le SRE de l'équipe, et corriger les 11 bugs ouverts.",
+        text: "Stabiliser les pipelines ETL et corriger les 11 bugs ouverts.",
         verdict: "bad",
         explanation:
           "Composite (« et »), « stabiliser » est un output, les bugs corrigés ne mesurent pas le bénéfice côté Business ou astreinte.",
       },
       {
         id: "B",
-        text: "Réduire le nombre de pipelines qui tombent, un sujet qui occupe les 4 devs à hauteur de 6 h d'astreinte par semaine.",
+        text: "Réduire le nombre de pipelines qui tombent chaque semaine.",
         verdict: "partial",
         explanation:
           "Outcome correct mais sans seuil ni échéance.",
@@ -273,7 +273,7 @@ export const SPRINT_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "D",
-        text: "Refactorer, avec les 4 devs de l'équipe, les pipelines les plus fragiles parmi les 11 bugs ouverts.",
+        text: "Refactorer les pipelines les plus fragiles.",
         verdict: "bad",
         explanation:
           "Output technique pur. Aucun lien explicite avec le bénéfice attendu (moins de chutes, moins d'astreinte).",
@@ -402,7 +402,7 @@ export const SPRINT_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
         text: "Diviser par 10 le temps de réponse p95 de l'API d'ici la fin du sprint.",
         verdict: "bad",
         explanation:
-          "Passer de 850 ms à 85 ms en 2-4 semaines est très peu crédible — c'est un vœu pieux, pas un objectif. objectif de Sprint mal calibré : ambition incohérente avec la fenêtre. Mieux vaut viser ambitieux mais crédible.",
+          "Passer de 850 ms à 85 ms en 2-4 semaines est très peu crédible — c'est un vœu pieux, pas un objectif de Sprint : l'ambition est incohérente avec la fenêtre. Mieux vaut viser ambitieux mais crédible.",
       },
       {
         id: "B",
@@ -420,7 +420,7 @@ export const SPRINT_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "D",
-        text: "Optimiser les performances de l'API (850 ms de p95 actuellement), sujette à 4 incidents signalés par semaine.",
+        text: "Optimiser les performances de l'API.",
         verdict: "bad",
         explanation:
           "Pas de métrique, pas de cible, pas d'échéance. « Optimiser » seul ne crée aucun engagement vérifiable.",
@@ -497,7 +497,7 @@ export const SPRINT_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
     options: [
       {
         id: "A",
-        text: "Permettre aux utilisateurs invités de se connecter via OAuth, testé sur les 480 tentatives et 12 connexions réussies par jour, pour réduire les abandons de paiement.",
+        text: "Permettre aux utilisateurs invités de se connecter via OAuth pour réduire les abandons de paiement.",
         verdict: "bad",
         explanation:
           "Composite caché par le « pour » causal. Deux objectifs liés : ouvrir OAuth ET faire baisser l'abandon. Si OAuth marche mais l'abandon ne baisse pas, l'objectif est-il atteint ? Le « pour » fait passer un implicite pour une certitude.",
@@ -511,14 +511,14 @@ export const SPRINT_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "C",
-        text: "Mettre en place, avec les 5 devs de l'équipe, OAuth pour les utilisateurs invités, sur les 480 tentatives quotidiennes, d'ici la fin du sprint.",
+        text: "Mettre en place OAuth pour les utilisateurs invités d'ici la fin du sprint.",
         verdict: "bad",
         explanation:
           "Output. La fonctionnalité peut être en place sans effet observable côté abandon. Mauvais objectif de Sprint.",
       },
       {
         id: "D",
-        text: "Améliorer, avec les 5 devs de l'équipe, l'expérience de connexion sur la page de paiement où le taux d'abandon atteint aujourd'hui 28 %.",
+        text: "Améliorer l'expérience de connexion sur la page de login.",
         verdict: "bad",
         explanation:
           "« Améliorer » + « expérience » : flou pur. Pas de métrique, pas de seuil.",
@@ -559,14 +559,14 @@ export const SPRINT_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "C",
-        text: "Optimiser le rendu des résultats de recherche, un sujet suivi par les 4 devs front et 1 PO, sur un taux de clic de 18 %.",
+        text: "Optimiser le rendu des résultats de recherche.",
         verdict: "bad",
         explanation:
           "« Optimiser » est flou. Pas de seuil ni d'échéance.",
       },
       {
         id: "D",
-        text: "Refactorer le composant ResultsList (temps de rendu actuel 320 ms) en suivant les nouvelles règles d'architecture.",
+        text: "Refactorer le composant ResultsList.",
         verdict: "bad",
         explanation:
           "Output technique. Aucun effet nommé côté rendu, utilisateur ou métrique observable.",

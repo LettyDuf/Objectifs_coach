@@ -69,14 +69,7 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
       {
         heading: "Le test des cinq briques",
         icon: "good",
-        body: "Lire son objectif à voix haute et compter. Si une brique manque, l'identifier explicitement avant de figer.",
-        examples: [
-          {
-            bad: "Améliorer le tunnel de paiement.",
-            good: "Faire passer le taux de conversion du tunnel mobile de 2,3 % à 3,5 % d'ici la fin du sprint 24.",
-            note: "Verbe (Faire passer) · Indicateur (taux de conversion) · Variation (de 2,3 à 3,5 %) · Contexte (tunnel mobile) · Échéance (sprint 24). Cinq briques, une phrase.",
-          },
-        ],
+        body: "Lire son objectif à voix haute et compter. Si une brique manque, l'identifier explicitement avant de figer. Tu t'exerceras à ce geste complet dans le Défi : un cas réel, quatre reformulations, une seule tient debout.",
       },
       {
         heading: "Le piège du contexte implicite",
@@ -291,31 +284,9 @@ export const SPRINT_DEV_SHEETS_FR: PedagogicalSheet[] = [
         ],
       },
       {
-        heading: "Un exemple par famille",
+        heading: "Le même réflexe dans les quatre familles",
         icon: "wrench",
-        body: "Le réflexe est le même dans les quatre cas : remplacer la tâche par ce qu'elle change pour quelqu'un, avec une mesure.",
-        examples: [
-          {
-            bad: "Corriger les bugs du backlog support avant la fin du sprint.",
-            good: "Faire passer le nombre de tickets support ouverts depuis plus de 30 jours de 27 à 10, d'ici fin de sprint.",
-            note: "Corrective : traiter des tickets est un output. Le nombre de tickets anciens non résolus montre l'effet réel côté équipe support.",
-          },
-          {
-            bad: "Migrer les services vers la version supportée de Node.js.",
-            good: "Éliminer les 8 vulnérabilités critiques liées aux dépendances obsolètes, sans régression sur les 3 parcours critiques testés, d'ici fin de sprint.",
-            note: "Adaptative : migrer est un output technique. Ce qui compte, c'est la réduction du risque de sécurité réel.",
-          },
-          {
-            bad: "Refactorer le module de recherche pour améliorer les performances.",
-            good: "Faire passer le temps de réponse p95 de la recherche de 1,2 s à 400 ms, d'ici fin de sprint.",
-            note: "Perfective : la complexité du code est un moyen. Ce que l'utilisateur perçoit, c'est la vitesse de réponse.",
-          },
-          {
-            bad: "Préparer et exécuter le test de reprise annuel en staging.",
-            good: "Faire passer le nombre d'écarts critiques de reprise non résolus de 4 à 0, avec preuve : test de bascule complet exécuté en staging (RTO et RPO mesurés), d'ici fin de sprint.",
-            note: "Préventive : faire le test est un output. La preuve d'écarts résolus est ce qui donne une vraie valeur au sprint — sinon le test devient un rituel qu'on coche.",
-          },
-        ],
+        body: "Le réflexe est le même dans les quatre cas : remplacer la tâche par ce qu'elle change pour quelqu'un, avec une mesure. Les cas concrets t'attendent dans l'exercice « Maintenance : trouver la valeur » de S'entraîner : autant les découvrir en jouant plutôt qu'en lisant la réponse ici.",
       },
       {
         heading: "Source",

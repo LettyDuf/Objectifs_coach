@@ -104,6 +104,24 @@ export const SPRINT_DEV_WARMUP_FR: WarmupCase[] = [
     explanation:
       "« Convertir » nomme une transformation d'état du bénéficiaire (prospect vers client, visiteur vers utilisateur actif). Outcome typique pour cibler des utilisateurs ou clients.",
   },
+  {
+    id: "warmup.l1.stabiliser",
+    level: 1,
+    kind: "verb",
+    prompt: "Stabiliser",
+    expected: "depends",
+    explanation:
+      "Il y a bien un avant/après, mais sans mesure, « stable » reste le jugement de ceux qui ont fait le travail. Avec une mesure nommée (incidents par semaine, temps de rétablissement), n'importe qui peut vérifier, même si le bénéficiaire est l'équipe elle-même. Le verbe seul ne permet pas de trancher.",
+  },
+  {
+    id: "warmup.l1.securiser",
+    level: 1,
+    kind: "verb",
+    prompt: "Sécuriser",
+    expected: "depends",
+    explanation:
+      "« Sécuriser le paiement » promet un changement, mais sans mesure personne ne peut dire si c'est fait. Avec un indicateur (alertes critiques, vulnérabilités ouvertes), il porte un outcome.",
+  },
 
   // ============================================================
   // Niveau 2 — mini-objectifs avec contexte

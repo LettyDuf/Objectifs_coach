@@ -111,6 +111,24 @@ export const OKR_ENTREPRISE_MANAGER_WARMUP_FR: WarmupCase[] = [
     explanation:
       "Former les équipes est une activité de production. Le Résultat clé serait l'effet attendu : taux d'adoption d'une nouvelle pratique, baisse d'un délai, hausse d'une satisfaction interne.",
   },
+  {
+    id: "warmup.okre.l1.moderniser",
+    level: 1,
+    kind: "verb",
+    prompt: "Moderniser",
+    expected: "depends",
+    explanation:
+      "« Moderniser notre offre » est un chantier vu de l'intérieur. Le client, lui, ne constate que des effets mesurables (adoption, satisfaction, part de marché). Sans eux, c'est un output.",
+  },
+  {
+    id: "warmup.okre.l1.harmoniser",
+    level: 1,
+    kind: "verb",
+    prompt: "Harmoniser",
+    expected: "depends",
+    explanation:
+      "« Harmoniser les pratiques des divisions » promet de l'ordre, mais qui le mesure ? Sans indicateur constaté hors de l'équipe dirigeante, c'est une activité interne.",
+  },
 
   // ============================================================
   // Niveau 2 — mini-KR à classer

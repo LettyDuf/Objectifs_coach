@@ -105,6 +105,24 @@ export const OKR_EQUIPE_DEV_WARMUP_FR: WarmupCase[] = [
     explanation:
       "Documenter est une activité de production. Le KR serait l'effet attendu : équipes autonomes, tickets « comment faire » divisés, time-to-onboard raccourci…",
   },
+  {
+    id: "warmup.okr.l1.simplifier",
+    level: 1,
+    kind: "verb",
+    prompt: "Simplifier",
+    expected: "depends",
+    explanation:
+      "« Simplifier l'intégration » décrit une qualité promise, pas un changement constaté. Avec une mesure (temps jusqu'au premier appel API réussi), il devient un Résultat clé.",
+  },
+  {
+    id: "warmup.okr.l1.accelerer",
+    level: 1,
+    kind: "verb",
+    prompt: "Accélérer",
+    expected: "depends",
+    explanation:
+      "« Accélérer » va dans le bon sens, mais de combien, mesuré comment ? Sans chiffre avant/après, c'est un vœu. Avec, c'est un Résultat clé.",
+  },
 
   // ============================================================
   // Niveau 2 — mini-KR à classer

@@ -46,14 +46,7 @@ export const OKR_ENTREPRISE_MANAGER_SHEETS_FR: PedagogicalSheet[] = [
       {
         heading: "Le piège le plus fréquent",
         icon: "wrench",
-        body: "Confondre l'Objective avec un chiffre financier. Le chiffre financier a sa place, mais en Résultat clé, pas en Objective. Un Objective doit donner une direction que tout le monde comprend, pas juste un montant à atteindre.",
-        examples: [
-          {
-            bad: "Objective : « Atteindre 15 millions d'euros de chiffre d'affaires. »",
-            good: "Objective : « Devenir la référence du marché sur notre segment. » Résultats clés : chiffre d'affaires récurrent en hausse de 20 %, 5 clients références citables publiquement, score de satisfaction client de 55 (contre 35 aujourd'hui).",
-            note: "Le chiffre financier reste présent, mais comme une preuve parmi d'autres, pas comme l'unique but.",
-          },
-        ],
+        body: "Confondre l'Objective avec un chiffre financier. Le chiffre financier a sa place, mais en Résultat clé, pas en Objective. Un Objective doit donner une direction que tout le monde comprend, pas juste un montant à atteindre. Ce piège précis, l'Objective qui n'est qu'un chiffre financier, a sa fiche : « Le bilan financier déguisé ».",
       },
       {
         heading: "Source",

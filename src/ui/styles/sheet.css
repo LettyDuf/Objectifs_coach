@@ -844,6 +844,26 @@
   background: rgba(255, 255, 255, 0.4);
 }
 
+.sheet-card__examples-fold > summary {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-accent);
+  padding: var(--space-1) 0;
+  list-style-position: inside;
+}
+
+.sheet-card__examples-fold > summary:hover {
+  text-decoration: underline;
+}
+
+.sheet-card__examples-fold[open] > summary {
+  margin-bottom: var(--space-2);
+}
+
 .sheet-card__examples {
   margin-top: var(--space-3);
   display: flex;

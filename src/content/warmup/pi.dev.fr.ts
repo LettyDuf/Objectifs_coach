@@ -91,9 +91,9 @@ export const PI_DEV_WARMUP_FR: WarmupCase[] = [
     level: 1,
     kind: "verb",
     prompt: "Stabiliser",
-    expected: "output",
+    expected: "depends",
     explanation:
-      "Action technique sans seuil ni mesure du bénéficiaire. Pour passer en outcome, il faudrait nommer la métrique (TMR, taux d'incidents…) et l'avant/après.",
+      "Il promet un avant/après, mais sans mesure (TMR, incidents majeurs) c'est un jugement interne au train. Avec une métrique nommée et un avant/après, il devient un outcome. Le contexte tranche.",
   },
   {
     id: "warmup.pi.l1.reduire",
@@ -103,6 +103,15 @@ export const PI_DEV_WARMUP_FR: WarmupCase[] = [
     expected: "outcome",
     explanation:
       "« Réduire X de A à B » porte mécaniquement la mesure. Verbe outcome qui structure les objectifs de PI de fiabilité, performance, churn…",
+  },
+  {
+    id: "warmup.pi.l1.fiabiliser",
+    level: 1,
+    kind: "verb",
+    prompt: "Fiabiliser",
+    expected: "depends",
+    explanation:
+      "« Fiabiliser les livraisons du train » sonne outcome, mais fiable selon qui ? Sans mesure (taux d'échec de déploiement, prédictibilité), c'est un jugement interne.",
   },
 
   // ============================================================

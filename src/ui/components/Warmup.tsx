@@ -12,6 +12,13 @@ import { useMemo, useState } from "react";
 import type { WarmupCase, WarmupAnswer } from "../../domain/warmup";
 import { Icon } from "./Icon";
 
+/** Libellé français de chaque réponse (affiché dans le feedback). */
+const ANSWER_LABEL: Record<WarmupAnswer, string> = {
+  output: "output",
+  outcome: "outcome",
+  depends: "ça dépend",
+};
+
 /**
  * Shuffle Fisher-Yates non destructif. Retourne une nouvelle liste mélangée.
  * Utilisé pour présenter les cas de Warmup dans un ordre différent à chaque
@@ -135,6 +142,8 @@ export function Warmup({ cases, onComplete, skipIntro = false, endSlot }: Props)
           </p>
           <p className="warmup__rule-aside">
             Un bon objectif vise un <em>outcome</em> : un effet mesurable côté utilisateur ou métier.
+            Et certains verbes promettent un changement sans dire comment on le verra :
+            pour eux, réponds « ça dépend ».
           </p>
         </div>
         <p className="warmup__lede">
@@ -241,7 +250,11 @@ export function Warmup({ cases, onComplete, skipIntro = false, endSlot }: Props)
         )}
       </div>
 
-      <div className="warmup__choices" role="group" aria-label="Output ou outcome">
+      <div
+        className={`warmup__choices ${currentCase.kind === "verb" ? "warmup__choices--triple" : ""}`}
+        role="group"
+        aria-label={currentCase.kind === "verb" ? "Output, ça dépend, ou outcome" : "Output ou outcome"}
+      >
         <button
           type="button"
           className={`warmup__choice warmup__choice--output ${
@@ -257,6 +270,23 @@ export function Warmup({ cases, onComplete, skipIntro = false, endSlot }: Props)
           OUTPUT
           <span className="warmup__choice-sub">ce qu'on produit</span>
         </button>
+        {currentCase.kind === "verb" && (
+          <button
+            type="button"
+            className={`warmup__choice warmup__choice--depends ${
+              answeredAnswer === "depends"
+                ? currentCase.expected === "depends"
+                  ? "warmup__choice--correct"
+                  : "warmup__choice--wrong"
+                : ""
+            } ${revealed && currentCase.expected === "depends" && answeredAnswer !== "depends" ? "warmup__choice--should" : ""}`}
+            onClick={() => handleAnswer("depends")}
+            disabled={!!revealed}
+          >
+            ÇA DÉPEND
+            <span className="warmup__choice-sub">le verbe seul ne tranche pas</span>
+          </button>
+        )}
         <button
           type="button"
           className={`warmup__choice warmup__choice--outcome ${
@@ -298,7 +328,7 @@ export function Warmup({ cases, onComplete, skipIntro = false, endSlot }: Props)
             ) : (
               <>
                 <Icon name="bad" size={16} /> Réponse attendue :{" "}
-                <strong>{currentCase.expected}</strong>.
+                <strong>{ANSWER_LABEL[currentCase.expected]}</strong>.
               </>
             )}
           </p>

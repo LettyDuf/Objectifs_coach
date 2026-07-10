@@ -45,7 +45,7 @@ export const OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
     options: [
       {
         id: "A",
-        text: "Livrer, avec les 6 devs de l'équipe, le nouveau tableau de bord métriques v2 d'ici fin du trimestre.",
+        text: "Livrer le nouveau tableau de bord métriques v2 d'ici fin du trimestre.",
         verdict: "bad",
         explanation:
           "« Livrer » nomme un projet. Un KR vise un **changement à atteindre**, pas une livraison. Demande-toi : qu'est-ce que le tableau de bord va faire bouger une fois en place ?",
@@ -59,7 +59,7 @@ export const OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "C",
-        text: "Améliorer l'adoption du nouveau tableau de bord, aujourd'hui utilisé par 8 équipes data actives par mois, avec un temps de détection moyen de 45 min.",
+        text: "Améliorer l'adoption du nouveau tableau de bord.",
         verdict: "bad",
         explanation:
           "« Améliorer » est flou. Pas de métrique, pas de chiffre, pas d'échéance. Non falsifiable.",
@@ -94,7 +94,7 @@ export const OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
     options: [
       {
         id: "A",
-        text: "Améliorer la satisfaction des 12 équipes consommatrices (CSAT actuel 3,2 / 5), qui envoient 40 tickets « comment faire » par semaine.",
+        text: "Améliorer la satisfaction des 12 équipes consommatrices de l'API.",
         verdict: "bad",
         explanation:
           "« Améliorer » sans chiffre. Pas de métrique nommée, pas de seuil, pas d'échéance. Vœu pieux.",
@@ -108,7 +108,7 @@ export const OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "C",
-        text: "Avoir des équipes consommatrices contentes, parmi les 12 équipes qui envoient 40 tickets par semaine, avec un CSAT actuel de 3,2 / 5.",
+        text: "Avoir des équipes consommatrices contentes de notre API.",
         verdict: "bad",
         explanation:
           "« Contentes » n'est pas mesurable. Pas de métrique, pas de seuil. Reformulation à éviter complètement.",
@@ -143,7 +143,7 @@ export const OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
     options: [
       {
         id: "A",
-        text: "Maintenir l'uptime du service paiement au-dessus de 99,9 %, un système suivi par 8 devs et 1 SRE.",
+        text: "Maintenir l'uptime du service paiement au-dessus de 99,9 %.",
         verdict: "bad",
         explanation:
           "« Maintenir » décrit un garde-fou, pas un changement à atteindre. Un KR vise une progression — sinon, c'est une norme de service à surveiller ailleurs, pas un Résultat clé.",
@@ -157,7 +157,7 @@ export const OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "C",
-        text: "Garantir 99,9 % d'uptime sur la plateforme paiement, qui génère aujourd'hui 12 escalades support par semaine.",
+        text: "Garantir 99,9 % d'uptime sur la plateforme paiement.",
         verdict: "bad",
         explanation:
           "Même piège que A reformulé. « Garantir » est aussi un état à maintenir, pas un outcome à atteindre. C'est une SLO (service level objective), pas un KR.",
@@ -293,7 +293,7 @@ export const OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
     options: [
       {
         id: "A",
-        text: "Atteindre, pour les 3 devs de l'équipe, un « time to hello world » de 30 minutes d'ici fin du trimestre.",
+        text: "Atteindre un « time to hello world » de 30 minutes d'ici fin du trimestre.",
         verdict: "partial",
         explanation:
           "Métrique nommée, cible chiffrée, échéance. Mais sans le point de départ (4 h aujourd'hui), on perd la mesure de l'effort. Un KR montre l'avant ET l'après.",
@@ -307,14 +307,14 @@ export const OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "C",
-        text: "Rendre l'intégration fluide et rapide, pour les 65 nouveaux développeurs intégrés chaque trimestre, alors que 38 % abandonnent avant leur premier appel API.",
+        text: "Rendre l'intégration des nouveaux développeurs fluide et rapide.",
         verdict: "bad",
         explanation:
           "« Fluide » et « rapide » sont flous. Aucune métrique, aucun seuil. Vœu, pas un KR.",
       },
       {
         id: "D",
-        text: "Réduire, pour les 65 nouveaux développeurs intégrés chaque trimestre, le « time to hello world » d'au moins 80 % d'ici fin du trimestre.",
+        text: "Réduire le « time to hello world » d'au moins 80 % d'ici fin du trimestre.",
         verdict: "partial",
         explanation:
           "Variation chiffrée, échéance, métrique nommée — bonne base. Mais formulation relative (« d'au moins 80 % ») qui demande un calcul mental. La forme « de 4 h à 30 min » se vérifie d'un coup d'œil.",
@@ -345,7 +345,7 @@ export const OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
     options: [
       {
         id: "A",
-        text: "Atteindre, pour les 5 devs de l'équipe, un NPS de 60 sur l'appli mobile d'ici la fin du trimestre.",
+        text: "Atteindre un NPS de 60 sur l'appli mobile d'ici la fin du trimestre.",
         verdict: "partial",
         explanation:
           "Cible chiffrée, fenêtre. Mais sans le point de départ (32 aujourd'hui), on perd la lecture de l'effort (+28 pts = ambition forte). Un KR montre l'avant ET l'après.",
@@ -359,14 +359,14 @@ export const OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "C",
-        text: "Améliorer la satisfaction des utilisateurs de l'appli mobile, notée aujourd'hui 4,1 / 5 sur les stores.",
+        text: "Améliorer la satisfaction des utilisateurs de l'appli mobile.",
         verdict: "bad",
         explanation:
           "Pas de métrique nommée, pas de chiffre. Non falsifiable.",
       },
       {
         id: "D",
-        text: "Livrer, avec les 5 devs de l'équipe, les 8 améliorations UX prévues sur le backlog mobile ce trimestre.",
+        text: "Livrer les 8 améliorations UX prévues sur le backlog mobile ce trimestre.",
         verdict: "bad",
         explanation:
           "Output / Résultat clé projet. Les 8 améliorations peuvent être livrées sans bouger le NPS.",
@@ -498,7 +498,7 @@ export const OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
     options: [
       {
         id: "A",
-        text: "Atteindre, pour les 3 devs de l'équipe, 80 % de clic sur le bouton « Collaborer » depuis l'écran d'accueil d'ici la fin du trimestre.",
+        text: "Atteindre 80 % de clic sur le bouton « Collaborer » depuis l'écran d'accueil d'ici la fin du trimestre.",
         verdict: "partial",
         explanation:
           "Métrique observable, cible, fenêtre. Mais le clic en surface ne dit rien de l'usage profond — c'est un proxy vanity. L'Objectif parle d'usage quotidien, le KR ne mesure que la curiosité.",
@@ -512,14 +512,14 @@ export const OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "C",
-        text: "Livrer, avec les 3 devs de l'équipe, 5 améliorations majeures sur la fonctionnalité de collaboration ce trimestre.",
+        text: "Livrer 5 améliorations majeures sur la fonctionnalité de collaboration ce trimestre.",
         verdict: "bad",
         explanation:
           "Résultat clé projet. 5 améliorations livrées peuvent ne rien changer à l'adoption.",
       },
       {
         id: "D",
-        text: "Améliorer l'adoption de la collaboration en temps réel, aujourd'hui utilisée par 12 400 utilisateurs actifs.",
+        text: "Améliorer l'adoption de la collaboration en temps réel.",
         verdict: "bad",
         explanation:
           "Pas de métrique, pas de chiffre. Vœu pieux.",

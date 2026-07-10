@@ -23,9 +23,9 @@
  *  - metriques d'usage sans cible obligatoire,
  *  - 4 propositions par cas (1 solide, 1 partiel, 2 mauvais pour raisons differentes),
  *  - feedback sur la STRUCTURE du KR, pas sur la pertinence des chiffres,
- *  - regle D35 : les options mauvaises/partielles portent des chiffres
- *    decoratifs comparables a l'option bonne, pour ne jamais trahir la
- *    reponse par la seule densite numerique.
+ *  - regle D55 (remplace D35) : la parite de densite ne se fait plus par
+ *    decoration, mais par au plus un chiffre reel du contexte integre
+ *    naturellement dans l'option.
  *
  * Source pedagogique : DOMAINE.md §4 (doctrine OKR validee 2026-06-21).
  */
@@ -53,7 +53,7 @@ export const OKR_ENTREPRISE_MANAGER_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
     options: [
       {
         id: "A",
-        text: "Ouvrir, avec les 3 divisions concernées, la nouvelle marketplace B2B d'ici la fin de l'année.",
+        text: "Ouvrir la nouvelle marketplace B2B d'ici la fin de l'année.",
         verdict: "bad",
         explanation:
           "« Ouvrir » nomme un projet. Un Résultat clé vise un **changement à atteindre**, pas une mise en ligne. Demande-toi : qu'est-ce que la marketplace va faire bouger, une fois ouverte ?",
@@ -67,14 +67,14 @@ export const OKR_ENTREPRISE_MANAGER_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "C",
-        text: "Améliorer la relation avec nos clients grands comptes, qui pèsent aujourd'hui 18 % du chiffre d'affaires digital sur 3 400 clients actifs par mois.",
+        text: "Améliorer la relation avec nos clients grands comptes.",
         verdict: "bad",
         explanation:
           "« Améliorer » est flou. Pas de métrique, pas de chiffre cible, pas d'échéance. Non falsifiable.",
       },
       {
         id: "D",
-        text: "Faire adopter la marketplace B2B par nos clients grands comptes, actifs à hauteur de 3 400 par mois.",
+        text: "Faire adopter la marketplace B2B par nos clients grands comptes.",
         verdict: "partial",
         explanation:
           "Outcome correct (adoption), bénéficiaire clair, mais aucun avant/après ni cible chiffrée. Précise : passer de combien de clients actifs à combien.",
@@ -125,7 +125,7 @@ export const OKR_ENTREPRISE_MANAGER_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "D",
-        text: "Améliorer le score marque employeur, actuellement mesuré dans nos 180 magasins.",
+        text: "Améliorer le score marque employeur de la division d'ici la fin de l'année.",
         verdict: "partial",
         explanation:
           "Métrique nommée (bonne piste), mais « améliorer » reste sans cible ni point de départ chiffré dans l'option elle-même. Précise le score de départ et la cible visée.",
@@ -153,7 +153,7 @@ export const OKR_ENTREPRISE_MANAGER_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
     options: [
       {
         id: "A",
-        text: "Améliorer la satisfaction de nos 62 000 clients actifs, répartis sur nos 4 marchés, qui envoient 520 réclamations par mois.",
+        text: "Améliorer la satisfaction de nos 62 000 clients actifs.",
         verdict: "bad",
         explanation:
           "« Améliorer » sans chiffre cible. Pas de métrique nommée, pas de seuil, pas d'échéance. Vœu pieux.",
@@ -167,7 +167,7 @@ export const OKR_ENTREPRISE_MANAGER_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "C",
-        text: "Avoir des clients satisfaits, parmi nos 62 000 clients actifs sur 4 marchés, qui envoient aujourd'hui 520 réclamations par mois.",
+        text: "Avoir des clients satisfaits sur nos 4 marchés.",
         verdict: "bad",
         explanation:
           "« Satisfaits » n'est pas mesurable. Pas de métrique, pas de seuil. Reformulation à éviter complètement.",
@@ -203,7 +203,7 @@ export const OKR_ENTREPRISE_MANAGER_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
     options: [
       {
         id: "A",
-        text: "Renforcer la notoriété de notre marque, avec un budget marque de 4,2 M€ face à nos 3 concurrents directs.",
+        text: "Renforcer la notoriété de notre marque, avec un budget de 4,2 M€ engagé.",
         verdict: "bad",
         explanation:
           "« Renforcer » sans chiffre. Pas de métrique nommée, pas de seuil, pas d'échéance. Le budget engagé n'est pas un résultat.",
@@ -217,14 +217,14 @@ export const OKR_ENTREPRISE_MANAGER_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "C",
-        text: "Être davantage reconnus par le public, sur un segment où nous détenons 12 % de part de marché face à 3 concurrents directs.",
+        text: "Être davantage reconnus par le grand public.",
         verdict: "bad",
         explanation:
           "« Davantage reconnus » n'est pas mesurable. Pas de métrique, pas de seuil. À éviter complètement.",
       },
       {
         id: "D",
-        text: "Progresser sur la part de marché du segment principal (12 % actuellement) grâce au budget marque de 4,2 M€.",
+        text: "Progresser sur la part de marché du segment principal (12 % actuellement).",
         verdict: "partial",
         explanation:
           "Métrique nommée et point de départ présents, bonne piste. Mais aucune cible chiffrée : progresser jusqu'à combien ?",
@@ -302,7 +302,7 @@ export const OKR_ENTREPRISE_MANAGER_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
     options: [
       {
         id: "A",
-        text: "Maintenir le ratio d'endettement net / EBITDA sous 2,5x, avec une marge brute de 58 % sur l'année.",
+        text: "Maintenir le ratio d'endettement net / EBITDA sous 2,5x sur l'année.",
         verdict: "bad",
         explanation:
           "« Maintenir sous » décrit un plafond à ne pas dépasser, pas un changement à atteindre. C'est un garde-fou financier, pas un Résultat clé.",
@@ -316,7 +316,7 @@ export const OKR_ENTREPRISE_MANAGER_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "C",
-        text: "Garder une marge brute annuelle au-dessus de 55 %, sur un ratio d'endettement actuel de 2,1x.",
+        text: "Garder une marge brute annuelle au-dessus de 55 %.",
         verdict: "bad",
         explanation:
           "Même piège que A. « Garder au-dessus de » est un seuil de sécurité à préserver, pas un objectif de progression.",
@@ -502,7 +502,7 @@ export const OKR_ENTREPRISE_MANAGER_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
     options: [
       {
         id: "A",
-        text: "Augmenter les ventes du produit phare et réduire son taux de retour, sur une base de 180 000 unités vendues par an.",
+        text: "Augmenter les ventes du produit phare et réduire son taux de retour.",
         verdict: "bad",
         explanation:
           "Composite : « et » coordonne deux résultats distincts (ventes, retours). Si les ventes montent mais les retours aussi, le Résultat clé est-il atteint ? Sépare en deux KR.",
@@ -516,7 +516,7 @@ export const OKR_ENTREPRISE_MANAGER_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "C",
-        text: "Renforcer la position du produit phare, noté aujourd'hui 3,6 / 5 par les clients sur nos 180 000 ventes annuelles.",
+        text: "Renforcer la position du produit phare sur le marché.",
         verdict: "bad",
         explanation:
           "« Renforcer » est flou. Aucune métrique nommée, aucun seuil, aucune échéance.",
@@ -550,7 +550,7 @@ export const OKR_ENTREPRISE_MANAGER_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
     options: [
       {
         id: "A",
-        text: "Atteindre, sur nos 4 marchés, un NPS entreprise de 40 d'ici la fin de l'année.",
+        text: "Atteindre un NPS entreprise de 40 d'ici la fin de l'année.",
         verdict: "partial",
         explanation:
           "Métrique nommée, cible chiffrée, échéance. Mais sans le point de départ (18 aujourd'hui), on perd la mesure de l'effort. Un Résultat clé montre l'avant ET l'après.",
@@ -564,7 +564,7 @@ export const OKR_ENTREPRISE_MANAGER_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "C",
-        text: "Rendre nos clients plus prescripteurs, parmi nos 62 000 clients actifs sur 4 marchés, avec un taux de recommandation spontanée de 22 %.",
+        text: "Rendre nos clients plus prescripteurs de notre marque.",
         verdict: "bad",
         explanation:
           "« Plus prescripteurs » est flou. Aucune métrique nommée, aucun seuil. Vœu, pas un Résultat clé.",
@@ -600,7 +600,7 @@ export const OKR_ENTREPRISE_MANAGER_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
     options: [
       {
         id: "A",
-        text: "Atteindre, sur nos 180 magasins, 9 000 tonnes de CO2 émises sur l'année (scope 1+2).",
+        text: "Atteindre 9 000 tonnes de CO2 émises sur l'année (scope 1+2).",
         verdict: "partial",
         explanation:
           "Métrique nommée, cible chiffrée, échéance. Mais sans le point de départ (14 200 tonnes aujourd'hui), on perd la mesure de l'effort demandé. Un Résultat clé montre l'avant ET l'après.",
@@ -614,7 +614,7 @@ export const OKR_ENTREPRISE_MANAGER_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "C",
-        text: "Réduire fortement notre empreinte carbone, sur nos 180 magasins notés B- par l'agence de notation RSE.",
+        text: "Réduire fortement notre empreinte carbone.",
         verdict: "bad",
         explanation:
           "« Fortement » est flou. Aucune métrique chiffrée, aucun seuil. Vœu, pas un Résultat clé.",

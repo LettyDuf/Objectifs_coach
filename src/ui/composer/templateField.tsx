@@ -14,6 +14,7 @@ export function renderTemplateWithInputs(
   fieldCount: 1 | 2,
   values: string[],
   onChange: (fieldIndex: number, value: string) => void,
+  fieldKind: "number" | "text" = "number",
 ) {
   const parts: (string | { fieldIndex: number })[] = [];
   let rest = template;
@@ -37,13 +38,17 @@ export function renderTemplateWithInputs(
           <input
             key={`f-${i}`}
             type="text"
-            inputMode="numeric"
-            className="plateau-slot__field"
+            inputMode={fieldKind === "text" ? "text" : "numeric"}
+            className={`plateau-slot__field${fieldKind === "text" ? " plateau-slot__field--text" : ""}`}
             value={values[part.fieldIndex] ?? ""}
-            placeholder="?"
-            aria-label={fieldLabelFor(template, fieldCount, part.fieldIndex)}
+            placeholder={fieldKind === "text" ? "écris ici…" : "?"}
+            aria-label={
+              fieldKind === "text"
+                ? "Texte libre"
+                : fieldLabelFor(template, fieldCount, part.fieldIndex)
+            }
             onChange={(e) => onChange(part.fieldIndex, e.target.value)}
-            size={4}
+            size={fieldKind === "text" ? 16 : 4}
           />
         ),
       )}

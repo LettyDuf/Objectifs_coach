@@ -18,8 +18,8 @@ import { OKR_ENTREPRISE_MANAGER_CONTEXTE_FR } from "./okr-entreprise.contexte.fr
 describe("Warmup OKR entreprise (output/outcome)", () => {
   const cases = OKR_ENTREPRISE_MANAGER_WARMUP_FR;
 
-  it("a 10 cas de niveau 1 et 10 de niveau 2", () => {
-    expect(cases.filter((c) => c.level === 1).length).toBe(10);
+  it("a 12 cas de niveau 1 (dont 2 verbes ambigus) et 10 de niveau 2", () => {
+    expect(cases.filter((c) => c.level === 1).length).toBe(12);
     expect(cases.filter((c) => c.level === 2).length).toBe(10);
   });
 

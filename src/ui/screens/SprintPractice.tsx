@@ -21,21 +21,27 @@ import { SPRINT_ECHEANCE_DRILL_FR } from "../../content/drills/sprint.echeance.f
 import { SPRINT_CONTEXTE_DRILL_FR } from "../../content/drills/sprint.contexte.fr";
 import { SPRINT_MAINTENANCE_DRILL_FR } from "../../content/drills/sprint.maintenance.fr";
 import { MaintenanceWorksheet } from "./MaintenanceWorksheet";
+import { ImpactChain } from "./ImpactChain";
 import { Screen } from "../layout/Screen";
+import { Icon } from "../components/Icon";
 import { Zone } from "../layout/Zone";
 
 interface Props {
   coach: CoachUseCase;
 }
 
-type DrillKey = "verbe" | "indicateur" | "variation" | "echeance" | "contexte" | "maintenance";
+type DrillKey = "verbe" | "indicateur" | "variation" | "echeance" | "contexte" | "maintenance" | "descente";
 
 interface DrillDef {
   key: DrillKey;
-  num: string;
+  /** Numéro affiché pour les briques (1 à 5). Absent pour les situations. */
+  num?: string;
   title: string;
   desc: string;
   status: "active" | "todo";
+  /** "brique" = grammaire de l'objectif (numérotée) ; "situation" = cas de
+   * sprint réel (Maintenance, bientôt chaîne d'impact). D60. */
+  group: "brique" | "situation";
 }
 
 const DRILLS: DrillDef[] = [
@@ -45,6 +51,7 @@ const DRILLS: DrillDef[] = [
     title: "Le verbe",
     desc: "Output ou outcome ? Apprends à reconnaître le verbe qui décrit un effet plutôt qu'une livraison.",
     status: "active",
+    group: "brique",
   },
   {
     key: "indicateur",
@@ -52,6 +59,7 @@ const DRILLS: DrillDef[] = [
     title: "L'indicateur",
     desc: "Indicateur opérationnel ou concept-parapluie ? Repère ce qui est mesurable sans ambiguïté.",
     status: "active",
+    group: "brique",
   },
   {
     key: "variation",
@@ -59,6 +67,7 @@ const DRILLS: DrillDef[] = [
     title: "La variation chiffrée",
     desc: "Précise ou vague ? Distingue les chiffres opposables des adverbes flous.",
     status: "active",
+    group: "brique",
   },
   {
     key: "echeance",
@@ -66,6 +75,7 @@ const DRILLS: DrillDef[] = [
     title: "L'échéance",
     desc: "Bornée ou floue ? Reconnaître une date, un sprint nommé, un événement Scrum.",
     status: "active",
+    group: "brique",
   },
   {
     key: "contexte",
@@ -73,13 +83,21 @@ const DRILLS: DrillDef[] = [
     title: "Le contexte",
     desc: "Qui est le vrai bénéficiaire de l'objectif ? Apprends à identifier pour qui ça change.",
     status: "active",
+    group: "brique",
   },
   {
     key: "maintenance",
-    num: "6",
-    title: "Maintenance : trouver la valeur",
+    title: "Maintenance : trouver la valeur",
     desc: "Bug, migration, refactor, test de reprise : ce travail a toujours un bénéficiaire. Apprends à le formuler en outcome.",
     status: "active",
+    group: "situation",
+  },
+  {
+    key: "descente",
+    title: "Du trimestre au sprint",
+    desc: "Ton sponsor parle trimestre, ta revue arrive avant. Descends la chaîne jusqu'à la mesure visible à la revue de sprint.",
+    status: "active",
+    group: "situation",
   },
 ];
 
@@ -96,8 +114,13 @@ export function SprintPractice(_props: Props) {
     variation: { corpus: SPRINT_VARIATION_DRILL_FR, title: "La variation chiffrée : précise ou vague ?", lede: "Coche tous les fragments précis dans la grille. Les vagues, laisse-les." },
     echeance: { corpus: SPRINT_ECHEANCE_DRILL_FR, title: "L'échéance : bornée ou floue ?", lede: "Coche toutes les échéances précises dans la grille. Les floues, laisse-les." },
     contexte: { corpus: SPRINT_CONTEXTE_DRILL_FR, title: "Le contexte : qui est le vrai bénéficiaire ?", lede: "Pour chaque objectif, identifie la personne ou le groupe dont la vie change quand l'objectif est atteint." },
-    maintenance: { corpus: SPRINT_MAINTENANCE_DRILL_FR, title: "Maintenance : trouver la valeur", lede: "Bug, migration, refactor, test de reprise : repère la reformulation qui porte la vraie valeur de ce travail." },
+    maintenance: { corpus: SPRINT_MAINTENANCE_DRILL_FR, title: "Maintenance : trouver la valeur", lede: "Bug, migration, refactor, test de reprise : repère la reformulation qui porte la vraie valeur de ce travail." },
   } as const;
+
+  // Vue dédiée « Du trimestre au sprint » (D61) : descente de la chaîne d'impact.
+  if (activeDrill === "descente") {
+    return <ImpactChain onExit={() => setActiveDrill(null)} />;
+  }
 
   // Vue dédiée « Maintenance » : QCM (D40) ou worksheet guidé sur son propre cas (D44),
   // au choix — D44 cadré comme un format en plus du QCM, pas un remplacement.
@@ -237,13 +260,32 @@ export function SprintPractice(_props: Props) {
       body={{
         variant: "single",
         primary: (
-          <ul className="drills-grid" role="list">
-            {DRILLS.map((d) => (
-              <li key={d.key}>
-                <DrillCard drill={d} onStart={() => setActiveDrill(d.key)} />
-              </li>
-            ))}
-          </ul>
+          <>
+            <section aria-labelledby="drills-bricks-title">
+              <h3 id="drills-bricks-title" className="drills-group__title">
+                Les 5 briques de l'objectif
+              </h3>
+              <ul className="drills-grid" role="list">
+                {DRILLS.filter((d) => d.group === "brique").map((d) => (
+                  <li key={d.key}>
+                    <DrillCard drill={d} onStart={() => setActiveDrill(d.key)} />
+                  </li>
+                ))}
+              </ul>
+            </section>
+            <section aria-labelledby="drills-situations-title">
+              <h3 id="drills-situations-title" className="drills-group__title">
+                Situations réelles
+              </h3>
+              <ul className="drills-grid" role="list">
+                {DRILLS.filter((d) => d.group === "situation").map((d) => (
+                  <li key={d.key}>
+                    <DrillCard drill={d} onStart={() => setActiveDrill(d.key)} />
+                  </li>
+                ))}
+              </ul>
+            </section>
+          </>
         ),
       }}
     />
@@ -267,7 +309,13 @@ function DrillCard({
       aria-label={`Exercice : ${drill.title}`}
     >
       <span className="card-button__icon" aria-hidden="true">
-        <span className="drill-num">{drill.num}</span>
+        {drill.group === "situation" ? (
+          <span className="drill-num drill-num--situation">
+            <Icon name="wrench" size={16} />
+          </span>
+        ) : (
+          <span className="drill-num">{drill.num}</span>
+        )}
       </span>
       <span className="card-button__label">{drill.title}</span>
       <span className="card-button__desc">{drill.desc}</span>
@@ -301,7 +349,9 @@ function NextDrillsList({
                 onClick={() => onChoose(d.key)}
                 disabled={!isActive}
               >
-                <span className="next-drill__num">{d.num}</span>
+                <span className="next-drill__num">
+                  {d.group === "situation" ? <Icon name="wrench" size={14} /> : d.num}
+                </span>
                 <span className="next-drill__title">{d.title}</span>
                 <span className="next-drill__cta">
                   {isActive ? "Commencer ›" : "à venir"}

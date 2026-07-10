@@ -51,20 +51,13 @@ export const OKR_EQUIPE_DEV_SHEETS_FR: PedagogicalSheet[] = [
       {
         heading: "Qui le rédige, sur quelle base",
         icon: "target",
-        body: "Co-construit par l'équipe entière (incluant son PM ou PO), animé par un facilitateur (leader d'équipe, coach OKR interne ou externe). Bottom-up, pas dicté top-down. Les OKR entreprise donnent la direction ; l'équipe propose comment elle y contribue — elle n'attend pas qu'on lui dicte ses KR. Cadre de travail : atelier de cadrage en début de cycle (typiquement une demi-journée), puis check-in hebdomadaire de 15-30 min.",
+        body: "Co-construit par l'équipe entière (incluant son PM ou PO), animé par un facilitateur (leader d'équipe, coach OKR interne ou externe). Bottom-up, pas dicté top-down. Les OKR entreprise donnent la direction ; l'équipe propose comment elle y contribue — elle n'attend pas qu'on lui dicte ses KR. Cadre de travail : atelier de cadrage en début de cycle (typiquement une demi-journée), puis check-in hebdomadaire de 15-30 min. L'OKR dicté d'en haut est un piège nommé : sa fiche t'attend dans « Les pièges classiques ».",
         bullets: [
           "OKR entreprise du cycle en cours (le « pourquoi » stratégique)",
           "Retours du cycle OKR précédent (ce qui a marché, ce qui n'a pas)",
           "Connaissance terrain de l'équipe (ce qu'elle voit, que les autres ne voient pas)",
           "Capacités réelles (effort disponible et compétences)",
           "Hypothèses produit en cours, notamment pour calibrer les KR stretch",
-        ],
-        examples: [
-          {
-            bad: "Recevoir l'OKR équipe complet du management et l'exécuter tel quel.",
-            good: "Lire l'OKR entreprise, en discuter en atelier, proposer un OKR équipe qui porte la couleur de l'équipe.",
-            note: "Un OKR équipe que l'équipe n'a pas posé n'engage personne — c'est l'anti-pattern cascade brutale documenté par Wodtke.",
-          },
         ],
       },
       {
@@ -88,49 +81,21 @@ export const OKR_EQUIPE_DEV_SHEETS_FR: PedagogicalSheet[] = [
         heading: "Piège 1 — Le Résultat clé projet",
         icon: "bad",
         body: "« Livrer X », « Migrer Y », « Déployer Z » = un moyen, pas un résultat. Symptôme : verbe d'output en tête.",
-        examples: [
-          {
-            bad: "Livrer le nouveau tableau de bord métriques v2 d'ici fin du trimestre.",
-            good: "Atteindre 80 % d'équipes utilisant le tableau de bord métriques (de 0 à 24 équipes).",
-            note: "Demande-toi : qu'est-ce que ce projet va faire bouger ? Adoption, temps gagné, incidents évités…",
-          },
-        ],
       },
       {
         heading: "Piège 2 — Le KR-flou",
         icon: "bad",
         body: "Pas de chiffre, pas d'unité, pas de seuil. Non falsifiable.",
-        examples: [
-          {
-            bad: "Améliorer la satisfaction client.",
-            good: "Faire passer le CSAT du module commande de 3,2 / 5 à 4,3 / 5.",
-            note: "Nomme la métrique, donne la valeur de départ et la valeur cible.",
-          },
-        ],
       },
       {
         heading: "Piège 3 — La health metric déguisée en KR",
         icon: "bad",
         body: "Une health metric est un garde-fou qu'on surveille en continu (uptime, code coverage, latence p95). Un KR vise un **changement à atteindre**, pas un état à maintenir.",
-        examples: [
-          {
-            bad: "Maintenir l'uptime au-dessus de 99,9 %.",
-            good: "Faire passer l'uptime de 98,5 % à 99,9 % d'ici fin du trimestre.",
-            note: "Si c'est déjà à 99,9 %, c'est une norme de service. Si tu veux l'améliorer, chiffre la progression. Sinon, surveille-la ailleurs, pas dans tes KR.",
-          },
-        ],
       },
       {
         heading: "Piège 4 — La sur-confiance",
         icon: "bad",
-        body: "KR estimé atteint à 100 % = c'est une tâche planifiée, pas un KR. L'OKR pousse à l'ambition calibrée : 50 à 70 % de confiance.",
-        examples: [
-          {
-            bad: "Faire passer la couverture de tests de 78 % à 80 % d'ici fin du trimestre. (confiance : 100 %)",
-            good: "Faire passer la couverture de tests de 78 % à 90 %. (confiance : 60 %)",
-            note: "Si l'équipe sait qu'elle va y arriver, l'ambition est trop faible. Vise un écart qui demande un vrai effort.",
-          },
-        ],
+        body: "KR estimé atteint à 100 % = c'est une tâche planifiée, pas un KR. L'OKR pousse à l'ambition calibrée : 50 à 70 % de confiance. Chacun de ces pièges a sa fiche détaillée dans « Les pièges classiques », et le Défi te les fera reconnaître sur des cas réels.",
       },
       {
         heading: "Source",

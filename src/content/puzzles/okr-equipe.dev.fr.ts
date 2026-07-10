@@ -48,7 +48,23 @@ function customField(
   template: string,
   fieldCount: 1 | 2,
 ): NumericFieldBlock {
-  return { kind: "numericField", id, category, quality: "good", template, fieldCount };
+  return { kind: "numericField", id, category, quality: "good", template, fieldCount, fieldKind: "text" };
+}
+
+/** Carte 100 % libre : l'utilisateur écrit son propre texte dans la phrase.
+ * Quality "neutral" : le Composer ne juge jamais ce texte (D26), il le
+ * marque « à valider en équipe ». */
+function freeCard(id: string, category: PuzzleCategory): NumericFieldBlock {
+  return {
+    kind: "numericField",
+    id,
+    category,
+    quality: "neutral",
+    template: "[X]",
+    fieldCount: 1,
+    fieldKind: "text",
+    handLabel: "Écrire moi-même…",
+  };
 }
 
 /* ---------- Catégorie 1 — Action verbale ---------- */
@@ -96,6 +112,8 @@ const VARIATION_GOOD: NumericFieldBlock[] = [
   field("v-good-range", "good", "de [X] à [Y]", 2),
   field("v-good-factor", "good", "par [X]", 1),
   field("v-good-target", "good", "à [X]", 1),
+  field("v-good-points", "good", "de [X] points", 1),
+  field("v-good-atleast", "good", "d'au moins [X] %", 1),
 ];
 const VARIATION_NEUTRAL: NumericFieldBlock[] = [
   field("v-neu-percent", "neutral", "de [X] %", 1),
@@ -177,33 +195,37 @@ function setFor(
     level,
     blocksByCategory: {
       action: [
-        ...ACTION_GOOD.slice(0, 2),
-        ...ACTION_NEUTRAL.slice(0, 2),
+        ...ACTION_GOOD,
+        ...ACTION_NEUTRAL,
+        freeCard("okr-a-free", "action"),
         ...ACTION_DISTRACTORS.slice(0, distractorsStandard),
       ],
       indicator: [
-        ...INDICATOR_GOOD.slice(0, 2),
-        ...INDICATOR_NEUTRAL.slice(0, 2),
+        ...INDICATOR_GOOD,
+        ...INDICATOR_NEUTRAL,
+        freeCard("okr-i-free", "indicator"),
         ...INDICATOR_DISTRACTORS.slice(0, distractorsStandard),
       ],
       variation: [
-        ...VARIATION_GOOD.slice(0, 2),
-        ...VARIATION_NEUTRAL.slice(0, 1),
+        ...VARIATION_GOOD,
+        ...VARIATION_NEUTRAL,
         ...VARIATION_DISTRACTORS.slice(0, distractorsRestricted),
       ],
       context: [
-        ...CONTEXT_GOOD.slice(0, 2),
-        ...CONTEXT_NEUTRAL.slice(0, 2),
+        ...CONTEXT_GOOD,
+        ...CONTEXT_NEUTRAL,
+        freeCard("okr-c-free", "context"),
         ...CONTEXT_DISTRACTORS.slice(0, distractorsStandard),
       ],
       preposition: [
-        ...PREPOSITION_GOOD.slice(0, 2),
-        ...PREPOSITION_NEUTRAL.slice(0, 1),
+        ...PREPOSITION_GOOD,
+        ...PREPOSITION_NEUTRAL,
         ...PREPOSITION_DISTRACTORS.slice(0, distractorsRestricted),
       ],
       timeReference: [
-        ...TIMEREF_GOOD.slice(0, 2),
-        ...TIMEREF_NEUTRAL.slice(0, 2),
+        ...TIMEREF_GOOD,
+        ...TIMEREF_NEUTRAL,
+        freeCard("okr-t-free", "timeReference"),
         ...TIMEREF_DISTRACTORS.slice(0, distractorsStandard),
       ],
     } satisfies Record<PuzzleCategory, PuzzleBlock[]>,

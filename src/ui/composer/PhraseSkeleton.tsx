@@ -9,7 +9,7 @@
  */
 
 import type { PlacedBlock, SlotKey } from "../../domain/puzzle/types";
-import { SLOT_LABELS } from "../../domain/puzzle/types";
+import { SLOT_LABELS, isFreeTextBlock } from "../../domain/puzzle/types";
 import { renderTemplateWithInputs } from "./templateField";
 
 /** Libellés courts affichés dans les pills vides (italique muted dans la phrase). */
@@ -85,6 +85,7 @@ function PhraseBond({
     placed ? "is-filled" : "is-empty",
     bonus ? "puzzle-bond--bonus" : "",
     placed && placed.block.quality === "distractor" ? "is-trap" : "",
+    placed && isFreeTextBlock(placed.block) ? "is-custom" : "",
     orphan ? "is-orphan" : "",
   ]
     .filter(Boolean)
@@ -105,7 +106,13 @@ function PhraseBond({
     <span
       className={cls}
       aria-label={`${SLOT_LABELS[slot]} : ${placed.block.kind === "text" ? placed.block.text : placed.block.template}`}
-      title={orphan ? "Cette liaison attend une échéance à droite." : undefined}
+      title={
+        orphan
+          ? "Cette liaison attend une échéance à droite."
+          : isFreeTextBlock(placed.block)
+            ? "Carte libre : l'outil ne juge pas ce texte, valide-le en équipe."
+            : undefined
+      }
     >
       {placed.block.quality === "distractor" && (
         <span className="puzzle-bond__trap" aria-label="Carte à risque" title="Cette carte est probablement un piège pédagogique.">
@@ -120,6 +127,7 @@ function PhraseBond({
               placed.block.fieldCount,
               placed.values,
               onUpdateField,
+              placed.block.fieldKind ?? "number",
             )}
       </span>
       <button

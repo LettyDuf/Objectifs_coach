@@ -1,19 +1,21 @@
 # STATUS — Coach Objectifs
 
-_Dernière mise à jour : 2026-07-04_
+_Dernière mise à jour : 2026-07-08_
 
 ## Phase actuelle
-_Rafraîchi le 2026-07-04 (D53) — OKR entreprise activé, périmètre V1 (D20) désormais bouclé sur les 4 types._
+_Rafraîchi le 2026-07-08 (D55 à D61) — session retours d'atelier : Défi simplifié, « Ça dépend » au Warmup, fiche « Les verbes ambigus », Composer élargi + cartes libres, exemples des fiches dé-spoilés, groupe « Situations réelles », exercice « Du trimestre au sprint » livré._
 
 **Parité complète sur 4 modules (Sprint, PI, OKR équipe, OKR entreprise)** — chacun couvre : Théorie (fiches + thèmes), S'entraîner (Warmup + 5-6 mini-exercices QCM/grille), Défi (ChallengeQuiz scénarisé), Anti-patterns (PitfallQuiz, 10 cas par module), Composer (Puzzle générique, D16), Analyser un objectif (page dédiée, D27).
 - **Sprint** : 18 fiches (dont 10 pièges nommés), 6 mini-exercices dont Maintenance : trouver la valeur (D40, + worksheet guidé D44).
 - **PI** : 15 fiches (dont 10 pièges nommés).
 - **OKR équipe** : 13 fiches (dont 10 pièges nommés). Les 5 mini-exercices S'entraîner sont désormais tous actifs (D54, 2026-07-04 — les 4 corpus dormants viennent d'être câblés, dette résolue).
 - **OKR entreprise** (D53, 2026-07-04) : 11 fiches (fondamentaux + 10 pièges nommés), audience `manager`. Les 5 mini-exercices S'entraîner sont actifs dès la livraison (pas de dette équivalente à OKR équipe). Défi : 12 cas. Composer : jeu de blocs dédié (vocabulaire entreprise, échéances annuelles).
-Build monofichier 690 Ko / gzip 174 Ko. 228 tests verts / 1 skip.
+Build monofichier 711 Ko / gzip ~179 Ko. 278 tests verts / 1 skip. Tampon de build dans le titre d'onglet (vérifier « build 09/07/2026 14:26 » après rechargement).
 
 ## Backlog / dette connue (à ne pas oublier)
 > Relu à chaque ouverture de session. Rayer une ligne seulement quand elle est traitée, pas seulement mentionnée.
+
+> **Rituel de livraison (ajouté 2026-07-08 après incident)** : un build dans `dist-*/` n'est PAS une livraison. À chaque fin de session avec build, recopier `dist-<dernier>/index.html` vers `coach-objectifs.html` (le fichier que Lætitia ouvre) et vérifier son poids. Le 2026-07-08, `coach-objectifs.html` datait encore de fin juin (529 Ko, sans OKR entreprise) alors que 3 sessions de builds s'étaient accumulées dans `dist-*/`.
 
 - [x] ~~Rattraper le journal « Fait » pour la session d'étoffement des fiches~~ (12 fiches candidates anti-patterns → Sprint 16 / PI 15 / OKR équipe 13 fiches actuelles). Cette session n'a jamais été datée ni détaillée ici, seule la « Phase actuelle » ci-dessus en garde la trace agrégée. Distinct du rattrapage D26-D31 déjà fait le 2026-07-03.
 - [x] ~~Ménage manuel côté utilisatrice~~ (`.git/index.lock`, dossiers `dist-verif-*`) — résolu, plus aucune trace au 2026-07-04.
@@ -21,7 +23,10 @@ Build monofichier 690 Ko / gzip 174 Ko. 228 tests verts / 1 skip.
 - [x] ~~Renumérotation D22~~ : résolu 2026-07-04 (D42) — le D22 Puzzle reste inchangé (confirmé exact par Lætitia), la refonte visuelle A+ du 2026-06-25 est rédigée rétroactivement sous D42.
 - [x] ~~9 cas Défi QCM à écart modéré~~ — résolu 2026-07-04 (D43) : 7/9 totalement corrigés, 2/9 réduits à un écart d'1 chiffre (jugé suffisant, voir D43).
 - [x] ~~OKR équipe — 4 mini-exercices S'entraîner non câblés dans l'UI~~ — résolu 2026-07-04 (D54). Nouveau test d'intégrité `okr-equipe-corpus.test.ts` (15 tests) au passage.
-- [ ] **Fichiers orphelins à supprimer via Terminal** (non supprimables depuis la sandbox) : `src/ui/screens/ComingSoon.tsx` (plus aucun import depuis l'activation d'OKR entreprise) et `src/content/check-entreprise-manager.test.ts` (fichier de vérification temporaire d'un sous-agent, neutralisé en test trivial). Commande : `rm src/ui/screens/ComingSoon.tsx src/content/check-entreprise-manager.test.ts`.
+- [x] ~~Composer élargi~~ — résolu 2026-07-08 (D57) : toutes les bonnes/neutres cartes affichées, carte libre sur les 4 pièces textuelles, 2 nouveaux gabarits Variation, garde-fou doux sur le verbe libre. Contrôle visuel restant à faire au prochain lancement (pas de Chromium dans le bac à sable cette session).
+- [ ] **Mode jokers « Qui veut gagner des points »** (retour d'atelier 2026-07-08) : échelle de points par paliers de difficulté + jokers d'atelier (50/50, appel à un ami, avis du public, avis du coach). Décision Lætitia : passage au panel d'experts (pédagogue, ludo, UX) AVANT tout design figé ou code. Gros chantier (contenu par palier + moteur de score + UI).
+- [x] ~~Exercice « chaîne d'impact » sprint ↔ trimestre~~ — livré 2026-07-08 (D61) sous le nom « Du trimestre au sprint », corpus validé, dans « Situations réelles ».
+- [ ] **Ménage à faire via Terminal** (non supprimable depuis la sandbox) : fichiers orphelins `src/ui/screens/ComingSoon.tsx` et `src/content/check-entreprise-manager.test.ts`, plus les dossiers de build du 2026-07-08. Commande : `rm -r src/ui/screens/ComingSoon.tsx src/content/check-entreprise-manager.test.ts dist-d55 dist-d55c dist-d57 dist-d58 dist-d59 dist-d60 dist-d61`.
 
 ## Phase précédente
 Incrément 2 livré : UI fonctionnelle Sprint (sélecteur → mode → entraînement / apprendre → export). 39 tests verts, build production OK. Premier vrai outil utilisable en atelier sur le périmètre Sprint × dev.
@@ -47,20 +52,54 @@ Incrément 2 livré : UI fonctionnelle Sprint (sélecteur → mode → entraîne
 - Rien.
 
 ## Prochain pas (au choix)
-_Le périmètre V1 (D20) est désormais complet sur les 4 types. Options réelles restantes :_
+_Rafraîchi le 2026-07-08. Options réelles :_
 
-B. **DOMAINE.md §4.8** : lien prolifération d'Objectives / origine « objectif de la direction ». Volontairement en attente d'un retour d'atelier réel, pas actionnable seul.
-C. **Harmonisation visuelle** : la carte "Piège évité" (D46/D50) n'existe que sur Anti-patterns ; ChallengeQuiz/Drill/Warmup gardent le feedback plat. Signalé, pas tranché.
-D. **6 cas Défi QCM à écart d'1 chiffre** (D43) : diminishing returns, non prioritaire sauf demande explicite.
-E. **Corpus Défi OKR entreprise plus large** : 12 cas livrés (parité avec les 3 autres modules), mais pas de plancher doctrinal empêchant d'en ajouter si l'usage en atelier montre un besoin.
+A. **Panel jokers « Qui veut gagner des points »** (retour d'atelier, décision Lætitia : panel d'experts AVANT tout design). Les nuances du nouvel exercice « Du trimestre au sprint » fournissent la matière des paliers hauts. Le plus gros chantier restant.
+B. **Allègement du corps des fiches porteuses** (recommandation du panel D59) : passe éditoriale, un exemple gardé = un body raccourci.
+C. **Harmonisation visuelle** : la carte « Piège évité » (D46/D50) n'existe que sur Anti-patterns ; ChallengeQuiz/Drill/Warmup gardent le feedback plat. Signalé, pas tranché.
+D. **DOMAINE.md §4.8** : lien prolifération d'Objectives / « objectif de la direction ». En attente d'un retour d'atelier réel.
+E. **Vérification visuelle par Lætitia** des livraisons du 2026-07-08 (Composer élargi, repli des exemples, Situations réelles, Du trimestre au sprint) : à faire au premier lancement, remonter toute anomalie avec capture.
 
-Recommandation : B ou C selon ce qui te semble le plus utile en atelier — aucune urgence sur les deux.
+Recommandation : E d'abord (5 minutes), puis A en session dédiée. Note : l'ancien point « 6 cas Défi à écart d'1 chiffre » (D43) est caduc, la passe D55 a réécrit ces options.
 
 ## Risques actifs
 - **Charge de validation contenu** : la qualité pédagogique dépend des exemples annotés. Mitigation en place : recherche de candidats + validation explicite de Lætitia avant toute rédaction (voir D52, D53).
 - **Registre rédactionnel des futures fiches** : après le retour du 2026-07-04 sur le module OKR entreprise (jargon de consultant détecté dans un premier jet), toute nouvelle fiche pédagogique doit être vulgarisée avant livraison, pas seulement sourcée. Voir mémoire `feedback-vulgariser-conseils`.
 
 ## Journal des sessions
+- **2026-07-08 (suite 7)** : **exercice « Du trimestre au sprint » livré (D61)**.
+  - Corpus validé par Lætitia (jouable + fichier), reformulé « en sprint » à sa demande (plus aucun « 14 jours », verrouillé par test). Domaine pur (9 tests) + corpus (6 tests) + écran ImpactChain dans « Situations réelles » à côté de Maintenance.
+  - 278 tests verts / 1 skip, build `dist-d61` recopié dans `coach-objectifs.html` (tampon 09/07/2026 14:26, 711 Ko). `CORPUS-DESCENTE-PROPOSITION.md` passé en statut VALIDÉ (archive de cadrage).
+  - Contrôle visuel à faire par Lætitia au premier lancement (toujours pas de Chromium en sandbox). Backlog restant : panel jokers, allègement des fiches porteuses, harmonisation visuelle « Piège évité ».
+- **2026-07-08 (suite 6)** : **exercice « Du trimestre au sprint » (La descente) : cadrage et corpus soumis**.
+  - Panel d'experts (pédagogue, ludo, UX, archi) : concept « La descente » retenu (sceptique, descente maillon par maillon, ligne des 14 jours, drapeau) contre « L'échelle à reconstruire » (classification, format déjà jugé pas assez fun ailleurs). Budget de jours rejeté (détourne vers l'estimation de charge). Pas de points : récompense visuelle (chaîne qui s'allume).
+  - Méthode validée par Lætitia (mémoire feedback-mvp-exemples-concrets) : MVP jouable d'abord, jamais de questions de design abstraites. MVP cas 1 joué et validé ; nom « Du trimestre au sprint », sous-titre « Visible dans 14 jours » ; ligne = choisir le maillon le plus haut montrable (vert/ambre/rouge) ; vocabulaire simple, leading/lagging en aparté unique.
+  - **Corpus v1 rédigé et soumis** : `CORPUS-DESCENTE-PROPOSITION.md` (4 cas : tickets paiement, activation J+30, réveils d'astreinte, cas alerte « référence du marché » où le drapeau est la bonne réponse + conversation sponsor). Version jouable livrée en widget. EN ATTENTE DE VALIDATION avant toute intégration (domaine, moteur, écran Situations réelles).
+- **2026-07-08 (suite 5)** : **D59 exemples des fiches + D60 Situations réelles**.
+  - **D59** : panel (sciences cognitives + pédagogue) sur les 89 exemples des fiches. Découverte majeure : 8 exemples verbatim des exercices (spoilers qui détruisent l'effet test). Appliqué : 8 spoilers → renvois vers l'exercice ; 5 doublons internes → renvois ou surfaces variées (3 réécritures dans posture-valeurs, à relire par Lætitia dans le rendu) ; 10 porteurs inchangés ; exemples des 40 fiches pièges repliés derrière « Voir un exemple » (protège le quiz Anti-patterns) ; exemple de pi.planning-to-objective supprimé. Heading orphelin renommé (« Le même réflexe dans les quatre familles »).
+  - **D60** : S'entraîner Sprint scindé en « Les 5 briques de l'objectif » (1-5) et « Situations réelles » (Maintenance, icône outil, sans numéro ; futur emplacement de « chaîne d'impact »). NextDrillsList aligné.
+  - Vérifié : tsc OK, 261 tests verts / 1 skip, build `dist-d60` recopié dans `coach-objectifs.html` (tampon 09/07/2026 03:28). Dossiers `dist-d55*`, `dist-d57`, `dist-d58`, `dist-d59`, `dist-d60` à supprimer via Terminal.
+- **2026-07-08 (suite 4)** : **tampon de build dans le titre d'onglet**. Le fix NextDrillsList était mesurablement présent dans `coach-objectifs.html` (minmax 240, nowrap, nbsp échappé \xA0) mais la capture de Lætitia montrait encore l'ancien rendu : elle ne regardait donc pas ce fichier (cache ou autre copie, indécidable à distance). Ajout `__BUILD_STAMP__` (vite define) affiché dans `document.title` : « Coach Objectifs · build JJ/MM/AAAA HH:MM ». Build `dist-d59` recopié dans `coach-objectifs.html` (tampon : 09/07/2026 03:00, horloge du bac à sable). Vérification côté Lætitia en attente.
+- **2026-07-08 (suite 3)** : **fix affichage NextDrillsList** (capture Lætitia : CTA débordant du cadre, titres sur 3 lignes, chevron à la ligne). Cause : plancher de grille à 200 px sous le min-content réel des cartes. Fix CSS (`quiz.css`) : minmax 240 px + `minmax(0,1fr)` sur la colonne titre + `white-space: nowrap` sur le CTA ; espace insécable avant « : » dans le titre Maintenance. Partagé par les 4 écrans Pratique. Build `dist-d58` recopié dans `coach-objectifs.html` (rituel appliqué). Reste à vérifier visuellement chez Lætitia (pas de Chromium en sandbox).
+- **2026-07-08 (suite 2)** : **incident de livraison détecté et corrigé**. Lætitia ouvre `coach-objectifs.html` (racine) ; ce fichier datait de fin juin, tous les builds récents dormaient dans `dist-*/`. Vérifié par mesure (grep + taille) avant toute discussion. `dist-d57/index.html` recopié vers `coach-objectifs.html` (694 Ko, carte « Écrire moi-même » présente). Rituel de livraison ajouté en tête de backlog.
+- **2026-07-08 (suite)** : **Composer élargi (D57)**.
+  - Découverte : le manque de choix signalé en atelier était surtout un bug de câblage (slices 2+2 sur des corpus de 4 à 8 cartes ; cartes semi-libres « pour l'équipe [X] » / « le [X] » jamais affichées). Corrigé : toutes les bonnes/neutres visibles.
+  - Carte libre « Écrire moi-même… » sur action / indicateur / contexte / échéance (les 4 modules), champ texte inline dans la phrase, note honnête « l'outil ne juge pas ce que tu écris » ; verbe libre confronté aux heuristiques (`assessFreeVerb`, domaine pur testé), alerte douce si verbe de travail ou mot flou.
+  - Variation enrichie : « de [X] points » et « d'au moins [X] % » (validés).
+  - 261 tests verts / 1 skip (+21 : puzzle-corpus 16, free-text 5), build `dist-d57` 694 Ko / gzip 175 Ko. Dossiers `dist-d55/`, `dist-d55c/`, `dist-d57/` à supprimer via Terminal.
+- **2026-07-08** : **retour d'atelier traité — D55 (simplification du Défi) + D56 (« Ça dépend » au Warmup + fiche « Les verbes ambigus »)**.
+  - **D55** : audit des 192 options du Défi (sous-agent), 77 réécrites selon la règle « chaque détail sert le diagnostic ou la phrase ; au plus un chiffre réel, jamais d'effectif inventé, jamais de contradiction avec l'explication ». Révision assumée de D35/D43 (le remède anti-comptage avait créé la surcharge signalée en atelier). Corrections annexes : doublon api-ambition, « notée 3,8/5 », page login, 6 équipes fonctionnalité.
+  - **D56** : domaine `WarmupAnswer` étendu à `"depends"` (réservé niveau 1 / verbes seuls, invariant testé par `warmup-corpus.test.ts`, 12 tests). UI : 3e bouton « ÇA DÉPEND » (grille triple, repli mobile), libellé français du feedback, encart règle complété. 8 cas validés en amont via maquette (widget) ; PI Stabiliser requalifié. Fiche partagée « Les verbes ambigus » (`makeVerbesAmbigusSheet`) déclinée dans les 4 thèmes fondamentaux.
+  - Backlog enrichi : Composer élargi + carte libre (validé, non priorisé), mode jokers (panel d'experts d'abord), exercice « chaîne d'impact » sprint ↔ trimestre (question d'atelier sur les outcomes en 2 semaines).
+  - **Correction post-livraison (question de Lætitia sur « l'équipe se note elle-même »)** : la doctrine est recentrée sur la mesure, pas sur un observateur externe ; l'équipe peut être bénéficiaire (cohérence D29 / module Maintenance). Explication Warmup Stabiliser (Sprint) + 2 sections de la fiche « Les verbes ambigus » réécrites, validées.
+  - Vérifié : `tsc --noEmit` OK, 240 tests verts / 1 skip (+12 nouveaux), build final `dist-d55c` 691 Ko / gzip 174,7 Ko. Dossiers `dist-d55/` et `dist-d55c/` à supprimer via Terminal avec les orphelins habituels.
+- **2026-06-28 (soir 2)** : **encart squelette en tête de Pratique (D31)** + push GitHub complet.
+  - **D31** : composant `SkeletonOverview` affiché au-dessus des cards Pratique du ModeSelector sur les 3 modules. 5 rectangles évidés colorés portant les libellés des briques (Verbe outcome, Indicateur, Variation chiffrée, Contexte, Échéance), lien discret « Voir la fiche fondamentale › » qui route vers le thème `*.fondamentaux` correspondant. Contenu externalisé dans `src/content/skeleton/skeleton.fr.ts` (cohérence hexagonale), CSS isolé `skeleton.css`.
+  - **Concepts graphiques élaborés écartés** avant convergence : cadran des 3 concepts complexes (piliers porteurs / carotte de sondage stratigraphique / poutre à points d'appui) puis variante triangles au-dessus des libellés. Choix final : simplicité maximale, cohérence avec le langage de pills coloré déjà utilisé dans les fiches théoriques.
+  - **Refonte vocabulaire complémentaire** : baseline → valeur de référence (extension D30 en 10 fichiers), corrections capitalisation PIPractice (« Revue de PI » en début de phrase), TypeSelector OKR (« Niveau équipe (entreprise prévu plus tard) » en cohérence D20), Train Onboarding → Train Intégration nouveaux clients, description tuile S'entraîner (5 mini-exercices par pièce).
+  - **UX régulation** : `grid-auto-rows: 1fr` + `min-height` sur les grilles de fragments drill et les boutons NextDrillsList pour régulariser les hauteurs.
+  - **LICENSE Creative Commons BY-NC-SA 4.0** (© 2026 Lætitia Dufour) créée, `.gitignore` étendu (`dist-*/`, `.bak/`, `audits/`), commit 15890ee poussé sur GitHub (LettyDuf/Objectifs_coach). Encart squelette (D31) poussé dans un second commit.
+  - 151 tests verts, monofichier 534 Ko (gzip 138 Ko).
 - **2026-06-28** : **francisation systématique du vocabulaire pédagogique (D30)**.
   - Audit a révélé ~800 occurrences d'anglicismes dans fiches, quiz, drills, scenarios, puzzles et UI. Doctrine **D30** actée : francisation par défaut, conservation en VO seulement pour la terminologie officielle non négociable (Sprint Backlog, PO, Scrum Master, Developers, PI Planning, PM, RTE, Inspect and Adapt, ROAM, stretch).
   - Traductions appliquées via 2 passes scriptées (Python) sur 19 fichiers : dashboard → tableau de bord ; deadline → échéance ; stakeholders → parties prenantes ; roadmap → feuille de route ; workshop → atelier ; onboarding → intégration ; oncall → astreinte ; MTTR → TMR ; spike → exploration ; Sprint Goal → objectif de Sprint ; Product Goal → objectif de produit ; Product Backlog → backlog produit ; Daily Scrum → mêlée quotidienne ; PI Objective → objectif de PI ; PI Review → revue de PI ; confidence vote → vote de confiance ; Agile Release Train → train de livraison ; committed → engagé (libellé) ; Objective → Objectif ; Key Result → Résultat clé ; feature → fonctionnalité ; story → récit.

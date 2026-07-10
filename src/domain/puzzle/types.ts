@@ -45,6 +45,25 @@ export interface NumericFieldBlock {
   /** Template avec placeholders, ex. « de [X] à [Y] » ou « par [X] ». */
   template: string;
   fieldCount: 1 | 2;
+  /**
+   * Nature des champs à remplir. "number" (défaut historique) affiche des
+   * tuiles chiffrées étroites ; "text" affiche un champ de texte libre plus
+   * large. Une carte 100 % libre est un template réduit à "[X]" avec
+   * fieldKind "text".
+   */
+  fieldKind?: "number" | "text";
+  /**
+   * Libellé affiché sur la carte dans la main quand le template brut serait
+   * illisible (ex. « Écrire moi-même… » pour une carte à texte libre).
+   */
+  handLabel?: string;
+}
+
+/** Une carte est « libre » si l'utilisateur y écrit du texte (pas un chiffre).
+ * Le Composer ne juge jamais ce texte (doctrine D26) : il le signale comme
+ * « à valider en équipe ». */
+export function isFreeTextBlock(block: PuzzleBlock): boolean {
+  return block.kind === "numericField" && block.fieldKind === "text";
 }
 
 export type PuzzleBlock = TextBlock | NumericFieldBlock;

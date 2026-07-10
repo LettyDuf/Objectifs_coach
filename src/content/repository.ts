@@ -42,6 +42,7 @@ import { buildPitfallQuizCases, type PitfallQuizCase } from "../domain/pitfall-q
 import { OKR_EQUIPE_DEV_EXAMPLES_FR } from "./examples/okr-equipe.dev.fr";
 import { OKR_EQUIPE_DEV_SHEETS_FR } from "./sheets/okr-equipe.dev.fr";
 import { POSTURE_VALEURS_SHEETS_FR } from "./sheets/posture-valeurs.shared.fr";
+import { makeVerbesAmbigusSheet } from "./sheets/verbes-ambigus.shared.fr";
 import { OKR_ENTREPRISE_MANAGER_SHEETS_FR } from "./sheets/okr-entreprise.manager.fr";
 import { OKR_ENTREPRISE_MANAGER_WARMUP_FR } from "./warmup/okr-entreprise.manager.fr";
 
@@ -71,16 +72,32 @@ const EXAMPLES_INDEX: ExamplesIndex = {
 // apparaître en première position de l'onglet Théorie (validé Lætitia 2026-06-22).
 const SHEETS_INDEX: SheetsIndex = {
   sprint: {
-    dev: [...POSTURE_VALEURS_SHEETS_FR, ...SPRINT_DEV_SHEETS_FR],
+    dev: [
+      ...POSTURE_VALEURS_SHEETS_FR,
+      ...SPRINT_DEV_SHEETS_FR,
+      makeVerbesAmbigusSheet("sprint.sheet.verbes-ambigus", "sprint.fondamentaux"),
+    ],
   },
   pi: {
-    dev: [...POSTURE_VALEURS_SHEETS_FR, ...PI_DEV_SHEETS_FR],
+    dev: [
+      ...POSTURE_VALEURS_SHEETS_FR,
+      ...PI_DEV_SHEETS_FR,
+      makeVerbesAmbigusSheet("pi.sheet.verbes-ambigus", "pi.fondamentaux"),
+    ],
   },
   "okr-equipe": {
-    dev: [...POSTURE_VALEURS_SHEETS_FR, ...OKR_EQUIPE_DEV_SHEETS_FR],
+    dev: [
+      ...POSTURE_VALEURS_SHEETS_FR,
+      ...OKR_EQUIPE_DEV_SHEETS_FR,
+      makeVerbesAmbigusSheet("okr-equipe.sheet.verbes-ambigus", "okr.fondamentaux"),
+    ],
   },
   "okr-entreprise": {
-    manager: [...POSTURE_VALEURS_SHEETS_FR, ...OKR_ENTREPRISE_MANAGER_SHEETS_FR],
+    manager: [
+      ...POSTURE_VALEURS_SHEETS_FR,
+      ...OKR_ENTREPRISE_MANAGER_SHEETS_FR,
+      makeVerbesAmbigusSheet("okr-entreprise.sheet.verbes-ambigus", "okr-entreprise.fondamentaux"),
+    ],
   },
 };
 

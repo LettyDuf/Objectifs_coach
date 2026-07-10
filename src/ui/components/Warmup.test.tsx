@@ -1,5 +1,5 @@
 /**
- * Tests comportementaux du Warmup (binaire output/outcome).
+ * Tests comportementaux du Warmup (output / outcome / ça dépend).
  *
  * Couvre les invariants clés :
  *   - skipIntro saute l'écran d'introduction et démarre directement le 1er cas
@@ -78,5 +78,36 @@ describe("Warmup", () => {
       }
     }
     expect(await screen.findByTestId("end-slot")).toBeInTheDocument();
+  });
+
+  it("propose « ça dépend » sur un verbe seul, pas sur un mini-objectif", async () => {
+    const user = userEvent.setup();
+    const cases: WarmupCase[] = [
+      {
+        id: "d.1",
+        level: 1,
+        kind: "verb",
+        prompt: "Stabiliser",
+        expected: "depends",
+        explanation: "Le verbe seul ne permet pas de trancher.",
+      },
+      {
+        id: "d.2",
+        level: 2,
+        kind: "objective",
+        prompt: "Stabiliser la plateforme.",
+        expected: "output",
+        explanation: "Sans mesure ni bénéficiaire nommé, output.",
+      },
+    ];
+    render(<Warmup cases={cases} skipIntro />);
+    // Niveau 1 (verbe) : le bouton « ça dépend » est présent et correct
+    const dependsBtn = screen.getByRole("button", { name: /ça dépend/i });
+    await user.click(dependsBtn);
+    expect(await screen.findByText(/ne permet pas de trancher/)).toBeInTheDocument();
+    await user.click(screen.getByText(/Passer au niveau 2/));
+    await user.click(screen.getByText(/Niveau 2 ›/));
+    // Niveau 2 (mini-objectif) : pas de bouton « ça dépend »
+    expect(screen.queryByRole("button", { name: /ça dépend/i })).not.toBeInTheDocument();
   });
 });

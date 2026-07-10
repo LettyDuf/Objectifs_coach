@@ -7,7 +7,17 @@
  */
 
 export type WarmupKind = "verb" | "objective";
-export type WarmupAnswer = "output" | "outcome";
+
+/**
+ * Réponse possible d'un cas de Warmup.
+ * - "output" / "outcome" : le classement classique.
+ * - "depends" : réservé aux verbes ambigus de niveau 1 (« stabiliser »,
+ *   « sécuriser »...) qui promettent un changement sans dire comment on le
+ *   constatera. Le verbe seul ne permet pas de trancher : c'est le contexte
+ *   qui décide. Au niveau 2 (mini-objectifs), le contexte est donné, la
+ *   réponse redevient binaire ; aucun cas de niveau 2 ne doit porter "depends".
+ */
+export type WarmupAnswer = "output" | "outcome" | "depends";
 
 export interface WarmupCase {
   /** Identifiant stable, utile pour analytics / tests. */
@@ -18,7 +28,7 @@ export interface WarmupCase {
   kind: WarmupKind;
   /** Ce qui est présenté à l'utilisateur. */
   prompt: string;
-  /** La bonne réponse. */
+  /** La bonne réponse ("depends" autorisé uniquement si kind === "verb"). */
   expected: WarmupAnswer;
   /** Explication courte qui s'affiche après la réponse, pour mémoriser la règle. */
   explanation: string;

@@ -86,7 +86,11 @@ export function SheetCard({
           {sheet.intro && <p className="sheet-card__intro">{sheet.intro}</p>}
 
           {sheet.sections.map((section, idx) => (
-            <SheetSection key={idx} section={section} />
+            <SheetSection
+              key={idx}
+              section={section}
+              foldExamples={!!sheet.isNamedPitfall}
+            />
           ))}
 
           {/* CTA d'application + navigation entre fiches */}
@@ -135,8 +139,10 @@ function semanticClass(section: PedagogicalSection): string {
 
 function SheetSection({
   section,
+  foldExamples = false,
 }: {
   section: PedagogicalSection;
+  foldExamples?: boolean;
 }) {
   // Encart source — rendu différencié
   if (section.kind === "source") {
@@ -189,18 +195,25 @@ function SheetSection({
           ))}
         </ul>
       )}
-      {section.examples && (
-        <div className="sheet-card__examples">
-          {section.examples.map((ex, i) => (
-            <ExamplePair
-              key={i}
-              bad={ex.bad}
-              good={ex.good}
-              note={ex.note}
-            />
-          ))}
-        </div>
-      )}
+      {section.examples &&
+        (foldExamples ? (
+          /* Fiche piège (D59) : l'exemple alimente le quiz Anti-patterns,
+             on le replie pour ne pas transformer le quiz en test de mémoire. */
+          <details className="sheet-card__examples-fold">
+            <summary>Voir un exemple</summary>
+            <div className="sheet-card__examples">
+              {section.examples.map((ex, i) => (
+                <ExamplePair key={i} bad={ex.bad} good={ex.good} note={ex.note} />
+              ))}
+            </div>
+          </details>
+        ) : (
+          <div className="sheet-card__examples">
+            {section.examples.map((ex, i) => (
+              <ExamplePair key={i} bad={ex.bad} good={ex.good} note={ex.note} />
+            ))}
+          </div>
+        ))}
     </section>
   );
 }
