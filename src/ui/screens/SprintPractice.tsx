@@ -205,9 +205,8 @@ export function SprintPractice(_props: Props) {
       <Screen
         header={{
           eyebrow: <span>Sprint · S'entraîner · Verbe</span>,
-          title: "Le verbe : output ou outcome ?",
-          lede:
-            "Si le verbe décrit ce que tu fais, c'est un output. S'il décrit ce qui change après, c'est un outcome. Entraîne-toi à les distinguer.",
+          title: "Output ou outcome ?",
+          lede: "Fini n'est pas atteint : distingue ce que tu fais (output) de ce que ça change vraiment, pour quelqu'un (outcome).",
           actions: (
             <button className="btn" onClick={() => setActiveDrill(null)}>
               ‹ Retour aux exercices
@@ -220,16 +219,6 @@ export function SprintPractice(_props: Props) {
             <Zone variant="primary">
               {/* Encart règle persistant (extrait du warmup) : reste visible
                   pendant tout l'exercice pour éviter le clic intro redondant. */}
-              <div className="warmup__rule warmup__rule--standalone" role="note">
-                <p>
-                  <strong>Si le verbe décrit ce que tu fais</strong>, c'est un <em>output</em>.
-                  <br />
-                  <strong>S'il décrit ce qui change après</strong>, c'est un <em>outcome</em>.
-                </p>
-                <p className="warmup__rule-aside">
-                  Un bon objectif vise un <em>outcome</em> : un effet mesurable côté utilisateur ou métier.
-                </p>
-              </div>
               <Warmup
                 key="warmup-verbe"
                 cases={warmupCases}

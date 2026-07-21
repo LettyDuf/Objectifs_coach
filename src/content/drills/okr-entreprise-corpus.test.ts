@@ -9,32 +9,10 @@
  */
 
 import { describe, it, expect } from "vitest";
-import { OKR_ENTREPRISE_MANAGER_WARMUP_FR } from "../warmup/okr-entreprise.manager.fr";
 import { OKR_ENTREPRISE_MANAGER_INDICATOR_FR } from "./okr-entreprise.indicator.fr";
 import { OKR_ENTREPRISE_MANAGER_VARIATION_FR } from "./okr-entreprise.variation.fr";
 import { OKR_ENTREPRISE_MANAGER_ECHEANCE_FR } from "./okr-entreprise.echeance.fr";
 import { OKR_ENTREPRISE_MANAGER_CONTEXTE_FR } from "./okr-entreprise.contexte.fr";
-
-describe("Warmup OKR entreprise (output/outcome)", () => {
-  const cases = OKR_ENTREPRISE_MANAGER_WARMUP_FR;
-
-  it("a 12 cas de niveau 1 (dont 2 verbes ambigus) et 10 de niveau 2", () => {
-    expect(cases.filter((c) => c.level === 1).length).toBe(12);
-    expect(cases.filter((c) => c.level === 2).length).toBe(10);
-  });
-
-  it("IDs uniques", () => {
-    const ids = cases.map((c) => c.id);
-    expect(new Set(ids).size).toBe(ids.length);
-  });
-
-  it("aucun champ texte vide", () => {
-    for (const c of cases) {
-      expect(c.prompt, `${c.id}: prompt`).not.toBe("");
-      expect(c.explanation, `${c.id}: explanation`).not.toBe("");
-    }
-  });
-});
 
 describe("Corpus Indicateur OKR entreprise (QCM 1-parmi-3)", () => {
   const corpus = OKR_ENTREPRISE_MANAGER_INDICATOR_FR;

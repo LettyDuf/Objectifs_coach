@@ -1,35 +1,53 @@
 /**
- * Quiz d'échauffement output/outcome — domaine.
+ * Échauffement output / outcome — domaine (refonte 2026-07).
  *
- * Pédagogie : un cas est soit un *verbe pur* (niveau 1, le verbe seul donne déjà
- * une orientation forte), soit un *mini-objectif* (niveau 2, le contexte tranche
- * et peut renverser ce que le verbe seul suggérerait).
+ * On n'apprend plus à classer un verbe seul (indécidable), mais à sentir une
+ * seule idée : « fini n'est pas atteint ». Le domaine reste sans logique : ce
+ * sont des types et du contenu structuré. La comparaison choix / attendu vit
+ * dans l'adaptateur UI.
  */
 
-export type WarmupKind = "verb" | "objective";
+/** Les deux vraies catégories, plus un bac de côté quand la mesure manque. */
+export type WarmupAnswer = "output" | "outcome" | "complete";
 
-/**
- * Réponse possible d'un cas de Warmup.
- * - "output" / "outcome" : le classement classique.
- * - "depends" : réservé aux verbes ambigus de niveau 1 (« stabiliser »,
- *   « sécuriser »...) qui promettent un changement sans dire comment on le
- *   constatera. Le verbe seul ne permet pas de trancher : c'est le contexte
- *   qui décide. Au niveau 2 (mini-objectifs), le contexte est donné, la
- *   réponse redevient binaire ; aucun cas de niveau 2 ne doit porter "depends".
- */
-export type WarmupAnswer = "output" | "outcome" | "depends";
-
+/** Un cas de tri : une phrase, sa bonne case, et une rétroaction par situation. */
 export interface WarmupCase {
-  /** Identifiant stable, utile pour analytics / tests. */
+  /** Identifiant stable (analytics / tests). */
   id: string;
-  /** Niveau de difficulté : 1 = verbe pur, 2 = mini-objectif avec contexte. */
-  level: 1 | 2;
-  /** Type du cas (verbe seul ou phrase). */
-  kind: WarmupKind;
-  /** Ce qui est présenté à l'utilisateur. */
+  /** La phrase à trier. */
   prompt: string;
-  /** La bonne réponse ("depends" autorisé uniquement si kind === "verb"). */
+  /** La bonne case. */
   expected: WarmupAnswer;
-  /** Explication courte qui s'affiche après la réponse, pour mémoriser la règle. */
-  explanation: string;
+  /** Rétroaction quand la personne trouve : on rejoue le test, jamais de score. */
+  feedbackGood: string;
+  /** Rétroaction quand elle se trompe : une question qui la remet sur la piste. */
+  feedbackAsk: string;
+  /** Pour un cas "complete" : la question qui fait produire la mesure manquante. */
+  completePrompt?: string;
+}
+
+/** Un des deux mots du déclic, traduit en clair, avec sa posture. */
+export interface WarmupDeclicTerm {
+  term: string;
+  gloss: string;
+  def: string;
+  posture: string;
+}
+
+/** Une paire d'exemples : la même situation en output puis en outcome. */
+export interface WarmupDeclicExample {
+  output: string;
+  outcome: string;
+  note?: string;
+}
+
+/** Contenu générique du déclic (définitions, posture, exemples, test). Défini une fois. */
+export interface WarmupDeclic {
+  output: WarmupDeclicTerm;
+  outcome: WarmupDeclicTerm;
+  bridge: string;
+  examplesLabel: string;
+  examples: WarmupDeclicExample[];
+  examplesPunch: string;
+  test: string;
 }

@@ -1,113 +1,77 @@
-/**
- * Tests comportementaux du Warmup (output / outcome / ça dépend).
- *
- * Couvre les invariants clés :
- *   - skipIntro saute l'écran d'introduction et démarre directement le 1er cas
- *   - sélection révèle l'explication
- *   - endSlot apparaît bien après le bilan
- */
-
 import { describe, it, expect } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Warmup } from "./Warmup";
 import type { WarmupCase } from "../../domain/warmup";
 
 const CASES: WarmupCase[] = [
   {
-    id: "t.1",
-    level: 1,
-    kind: "verb",
-    prompt: "Livrer",
+    id: "t.out",
+    prompt: "« Migrer la base. »",
     expected: "output",
-    explanation: "Livrer décrit ce qu'on produit. Output.",
+    feedbackGood: "GOOD_OUT",
+    feedbackAsk: "ASK_OUT",
   },
   {
-    id: "t.2",
-    level: 1,
-    kind: "verb",
-    prompt: "Réduire",
+    id: "t.oc",
+    prompt: "« Réponse en 2 secondes. »",
     expected: "outcome",
-    explanation: "Réduire suppose un avant/après mesurable. Outcome.",
+    feedbackGood: "GOOD_OC",
+    feedbackAsk: "ASK_OC",
+  },
+  {
+    id: "t.cp",
+    prompt: "« Sécuriser. »",
+    expected: "complete",
+    feedbackGood: "GOOD_CP",
+    feedbackAsk: "ASK_CP",
+    completePrompt: "QUESTION_COMPLETE",
   },
 ];
 
-describe("Warmup", () => {
-  it("affiche l'écran intro par défaut (sans skipIntro)", () => {
+function item(id: string) {
+  return within(screen.getByTestId("warmup-item-" + id));
+}
+
+describe("Warmup (refonte)", () => {
+  it("montre le déclic : les deux mots traduits", () => {
     render(<Warmup cases={CASES} />);
-    expect(screen.getByText(/Lancer l'échauffement/)).toBeInTheDocument();
+    expect(screen.getByText("ce que ça donne")).toBeInTheDocument();
+    expect(screen.getByText(/déplacer son regard/i)).toBeInTheDocument();
+    expect(screen.getByText(/le résultat visé peut-il quand même/i)).toBeInTheDocument();
   });
 
-  it("skipIntro démarre directement en mode playing", () => {
-    render(<Warmup cases={CASES} skipIntro />);
-    // Pas d'écran intro, pas de bouton "Lancer"
-    expect(screen.queryByText(/Lancer l'échauffement/)).not.toBeInTheDocument();
-    // Boutons output / outcome présents
-    expect(screen.getByText(/output/i)).toBeInTheDocument();
-    expect(screen.getByText(/outcome/i)).toBeInTheDocument();
+  it("montre les phrases à trier", () => {
+    render(<Warmup cases={CASES} />);
+    expect(screen.getByText(/Migrer la base/)).toBeInTheDocument();
+    expect(screen.getByText(/Sécuriser/)).toBeInTheDocument();
   });
 
-  it("révèle l'explication après la sélection", async () => {
+  it("montre la bonne rétroaction quand on trie juste", async () => {
     const user = userEvent.setup();
-    render(<Warmup cases={CASES} skipIntro />);
-    // Cliquer le 1er bouton output ou outcome
-    const choices = screen.getAllByRole("button");
-    await user.click(choices[0]!);
-    // Une des explications doit apparaître
-    const expl = await screen.findByText(/décrit|suppose/i);
-    expect(expl).toBeInTheDocument();
+    render(<Warmup cases={CASES} />);
+    await user.click(item("t.out").getByRole("button", { name: /^Output/ }));
+    expect(screen.getByText("GOOD_OUT")).toBeInTheDocument();
   });
 
-  it("affiche le endSlot après avoir tout joué", async () => {
+  it("montre une question, sans score, quand on se trompe", async () => {
     const user = userEvent.setup();
-    render(
-      <Warmup
-        cases={CASES}
-        skipIntro
-        endSlot={<div data-testid="end-slot">Suite</div>}
-      />,
-    );
-    // Jouer les 2 cas
-    for (let i = 0; i < 2; i++) {
-      const allButtons = screen.getAllByRole("button");
-      await user.click(allButtons[0]!);
-      const next = await screen.findByText(/Suivant|Voir|terminé/i);
-      // Pour le dernier, c'est "Voir le bilan" ; sinon "Suivant"
-      if (next.textContent && /Voir|Suivant/.test(next.textContent)) {
-        await user.click(next);
-      }
-    }
-    expect(await screen.findByTestId("end-slot")).toBeInTheDocument();
+    render(<Warmup cases={CASES} />);
+    await user.click(item("t.out").getByRole("button", { name: /^Outcome/ }));
+    expect(screen.getByText("ASK_OUT")).toBeInTheDocument();
+    expect(screen.queryByText(/\d+\s*\/\s*\d+/)).not.toBeInTheDocument();
   });
 
-  it("propose « ça dépend » sur un verbe seul, pas sur un mini-objectif", async () => {
+  it("le bac « À compléter » ouvre le champ de mesure", async () => {
     const user = userEvent.setup();
-    const cases: WarmupCase[] = [
-      {
-        id: "d.1",
-        level: 1,
-        kind: "verb",
-        prompt: "Stabiliser",
-        expected: "depends",
-        explanation: "Le verbe seul ne permet pas de trancher.",
-      },
-      {
-        id: "d.2",
-        level: 2,
-        kind: "objective",
-        prompt: "Stabiliser la plateforme.",
-        expected: "output",
-        explanation: "Sans mesure ni bénéficiaire nommé, output.",
-      },
-    ];
-    render(<Warmup cases={cases} skipIntro />);
-    // Niveau 1 (verbe) : le bouton « ça dépend » est présent et correct
-    const dependsBtn = screen.getByRole("button", { name: /ça dépend/i });
-    await user.click(dependsBtn);
-    expect(await screen.findByText(/ne permet pas de trancher/)).toBeInTheDocument();
-    await user.click(screen.getByText(/Passer au niveau 2/));
-    await user.click(screen.getByText(/Niveau 2 ›/));
-    // Niveau 2 (mini-objectif) : pas de bouton « ça dépend »
-    expect(screen.queryByRole("button", { name: /ça dépend/i })).not.toBeInTheDocument();
+    render(<Warmup cases={CASES} />);
+    await user.click(item("t.cp").getByRole("button", { name: /À compléter/ }));
+    expect(screen.getByText("QUESTION_COMPLETE")).toBeInTheDocument();
+    expect(item("t.cp").getByRole("textbox")).toBeInTheDocument();
+  });
+
+  it("rend le endSlot", () => {
+    render(<Warmup cases={CASES} endSlot={<div data-testid="end-slot" />} />);
+    expect(screen.getByTestId("end-slot")).toBeInTheDocument();
   });
 });

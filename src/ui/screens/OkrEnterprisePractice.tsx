@@ -137,9 +137,8 @@ export function OkrEnterprisePractice(_props: Props) {
       <Screen
         header={{
           eyebrow: <span>OKR entreprise · S'entraîner · Verbe</span>,
-          title: "Le verbe d'un Résultat clé : output ou outcome ?",
-          lede:
-            "Un Résultat clé vise un changement mesurable, pas une livraison. Entraîne-toi à reconnaître la distinction à l'échelle entreprise.",
+          title: "Output ou outcome ?",
+          lede: "Fini n'est pas atteint : distingue ce que tu fais (output) de ce que ça change vraiment, pour quelqu'un (outcome).",
           actions: (
             <button className="btn" onClick={() => setActiveDrill(null)}>
               ‹ Retour aux exercices
@@ -150,16 +149,6 @@ export function OkrEnterprisePractice(_props: Props) {
           variant: "single",
           primary: (
             <Zone variant="primary">
-              <div className="warmup__rule warmup__rule--standalone" role="note">
-                <p>
-                  <strong>Si le verbe décrit ce que fait l'entreprise</strong>, c'est un <em>output</em>.
-                  <br />
-                  <strong>S'il décrit ce qui change après</strong>, c'est un <em>outcome</em>.
-                </p>
-                <p className="warmup__rule-aside">
-                  Un bon Résultat clé vise un <em>outcome</em> mesurable, jamais un projet ni une activité.
-                </p>
-              </div>
               <Warmup
                 key="warmup-verbe-okr-entreprise"
                 cases={warmupCases}
