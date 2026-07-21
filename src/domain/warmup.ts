@@ -1,10 +1,9 @@
 /**
  * Échauffement output / outcome — domaine (refonte 2026-07).
  *
- * On n'apprend plus à classer un verbe seul (indécidable), mais à sentir une
- * seule idée : « fini n'est pas atteint ». Le domaine reste sans logique : ce
- * sont des types et du contenu structuré. La comparaison choix / attendu vit
- * dans l'adaptateur UI.
+ * Une seule idée : « fini n'est pas atteint ». Le domaine porte les types et
+ * une petite fonction pure d'ordonnancement (testable, sans framework). La
+ * comparaison choix / attendu vit dans l'adaptateur UI.
  */
 
 /** Les deux vraies catégories, plus un bac de côté quand la mesure manque. */
@@ -12,11 +11,8 @@ export type WarmupAnswer = "output" | "outcome" | "complete";
 
 /** Un cas de tri : une phrase, sa bonne case, et une rétroaction par situation. */
 export interface WarmupCase {
-  /** Identifiant stable (analytics / tests). */
   id: string;
-  /** La phrase à trier. */
   prompt: string;
-  /** La bonne case. */
   expected: WarmupAnswer;
   /** Rétroaction quand la personne trouve : on rejoue le test, jamais de score. */
   feedbackGood: string;
@@ -38,7 +34,6 @@ export interface WarmupDeclicTerm {
 export interface WarmupDeclicExample {
   output: string;
   outcome: string;
-  note?: string;
 }
 
 /** Contenu générique du déclic (définitions, posture, exemples, test). Défini une fois. */
@@ -48,6 +43,52 @@ export interface WarmupDeclic {
   bridge: string;
   examplesLabel: string;
   examples: WarmupDeclicExample[];
-  examplesPunch: string;
   test: string;
+}
+
+/**
+ * Ordonne les cas pour que deux réponses identiques ne se suivent JAMAIS.
+ * Sinon l'équipe devine par le rythme au lieu de raisonner. Fonction pure :
+ * on peut injecter un générateur aléatoire pour la tester.
+ */
+export function orderVaried<T extends { expected: WarmupAnswer }>(
+  cases: T[],
+  rnd: () => number = Math.random,
+): T[] {
+  const shuffled = [...cases];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(rnd() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j]!, shuffled[i]!];
+  }
+  const byType = new Map<WarmupAnswer, T[]>();
+  for (const c of shuffled) {
+    const arr = byType.get(c.expected) ?? [];
+    arr.push(c);
+    byType.set(c.expected, arr);
+  }
+  const res: T[] = [];
+  let last: WarmupAnswer | null = null;
+  for (let n = 0; n < cases.length; n++) {
+    let best: WarmupAnswer | null = null;
+    let bestLen = -1;
+    for (const [t, arr] of byType) {
+      if (t === last) continue;
+      if (arr.length > bestLen) {
+        best = t;
+        bestLen = arr.length;
+      }
+    }
+    if (best === null || bestLen <= 0) {
+      for (const [t, arr] of byType) {
+        if (arr.length) {
+          best = t;
+          break;
+        }
+      }
+    }
+    const arr = byType.get(best!)!;
+    res.push(arr.pop()!);
+    last = best;
+  }
+  return res;
 }

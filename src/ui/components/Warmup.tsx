@@ -1,14 +1,14 @@
 /**
  * Échauffement « Fini n'est pas atteint » (refonte 2026-07, validée avec Lætitia).
  *
- * Deux temps sur un même écran :
- *   1. Le déclic — on traduit output / outcome en clair, on montre le
- *      déplacement du regard (posture), puis le test unique.
- *   2. Le tri — quelques phrases à ranger en Output / Outcome / À compléter.
- *      La rétroaction est une question ou le test qu'on rejoue. Aucun score.
+ * 1. Le déclic : on traduit output / outcome en clair, on montre le déplacement
+ *    du regard (posture), on illustre par deux exemples à égalité, puis le test.
+ * 2. Le tri : une phrase à la fois, à ranger en Output / Outcome / À compléter.
+ *    Rétroaction = une question ou le test rejoué. Aucun score. On enchaîne
+ *    autant de phrases qu'on veut ; le paquet se remélange, sans jamais deux
+ *    réponses identiques de suite.
  *
- * Le contenu vit dans les données (declic.fr.ts + les corpus de tri) ; ce
- * composant ne fait que l'afficher et comparer le choix à la bonne case.
+ * Tout le contenu vit dans les données (declic.fr.ts + les corpus de tri).
  */
 
 import { Fragment, useState } from "react";
@@ -17,6 +17,7 @@ import type {
   WarmupAnswer,
   WarmupDeclicTerm,
 } from "../../domain/warmup";
+import { orderVaried } from "../../domain/warmup";
 import { WARMUP_DECLIC_FR } from "../../content/warmup/declic.fr";
 
 interface Props {
@@ -48,29 +49,45 @@ function DefCard({ t, tone }: { t: WarmupDeclicTerm; tone: "out" | "oc" }) {
   );
 }
 
-function TriItem({ c }: { c: WarmupCase }) {
+function Tri({ cases }: { cases: WarmupCase[] }) {
+  const [pool, setPool] = useState<WarmupCase[]>(() => orderVaried(cases));
+  const [idx, setIdx] = useState(0);
   const [chosen, setChosen] = useState<WarmupAnswer | null>(null);
   const [locked, setLocked] = useState(false);
   const [txt, setTxt] = useState("");
 
-  const good = chosen !== null && chosen === c.expected;
-  const showComplete = c.expected === "complete" && chosen !== null;
+  const cur = pool[idx];
+  if (!cur) return null;
+
+  const good = chosen !== null && chosen === cur.expected;
+  const showComplete = cur.expected === "complete" && chosen !== null;
 
   function choose(k: WarmupAnswer) {
-    if (locked) return;
+    if (locked || !cur) return;
     setChosen(k);
-    // On verrouille seulement quand une bonne réponse binaire est trouvée.
-    if (k === c.expected && c.expected !== "complete") setLocked(true);
+    if (k === cur.expected && cur.expected !== "complete") setLocked(true);
+  }
+
+  function next() {
+    let np = idx + 1;
+    if (np >= pool.length) {
+      setPool(orderVaried(cases));
+      np = 0;
+    }
+    setIdx(np);
+    setChosen(null);
+    setLocked(false);
+    setTxt("");
   }
 
   return (
-    <div className="warmup__item" data-testid={"warmup-item-" + c.id}>
-      <div className="warmup__item-prompt">{c.prompt}</div>
+    <div className="warmup__item">
+      <div className="warmup__item-prompt">{cur.prompt}</div>
       <div className="warmup__choices" role="group" aria-label="Output, outcome, ou à compléter">
         {CHOICES.map((ch) => {
           const state =
             chosen === ch.key
-              ? ch.key === c.expected
+              ? ch.key === cur.expected
                 ? " warmup__choice--ok"
                 : " warmup__choice--no"
               : "";
@@ -94,17 +111,17 @@ function TriItem({ c }: { c: WarmupCase }) {
           className={"warmup__fb " + (good ? "warmup__fb--good" : "warmup__fb--ask")}
           role="status"
         >
-          {good ? c.feedbackGood : c.feedbackAsk}
+          {good ? cur.feedbackGood : cur.feedbackAsk}
         </div>
       )}
 
       {showComplete && (
         <div className="warmup__complete">
-          <label className="warmup__complete-label" htmlFor={"cp-" + c.id}>
-            {c.completePrompt}
+          <label className="warmup__complete-label" htmlFor="warmup-cp">
+            {cur.completePrompt}
           </label>
           <input
-            id={"cp-" + c.id}
+            id="warmup-cp"
             type="text"
             className="warmup__complete-input"
             value={txt}
@@ -118,6 +135,12 @@ function TriItem({ c }: { c: WarmupCase }) {
             </div>
           )}
         </div>
+      )}
+
+      {chosen !== null && (
+        <button type="button" className="warmup__next" onClick={next}>
+          Phrase suivante ›
+        </button>
       )}
     </div>
   );
@@ -145,25 +168,23 @@ export function Warmup({ cases, endSlot }: Props) {
         <div className="warmup__exemple">
           <div className="warmup__ex-lab">{d.examplesLabel}</div>
           <div className="warmup__extab">
-            <div className="warmup__exhead warmup__exhead--out">
-              Je parle de mon geste<span>output, le regard sur moi</span>
+            <div className="warmup__exhead">
+              <span className="warmup__exdir" aria-hidden="true">↩</span> Je parle de mon geste
             </div>
-            <div className="warmup__exhead warmup__exhead--oc">
-              Je parle de ce que ça change<span>outcome, le regard sur l'autre</span>
+            <div className="warmup__exhead">
+              <span className="warmup__exdir" aria-hidden="true">→</span> Je parle de l'effet
             </div>
             {d.examples.map((ex, i) => (
               <Fragment key={i}>
-                <div className="warmup__excell warmup__excell--out">
+                <div className="warmup__excell">
                   <b>{ex.output}</b>
                 </div>
-                <div className="warmup__excell warmup__excell--oc">
+                <div className="warmup__excell">
                   <b>{ex.outcome}</b>
-                  {ex.note && <span>{ex.note}</span>}
                 </div>
               </Fragment>
             ))}
           </div>
-          <div className="warmup__punch">{d.examplesPunch}</div>
         </div>
 
         <div className="warmup__testbox">
@@ -171,17 +192,15 @@ export function Warmup({ cases, endSlot }: Props) {
         </div>
       </section>
 
-      {/* ============ 2. À TOI DE TRIER ============ */}
+      {/* ============ 2. À TOI, UNE PHRASE À LA FOIS ============ */}
       <section className="warmup__tri" aria-label="À toi, avec le test">
-        <h3 className="warmup__tri-title">À toi. Applique la question.</h3>
-        {cases.map((c) => (
-          <TriItem key={c.id} c={c} />
-        ))}
+        <h3 className="warmup__tri-title">Une phrase à la fois. Applique la question.</h3>
+        <Tri cases={cases} />
         <div className="warmup__reflex">
           Le réflexe à emporter : tout le travail fait, est-ce pour autant atteint ?
         </div>
         <div className="warmup__noscore">
-          Aucun score. La rétroaction est une question, ou le test qu'on rejoue.
+          Aucun score. Enchaîne autant de phrases que tu veux ; le paquet se remélange quand tu en as fait le tour.
         </div>
       </section>
 
