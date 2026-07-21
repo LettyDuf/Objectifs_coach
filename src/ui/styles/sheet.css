@@ -570,28 +570,6 @@
   outline-offset: 2px;
 }
 
-/* Kicker en mode playing : score en live à droite, n° de cas à gauche. */
-.warmup__kicker--play {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: var(--space-3);
-}
-
-.warmup__live-score {
-  font-family: var(--font-mono);
-  color: var(--color-text-muted);
-  font-size: var(--font-size-xs);
-  letter-spacing: 0.02em;
-}
-
-/* Combo : marque ludique sur série de 3+ bonnes réponses. Discret, ocre, italique léger. */
-.warmup__combo {
-  color: var(--color-accent-2);
-  font-weight: 600;
-  font-variant-numeric: tabular-nums;
-}
-
 /* ============================================================
  * Fiches pédagogiques
  * ============================================================ */

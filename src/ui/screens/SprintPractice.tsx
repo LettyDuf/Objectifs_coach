@@ -48,8 +48,8 @@ const DRILLS: DrillDef[] = [
   {
     key: "verbe",
     num: "1",
-    title: "Le verbe",
-    desc: "Output ou outcome ? Apprends à reconnaître le verbe qui décrit un effet plutôt qu'une livraison.",
+    title: "Output ou outcome",
+    desc: "Fini n'est pas atteint : distingue ce que tu fais de ce que ça change vraiment.",
     status: "active",
     group: "brique",
   },

@@ -39,8 +39,8 @@ const DRILLS: DrillDef[] = [
   {
     key: "verbe",
     num: "1",
-    title: "Le verbe d'un Résultat clé",
-    desc: "Output ou outcome ? Apprends à reconnaître le verbe qui décrit un changement à atteindre, à l'échelle entreprise.",
+    title: "Output ou outcome",
+    desc: "Fini n'est pas atteint : distingue ce que tu fais de ce que ça change vraiment.",
     status: "active",
   },
   {

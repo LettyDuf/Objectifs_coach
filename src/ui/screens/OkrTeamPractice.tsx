@@ -38,8 +38,8 @@ const DRILLS: DrillDef[] = [
   {
     key: "verbe",
     num: "1",
-    title: "Le verbe d'un KR",
-    desc: "Output ou outcome ? Apprends à reconnaître le verbe qui décrit un changement à atteindre.",
+    title: "Output ou outcome",
+    desc: "Fini n'est pas atteint : distingue ce que tu fais de ce que ça change vraiment.",
     status: "active",
   },
   {
