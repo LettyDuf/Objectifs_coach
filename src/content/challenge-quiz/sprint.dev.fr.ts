@@ -40,7 +40,7 @@ export const SPRINT_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "C",
-        text: "Faire passer le nombre d'incidents production du module commande de 14 à 5 par semaine d'ici la fin du sprint.",
+        text: "Ramener le nombre d'incidents production du module commande de 14 à 5 par semaine d'ici la fin du sprint.",
         verdict: "good",
         explanation:
           "Outcome mesurable, indicateur précis, avant/après chiffré, échéance dans le sprint. La structure est solide — les chiffres exacts restent à convenir avec le PO.",
@@ -77,7 +77,7 @@ export const SPRINT_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "B",
-        text: "Faire passer le taux d'activation des nouveaux comptes à J+30 de 42 % à 60 % d'ici la fin du sprint.",
+        text: "Porter le taux d'activation des nouveaux comptes à J+30 de 42 % à 60 % d'ici la fin du sprint.",
         verdict: "good",
         explanation:
           "Outcome chiffré sur un indicateur métier nommé, avec échéance précise. La structure tient.",
@@ -123,7 +123,7 @@ export const SPRINT_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "B",
-        text: "Faire passer le temps moyen de déploiement d'un hotfix de 4 h à 1 h d'ici la fin du sprint.",
+        text: "Réduire le temps moyen de déploiement d'un hotfix de 4 h à 1 h d'ici la fin du sprint.",
         verdict: "good",
         explanation:
           "Indicateur ops observable, avant/après chiffré, échéance. Bénéficiaires implicites mais clairs (équipes fonctionnalité, astreinte).",
@@ -222,7 +222,7 @@ export const SPRINT_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "C",
-        text: "Faire passer le taux de clic sur les résultats de recherche de 12 % à 20 % d'ici la fin du sprint.",
+        text: "Relever le taux de clic sur les résultats de recherche de 12 % à 20 % d'ici la fin du sprint.",
         verdict: "good",
         explanation:
           "Outcome utilisateur mesurable, avant/après chiffré, échéance. L'autocomplétion devient un moyen, pas le but.",
@@ -266,7 +266,7 @@ export const SPRINT_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "C",
-        text: "Faire passer le nombre de pipelines qui tombent de 2-3 à 0 par semaine d'ici la fin du sprint.",
+        text: "Ramener le nombre de pipelines qui tombent de 2-3 à 0 par semaine d'ici la fin du sprint.",
         verdict: "good",
         explanation:
           "Outcome mesurable, indicateur précis, échéance, bénéficiaires implicites clairs (Business, astreinte).",
@@ -356,7 +356,7 @@ export const SPRINT_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "B",
-        text: "Faire passer le taux d'activation des nouveaux utilisateurs (1ʳᵉ action clé) de 38 % à 55 % d'ici la fin du sprint.",
+        text: "Porter le taux d'activation des nouveaux utilisateurs (1ʳᵉ action clé) de 38 % à 55 % d'ici la fin du sprint.",
         verdict: "good",
         explanation:
           "Métrique d'usage qui mesure l'effet réel de l'intégration — pas un téléchargement orphelin. Aligné avec le travail effectif de l'équipe.",
@@ -406,7 +406,7 @@ export const SPRINT_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "B",
-        text: "Faire passer le temps de réponse p95 de l'API de 850 ms à 400 ms d'ici la fin du sprint.",
+        text: "Réduire le temps de réponse p95 de l'API de 850 ms à 400 ms d'ici la fin du sprint.",
         verdict: "good",
         explanation:
           "Ambition crédible (~50 % de réduction), métrique nommée, avant, après, échéance. L'équipe peut s'engager honnêtement et juger à la fin du sprint.",
@@ -456,7 +456,7 @@ export const SPRINT_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "B",
-        text: "Faire passer le taux de clic sur « souscrire » depuis l'écran de fin d'essai de 22 % à 35 % d'ici la fin du sprint.",
+        text: "Relever le taux de clic sur « souscrire » depuis l'écran de fin d'essai de 22 % à 35 % d'ici la fin du sprint.",
         verdict: "good",
         explanation:
           "Métrique directement sous l'influence du redesign que l'équipe livre. Observable immédiatement en fin de sprint. Indicateur leading qui contribue à la conversion (suivie en aval, par l'équipe Upgrade au PI).",

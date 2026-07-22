@@ -52,7 +52,7 @@ export const PI_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "B",
-        text: "Faire passer le taux de conversion du tunnel mobile de 2,3 % à 3,5 % d'ici la revue de PI.",
+        text: "Porter le taux de conversion du tunnel mobile de 2,3 % à 3,5 % d'ici la revue de PI.",
         verdict: "good",
         explanation:
           "Outcome de valeur métier, métrique nommée, point de départ, cible, fenêtre de mesure (revue de PI). Le Business Owner peut juger sans ambiguïté.",
@@ -199,7 +199,7 @@ export const PI_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "B",
-        text: "Faire passer le taux d'activation à J+30 de 42 % à 62 % d'ici la revue de PI.",
+        text: "Relever le taux d'activation à J+30 de 42 % à 62 % d'ici la revue de PI.",
         verdict: "good",
         explanation:
           "Métrique nommée, point de départ (42 %), cible (62 %), fenêtre (revue de PI). Aligné avec la demande du board, mesurable sans débat.",
@@ -297,7 +297,7 @@ export const PI_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "B",
-        text: "Faire passer le churn mensuel des comptes premium de 4 % à 2 % d'ici la revue de PI.",
+        text: "Ramener le churn mensuel des comptes premium de 4 % à 2 % d'ici la revue de PI.",
         verdict: "good",
         explanation:
           "Métrique nommée, point de départ (4 %), cible (2 %, proche de l'historique 1,8 %), fenêtre. Falsifiable, calibré sur la confiance équipe.",
@@ -397,7 +397,7 @@ export const PI_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "B",
-        text: "Faire passer le temps moyen pour répondre à une question business via la plateforme de 3 jours à 2 h d'ici la revue de PI.",
+        text: "Réduire le temps moyen pour répondre à une question business via la plateforme de 3 jours à 2 h d'ici la revue de PI.",
         verdict: "good",
         explanation:
           "Métrique directement sous l'influence du train (vitesse de réponse de la plateforme). Mesurable, observable à la revue de PI. Crée un appel à utiliser la plateforme — sans dépendre de la maturité des équipes clientes.",
@@ -547,7 +547,7 @@ export const PI_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "B",
-        text: "Faire passer le taux d'inscription qualifiée (activée J+7) depuis la landing page de 1,8 % à 5 % d'ici la revue de PI.",
+        text: "Relever le taux d'inscription qualifiée (activée J+7) depuis la landing page de 1,8 % à 5 % d'ici la revue de PI.",
         verdict: "good",
         explanation:
           "Métrique composée qui intègre la qualité : on ne compte que les inscrits qui ont fait quelque chose. Impossible de l'atteindre en attirant n'importe qui. Outcome aligné avec la valeur, pas avec le volume.",
@@ -597,7 +597,7 @@ export const PI_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "B",
-        text: "Faire passer le TMR moyen des incidents plateforme de 45 min à 15 min d'ici la revue de PI.",
+        text: "Ramener le TMR moyen des incidents plateforme de 45 min à 15 min d'ici la revue de PI.",
         verdict: "good",
         explanation:
           "Métrique de fin (la fiabilité perçue par les équipes fonctionnalité : moins de temps en panne). La couverture devient un des leviers possibles pour y arriver, parmi d'autres. Aligné avec ce que mesure le Business Owner.",

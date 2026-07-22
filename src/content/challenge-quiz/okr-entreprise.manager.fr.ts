@@ -60,7 +60,7 @@ export const OKR_ENTREPRISE_MANAGER_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "B",
-        text: "Faire passer le NPS des clients grands comptes de 24 à 45 d'ici la fin de l'année.",
+        text: "Relever le NPS des clients grands comptes de 24 à 45 d'ici la fin de l'année.",
         verdict: "good",
         explanation:
           "Métrique nommée (NPS grands comptes), point de départ (24), cible (45), échéance. Un outcome qu'une marketplace peut effectivement faire bouger.",
@@ -111,7 +111,7 @@ export const OKR_ENTREPRISE_MANAGER_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "B",
-        text: "Faire passer le taux de turnover annuel des équipes en magasin de 34 % à 22 % d'ici la fin de l'année.",
+        text: "Ramener le taux de turnover annuel des équipes en magasin de 34 % à 22 % d'ici la fin de l'année.",
         verdict: "good",
         explanation:
           "Métrique nommée, point de départ (34 %), cible (22 %), échéance. Un vrai changement mesurable que la formation managers peut contribuer à produire.",
@@ -160,7 +160,7 @@ export const OKR_ENTREPRISE_MANAGER_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "B",
-        text: "Faire passer le CSAT moyen de 3,4 / 5 à 4,3 / 5 d'ici la fin de l'année.",
+        text: "Porter le CSAT moyen de 3,4 / 5 à 4,3 / 5 d'ici la fin de l'année.",
         verdict: "good",
         explanation:
           "Métrique nommée, point de départ, cible, échéance. Falsifiable sans ambiguïté.",
@@ -259,7 +259,7 @@ export const OKR_ENTREPRISE_MANAGER_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "B",
-        text: "Faire passer le nombre d'incidents majeurs signalés par des clients de 6 à 1 par trimestre d'ici la fin de l'année.",
+        text: "Réduire le nombre d'incidents majeurs signalés par des clients de 6 à 1 par trimestre d'ici la fin de l'année.",
         verdict: "good",
         explanation:
           "Métrique nommée, point de départ, cible, échéance. Un vrai changement mesurable, c'est ça un Résultat clé.",
@@ -309,7 +309,7 @@ export const OKR_ENTREPRISE_MANAGER_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "B",
-        text: "Faire passer la trésorerie disponible (runway) de 14 à 20 mois d'ici la fin de l'année.",
+        text: "Porter la trésorerie disponible (runway) de 14 à 20 mois d'ici la fin de l'année.",
         verdict: "good",
         explanation:
           "Métrique nommée, point de départ, cible, échéance. Un vrai changement qui renforce concrètement la position de négociation avant la levée.",
@@ -359,7 +359,7 @@ export const OKR_ENTREPRISE_MANAGER_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "B",
-        text: "Faire passer la part de marché du segment principal de 12,4 % à 18 % d'ici la fin de l'année.",
+        text: "Relever la part de marché du segment principal de 12,4 % à 18 % d'ici la fin de l'année.",
         verdict: "good",
         explanation:
           "Écart ambitieux (+5,6 pts) qui demande un vrai effort au-delà du plan déjà engagé. Probablement autour de 50-60 % de confiance pour le CODIR, dans la fourchette OKR.",
@@ -409,7 +409,7 @@ export const OKR_ENTREPRISE_MANAGER_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "B",
-        text: "Faire passer l'effectif tech de 1 240 à 1 500 collaborateurs d'ici la fin de l'année.",
+        text: "Faire croître l'effectif tech de 1 240 à 1 500 collaborateurs d'ici la fin de l'année.",
         verdict: "good",
         explanation:
           "Écart ambitieux (+260) qui dépasse largement le plan déjà validé et demande un vrai effort de sourcing. Calibrage cohérent avec l'ambition OKR (50-70 % de confiance).",
@@ -509,7 +509,7 @@ export const OKR_ENTREPRISE_MANAGER_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "B",
-        text: "Faire passer les ventes du produit phare de 180 000 à 230 000 unités par an d'ici la fin de l'année.",
+        text: "Porter les ventes du produit phare de 180 000 à 230 000 unités par an d'ici la fin de l'année.",
         verdict: "good",
         explanation:
           "Un seul outcome mesurable. Le taux de retour devient un autre Résultat clé du même Objective, ou une métrique guardrail surveillée à côté.",
@@ -557,7 +557,7 @@ export const OKR_ENTREPRISE_MANAGER_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "B",
-        text: "Faire passer le NPS entreprise de 18 à 40 d'ici la fin de l'année.",
+        text: "Relever le NPS entreprise de 18 à 40 d'ici la fin de l'année.",
         verdict: "good",
         explanation:
           "Point de départ explicite (18), cible (40), échéance, métrique nommée. La structure idéale d'un Résultat clé.",
@@ -607,7 +607,7 @@ export const OKR_ENTREPRISE_MANAGER_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "B",
-        text: "Faire passer les émissions carbone scope 1+2 de 14 200 à 9 000 tonnes de CO2 par an d'ici la fin de l'année.",
+        text: "Ramener les émissions carbone scope 1+2 de 14 200 à 9 000 tonnes de CO2 par an d'ici la fin de l'année.",
         verdict: "good",
         explanation:
           "Point de départ explicite (14 200), cible (9 000), échéance, métrique nommée. La structure idéale d'un Résultat clé.",

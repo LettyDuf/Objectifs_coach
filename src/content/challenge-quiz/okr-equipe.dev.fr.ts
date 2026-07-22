@@ -52,7 +52,7 @@ export const OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "B",
-        text: "Faire passer le NPS dev du module pipeline de 28 à 50 d'ici fin du trimestre.",
+        text: "Relever le NPS dev du module pipeline de 28 à 50 d'ici fin du trimestre.",
         verdict: "good",
         explanation:
           "Métrique nommée (NPS dev), point de départ (28), cible (50), échéance. Outcome qu'un tableau de bord v2 peut effectivement faire bouger.",
@@ -101,7 +101,7 @@ export const OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "B",
-        text: "Faire passer le CSAT moyen des équipes consommatrices de 3,2 / 5 à 4,3 / 5 d'ici fin du trimestre.",
+        text: "Porter le CSAT moyen des équipes consommatrices de 3,2 / 5 à 4,3 / 5 d'ici fin du trimestre.",
         verdict: "good",
         explanation:
           "Métrique nommée, point de départ, cible, échéance. Falsifiable sans ambiguïté.",
@@ -200,7 +200,7 @@ export const OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "B",
-        text: "Faire passer la couverture de tests automatisés de 78 % à 92 % d'ici fin du trimestre.",
+        text: "Porter la couverture de tests automatisés de 78 % à 92 % d'ici fin du trimestre.",
         verdict: "good",
         explanation:
           "Écart ambitieux (+14 pts) qui demande un vrai effort. Probablement autour de 60 % de confiance pour l'équipe — dans la fourchette OKR.",
@@ -250,7 +250,7 @@ export const OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "B",
-        text: "Faire passer le LCP médian de 3,8 s à 1,8 s d'ici fin du trimestre.",
+        text: "Ramener le LCP médian de 3,8 s à 1,8 s d'ici fin du trimestre.",
         verdict: "good",
         explanation:
           "Un seul résultat, métrique nommée, point de départ, cible, échéance. Le KR sur le bounce est une autre histoire — ce sera un autre KR du même Objectif.",
@@ -300,7 +300,7 @@ export const OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "B",
-        text: "Faire passer le temps moyen avant 1er appel API réussi de 4 h à 30 min d'ici fin du trimestre.",
+        text: "Réduire le temps moyen avant 1er appel API réussi de 4 h à 30 min d'ici fin du trimestre.",
         verdict: "good",
         explanation:
           "Point de départ explicite (4 h), cible (30 min), échéance, métrique nommée. La structure idéale d'un KR.",
@@ -352,7 +352,7 @@ export const OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "B",
-        text: "Faire passer le NPS de l'appli mobile (enquête trimestrielle) de 32 à 60 d'ici la fin du trimestre.",
+        text: "Relever le NPS de l'appli mobile (enquête trimestrielle) de 32 à 60 d'ici la fin du trimestre.",
         verdict: "good",
         explanation:
           "Point de départ explicite, cible, fenêtre cohérente avec la cadence de la métrique. La structure idéale d'un KR.",
@@ -505,7 +505,7 @@ export const OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "B",
-        text: "Faire passer le pourcentage d'utilisateurs ayant complété au moins 3 sessions collaboratives de 8 % à 35 % d'ici la fin du trimestre.",
+        text: "Porter le pourcentage d'utilisateurs ayant complété au moins 3 sessions collaboratives de 8 % à 35 % d'ici la fin du trimestre.",
         verdict: "good",
         explanation:
           "Métrique d'usage réel (3 sessions = signal d'adoption), aligné avec l'Objectif. Le clic devient un proxy intermédiaire, le KR mesure l'effet de fin.",
@@ -557,7 +557,7 @@ export const OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "B",
-        text: "Faire passer le NPS dev du SDK de 48 à 65 d'ici la fin du trimestre.",
+        text: "Relever le NPS dev du SDK de 48 à 65 d'ici la fin du trimestre.",
         verdict: "good",
         explanation:
           "Écart ambitieux (+17 pts) qui demande un vrai changement (pas juste corriger les bugs en attente). Probablement autour de 50-60 % de confiance — calibrage OKR correct.",
@@ -609,7 +609,7 @@ export const OKR_EQUIPE_DEV_CHALLENGE_QUIZ_FR: ChallengeQuizCase[] = [
       },
       {
         id: "B",
-        text: "Faire passer l'utilisation hebdomadaire du tableau de bord de 22 % à 45 % d'ici la fin du trimestre.",
+        text: "Amener l'utilisation hebdomadaire du tableau de bord de 22 % à 45 % d'ici la fin du trimestre.",
         verdict: "good",
         explanation:
           "Un seul outcome mesurable. La satisfaction devient un autre KR du même Objectif, ou une métrique guardrail surveillée à côté. Clarté + falsifiabilité.",
