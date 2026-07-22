@@ -19,7 +19,7 @@ import { audienceForType } from "../../domain/types";
 import { Screen } from "../layout/Screen";
 import { createContentRepository } from "../../content/repository";
 
-type Mode = "learn" | "practice" | "challenge" | "puzzle" | "analyse" | "pitfalls";
+type Mode = "learn" | "practice" | "challenge" | "puzzle" | "analyse" | "pitfalls" | "build";
 type Tab = "theory" | "practice";
 
 interface Props {
@@ -49,6 +49,12 @@ const PRACTICE_MODES: ModeChoice[] = [
     label: "Défi",
     desc: "Des cas réels avec quatre propositions à juger. Choisis la meilleure reformulation.",
     icon: "challenge",
+  },
+  {
+    mode: "build",
+    label: "Construire l'objectif",
+    desc: "Le pendant du Défi : au lieu de reconnaître la bonne formulation, tu construis la tienne brique par brique, puis tu la confrontes au miroir.",
+    icon: "target",
   },
   {
     mode: "puzzle",

@@ -19,6 +19,7 @@ import { SprintLearn } from "./screens/SprintLearn";
 // `Challenge` (rédaction libre) reste exporté pour compat historique mais n'est plus
 // utilisé par le routing : tous les Défis passent par `ChallengeQuiz` depuis 2026-06-22.
 import { ChallengeQuiz } from "./screens/ChallengeQuiz";
+import { BuildObjective } from "./screens/BuildObjective";
 import { PitfallQuiz } from "./screens/PitfallQuiz";
 import { Puzzle } from "./screens/Puzzle";
 import { Analyse } from "./screens/Analyse";
@@ -30,7 +31,7 @@ import { OkrEnterprisePractice } from "./screens/OkrEnterprisePractice";
 import { OkrEnterpriseLearn } from "./screens/OkrEnterpriseLearn";
 import { SessionProvider, useSession } from "./SessionContext";
 
-type Mode = "learn" | "practice" | "challenge" | "puzzle" | "analyse" | "pitfalls";
+type Mode = "learn" | "practice" | "challenge" | "puzzle" | "analyse" | "pitfalls" | "build";
 
 interface AppState {
   type: ObjectiveType | null;
@@ -218,6 +219,11 @@ function AppShell() {
         {/* Puzzle générique multi-type — voir D16. Accessible depuis Sprint, PI, OKR équipe
             ou OKR entreprise ; le sélecteur interne (cloisonné par audience, D53) permet la
             bascule rapide et resynchronise le state d'app. */}
+        {/* Construire l'objectif : 2e activité du Défi (génération guidée). */}
+        {state.type !== null && state.mode === "build" && (
+          <BuildObjective coach={coach} type={state.type} onExit={backToModes} />
+        )}
+
         {state.type !== null && state.mode === "puzzle" && (
           <Puzzle
             coach={coach}
@@ -324,5 +330,6 @@ function labelForMode(mode: Mode): string {
     case "puzzle": return "Composer";
     case "analyse": return "Analyser un objectif";
     case "pitfalls": return "Anti-patterns";
+    case "build": return "Construire l'objectif";
   }
 }
