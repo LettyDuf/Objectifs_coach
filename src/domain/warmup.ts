@@ -55,13 +55,38 @@ export function orderVaried<T extends { expected: WarmupAnswer }>(
   cases: T[],
   rnd: () => number = Math.random,
 ): T[] {
-  const shuffled = [...cases];
-  for (let i = shuffled.length - 1; i > 0; i--) {
-    const j = Math.floor(rnd() * (i + 1));
-    [shuffled[i], shuffled[j]] = [shuffled[j]!, shuffled[i]!];
+  if (cases.length <= 1) return [...cases];
+
+  const shuffle = (arr: readonly T[]): T[] => {
+    const a = [...arr];
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(rnd() * (i + 1));
+      [a[i], a[j]] = [a[j]!, a[i]!];
+    }
+    return a;
+  };
+  const hasAdjacentDup = (a: T[]): boolean => {
+    for (let i = 1; i < a.length; i++) {
+      if (a[i]!.expected === a[i - 1]!.expected) return true;
+    }
+    return false;
+  };
+
+  // Échantillonnage par rejet : on tire un ordre ALÉATOIRE et on le garde s'il n'a
+  // jamais deux réponses identiques de suite. D'une session à l'autre, la séquence
+  // des réponses varie vraiment (pas un cycle figé output -> outcome -> à compléter),
+  // tout en garantissant qu'on ne répète jamais la même réponse deux fois de suite.
+  let candidate = shuffle(cases);
+  for (let attempt = 0; attempt < 200 && hasAdjacentDup(candidate); attempt++) {
+    candidate = shuffle(cases);
   }
+  if (!hasAdjacentDup(candidate)) return candidate;
+
+  // Repli déterministe (corpus quasi infaisable, ex. une catégorie ultra-majoritaire) :
+  // glouton par catégorie la plus nombreuse différente de la précédente. Garantit
+  // l'absence d'adjacence chaque fois qu'un tel ordre existe.
   const byType = new Map<WarmupAnswer, T[]>();
-  for (const c of shuffled) {
+  for (const c of shuffle(cases)) {
     const arr = byType.get(c.expected) ?? [];
     arr.push(c);
     byType.set(c.expected, arr);

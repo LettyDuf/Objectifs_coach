@@ -64,4 +64,14 @@ describe("orderVaried", () => {
     expect(o.length).toBe(base.length);
     expect(new Set(o.map((c) => c.id)).size).toBe(base.length);
   });
+
+  it("varie la séquence des réponses d'une fois à l'autre (pas un cycle figé)", () => {
+    const seqs = new Set<string>();
+    for (let t = 0; t < 200; t++) {
+      seqs.add(orderVaried(base).map((c) => c.expected).join(","));
+    }
+    // Un ordre réellement aléatoire produit quantité de séquences distinctes ;
+    // l'ancien glouton par nombre en produisait une poignée quasi figée.
+    expect(seqs.size).toBeGreaterThan(20);
+  });
 });
