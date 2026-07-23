@@ -67,6 +67,10 @@ Recommandation : E d'abord (5 minutes), puis A en session dédiée. Note : l'anc
 - **Registre rédactionnel des futures fiches** : après le retour du 2026-07-04 sur le module OKR entreprise (jargon de consultant détecté dans un premier jet), toute nouvelle fiche pédagogique doit être vulgarisée avant livraison, pas seulement sourcée. Voir mémoire `feedback-vulgariser-conseils`.
 
 ## Journal des sessions
+- **2026-07-22 (suite)** : **diagnostic déploiement GitHub Pages figé depuis le 2026-07-04**.
+  - Vérifié via l'API GitHub (publique, sans auth) : le workflow « Déploiement GitHub Pages » n'a plus tourné depuis le 2026-07-04 (run #5) malgré une dizaine de push sur `main` depuis (jusqu'au commit du jour, 74d28af). Le lien `homepage` du dépôt est déjà correctement réglé sur `https://lettyduf.github.io/Objectifs_coach/` (visible dans l'API, donc About est déjà configuré) et Pages est bien actif (`has_pages: true`), mais le site servi date d'il y a ~3 semaines : ni OKR entreprise (D53), ni retours d'atelier (D55-D61), ni les sessions du 20-22/07 n'y sont.
+  - Cause probable : permission « Actions » désactivée côté repo, ou déclenchement `push` silencieusement cassé, à vérifier par Lætitia dans Settings → Actions → General. Correctif immédiat : relancer manuellement le workflow (Actions → Déploiement GitHub Pages → Run workflow).
+  - Pas de capture possible du site live depuis ce bac à sable (le proxy réseau bloque les domaines externes en dehors de web_fetch ; web_fetch ne rend pas le JS). Vérification visuelle du résultat après redéploiement à faire par Lætitia.
 - **2026-07-09** : **vérification visuelle des 3 réécritures posture-valeurs (D59)**.
   - Capacité de capture d'écran rétablie dans ce bac à sable (Chromium headless shell + stub `libXdamage` compilé localement, cf. mémoire `screenshot-capability-sandbox`) : plus de correction à l'aveugle.
   - Les 3 fiches réécrites (Transparence, Honnêteté du calibrage, Service du bénéficiaire) capturées en contexte dans le build `coach-objectifs.html` (tampon 09/07/2026 14:26, inchangé) et validées une à une par Lætitia.
