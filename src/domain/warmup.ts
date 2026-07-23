@@ -22,12 +22,11 @@ export interface WarmupCase {
   completePrompt?: string;
 }
 
-/** Un des deux mots du déclic, traduit en clair, avec sa posture. */
+/** Un des deux mots du déclic, traduit en clair. */
 export interface WarmupDeclicTerm {
   term: string;
   gloss: string;
   def: string;
-  posture: string;
 }
 
 /** Une paire d'exemples : la même situation en output puis en outcome. */
@@ -36,7 +35,7 @@ export interface WarmupDeclicExample {
   outcome: string;
 }
 
-/** Contenu générique du déclic (définitions, posture, exemples, test). Défini une fois. */
+/** Contenu générique du déclic (définitions, exemples, test). Défini une fois. */
 export interface WarmupDeclic {
   output: WarmupDeclicTerm;
   outcome: WarmupDeclicTerm;

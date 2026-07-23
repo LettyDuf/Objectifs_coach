@@ -21,9 +21,6 @@
 .warmup__def--oc .warmup__def-term { color: var(--color-good); }
 .warmup__def-gloss { display: block; font-weight: 600; font-size: 0.8rem; color: var(--color-text-muted); margin-top: 2px; }
 .warmup__def-def { font-size: 0.9rem; color: var(--color-text); margin-top: 8px; }
-.warmup__def-posture { display: inline-block; margin-top: 11px; font-size: 0.75rem; font-weight: 700; padding: 5px 11px; border-radius: 999px; }
-.warmup__def-posture--out { background: var(--color-neutral-bg); color: var(--color-text); }
-.warmup__def-posture--oc { background: var(--color-good-bg); color: var(--color-good); }
 
 .warmup__bridge { text-align: center; font-size: 0.95rem; color: var(--color-focus); font-weight: 600; margin: 14px 0; line-height: 1.45; }
 
@@ -42,7 +39,6 @@
 .warmup__excell b { font-weight: 700; color: var(--color-text); }
 
 /* --- test --- */
-.warmup__testbox { margin-top: 16px; background: var(--color-theory-bg); border: 1px solid var(--color-theory); border-radius: 12px; padding: 13px 15px; color: var(--color-theory); font-size: 0.9rem; }
 
 /* --- tri, une phrase à la fois --- */
 .warmup__tri-title { font-size: 1.1rem; margin: 0 0 14px; }
@@ -75,3 +71,4 @@
 @media (max-width: 560px) {
   .warmup__defduo, .warmup__choices { grid-template-columns: 1fr; }
 }
+.warmup__testbox { margin-top: 16px; background: var(--color-theory-bg); border: 1px solid var(--color-theory); border-radius: 12px; padding: 13px 15px; color: var(--color-theory); font-size: 0.9rem; }

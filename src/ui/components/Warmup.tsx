@@ -2,7 +2,7 @@
  * Échauffement « Fini n'est pas atteint » (refonte 2026-07, validée avec Lætitia).
  *
  * 1. Le déclic : on traduit output / outcome en clair, on montre le déplacement
- *    du regard (posture), on illustre par deux exemples à égalité, puis le test.
+ *    du regard, on illustre par deux exemples à égalité, puis le test.
  * 2. Le tri : une phrase à la fois, à ranger en Output / Outcome / À compléter.
  *    Rétroaction = une question ou le test rejoué. Aucun score. On enchaîne
  *    autant de phrases qu'on veut ; le paquet se remélange, sans jamais deux
@@ -44,7 +44,6 @@ function DefCard({ t, tone }: { t: WarmupDeclicTerm; tone: "out" | "oc" }) {
         <span className="warmup__def-gloss">{t.gloss}</span>
       </div>
       <div className="warmup__def-def">{t.def}</div>
-      <div className={"warmup__def-posture warmup__def-posture--" + tone}>{t.posture}</div>
     </div>
   );
 }
