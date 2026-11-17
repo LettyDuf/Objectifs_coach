@@ -3,17 +3,19 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Warmup } from "./Warmup";
 import type { WarmupCase } from "../../domain/warmup";
+import { WARMUP_DECLIC_FR } from "../../content/warmup/declic.fr";
 
 const OUT: WarmupCase = { id: "o", prompt: "« PROMPT_OUT »", expected: "output", feedbackGood: "GOOD_OUT", feedbackAsk: "ASK_OUT" };
 const OC: WarmupCase = { id: "c", prompt: "« PROMPT_OC »", expected: "outcome", feedbackGood: "GOOD_OC", feedbackAsk: "ASK_OC" };
 const CP: WarmupCase = { id: "p", prompt: "« PROMPT_CP »", expected: "complete", feedbackGood: "GOOD_CP", feedbackAsk: "ASK_CP", completePrompt: "QUESTION_CP" };
 
 describe("Warmup (refonte, une phrase à la fois)", () => {
-  it("montre le déclic : les deux mots traduits", () => {
+  // Le texte vient du contenu (declic.fr.ts) : le reformuler ne doit pas casser ce test.
+  it("montre le déclic : les deux mots traduits, le pont et le test pour trancher", () => {
     render(<Warmup cases={[OUT]} />);
-    expect(screen.getByText("ce que ça donne")).toBeInTheDocument();
-    expect(screen.getByText(/déplacer son regard/i)).toBeInTheDocument();
-    expect(screen.getByText(/le résultat visé peut-il quand même/i)).toBeInTheDocument();
+    expect(screen.getByText(WARMUP_DECLIC_FR.outcome.gloss)).toBeInTheDocument();
+    expect(screen.getByText(WARMUP_DECLIC_FR.bridge)).toBeInTheDocument();
+    expect(screen.getByText(WARMUP_DECLIC_FR.test)).toBeInTheDocument();
   });
 
   it("montre une phrase et trois choix", () => {

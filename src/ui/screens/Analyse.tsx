@@ -139,7 +139,7 @@ export function analyseText(raw: string): TextDiagnostic {
   // Bénéficiaire : on cherche "pour" + déterminant + un mot/nom (clients, équipe, utilisateurs…).
   // Liste non exhaustive : c'est un signal, pas une preuve absolue de bénéficiaire.
   const benefMatch = trimmed.match(
-    /\bpour\s+(les?|la|l['']|des|nos|notre|tous?\s+les?|chaque)\s+([a-zàâäéèêëïîôöùûüç\-]+(?:\s+[a-zàâäéèêëïîôöùûüç\-]+){0,3})/i
+    /\bpour\s+(les?|la|l['']|des|nos|notre|tous?\s+les?|chaque)\s+([a-zàâäéèêëïîôöùûüç-]+(?:\s+[a-zàâäéèêëïîôöùûüç-]+){0,3})/i
   );
   const beneficiaryDetected = benefMatch ? `pour ${benefMatch[1]} ${benefMatch[2]}` : null;
 
