@@ -32,6 +32,7 @@ Build monofichier 711 Ko / gzip ~179 Ko. 278 tests verts / 1 skip. Tampon de bui
 Incrément 2 livré : UI fonctionnelle Sprint (sélecteur → mode → entraînement / apprendre → export). 39 tests verts, build production OK. Premier vrai outil utilisable en atelier sur le périmètre Sprint × dev.
 
 ## Fait
+- **2026-11-17** : **passage en « tous droits réservés »**. Le fichier `LICENSE` (CC BY-NC-SA 4.0) est remplacé par `COPYRIGHT.md` (© 2026 Lætitia Dufour, droit d'auteur canadien, sur le modèle de KPI4who). README complété, `package.json` passé en `UNLICENSED`. Les copies obtenues avant cette date restent sous CC BY-NC-SA 4.0.
 - Cadrage produit du V1 + 12 décisions structurantes + DOMAINE validé.
 - **Scaffolding** : Vite + React 18 + TS strict + Vitest + ESLint + Prettier.
 - **Domaine** : types, ports, heuristiques, 5 critères tronc commun, pénalité composite, calibrage par type (D10).
