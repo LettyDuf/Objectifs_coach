@@ -3,6 +3,15 @@ import { posix } from "node:path";
 /**
  * Vérificateur d'architecture hexagonale.
  *
+ * COPIE SYNCHRONISÉE : ce fichier, son test et source-files.ts existent à l'identique dans
+ * Objectifs_coach (src/architecture), coach-identifier-les-processus et Coach_Risques
+ * (tests/architecture). Toute correction se reporte dans les trois dépôts.
+ *
+ * Limites connues (analyse par expressions régulières, assumée) : un objet du navigateur
+ * utilisé dans un ${...} de texte entre accents graves n'est pas vu ; un nom de variable
+ * égal à un objet interdit (ex. un paramètre « document ») est signalé à tort ; un texte
+ * qui contient une phrase d'import est lu comme un import. Le linter complète le filet.
+ *
  * Fonctions pures : on leur donne des fichiers (chemin + texte), elles rendent la liste
  * des infractions. Aucune lecture de disque ici : c'est le test d'architecture qui lit
  * les fichiers et appelle ce vérificateur.
@@ -45,7 +54,7 @@ const STRING_OR_COMMENT =
   /("(?:\\.|[^"\\\n])*"|'(?:\\.|[^'\\\n])*'|`(?:\\.|[^`\\])*`)|\/\*[\s\S]*?\*\/|\/\/[^\n]*/g;
 
 const IMPORT_SPECIFIER =
-  /\b(?:import|export)\s[^;]*?\sfrom\s*["']([^"']+)["']|\bimport\s*\(\s*["']([^"']+)["']\s*\)|\bimport\s+["']([^"']+)["']/g;
+  /\b(?:import|export)\b[^;]*?\bfrom\s*["']([^"']+)["']|\bimport\s*\(\s*["'`]([^"'`]+)["'`]\s*\)|\bimport\s*["']([^"']+)["']/g;
 
 export function isProductionSource(path: string): boolean {
   return /\.tsx?$/.test(path) && !/\.test\.tsx?$/.test(path) && !path.endsWith(".d.ts");
@@ -67,11 +76,13 @@ function ruleFor(path: string, config: ArchitectureConfig): LayerRule | undefine
   return config.rules.find((rule) => rule.layer === layer);
 }
 
-function layerOf(path: string, sourceRoot: string): string {
+/** Couche d'un chemin : premier dossier sous la racine source, "(racine)" pour un fichier posé à la racine. */
+export function layerOf(path: string, sourceRoot: string): string {
   const prefix = `${sourceRoot}/`;
   if (!path.startsWith(prefix)) return OUTSIDE_SOURCE;
   const segments = path.slice(prefix.length).split("/");
-  return segments.length > 1 ? segments[0]! : "(racine)";
+  const isRootFile = segments.length === 1 && segments[0]!.includes(".");
+  return isRootFile ? "(racine)" : segments[0]!;
 }
 
 function importViolations(file: SourceFile, rule: LayerRule, config: ArchitectureConfig): Violation[] {
@@ -114,7 +125,7 @@ function globalViolations(file: SourceFile, rule: LayerRule): Violation[] {
     .filter((name) => new RegExp(`(?<![\\w$.])${name}(?![\\w$])`).test(code))
     .map((name) => ({
       file: file.path,
-      detail: `utilise "${name}" : la couche ${rule.layer} doit fonctionner sans navigateur.`,
+      detail: `utilise "${name}" : la couche ${rule.layer} doit fonctionner sans navigateur ni Node.`,
     }));
 }
 

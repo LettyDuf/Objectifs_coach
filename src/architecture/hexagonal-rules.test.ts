@@ -19,7 +19,7 @@ const CONFIG: ArchitectureConfig = {
       layer: "domain",
       mayDependOn: ["domain"],
       allowedPackages: [],
-      forbiddenGlobals: ["window", "document", "localStorage"],
+      forbiddenGlobals: ["window", "document", "localStorage", "globalThis"],
     },
     { layer: "content", mayDependOn: ["domain", "content"], allowedPackages: ["zod"] },
   ],
@@ -71,6 +71,33 @@ describe("findArchitectureViolations : dépendances entre couches", () => {
     expect(check(file("src/domain/engine.ts", text))).toHaveLength(5);
   });
 
+  it("repère un import écrit sans espaces ou avec un astérisque", () => {
+    const text = 'import{A}from"../ui/a";\nimport*as B from "../ui/b";';
+    expect(check(file("src/domain/engine.ts", text))).toHaveLength(2);
+  });
+
+  it("repère un import dynamique écrit avec des accents graves", () => {
+    expect(check(file("src/domain/engine.ts", "const m = import(`../ui/a`);"))).toHaveLength(1);
+  });
+
+  it("accepte un alias qui vise exactement une couche autorisée", () => {
+    expect(check(file("src/content/data.ts", 'import { A } from "@domain";'))).toEqual([]);
+  });
+
+  it("ne confond pas un alias avec un nom qui commence pareil", () => {
+    const violations = check(file("src/content/data.ts", 'import { A } from "@uix/a";'));
+    expect(violations).toHaveLength(1);
+    expect(violations[0]?.detail).toContain("@uix/a");
+  });
+
+  it("reconnaît une bibliothèque autorisée importée par un sous-chemin", () => {
+    expect(check(file("src/content/schema.ts", 'import { z } from "zod/v4";'))).toEqual([]);
+  });
+
+  it("reconnaît le nom complet d'une bibliothèque à portée (@scope/nom)", () => {
+    expect(check(file("src/content/schema.ts", 'import x from "@zod/extra";'))).toHaveLength(1);
+  });
+
   it("repère un import écrit sur plusieurs lignes", () => {
     const text = 'import {\n  A,\n  B,\n} from "../ui/a";';
     expect(check(file("src/domain/engine.ts", text))).toHaveLength(1);
@@ -99,6 +126,14 @@ describe("findArchitectureViolations : objets du navigateur interdits", () => {
 
   it("ignore ces mots quand ils font partie d'un nom plus long", () => {
     expect(check(file("src/domain/store.ts", "const documentKind = 1; const myWindow = 2;"))).toEqual([]);
+  });
+
+  it("signale un accès détourné par globalThis", () => {
+    expect(check(file("src/domain/store.ts", "globalThis.localStorage.clear();"))).toHaveLength(1);
+  });
+
+  it("ignore un texte entre accents graves", () => {
+    expect(check(file("src/domain/store.ts", "const a = `le document`;"))).toEqual([]);
   });
 
   it("ne vérifie les objets du navigateur que dans les couches qui l'interdisent", () => {
