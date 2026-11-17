@@ -1,6 +1,8 @@
 {
   "name": "coach-objectifs",
   "private": true,
+  "license": "UNLICENSED",
+  "author": "Lætitia Dufour",
   "version": "0.1.0",
   "type": "module",
   "description": "Outil pédagogique pour rédiger d'excellents objectifs (Sprint, PI, OKR).",

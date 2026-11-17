@@ -86,3 +86,10 @@ src/
 ```
 
 **Règle d'or** : `src/domain/` n'importe jamais ni React, ni Vite, ni quoi que ce soit du dossier `src/ui/` ou `src/content/`. Le domaine doit pouvoir vivre sans interface.
+
+
+## Droits d'auteur et usage
+
+© 2026 Lætitia Dufour. Tous droits réservés.
+
+Cet outil n'est **pas distribué sous licence open source**. Le code, le contenu pédagogique et la documentation sont protégés par le droit d'auteur canadien. Pour les conditions précises et toute demande d'usage, de citation ou de partenariat, voir [COPYRIGHT.md](COPYRIGHT.md).
